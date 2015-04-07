@@ -42,7 +42,15 @@
   <%= menu_group do %>
     <%= menu_item "Home", 'root_path' %>
     <%= menu_divider %>
-    <%= drop_down "Products" do %>
+    <%= drop_down "Species" do %>
+      <%= menu_item "Things you can't afford", 'expensive_products_path' %>
+      <%= menu_item "Things that won't suit you anyway", 'harem_pants_path' %>
+      <%= menu_item "Things you're not even cool enough to buy anyway", 'hipster_products_path' %>
+      <% if current_user %>
+        <%= menu_item "Bikes", 'fixed_wheel_bikes_path' %>
+      <% end %>
+    <% end %>
+    <%= drop_down "Specimens" do %>
       <%= menu_item "Things you can't afford", 'expensive_products_path' %>
       <%= menu_item "Things that won't suit you anyway", 'harem_pants_path' %>
       <%= menu_item "Things you're not even cool enough to buy anyway", 'hipster_products_path' %>

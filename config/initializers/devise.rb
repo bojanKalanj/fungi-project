@@ -238,7 +238,7 @@ Devise.setup do |config|
   config.warden do |manager|
     # manager.intercept_401 = false
     # manager.default_strategies(scope: :user).unshift :some_external_strategy
-    manager.failure_app = CustomAuthFailure
+    # manager.failure_app = CustomAuthFailure
   end
 
   # ==> Mountable engine configurations

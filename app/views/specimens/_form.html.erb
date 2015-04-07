@@ -1,0 +1,32 @@
+<%= simple_form_for @specimen, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :species_id %>
+  <%= error_span(@specimen[:species_id]) %>
+  <%= f.input :location_id %>
+  <%= error_span(@specimen[:location_id]) %>
+  <%= f.input :legator_id %>
+  <%= error_span(@specimen[:legator_id]) %>
+  <%= f.input :legator_text %>
+  <%= error_span(@specimen[:legator_text]) %>
+  <%= f.input :determinator_id %>
+  <%= error_span(@specimen[:determinator_id]) %>
+  <%= f.input :determinator_text %>
+  <%= error_span(@specimen[:determinator_text]) %>
+  <%= f.input :habitats %>
+  <%= error_span(@specimen[:habitats]) %>
+  <%= f.input :substrates %>
+  <%= error_span(@specimen[:substrates]) %>
+  <%= f.input :date %>
+  <%= error_span(@specimen[:date]) %>
+  <%= f.input :quantity %>
+  <%= error_span(@specimen[:quantity]) %>
+  <%= f.input :note %>
+  <%= error_span(@specimen[:note]) %>
+  <%= f.input :approved %>
+  <%= error_span(@specimen[:approved]) %>
+  <%= f.input :uuid %>
+  <%= error_span(@specimen[:uuid]) %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                specimen_index_path, :class => 'btn btn-default' %>
+<% end %>

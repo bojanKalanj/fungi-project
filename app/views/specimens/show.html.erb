@@ -1,0 +1,43 @@
+<%- model_class = Specimen -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:species_id) %>:</strong></dt>
+  <dd><%= @specimen.species_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:location_id) %>:</strong></dt>
+  <dd><%= @specimen.location_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:legator_id) %>:</strong></dt>
+  <dd><%= @specimen.legator_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:legator_text) %>:</strong></dt>
+  <dd><%= @specimen.legator_text %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:determinator_id) %>:</strong></dt>
+  <dd><%= @specimen.determinator_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:determinator_text) %>:</strong></dt>
+  <dd><%= @specimen.determinator_text %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:habitats) %>:</strong></dt>
+  <dd><%= @specimen.habitats %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:substrates) %>:</strong></dt>
+  <dd><%= @specimen.substrates %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:date) %>:</strong></dt>
+  <dd><%= @specimen.date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:quantity) %>:</strong></dt>
+  <dd><%= @specimen.quantity %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:note) %>:</strong></dt>
+  <dd><%= @specimen.note %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:approved) %>:</strong></dt>
+  <dd><%= @specimen.approved %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:uuid) %>:</strong></dt>
+  <dd><%= @specimen.uuid %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              specimen_index_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_specimen_path(@specimen), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              specimen_path(@specimen),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

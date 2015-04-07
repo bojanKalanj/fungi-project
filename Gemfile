@@ -11,8 +11,6 @@ gem 'rails-i18n'
 gem 'mysql2', '0.3.16'
 gem 'annotate', '~> 2.6.5'
 
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -21,6 +19,12 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 
+
+
+gem 'therubyracer'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
+gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'capistrano', '3.2.1'

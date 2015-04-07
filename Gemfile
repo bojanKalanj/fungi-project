@@ -3,14 +3,14 @@ source 'https://rubygems.org'
 #ruby=ruby-2.1.5
 #ruby-gemset=fungiorbis2
 
-gem 'rails', '4.2.1'
+gem 'rails'
 
-gem 'devise', '3.2.4'
-gem 'cancancan', '1.9.2'
-gem 'will_paginate', '3.0.7'
+gem 'devise'
+gem 'cancancan'
+gem 'will_paginate'
 
 gem 'rails-i18n'
-gem 'mysql2', '0.3.16'
+gem 'mysql2'
 gem 'annotate', '~> 2.6.5'
 
 
@@ -31,24 +31,24 @@ gem 'jbuilder', '~> 2.0'
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'capistrano', '3.2.1'
-  gem 'capistrano-rails', '1.1.2'
-  gem 'capistrano-bundler', '1.1.3'
-  gem 'capistrano-rvm', '0.1.2', require: false
-  gem 'daemons', '1.1.9'
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm', require: false
+  gem 'daemons'
 
 
-  gem 'rspec-rails', '3.0.2'
-  gem 'factory_girl_rails', '4.4.1'
-  gem 'faker', '1.4.3'
-  gem 'forgery', '0.6.0'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'forgery'
 end
 
 gem 'simple_form'
 
 group :test do
-  gem 'shoulda-matchers', '2.6.2'
-  gem 'database_cleaner', '1.3.0'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner'
 end
 
 group :doc do

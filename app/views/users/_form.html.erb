@@ -1,19 +1,26 @@
 <%= simple_form_for @user, :html => { :class => "form-horizontal user" } do |f| %>
+  <%= f.input :email %>
+  <%= error_span(@user[:email]) %>
 
-  <fieldset>
-    <legend><%= controller.action_name.capitalize %> User</legend>
+  <%= f.input :first_name %>
+  <%= error_span(@user[:first_name]) %>
 
-    <%= f.input :email %>
-    <%= f.input :first_name %>
-    <%= f.input :last_name %>
-    <%= f.input :title %>
-    <%= f.input :role %>
-    <%= f.input :institution %>
-    <%= f.input :phone %>
+  <%= f.input :last_name %>
+  <%= error_span(@user[:last_name]) %>
 
+  <%= f.input :title %>
+  <%= error_span(@user[:title]) %>
 
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn btn-default' %>
-  </fieldset>
+  <%= f.input :role %>
+  <%= error_span(@user[:role]) %>
+
+  <%= f.input :institution %>
+  <%= error_span(@user[:institution]) %>
+
+  <%= f.input :phone %>
+  <%= error_span(@user[:phone]) %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn btn-default' %>
 
 <% end %>

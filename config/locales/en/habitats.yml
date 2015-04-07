@@ -1,0 +1,88 @@
+en:
+  species:
+    coniferous:
+      abies: Fir
+      larix: Larch
+      picea: Spruce
+      pinus: Pine
+      taxus: Yew
+    deciduous:
+      acer: Maple
+      betula: Birch
+      carpinus: Hornbeam
+      castanea: Chestnut
+      cornus: Cornel
+      corylus: Hazelnut
+      crategus: Hawthorn
+      fagus: Beech
+      fraxinus: Ash
+      populus: Poplar
+      quercus: Oak
+      robinia: Acacia
+      rubus: Raspberry
+      salix: Willow
+      sambucus: Elder
+      tilia: Linden
+    orchard:
+      malus: Apple
+      prunus: Plum
+  species_group_title:
+    coniferous: Coniferous
+    deciduous: Deciduous
+    orchard: Orchard
+  habitats:
+    forest:
+      title: Forrest
+      allowed_species_groups:
+        - coniferous
+        - deciduous
+      subhabitat:
+        anthropogenic:
+          title: Anthropogenic forest
+          allowed_species_groups:
+            - coniferous
+            - deciduous
+        coniferous:
+          title: Coniferous forest
+          allowed_species_groups:
+            - coniferous
+        deciduous:
+          title: Deciduous forest
+          allowed_species_groups:
+            - deciduous
+        mixed:
+          title: Mixed forest
+          allowed_species_groups:
+            - coniferous
+            - deciduous
+        freshwater_swamp:
+          title: Freshwater swamp
+          allowed_species_groups:
+            - deciduous
+    meadow:
+      title: Meadow
+    sands:
+      title: Sands
+      allowed_species_groups:
+        - coniferous
+        - deciduous
+    peat:
+      title: Peat
+    anthropogenic:
+      title: Anthropogenic
+      subhabitat:
+        park:
+          title: Park
+          allowed_species_groups:
+            - coniferous
+            - deciduous
+        garden:
+          title: Garden
+        yard:
+          title: Yard
+        orchard:
+          title: Orchard
+          allowed_species_groups:
+            - orchard
+        vineyard:
+          title: Vineyard

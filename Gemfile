@@ -22,11 +22,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
 
+  gem 'twitter-bootstrap-rails'
+  gem 'uglifier', '>= 1.3.0'
+  gem "therubyracer"
+  gem "less-rails"
 
-gem 'therubyracer'
-gem 'less-rails'
-gem 'twitter-bootstrap-rails'
-gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'better_errors'
@@ -43,6 +43,8 @@ group :development, :test do
   gem 'faker', '1.4.3'
   gem 'forgery', '0.6.0'
 end
+
+gem 'simple_form'
 
 group :test do
   gem 'shoulda-matchers', '2.6.2'

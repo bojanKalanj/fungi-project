@@ -22,10 +22,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
 
-  gem 'twitter-bootstrap-rails'
-  gem 'uglifier', '>= 1.3.0'
-  gem "therubyracer"
-  gem "less-rails"
+gem 'twitter-bootstrap-rails'
+gem 'uglifier', '>= 1.3.0'
+gem "therubyracer"
+gem "less-rails"
+gem 'will_paginate-bootstrap'
 
 
 group :development, :test do

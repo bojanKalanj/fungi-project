@@ -4,7 +4,7 @@ class SpecimensController < ApplicationController
   # GET /specimen
   # GET /specimen.json
   def index
-    @specimen = Specimen.all
+    @specimens = Specimen.all.paginate(:page => params[:page])
   end
 
   # GET /specimen/1

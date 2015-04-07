@@ -35,6 +35,8 @@
   </tbody>
 </table>
 
+<%= will_paginate @species, renderer: BootstrapPagination::Rails %>
+
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_species_path,
             :class => 'btn btn-primary' %>

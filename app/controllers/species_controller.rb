@@ -5,7 +5,7 @@ class SpeciesController < ApplicationController
   # GET /species
   # GET /species.json
   def index
-    @species = Species.all
+    @species = Species.all.paginate(:page => params[:page])
   end
 
   # GET /species/1

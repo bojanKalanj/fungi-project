@@ -39,6 +39,8 @@
   </tbody>
 </table>
 
+<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_user_path,
             :class => 'btn btn-primary' %>

@@ -24,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @specimen.each do |specimen| %>
+    <% @specimens.each do |specimen| %>
       <tr>
         <td><%= link_to specimen.id, specimen_path(specimen) %></td>
         <td><%= specimen.species_id %></td>
@@ -54,6 +54,8 @@
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate @specimens, renderer: BootstrapPagination::Rails %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_specimen_path,

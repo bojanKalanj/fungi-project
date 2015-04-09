@@ -38,7 +38,7 @@ end
 #  classis         :string(255)      not null
 #  subphylum       :string(255)      not null
 #  phylum          :string(255)      not null
-#  synonyms        :text
+#  synonyms        :text(65535)
 #  growth_type     :string(255)
 #  nutritive_group :string(255)
 #  url             :string(255)

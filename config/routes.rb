@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :references, param: :uuid
   resources :locations, param: :uuid
   resources :characteristics, param: :uuid
+  resources :languages
 
   root to: 'users#index'
 end

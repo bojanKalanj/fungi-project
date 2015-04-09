@@ -28,6 +28,7 @@ gem "therubyracer"
 gem "less-rails"
 gem 'will_paginate-bootstrap'
 
+gem 'friendly_id', '~> 5.1.0'
 
 group :development, :test do
   gem 'better_errors'

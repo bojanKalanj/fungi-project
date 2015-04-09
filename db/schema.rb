@@ -11,23 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128173116) do
+ActiveRecord::Schema.define(version: 20150409184149) do
 
-  create_table "characteristics", force: true do |t|
-    t.integer  "reference_id",  null: false
-    t.integer  "species_id",    null: false
-    t.boolean  "edible"
-    t.boolean  "cultivated"
-    t.boolean  "poisonous"
-    t.boolean  "medicinal"
-    t.text     "fruiting_body"
-    t.text     "microscopy"
-    t.text     "flesh"
-    t.text     "chemistry"
-    t.text     "note"
-    t.text     "habitats"
-    t.text     "substrates"
-    t.string   "uuid"
+  create_table "characteristics", force: :cascade do |t|
+    t.integer  "reference_id",  limit: 4,     null: false
+    t.integer  "species_id",    limit: 4,     null: false
+    t.boolean  "edible",        limit: 1
+    t.boolean  "cultivated",    limit: 1
+    t.boolean  "poisonous",     limit: 1
+    t.boolean  "medicinal",     limit: 1
+    t.text     "fruiting_body", limit: 65535
+    t.text     "microscopy",    limit: 65535
+    t.text     "flesh",         limit: 65535
+    t.text     "chemistry",     limit: 65535
+    t.text     "note",          limit: 65535
+    t.text     "habitats",      limit: 65535
+    t.text     "substrates",    limit: 65535
+    t.string   "uuid",          limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,42 +36,51 @@ ActiveRecord::Schema.define(version: 20141128173116) do
   add_index "characteristics", ["species_id"], name: "index_characteristics_on_species_id", using: :btree
   add_index "characteristics", ["uuid"], name: "index_characteristics_on_uuid", unique: true, using: :btree
 
-  create_table "locations", force: true do |t|
-    t.string   "name",       null: false
-    t.string   "utm",        null: false
-    t.string   "uuid"
+  create_table "languages", force: :cascade do |t|
+    t.string   "name",       limit: 255, null: false
+    t.string   "slug_2",     limit: 255, null: false
+    t.string   "slug_3",     limit: 255, null: false
+    t.boolean  "default",    limit: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "name",       limit: 255, null: false
+    t.string   "utm",        limit: 255, null: false
+    t.string   "uuid",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "locations", ["uuid"], name: "index_locations_on_uuid", unique: true, using: :btree
 
-  create_table "references", force: true do |t|
-    t.string   "title",      null: false
-    t.string   "authors"
-    t.string   "isbn"
-    t.string   "url"
-    t.string   "uuid"
+  create_table "references", force: :cascade do |t|
+    t.string   "title",      limit: 255, null: false
+    t.string   "authors",    limit: 255
+    t.string   "isbn",       limit: 255
+    t.string   "url",        limit: 255
+    t.string   "uuid",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "references", ["uuid"], name: "index_references_on_uuid", unique: true, using: :btree
 
-  create_table "species", force: true do |t|
-    t.string   "name",            null: false
-    t.string   "genus",           null: false
-    t.string   "familia",         null: false
-    t.string   "ordo",            null: false
-    t.string   "subclassis",      null: false
-    t.string   "classis",         null: false
-    t.string   "subphylum",       null: false
-    t.string   "phylum",          null: false
-    t.text     "synonyms"
-    t.string   "growth_type"
-    t.string   "nutritive_group"
-    t.string   "url"
-    t.string   "uuid"
+  create_table "species", force: :cascade do |t|
+    t.string   "name",            limit: 255,   null: false
+    t.string   "genus",           limit: 255,   null: false
+    t.string   "familia",         limit: 255,   null: false
+    t.string   "ordo",            limit: 255,   null: false
+    t.string   "subclassis",      limit: 255,   null: false
+    t.string   "classis",         limit: 255,   null: false
+    t.string   "subphylum",       limit: 255,   null: false
+    t.string   "phylum",          limit: 255,   null: false
+    t.text     "synonyms",        limit: 65535
+    t.string   "growth_type",     limit: 255
+    t.string   "nutritive_group", limit: 255
+    t.string   "url",             limit: 255
+    t.string   "uuid",            limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -80,20 +89,20 @@ ActiveRecord::Schema.define(version: 20141128173116) do
   add_index "species", ["url"], name: "index_species_on_url", unique: true, using: :btree
   add_index "species", ["uuid"], name: "index_species_on_uuid", unique: true, using: :btree
 
-  create_table "specimen", force: true do |t|
-    t.integer  "species_id",        null: false
-    t.integer  "location_id",       null: false
-    t.integer  "legator_id",        null: false
-    t.string   "legator_text"
-    t.integer  "determinator_id"
-    t.string   "determinator_text"
-    t.text     "habitats"
-    t.text     "substrates"
-    t.date     "date",              null: false
-    t.text     "quantity"
-    t.text     "note"
-    t.boolean  "approved"
-    t.string   "uuid"
+  create_table "specimen", force: :cascade do |t|
+    t.integer  "species_id",        limit: 4,     null: false
+    t.integer  "location_id",       limit: 4,     null: false
+    t.integer  "legator_id",        limit: 4,     null: false
+    t.string   "legator_text",      limit: 255
+    t.integer  "determinator_id",   limit: 4
+    t.string   "determinator_text", limit: 255
+    t.text     "habitats",          limit: 65535
+    t.text     "substrates",        limit: 65535
+    t.date     "date",                            null: false
+    t.text     "quantity",          limit: 65535
+    t.text     "note",              limit: 65535
+    t.boolean  "approved",          limit: 1
+    t.string   "uuid",              limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -104,29 +113,29 @@ ActiveRecord::Schema.define(version: 20141128173116) do
   add_index "specimen", ["species_id"], name: "index_specimen_on_species_id", using: :btree
   add_index "specimen", ["uuid"], name: "index_specimen_on_uuid", unique: true, using: :btree
 
-  create_table "users", force: true do |t|
-    t.string   "email",                                   null: false
-    t.string   "encrypted_password"
-    t.string   "first_name",                              null: false
-    t.string   "last_name",                               null: false
-    t.string   "title"
-    t.string   "role",                   default: "user", null: false
-    t.string   "institution"
-    t.string   "phone"
-    t.string   "uuid"
-    t.string   "authentication_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255,                  null: false
+    t.string   "encrypted_password",     limit: 255
+    t.string   "first_name",             limit: 255,                  null: false
+    t.string   "last_name",              limit: 255,                  null: false
+    t.string   "title",                  limit: 255
+    t.string   "role",                   limit: 255, default: "user", null: false
+    t.string   "institution",            limit: 255
+    t.string   "phone",                  limit: 255
+    t.string   "uuid",                   limit: 255
+    t.string   "authentication_token",   limit: 255
     t.datetime "deactivated_at"
-    t.string   "reset_password_token"
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
-    t.integer  "sign_in_count",          default: 0,      null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,      null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
+    t.string   "unconfirmed_email",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end

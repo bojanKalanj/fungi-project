@@ -24,10 +24,10 @@
   <%= favicon_link_tag 'apple-icon-152x152.png', rel: 'apple-touch-icon', sizes: '152x152' %>
   <%= favicon_link_tag 'apple-icon-180x180.png', rel: 'apple-touch-icon', sizes: '180x180' %>
 
-  <%= favicon_link_tag 'android-icon-192x192.png', rel: 'icon', type:'image/png', sizes: '' %>
-  <%= favicon_link_tag 'favicon-32x32.png', rel: 'icon', type:'image/png', sizes: '' %>
-  <%= favicon_link_tag 'favicon-96x96.png', rel: 'icon', type:'image/png', sizes: '' %>
-  <%= favicon_link_tag 'favicon-16x16.png', rel: 'icon', type:'image/png', sizes: '' %>
+  <%= favicon_link_tag 'android-icon-192x192.png', rel: 'icon', type: 'image/png', sizes: '' %>
+  <%= favicon_link_tag 'favicon-32x32.png', rel: 'icon', type: 'image/png', sizes: '' %>
+  <%= favicon_link_tag 'favicon-96x96.png', rel: 'icon', type: 'image/png', sizes: '' %>
+  <%= favicon_link_tag 'favicon-16x16.png', rel: 'icon', type: 'image/png', sizes: '' %>
 
   <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
@@ -43,19 +43,16 @@
     <%= menu_item "Specimens", specimens_path %>
     <%= menu_item "References", references_path %>
     <%= menu_item "Locations", locations_path %>
-    <!--
-    <%= drop_down "Species" do %>
-      <%= menu_item "Things you can't afford", 'expensive_products_path' %>
-      <%= menu_item "Things that won't suit you anyway", 'harem_pants_path' %>
-      <%= menu_item "Things you're not even cool enough to buy anyway", 'hipster_products_path' %>
-      <% if current_user %>
-        <%= menu_item "Bikes", 'fixed_wheel_bikes_path' %>
-      <% end %>
-    <% end %>
-    !-->
   <% end %>
+
   <%= menu_group pull: :right do %>
     <% if current_user %>
+      <% if current_user.supervisor? %>
+        <%= drop_down "Administration" do %>
+          <%= menu_item "Users", users_path %>
+          <%= menu_item "Languages", languages_path %>
+        <% end %>
+      <% end %>
       <%= menu_item "Log Out", 'log_out_path' %>
     <% else %>
       <%= simple_form_for User.new, url: session_path(:user), html: { class: "navbar-form pull-right" } do |f| -%>

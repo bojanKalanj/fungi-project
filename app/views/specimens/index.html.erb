@@ -27,7 +27,7 @@
     <% @specimens.each do |specimen| %>
       <tr>
         <td><%= link_to specimen.id, specimen_path(specimen) %></td>
-        <td><%= specimen.species_id %></td>
+        <td><%= specimen.species.full_name %></td>
         <td><%= specimen.location_id %></td>
         <td><%= specimen.legator_id %></td>
         <td><%= specimen.legator_text %></td>

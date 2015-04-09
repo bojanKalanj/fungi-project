@@ -14,24 +14,21 @@
 
   <%= stylesheet_link_tag "application", :media => "all" %>
 
-  <!-- For third-generation iPad with high-resolution Retina display: -->
-  <!-- Size should be 144 x 144 pixels -->
-  <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
+  <%= favicon_link_tag 'apple-icon-57x57.png', rel: 'apple-touch-icon', sizes: '57x57' %>
+  <%= favicon_link_tag 'apple-icon-60x60.png', rel: 'apple-touch-icon', sizes: '60x60' %>
+  <%= favicon_link_tag 'apple-icon-72x72.png', rel: 'apple-touch-icon', sizes: '72x72' %>
+  <%= favicon_link_tag 'apple-icon-76x76.png', rel: 'apple-touch-icon', sizes: '76x76' %>
+  <%= favicon_link_tag 'apple-icon-114x114.png', rel: 'apple-touch-icon', sizes: '114x114' %>
+  <%= favicon_link_tag 'apple-icon-120x120.png', rel: 'apple-touch-icon', sizes: '120x120' %>
+  <%= favicon_link_tag 'apple-icon-144x144.png', rel: 'apple-touch-icon', sizes: '144x144' %>
+  <%= favicon_link_tag 'apple-icon-152x152.png', rel: 'apple-touch-icon', sizes: '152x152' %>
+  <%= favicon_link_tag 'apple-icon-180x180.png', rel: 'apple-touch-icon', sizes: '180x180' %>
 
-  <!-- For iPhone with high-resolution Retina display: -->
-  <!-- Size should be 114 x 114 pixels -->
-  <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
+  <%= favicon_link_tag 'android-icon-192x192.png', rel: 'icon', type:'image/png', sizes: '' %>
+  <%= favicon_link_tag 'favicon-32x32.png', rel: 'icon', type:'image/png', sizes: '' %>
+  <%= favicon_link_tag 'favicon-96x96.png', rel: 'icon', type:'image/png', sizes: '' %>
+  <%= favicon_link_tag 'favicon-16x16.png', rel: 'icon', type:'image/png', sizes: '' %>
 
-  <!-- For first- and second-generation iPad: -->
-  <!-- Size should be 72 x 72 pixels -->
-  <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
-
-  <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-  <!-- Size should be 57 x 57 pixels -->
-  <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
-
-  <!-- For all other devices -->
-  <!-- Size should be 32 x 32 pixels -->
   <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
   <%= javascript_include_tag "application" %>
@@ -42,6 +39,11 @@
   <%= menu_group do %>
     <%= menu_item "Home", 'root_path' %>
     <%= menu_divider %>
+    <%= menu_item "Species", species_index_path %>
+    <%= menu_item "Specimens", specimens_path %>
+    <%= menu_item "References", references_path %>
+    <%= menu_item "Locations", locations_path %>
+    <!--
     <%= drop_down "Species" do %>
       <%= menu_item "Things you can't afford", 'expensive_products_path' %>
       <%= menu_item "Things that won't suit you anyway", 'harem_pants_path' %>
@@ -50,16 +52,7 @@
         <%= menu_item "Bikes", 'fixed_wheel_bikes_path' %>
       <% end %>
     <% end %>
-    <%= drop_down "Specimens" do %>
-      <%= menu_item "Things you can't afford", 'expensive_products_path' %>
-      <%= menu_item "Things that won't suit you anyway", 'harem_pants_path' %>
-      <%= menu_item "Things you're not even cool enough to buy anyway", 'hipster_products_path' %>
-      <% if current_user %>
-        <%= menu_item "Bikes", 'fixed_wheel_bikes_path' %>
-      <% end %>
-    <% end %>
-    <%= menu_item "About Us", 'about_us_path' %>
-    <%= menu_item "Contact", 'contact_path' %>
+    !-->
   <% end %>
   <%= menu_group pull: :right do %>
     <% if current_user %>

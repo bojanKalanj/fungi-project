@@ -229,9 +229,11 @@ module Fungiorbis
           line = line.split(',')[0..6].each { |item| item.strip! }
 
           l.name = line[0]
-          l.locale = line[1]
-          l.default = line[2] == 'default'
-          parent = line[3].blank? ? nil : Language.where(locale: line[3]).first
+          l.title = line[1]
+          l.locale = line[2]
+          l.flag = line[3]
+          l.default = line[4] == 'default'
+          parent = line[5].blank? ? nil : Language.where(locale: line[5]).first
           l.parent_id =  parent.id if parent
 
           l.save!

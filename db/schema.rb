@@ -39,7 +39,9 @@ ActiveRecord::Schema.define(version: 20150409183256) do
   create_table "languages", force: :cascade do |t|
     t.integer  "parent_id",  limit: 4
     t.string   "name",       limit: 255, null: false
+    t.string   "title",      limit: 255, null: false
     t.string   "locale",     limit: 255, null: false
+    t.string   "flag",       limit: 255, null: false
     t.boolean  "default",    limit: 1
     t.string   "slug",       limit: 255, null: false
     t.datetime "created_at",             null: false

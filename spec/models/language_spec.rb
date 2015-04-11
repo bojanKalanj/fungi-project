@@ -11,7 +11,9 @@ end
 #  id         :integer          not null, primary key
 #  parent_id  :integer
 #  name       :string(255)      not null
+#  title      :string(255)      not null
 #  locale     :string(255)      not null
+#  flag       :string(255)      not null
 #  default    :boolean
 #  slug       :string(255)      not null
 #  created_at :datetime         not null

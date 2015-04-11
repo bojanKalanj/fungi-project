@@ -42,6 +42,15 @@
   <% end %>
 
   <%= menu_group pull: :right do %>
+    <% Language.all.each do |language| %>
+      <% unless language.locale == I18n.locale.to_s %>
+        <li class="divider-horizontal">&nbsp;&nbsp;</li>
+        <%= menu_item "", send(localized_url_helper(language.locale_slug)), class: "flag-icon flag-icon-#{language.flag}", title: language.title %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= menu_group pull: :right do %>
     <% if current_user %>
       <% if current_user.supervisor? %>
         <%= drop_down "Administration" do %>
@@ -61,7 +70,9 @@
         <%= f.submit "Sign in" %>
       <% end -%>
     <% end %>
-    <span class="flag-icon flag-icon-rs"></span>
+
+
+
   <% end %>
 <% end %>
 

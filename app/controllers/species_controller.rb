@@ -64,7 +64,7 @@ class SpeciesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_species
-      @species = Species.find(params[:id])
+      @species = Species.find(params[:url])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

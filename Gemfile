@@ -14,11 +14,8 @@ gem 'mysql2'
 gem 'annotate', '~> 2.6.5'
 
 
-# Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 
 gem 'bootstrap-sass'

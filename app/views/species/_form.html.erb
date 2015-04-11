@@ -1,0 +1,32 @@
+<%= simple_form_for @species, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= error_span(@species[:name]) %>
+  <%= f.input :genus %>
+  <%= error_span(@species[:genus]) %>
+  <%= f.input :familia %>
+  <%= error_span(@species[:familia]) %>
+  <%= f.input :ordo %>
+  <%= error_span(@species[:ordo]) %>
+  <%= f.input :subclassis %>
+  <%= error_span(@species[:subclassis]) %>
+  <%= f.input :classis %>
+  <%= error_span(@species[:classis]) %>
+  <%= f.input :subphylum %>
+  <%= error_span(@species[:subphylum]) %>
+  <%= f.input :phylum %>
+  <%= error_span(@species[:phylum]) %>
+  <%= f.input :synonyms %>
+  <%= error_span(@species[:synonyms]) %>
+  <%= f.input :growth_type %>
+  <%= error_span(@species[:growth_type]) %>
+  <%= f.input :nutritive_group %>
+  <%= error_span(@species[:nutritive_group]) %>
+  <%= f.input :url %>
+  <%= error_span(@species[:url]) %>
+  <%= f.input :uuid %>
+  <%= error_span(@species[:uuid]) %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                species_index_path, :class => 'btn btn-default' %>
+<% end %>

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+  extend FriendlyId
   include Uuid
 
   USER_ROLE = 'user'
@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
   # validates_uniqueness_of :email, case_sensitive: true
 
   validate :password_complexity
+
+  friendly_id :slug_candidates, use: :slugged
 
   def full_name
     "#{self.first_name} #{self.last_name}"
@@ -49,6 +51,10 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def slug_candidates
+    [ :full_name, :email]
+  end
 
   def password_complexity
     if password.present? && password_confirmed? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W]).+/)
@@ -77,6 +83,7 @@ end
 #  institution            :string(255)
 #  phone                  :string(255)
 #  uuid                   :string(255)
+#  slug                   :string(255)      not null
 #  authentication_token   :string(255)
 #  deactivated_at         :datetime
 #  reset_password_token   :string(255)
@@ -97,7 +104,7 @@ end
 #
 #  index_users_on_authentication_token  (authentication_token) UNIQUE
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
-#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_email                 (email)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
-#  index_users_on_uuid                  (uuid) UNIQUE
+#  index_users_on_uuid                  (uuid)
 #

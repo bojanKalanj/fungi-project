@@ -5,11 +5,10 @@ class CreateReferences < ActiveRecord::Migration
       t.string :authors
       t.string :isbn, unique: true
       t.string :url, unique: true
-      t.string :uuid, unique: true
+      t.string :uuid, index: true, unique: true
+      t.string :slug, null: false, index: true, unique: true
 
-      t.timestamps
+      t.timestamps null: false
     end
-
-    add_index :references, :uuid, unique: true
   end
 end

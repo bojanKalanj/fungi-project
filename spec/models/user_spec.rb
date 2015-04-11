@@ -32,6 +32,7 @@ end
 #  institution            :string(255)
 #  phone                  :string(255)
 #  uuid                   :string(255)
+#  slug                   :string(255)      not null
 #  authentication_token   :string(255)
 #  deactivated_at         :datetime
 #  reset_password_token   :string(255)
@@ -52,7 +53,7 @@ end
 #
 #  index_users_on_authentication_token  (authentication_token) UNIQUE
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
-#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_email                 (email)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
-#  index_users_on_uuid                  (uuid) UNIQUE
+#  index_users_on_uuid                  (uuid)
 #

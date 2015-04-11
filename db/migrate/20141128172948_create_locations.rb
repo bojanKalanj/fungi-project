@@ -1,14 +1,13 @@
 class CreateLocations < ActiveRecord::Migration
   def change
     create_table :locations do |t|
-      t.string :name, null: false, unique: true
+      t.string :name, null: false, unique: true, index: true
       t.string :utm, null: false
 
       t.string :uuid
+      t.string :slug, null: false, index: true, unique: true
 
-      t.timestamps
+      t.timestamps null: false
     end
-
-    add_index :locations, :uuid, unique: true
   end
 end

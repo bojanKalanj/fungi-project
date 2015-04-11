@@ -2,7 +2,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
   def change
     create_table(:users) do |t|
       ## Database authenticatable
-      t.string :email, null: false
+      t.string :email, null: false, index: true, unique: true
       t.string :encrypted_password
 
       t.string :first_name, null: false
@@ -12,7 +12,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :institution
       t.string :phone
 
-      t.string :uuid
+      t.string :uuid, index: true, unique: true
+      t.string :slug, null: false
 
       t.string :authentication_token
 
@@ -38,8 +39,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :users, :email, unique: true
-    add_index :users, :uuid, unique: true
     add_index :users, :reset_password_token, unique: true
     add_index :users, :authentication_token, unique: true
     add_index :users, :confirmation_token,   unique: true

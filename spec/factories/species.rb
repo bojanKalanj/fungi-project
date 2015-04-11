@@ -38,12 +38,11 @@ end
 #  nutritive_group :string(255)
 #  url             :string(255)
 #  uuid            :string(255)
-#  created_at      :datetime
-#  updated_at      :datetime
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 # Indexes
 #
-#  index_species_on_name_and_genus  (name,genus)
-#  index_species_on_url             (url) UNIQUE
-#  index_species_on_uuid            (uuid) UNIQUE
+#  index_species_on_url   (url)
+#  index_species_on_uuid  (uuid)
 #

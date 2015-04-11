@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:genus) %></th>
       <th><%= model_class.human_attribute_name(:familia) %></th>
       <th><%= model_class.human_attribute_name(:growth_type) %></th>
       <th><%= model_class.human_attribute_name(:nutritive_group) %></th>
@@ -16,8 +15,7 @@
   <tbody>
     <% @species.each do |species| %>
       <tr>
-        <td><%= species.name %></td>
-        <td><%= species.genus %></td>
+        <td><%= link_to species.full_name, species_path(species) %></td>
         <td><%= species.familia %></td>
         <td><%= species.growth_type %></td>
         <td><%= species.nutritive_group %></td>

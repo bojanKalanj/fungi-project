@@ -13,10 +13,12 @@ end
 #  name       :string(255)      not null
 #  utm        :string(255)      not null
 #  uuid       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  slug       :string(255)      not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 # Indexes
 #
-#  index_locations_on_uuid  (uuid) UNIQUE
+#  index_locations_on_name  (name)
+#  index_locations_on_slug  (slug)
 #

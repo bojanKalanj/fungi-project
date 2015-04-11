@@ -41,12 +41,12 @@ end
 #  habitats      :text(65535)
 #  substrates    :text(65535)
 #  uuid          :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 # Indexes
 #
 #  index_characteristics_on_reference_id  (reference_id)
 #  index_characteristics_on_species_id    (species_id)
-#  index_characteristics_on_uuid          (uuid) UNIQUE
+#  index_characteristics_on_uuid          (uuid)
 #

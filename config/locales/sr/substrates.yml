@@ -1,0 +1,24 @@
+sr:
+  substrates:
+    ground: Земљиште
+    litter: Стеља
+    humus: Хумус
+    living_tree: Живо стабло
+    dead_upright_trunk: Мртво усправно стабло
+    lying_trunk: Лежеће дебло
+    buried_wood: Укопано дрво
+    charred_wood: Згариште
+    branches: Гране
+    stump: Пањ
+    leaves: Лишће
+    pinecones: Шишарка
+    acorn: Жир
+    grass: Трава
+    moss: Маховина
+    fern: Папрат
+    sand: Песак
+    peat: Тресет
+    animals: Животиња
+    feces: Фецес
+    fungi: Гљива
+    specific: Специфичан

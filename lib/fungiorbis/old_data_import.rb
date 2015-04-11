@@ -75,8 +75,8 @@ module Fungiorbis
 
       puts "Species import complete \n#{added_species.length} species imported\n#{existing_species.length} species already present in the database\n#{incomplete_species.length} species not added due to incomplete data"
 
-      write_to_csv_file incomplete_species, 'db/old_data/not_added_species.csv'
-      write_to_csv_file existing_species, 'db/old_data/existing_species.csv'
+      write_to_csv_file incomplete_species, 'db/old_data/logs/not_added_species.csv'
+      write_to_csv_file existing_species, 'db/old_data/logs/existing_species.csv'
     end
 
     def self.import_specimens
@@ -153,9 +153,9 @@ module Fungiorbis
 
       puts "Specimens import complete \n#{added_specimens.length} specimens imported\n#{invalid_species.length + invalid_location.length + invalid_date.length} specimens not added due to incomplete or incorrect data"
 
-      write_to_csv_file invalid_date, 'db/old_data/not_added_specimens_date.csv'
-      write_to_csv_file invalid_species, 'db/old_data/not_added_specimens_species.csv'
-      write_to_csv_file invalid_location, 'db/old_data/not_added_specimens_location.csv'
+      write_to_csv_file invalid_date, 'db/old_data/logs/not_added_specimens_date.csv'
+      write_to_csv_file invalid_species, 'db/old_data/logs/not_added_specimens_species.csv'
+      write_to_csv_file invalid_location, 'db/old_data/logs/not_added_specimens_location.csv'
     end
 
     def self.import_characteristics
@@ -220,6 +220,25 @@ module Fungiorbis
       end
 
       puts 'Characteristics import complete'
+    end
+
+    def self.import_languages
+      Language.transaction do
+        File.foreach('db/old_data/languages.csv') do |line|
+          l = Language.new
+          line = line.split(',')[0..6].each { |item| item.strip! }
+
+          l.name = line[0]
+          l.locale = line[1]
+          l.default = line[2] == 'default'
+          parent = line[3].blank? ? nil : Language.where(locale: line[3]).first
+          l.parent =  parent if parent
+
+          l.save!
+        end
+      end
+
+      puts 'Users import complete'
     end
 
     private

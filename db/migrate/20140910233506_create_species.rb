@@ -15,14 +15,10 @@ class CreateSpecies < ActiveRecord::Migration
       t.string :growth_type
       t.string :nutritive_group
 
-      t.string :url, unique: true
-      t.string :uuid
+      t.string :url, index: true, unique: true
+      t.string :uuid, index: true, unique: true
 
-      t.timestamps
+      t.timestamps null: false
     end
-
-    add_index :species, :uuid, unique: true
-    add_index :species, :url, unique: true
-    add_index :species, [:name, :genus]
   end
 end

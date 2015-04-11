@@ -1,13 +1,13 @@
 class CreateSpecimen < ActiveRecord::Migration
   def change
     create_table :specimen do |t|
-      t.belongs_to :species, null: false
-      t.belongs_to :location, null: false
+      t.belongs_to :species, null: false, index: true
+      t.belongs_to :location, null: false, index: true
 
-      t.references :legator, null: false
+      t.references :legator, null: false, index: true
       t.string :legator_text
 
-      t.references :determinator
+      t.references :determinator, index: true
       t.string :determinator_text
 
       t.text :habitats
@@ -20,15 +20,10 @@ class CreateSpecimen < ActiveRecord::Migration
 
       t.boolean :approved
 
-      t.string :uuid
+      t.string :uuid, index: true, unique: true
+      t.string :slug, null: false, index: true, unique: true
 
-      t.timestamps
+      t.timestamps null: false
     end
-
-    add_index :specimen, :uuid, unique: true
-    add_index :specimen, :species_id
-    add_index :specimen, :location_id
-    add_index :specimen, :legator_id
-    add_index :specimen, :determinator_id
   end
 end

@@ -26,14 +26,16 @@ end
 #  note              :text(65535)
 #  approved          :boolean
 #  uuid              :string(255)
-#  created_at        :datetime
-#  updated_at        :datetime
+#  slug              :string(255)      not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #
 # Indexes
 #
 #  index_specimen_on_determinator_id  (determinator_id)
 #  index_specimen_on_legator_id       (legator_id)
 #  index_specimen_on_location_id      (location_id)
+#  index_specimen_on_slug             (slug)
 #  index_specimen_on_species_id       (species_id)
-#  index_specimen_on_uuid             (uuid) UNIQUE
+#  index_specimen_on_uuid             (uuid)
 #

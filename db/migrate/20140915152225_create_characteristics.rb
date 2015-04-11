@@ -1,8 +1,8 @@
 class CreateCharacteristics < ActiveRecord::Migration
   def change
     create_table :characteristics do |t|
-      t.belongs_to :reference, null: false
-      t.belongs_to :species, null: false
+      t.belongs_to :reference, null: false, index: true
+      t.belongs_to :species, null: false, index: true
 
       t.boolean :edible
       t.boolean :cultivated
@@ -18,13 +18,9 @@ class CreateCharacteristics < ActiveRecord::Migration
       t.text :habitats
       t.text :substrates
 
-      t.string :uuid
+      t.string :uuid, index: true, unique: true
 
-      t.timestamps
+      t.timestamps null: false
     end
-
-    add_index :characteristics, :uuid, unique: true
-    add_index :characteristics, :reference_id
-    add_index :characteristics, :species_id
   end
 end

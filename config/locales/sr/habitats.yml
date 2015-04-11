@@ -1,0 +1,88 @@
+sr:
+  species:
+    coniferous:
+      abies: Јела
+      larix: Ариш
+      picea: Смрча
+      pinus: Бор
+      taxus: Тиса
+    deciduous:
+      acer: Јавор
+      betula: Бреза
+      carpinus: Граб
+      castanea: Кестен
+      cornus: Дрен
+      corylus: Леска
+      crategus: Глог
+      fagus: Буква
+      fraxinus: Јасен
+      populus: Топола
+      quercus: Храст
+      robinia: Багрем
+      rubus: Малина
+      salix: Врба
+      sambucus: Зова
+      tilia: Липа
+    orchard:
+      malus: Јабука
+      prunus: Шљива
+  species_group_title:
+    coniferous: четинарске
+    deciduous: листопадне
+    orchard: воћњак
+  habitats:
+    forest:
+      title: Шума
+      allowed_species_groups:
+        - coniferous
+        - deciduous
+      subhabitat:
+        anthropogenic:
+          title: Антропогена шума
+          allowed_species_groups:
+            - coniferous
+            - deciduous
+        coniferous:
+          title: Четинарска шума
+          allowed_species_groups:
+            - coniferous
+        deciduous:
+          title: Листопадна шума
+          allowed_species_groups:
+            - deciduous
+        mixed:
+          title: Мешовита шума
+          allowed_species_groups:
+            - coniferous
+            - deciduous
+        freshwater_swamp:
+          title: Ритска шума
+          allowed_species_groups:
+            - deciduous
+    meadow:
+      title: Ливада
+    sands:
+      title: Пешчара
+      allowed_species_groups:
+        - coniferous
+        - deciduous
+    peat:
+      title: Мочвара
+    anthropogenic:
+      title: Антропогено станиште
+      subhabitat:
+        park:
+          title: Парк
+          allowed_species_groups:
+            - coniferous
+            - deciduous
+        garden:
+          title: Башта
+        yard:
+          title: Двориште
+        orchard:
+          title: Воћњак
+          allowed_species_groups:
+            - orchard
+        vineyard:
+          title: Виноград

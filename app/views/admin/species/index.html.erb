@@ -1,4 +1,4 @@
-<%- model_class = Location -%>
+<%- model_class = Species -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
@@ -6,20 +6,24 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:utm) %></th>
+      <th><%= model_class.human_attribute_name(:familia) %></th>
+      <th><%= model_class.human_attribute_name(:growth_type) %></th>
+      <th><%= model_class.human_attribute_name(:nutritive_group) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
-    <% @locations.each do |location| %>
+    <% @species.each do |species| %>
       <tr>
-        <td><%= link_to location.name, location_path(location) %></td>
-        <td><%= location.utm %></td>
+        <td><%= link_to species.full_name, admin_species_path(species) %></td>
+        <td><%= species.familia %></td>
+        <td><%= species.growth_type %></td>
+        <td><%= species.nutritive_group %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_location_path(location), :class => 'btn btn-default btn-xs' %>
+                      edit_admin_species_path(species), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      location_path(location),
+                      admin_species_path(species),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
@@ -29,8 +33,8 @@
   </tbody>
 </table>
 
-<%= will_paginate @locations, renderer: BootstrapPagination::Rails %>
+<%= will_paginate @species, renderer: BootstrapPagination::Rails %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_location_path,
+            new_admin_species_path,
             :class => 'btn btn-primary' %>

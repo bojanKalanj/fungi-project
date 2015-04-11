@@ -1,4 +1,4 @@
-<%= simple_form_for @language, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for [:admin, @language], :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :name %>
   <%= error_span(@language[:name]) %>
   <%= f.input :locale %>
@@ -10,5 +10,5 @@
 
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                languages_path, :class => 'btn btn-default' %>
+                admin_languages_path, :class => 'btn btn-default' %>
 <% end %>

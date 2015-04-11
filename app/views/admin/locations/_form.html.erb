@@ -1,4 +1,4 @@
-<%= simple_form_for @location, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for [:admin, @location], :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :name %>
   <%= error_span(@location[:name]) %>
   <%= f.input :utm %>
@@ -8,5 +8,5 @@
 
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                locations_path, :class => 'btn btn-default' %>
+                admin_locations_path, :class => 'btn btn-default' %>
 <% end %>

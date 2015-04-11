@@ -8,7 +8,7 @@ RSpec.describe "specimen/new", type: :view do
   it "renders new specimen form" do
     render
 
-    assert_select "form[action=?][method=?]", specimen_path, "post" do
+    assert_select "form[action=?][method=?]", admin_specimen_path, "post" do
     end
   end
 end

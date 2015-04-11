@@ -33,11 +33,11 @@
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              species_index_path, :class => 'btn btn-default'  %>
+              admin_species_index_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_species_path(@species), :class => 'btn btn-default' %>
+              edit_admin_species_path(@species), :class => 'btn btn-default' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              species_path(@species),
+              admin_species_path(@species),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>

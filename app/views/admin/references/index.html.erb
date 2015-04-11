@@ -15,15 +15,15 @@
   <tbody>
     <% @references.each do |reference| %>
       <tr>
-        <td><%= link_to reference.title, reference_path(reference) %></td>
+        <td><%= link_to reference.title, admin_reference_path(reference) %></td>
         <td><%= reference.authors %></td>
         <td><%= reference.isbn %></td>
         <td><%= reference.url %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_reference_path(reference), :class => 'btn btn-default btn-xs' %>
+                      edit_admin_reference_path(reference), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      reference_path(reference),
+                      admin_reference_path(reference),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
@@ -36,5 +36,5 @@
 <%= will_paginate @references, renderer: BootstrapPagination::Rails %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_reference_path,
+            new_admin_reference_path,
             :class => 'btn btn-primary' %>

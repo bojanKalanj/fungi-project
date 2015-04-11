@@ -1,4 +1,4 @@
-class SpecimensController < ApplicationController
+class Admin::SpecimensController < ApplicationController
   before_action :set_specimen, only: [:show, :edit, :update, :destroy]
 
   # GET /specimen

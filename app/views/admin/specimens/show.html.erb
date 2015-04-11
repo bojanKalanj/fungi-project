@@ -33,11 +33,11 @@
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              specimens_path, :class => 'btn btn-default'  %>
+              admin_specimens_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_specimen_path(@specimen), :class => 'btn btn-default' %>
+              edit_admin_specimen_path(@specimen), :class => 'btn btn-default' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              specimen_path(@specimen),
+              admin_specimen_path(@specimen),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>

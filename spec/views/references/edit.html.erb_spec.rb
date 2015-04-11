@@ -8,7 +8,7 @@ RSpec.describe "references/edit", type: :view do
   it "renders the edit reference form" do
     render
 
-    assert_select "form[action=?][method=?]", reference_path(@reference), "post" do
+    assert_select "form[action=?][method=?]", admin_reference_path(@reference), "post" do
     end
   end
 end

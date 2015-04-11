@@ -1,4 +1,4 @@
-<%= simple_form_for @user, :html => { :class => "form-horizontal user" } do |f| %>
+<%= simple_form_for [:admin, @user], :html => { :class => "form-horizontal user" } do |f| %>
   <%= f.input :email %>
   <%= error_span(@user[:email]) %>
 
@@ -21,6 +21,6 @@
   <%= error_span(@user[:phone]) %>
 
   <%= f.button :submit, :class => 'btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn btn-default' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")), admin_users_path, :class => 'btn btn-default' %>
 
 <% end %>

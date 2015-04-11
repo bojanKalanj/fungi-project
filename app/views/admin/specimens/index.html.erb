@@ -33,11 +33,11 @@
         <td><%= specimen.approved %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
-                      specimen_path(specimen), :class => 'btn btn-default btn-xs' %>
+                      admin_specimen_path(specimen), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_specimen_path(specimen), :class => 'btn btn-default btn-xs' %>
+                      edit_admin_specimen_path(specimen), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      specimen_path(specimen),
+                      admin_specimen_path(specimen),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
@@ -50,5 +50,5 @@
 <%= will_paginate @specimens, renderer: BootstrapPagination::Rails %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_specimen_path,
+            new_admin_specimen_path,
             :class => 'btn btn-primary' %>

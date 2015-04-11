@@ -1,4 +1,4 @@
-class ReferencesController < ApplicationController
+class Admin::ReferencesController < ApplicationController
   before_action :set_reference, only: [:show, :edit, :update, :destroy]
 
   # GET /references

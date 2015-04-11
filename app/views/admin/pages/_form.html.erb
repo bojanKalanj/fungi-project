@@ -1,8 +1,13 @@
 <%= simple_form_for [:admin, @page], :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :title %>
+  <%= f.input :title, label: 'Interni naziv strane' %>
   <%= error_span(@page[:title]) %>
 
-  <%= f.button :submit, :class => 'btn-primary' %>
+  <div class="form-group string optional">
+    <label class="string optional control-label">Lokalizovana polja</label>
+    <%= localized_tabs(f, 'admin/pages/shared/localized_page_form') %>
+  </div>
+
+  <%= f.button :submit, :class => 'btn-primary', value: 'Snimi izmene' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                admin_pages_path, :class => 'btn btn-default' %>
+              admin_pages_path, :class => 'btn btn-default' %>
 <% end %>

@@ -4,6 +4,8 @@ class Page < ActiveRecord::Base
   has_many :localized_pages, dependent: :destroy
 
   friendly_id :title, use: :slugged
+
+  accepts_nested_attributes_for :localized_pages
 end
 
 # == Schema Information

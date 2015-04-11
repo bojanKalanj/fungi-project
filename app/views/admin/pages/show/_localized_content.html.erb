@@ -1,4 +1,4 @@
 <br>
 <div>
-  <%= localized_string.blank? ? t('pages.show.no_content') : localized_string %>
+  <%= localized_string.blank? ? t('pages.show.no_content') : raw(localized_string) %>
 </div>

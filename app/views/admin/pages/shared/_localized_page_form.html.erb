@@ -1,0 +1,6 @@
+<%= pf.simple_fields_for :localized_pages, localized_page do |f| %>
+  <%= f.input :title, label: 'Naslov strane' %>
+  <%= error_span(localized_page[:title]) %>
+  <%= f.input :content, label: 'Sadržaj strane', input_html: { class: :wysiwyg } %>
+  <%= error_span(localized_page[:content]) %>
+<% end %>

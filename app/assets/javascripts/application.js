@@ -25,4 +25,5 @@
 //= require twitter/bootstrap/carousel
 //= require twitter/bootstrap/affix
 //= require turbolinks
+//= require vendor
 //= require_tree .

@@ -1,0 +1,21 @@
+<%
+  def redactor_locale
+    case I18n.locale
+      when :sr
+        'sr-cir'
+      when :'sr-Latn'
+        'sr-lat'
+      else
+        I18n.locale.to_s
+    end
+  end
+%>
+
+$(document).on('ready page:load', function () {
+
+  $(".wysiwyg").redactor({
+    buttons: ['formatting', 'bold', 'italic', 'underline', 'deleted', 'unorderedlist', 'orderedlist', 'outdent', 'indent', 'link', 'alignment', 'horizontalrule'],
+    buttonSource: true,
+    lang: '<%= redactor_locale %>'
+  });
+});

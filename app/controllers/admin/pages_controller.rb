@@ -42,7 +42,7 @@ class Admin::PagesController < ApplicationController
   def update
     respond_to do |format|
       if @page.update(page_params)
-        format.html { redirect_to @page, notice: 'Page was successfully updated.' }
+        format.html { redirect_to admin_page_path(@page), notice: 'Page was successfully updated.' }
         format.json { render :show, status: :ok, location: @page }
       else
         format.html { render :edit }
@@ -56,19 +56,19 @@ class Admin::PagesController < ApplicationController
   def destroy
     @page.destroy
     respond_to do |format|
-      format.html { redirect_to pages_url, notice: 'Page was successfully destroyed.' }
+      format.html { redirect_to admin_pages_url, notice: 'Page was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_page
-      @page = Page.friendly.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_page
+    @page = Page.friendly.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def page_params
-      params[:page]
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def page_params
+    params.require(:page).permit([:title, localized_pages_attributes: [:id, :title, :content]])
+  end
 end

@@ -1,10 +1,10 @@
 <%= simple_form_for @language, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :name %>
   <%= error_span(@language[:name]) %>
-  <%= f.input :slug_2 %>
-  <%= error_span(@language[:slug_2]) %>
-  <%= f.input :slug_3 %>
-  <%= error_span(@language[:slug_3]) %>
+  <%= f.input :locale %>
+  <%= error_span(@language[:locale]) %>
+  <%= f.input :parent_id %>
+  <%= error_span(@language[:parent_id]) %>
   <%= f.input :default %>
   <%= error_span(@language[:default]) %>
 

@@ -232,13 +232,13 @@ module Fungiorbis
           l.locale = line[1]
           l.default = line[2] == 'default'
           parent = line[3].blank? ? nil : Language.where(locale: line[3]).first
-          l.parent =  parent if parent
+          l.parent_id =  parent.id if parent
 
           l.save!
         end
       end
 
-      puts 'Users import complete'
+      puts 'Languages import complete'
     end
 
     private

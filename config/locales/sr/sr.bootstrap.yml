@@ -16,6 +16,7 @@ sr:
       destroy: "Обриши"
       new: "Нови"
       edit: "Измени"
+      show: "Прикажи"
     titles:
       edit: "Измени %{model}"
       save: "Сачувај %{model}"

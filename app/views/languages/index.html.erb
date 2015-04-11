@@ -5,24 +5,20 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:slug_2) %></th>
-      <th><%= model_class.human_attribute_name(:slug_3) %></th>
+      <th><%= model_class.human_attribute_name(:locale) %></th>
       <th><%= model_class.human_attribute_name(:default) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:parent) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @languages.each do |language| %>
       <tr>
-        <td><%= link_to language.id, language_path(language) %></td>
-        <td><%= language.name %></td>
-        <td><%= language.slug_2 %></td>
-        <td><%= language.slug_3 %></td>
+        <td><%= link_to language.name, language_path(language) %></td>
+        <td><%= language.locale %></td>
         <td><%= language.default %></td>
-        <td><%=l language.created_at %></td>
+        <td><%= language.parent_id %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_language_path(language), :class => 'btn btn-default btn-xs' %>

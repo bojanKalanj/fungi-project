@@ -1,7 +1,7 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
-sr:
+sr-Latn:
   breadcrumbs:
     application:
       root: "Index"
@@ -16,6 +16,7 @@ sr:
       destroy: "Obriši"
       new: "Novi"
       edit: "Izmeni"
+      show: "Prikaži"
     titles:
       edit: "Izmeni %{model}"
       save: "Sačuvaj %{model}"

@@ -6,12 +6,12 @@
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @language.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:slug_2) %>:</strong></dt>
-  <dd><%= @language.slug_2 %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:slug_3) %>:</strong></dt>
-  <dd><%= @language.slug_3 %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:locale) %>:</strong></dt>
+  <dd><%= @language.locale %></dd>
   <dt><strong><%= model_class.human_attribute_name(:default) %>:</strong></dt>
   <dd><%= @language.default %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:parent_id) %>:</strong></dt>
+  <dd><%= @language.parent_id %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

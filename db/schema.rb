@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409183256) do
+ActiveRecord::Schema.define(version: 20150411170719) do
 
   create_table "characteristics", force: :cascade do |t|
     t.integer  "reference_id",  limit: 4,     null: false
@@ -50,6 +50,19 @@ ActiveRecord::Schema.define(version: 20150409183256) do
 
   add_index "languages", ["slug"], name: "index_languages_on_slug", unique: true, using: :btree
 
+  create_table "localized_pages", force: :cascade do |t|
+    t.integer  "language_id", limit: 4
+    t.integer  "page_id",     limit: 4
+    t.string   "title",       limit: 255
+    t.text     "content",     limit: 65535
+    t.string   "slug",        limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "localized_pages", ["language_id"], name: "index_localized_pages_on_language_id", using: :btree
+  add_index "localized_pages", ["page_id"], name: "index_localized_pages_on_page_id", using: :btree
+
   create_table "locations", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
     t.string   "utm",        limit: 255, null: false
@@ -61,6 +74,13 @@ ActiveRecord::Schema.define(version: 20150409183256) do
 
   add_index "locations", ["name"], name: "index_locations_on_name", using: :btree
   add_index "locations", ["slug"], name: "index_locations_on_slug", using: :btree
+
+  create_table "pages", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.string   "slug",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "references", force: :cascade do |t|
     t.string   "title",      limit: 255, null: false
@@ -147,8 +167,8 @@ ActiveRecord::Schema.define(version: 20150409183256) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email",      limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
@@ -157,4 +177,10 @@ ActiveRecord::Schema.define(version: 20150409183256) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uuid"], name: "index_users_on_uuid", using: :btree
 
+  add_foreign_key "characteristics", "references"
+  add_foreign_key "characteristics", "species"
+  add_foreign_key "localized_pages", "languages"
+  add_foreign_key "localized_pages", "pages"
+  add_foreign_key "specimen", "locations"
+  add_foreign_key "specimen", "species"
 end

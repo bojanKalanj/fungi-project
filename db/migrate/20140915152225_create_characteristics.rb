@@ -1,8 +1,8 @@
 class CreateCharacteristics < ActiveRecord::Migration
   def change
     create_table :characteristics do |t|
-      t.belongs_to :reference, null: false, index: true
-      t.belongs_to :species, null: false, index: true
+      t.belongs_to :reference, null: false, index: true, foreign_key: true
+      t.belongs_to :species, null: false, index: true, foreign_key: true
 
       t.boolean :edible
       t.boolean :cultivated

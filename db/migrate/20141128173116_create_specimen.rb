@@ -1,8 +1,8 @@
 class CreateSpecimen < ActiveRecord::Migration
   def change
     create_table :specimen do |t|
-      t.belongs_to :species, null: false, index: true
-      t.belongs_to :location, null: false, index: true
+      t.belongs_to :species, null: false, index: true, foreign_key: true
+      t.belongs_to :location, null: false, index: true, foreign_key: true
 
       t.references :legator, null: false, index: true
       t.string :legator_text

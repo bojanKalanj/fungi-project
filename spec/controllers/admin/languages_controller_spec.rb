@@ -18,7 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe LanguagesController, type: :controller do
+RSpec.describe Admin::LanguagesController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Language. As you add validations to Language, be sure to

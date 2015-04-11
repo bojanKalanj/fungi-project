@@ -36,7 +36,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.datetime :confirmation_sent_at
       t.string :unconfirmed_email # Only if using reconfirmable
 
-      t.timestamps
+      t.timestamps null: false
     end
 
     add_index :users, :reset_password_token, unique: true

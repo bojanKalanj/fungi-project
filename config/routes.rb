@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  # resources :localized_pages
   devise_for :users
 
   namespace :admin do
@@ -10,11 +11,13 @@ Rails.application.routes.draw do
     resources :locations
     resources :characteristics, param: :uuid
     resources :languages
+    resources :pages
   end
 
   localized do
     resources :species, param: :url
-  end
 
-  root to: 'users#index'
+    get '/:id' => 'localized_pages#show'
+    root to: 'localized_pages#show', :defaults => { :page_id => 1 }, param: :page_id
+  end
 end

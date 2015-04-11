@@ -1,0 +1,17 @@
+<%- model_class = LocalizedPage -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:language_id) %>:</strong></dt>
+  <dd><%= @localized_page.language_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:page_id) %>:</strong></dt>
+  <dd><%= @localized_page.page_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @localized_page.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
+  <dd><%= @localized_page.content %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:slug) %>:</strong></dt>
+  <dd><%= @localized_page.slug %></dd>
+</dl>

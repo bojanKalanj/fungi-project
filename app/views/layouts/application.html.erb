@@ -60,11 +60,12 @@
           <%= menu_item "Locations", admin_locations_path %>
           <%= menu_item "Users", admin_users_path %>
           <%= menu_item "Languages", admin_languages_path %>
+          <%= menu_item "Pages", admin_pages_path %>
         <% end %>
       <% end %>
       <%= menu_item "Log Out", 'log_out_path' %>
     <% else %>
-      <%= simple_form_for User.new, url: session_path(:user), html: { class: "navbar-form pull-right" } do |f| -%>
+      <%= simple_form_for [:admin, User.new], url: session_path(:user), html: { class: "navbar-form pull-right" } do |f| -%>
         <%= f.input :email, label: false, placeholder: 'Email' %>
         <%= f.input :password, label: false, placeholder: 'Password' %>
         <%= f.submit "Sign in" %>

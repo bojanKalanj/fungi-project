@@ -243,6 +243,25 @@ module Fungiorbis
       puts 'Languages import complete'
     end
 
+    def self.import_pages
+      [ { :en => 'home', sr: 'почетна', :'sr-Latn' => 'početna' } ].each do |hash|
+        p = Page.new
+        p.title = hash[:en]
+        p.save
+
+        hash.keys.each do |locale|
+          lp = LocalizedPage.new
+          lp.page = p
+          lp.language = Language.find_by_locale locale
+          lp.title = hash[locale]
+          lp.content = hash[locale]
+          lp.save
+        end
+      end
+
+      puts 'Pages import complete'
+    end
+
     private
 
     def self.update_growth_type(species, growth_type)

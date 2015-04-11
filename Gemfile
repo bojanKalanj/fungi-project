@@ -20,7 +20,6 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
-gem "font-awesome-rails"
 gem 'flag_icon_css_rails'
 
 gem 'twitter-bootstrap-rails'

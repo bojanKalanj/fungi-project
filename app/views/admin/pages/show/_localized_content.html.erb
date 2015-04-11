@@ -1,4 +1,10 @@
-<br>
-<div>
-  <%= localized_string.blank? ? t('pages.show.no_content') : raw(localized_string) %>
+<div class="page-preview">
+  <dl class="dl-horizontal">
+    <dt><strong>Naslov:</strong></dt>
+    <dd><%= localized_page.title %></dd>
+  </dl>
+  <dl class="dl-horizontal">
+    <dt><strong>Sadržaj:</strong></dt>
+    <dd><%= raw localized_page.content %></dd>
+  </dl>
 </div>

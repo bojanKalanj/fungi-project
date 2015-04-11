@@ -1,15 +1,8 @@
-<%- model_class = Page -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1>Strana '<%= @page.title %>'</h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong>Title:</strong></dt>
-  <dd><%= localized_tabs_preview @page, :title, 'admin/pages/show/localized_content' %></dd>
-
-  <dt><strong>Content:</strong></dt>
-  <dd><%= localized_tabs_preview @page, :content, 'admin/pages/show/localized_content' %></dd>
-</dl>
+<%= localized_tabs_preview @page, 'admin/pages/show/localized_content' %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               admin_pages_path, :class => 'btn btn-default'  %>

@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     resources :languages
   end
 
-  resources :species, param: :url
+  localized do
+    resources :species, param: :url
+  end
 
   root to: 'users#index'
 end

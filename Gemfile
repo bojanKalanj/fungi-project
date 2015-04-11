@@ -29,6 +29,8 @@ gem "less-rails"
 gem 'will_paginate-bootstrap'
 
 gem 'friendly_id', '~> 5.1.0'
+gem 'route_translator'
+gem 'simple_form'
 
 group :development, :test do
   gem 'better_errors'
@@ -45,8 +47,6 @@ group :development, :test do
   gem 'faker'
   gem 'forgery'
 end
-
-gem 'simple_form'
 
 group :test do
   gem 'shoulda-matchers'

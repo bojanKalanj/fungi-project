@@ -1,11 +1,16 @@
 class Language < ActiveRecord::Base
   extend FriendlyId
 
+  before_validation :transliterate
+
+  belongs_to :parent, class_name: 'Language'
+
   friendly_id :name, use: :slugged
 
   def locale_slug
     self.locale.downcase.gsub('-', '_')
   end
+
 end
 
 # == Schema Information

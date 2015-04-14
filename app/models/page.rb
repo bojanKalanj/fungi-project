@@ -6,6 +6,8 @@ class Page < ActiveRecord::Base
   friendly_id :title, use: :slugged
 
   accepts_nested_attributes_for :localized_pages
+
+  validates :title, presence: true, uniqueness: true
 end
 
 # == Schema Information

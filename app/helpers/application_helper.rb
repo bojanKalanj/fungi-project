@@ -1,3 +1,5 @@
+require 'fungiorbis/cyr_to_lat'
+
 module ApplicationHelper
 
   def localized_url_helper(locale, args={})
@@ -45,13 +47,15 @@ module ApplicationHelper
     form_builder.object.localized_pages.each_with_index do |localized_page, index|
       language = localized_page.language
 
+      id = "#{language.locale.parameterize}_#{localized_page.slug}"
+
       nav = content_tag :li, role: 'presentation', class: (index == 0 ? 'active' : '') do
         caption = "<i class='flag-icon flag-icon-#{language.flag}'></i> #{language.name}"
-        link_to caption.html_safe, "##{localized_page.slug}", 'aria-controls' => localized_page.slug, role: 'tab', data: { toggle: 'tab' }
+        link_to caption.html_safe, "##{id}", 'aria-controls' => id, role: 'tab', data: { toggle: 'tab' }
       end
       navs_tabs << nav
 
-      content = content_tag :div, id: "#{localized_page.slug}", role: 'tabpanel', class: (index == 0 ? 'tab-pane active' : 'tab-pane') do
+      content = content_tag :div, id: "#{id}", role: 'tabpanel', class: (index == 0 ? 'tab-pane active' : 'tab-pane') do
         render partial: content_partial, locals: { pf: form_builder, localized_page: localized_page }
       end
       content_tabs << content
@@ -111,4 +115,7 @@ module ApplicationHelper
   #     content_tag(:div, class: 'tab-content') { raw content_tabs.join }
   # end
 
+  def cyr_to_lat(str)
+    Fungiorbis::CyrToLat.transliterate str
+  end
 end

@@ -1,7 +1,7 @@
 <div class="page-header">
-  <h1><%=@localized_page.title %></h1>
+  <h1><%= @localized_page.localized_field(:title) %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <%= raw @localized_page.content %>
+  <%= raw @localized_page.localized_field(:content) %>
 </dl>

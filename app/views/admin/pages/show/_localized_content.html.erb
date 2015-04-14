@@ -1,10 +1,10 @@
 <div class="page-preview">
   <dl class="dl-horizontal">
     <dt><strong>Naslov:</strong></dt>
-    <dd><%= localized_page.title %></dd>
+    <dd><%= localized_page.localized_field :title %></dd>
   </dl>
   <dl class="dl-horizontal">
     <dt><strong>Sadržaj:</strong></dt>
-    <dd><%= raw localized_page.content %></dd>
+    <dd><%= raw localized_page.localized_field(:content) %></dd>
   </dl>
 </div>

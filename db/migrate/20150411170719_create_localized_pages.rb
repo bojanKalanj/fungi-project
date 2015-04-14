@@ -4,7 +4,7 @@ class CreateLocalizedPages < ActiveRecord::Migration
       t.belongs_to :language, index: true, foreign_key: true
       t.belongs_to :page, index: true, foreign_key: true
 
-      t.string :title
+      t.string :title, null: false
       t.text :content
       t.string :slug
 

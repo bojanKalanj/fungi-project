@@ -1,0 +1,14 @@
+en:
+  shared:
+    sections:
+      fungiorbis: Fungiorbis
+      administration: Dashboard
+      species: Species
+      specimens: Specimens
+      samples: Samples
+      references: References
+      locations: Locations
+      users: Users
+      languages: Languages
+      pages: Pages
+      

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= content_for?(:title) ? yield(:title) : "FungiorbisPureRails" %></title>
+  <title><%= content_for?(:title) ? yield(:title) : t('shared.sections.fungiorbis') %></title>
   <%= csrf_meta_tags %>
 
   <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -35,17 +35,24 @@
 </head>
 <body>
 
-<%= nav_bar fixed: :top, brand: 'Fungiorbis', responsive: true do %>
+<%= nav_bar fixed: :top, brand: t('shared.sections.fungiorbis'), responsive: true do %>
   <%= menu_group do %>
     <%= menu_item "Home", 'root_path' %>
     <%= menu_divider %>
   <% end %>
 
   <%= menu_group pull: :right do %>
-    <% Language.all.each do |language| %>
-      <% unless language.locale == I18n.locale.to_s %>
-        <li class="divider-horizontal">&nbsp;&nbsp;</li>
-        <%= menu_item "", send(localized_url_helper(language.locale_slug)), class: "flag-icon flag-icon-#{language.flag}", title: language.title %>
+    <%= content_tag :li, class: 'dropdown' do %>
+      <%= link_to(name_and_caret(' '), "#", :class => "dropdown-toggle fa-lg fa fa-flag", "data-toggle" => "dropdown") %>
+      <%= drop_down_list do %>
+        <% Language.all.each do |language| %>
+          <% unless language.locale == I18n.locale.to_s %>
+            <%= menu_item send(localized_url_helper(language.locale_slug)), title: language.title do %>
+              <%= content_tag :span, '', class: "flag-icon flag-icon-#{language.flag}" %>
+              <%= content_tag :span, language.title %>
+            <% end %>
+          <% end %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
@@ -53,25 +60,34 @@
   <%= menu_group pull: :right do %>
     <% if current_user %>
       <% if current_user.supervisor? %>
-        <%= drop_down "Administration" do %>
-          <%= menu_item "Species", admin_species_index_path %>
-          <%= menu_item "Specimens", admin_specimens_path %>
-          <%= menu_item "References", admin_references_path %>
-          <%= menu_item "Locations", admin_locations_path %>
-          <%= menu_item "Users", admin_users_path %>
-          <%= menu_item "Languages", admin_languages_path %>
-          <%= menu_item "Pages", admin_pages_path %>
+        <%= content_tag :li, class: 'dropdown' do %>
+          <%= link_to(name_and_caret(' '), "#", :class => "dropdown-toggle fa-lg #{fo_icon(:admin)}", "data-toggle" => "dropdown", title: t('shared.sections.administration')) %>
+          <%= drop_down_list do %>
+            <%= menu_item ' '+ t('shared.sections.species'), admin_species_index_path, class: fo_icon(:species) %>
+            <%= menu_item ' ' + t('shared.sections.specimens'), admin_specimens_path, class: fo_icon(:specimens) %>
+            <%= menu_item ' ' + t('shared.sections.references'), admin_references_path, class: fo_icon(:references) %>
+            <%= menu_item ' ' + t('shared.sections.locations'), admin_locations_path, class: fo_icon(:locations) %>
+            <%= menu_item ' ' + t('shared.sections.users'), admin_users_path, class: fo_icon(:users) %>
+            <%= menu_item ' ' + t('shared.sections.languages'), admin_languages_path, class: fo_icon(:languages) %>
+            <%= menu_item ' ' + t('shared.sections.pages'), admin_pages_path, class: fo_icon(:pages) %>
+          <% end %>
         <% end %>
-      <% end %>
-      <%= menu_item "Log Out", 'log_out_path' %>
-    <% else %>
-      <%= simple_form_for [:admin, User.new], url: session_path(:user), html: { class: "navbar-form pull-right" } do |f| -%>
-        <%= f.input :email, label: false, placeholder: 'Email' %>
-        <%= f.input :password, label: false, placeholder: 'Password' %>
-        <%= f.submit "Sign in" %>
-      <% end -%>
-    <% end %>
 
+      <% end %>
+      <%= menu_item ' ', destroy_user_session_path, class: "fa-lg #{fo_icon(:sign_out)}", method: :delete, title: t('devise.actions.sign_out') %>
+    <% else %>
+      <%= simple_form_for [:admin, User.new], url: session_path(:user), html: { class: 'navbar-form pull-left hidden' } do |f| -%>
+        <%= f.input :email, label: false, placeholder: t('devise.fields.email') %>
+        <%= f.input :password, label: false, placeholder: t('devise.fields.password') %>
+        <%= f.submit class: fo_icon(:sign_in), disabled: false %>
+      <% end -%>
+
+      <% data = { toggle: 'form#new_user',
+                  toggle_class: "#{fo_icon(:sign_in)} #{fo_icon(:cancel)}".gsub('fa ', ''),
+                  toggle_class_target: '#toggle_sign_in' } %>
+      <%= menu_item ' ', ' ', class: "fa-lg #{fo_icon(:sign_in)} pull-right", data: data, id: 'toggle_sign_in', title: t('devise.actions.sign_out') %>
+
+    <% end %>
 
 
   <% end %>

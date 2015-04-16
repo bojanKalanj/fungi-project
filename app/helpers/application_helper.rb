@@ -115,6 +115,45 @@ module ApplicationHelper
   #     content_tag(:div, class: 'tab-content') { raw content_tabs.join }
   # end
 
+  def t(str, args={})
+    I18n.translate!(str, args)
+  rescue Exception => e
+    if I18n.locale == :'sr-Latn'
+      cyr_to_lat(I18n.translate!(str, args={}.merge(locale: :sr)))
+    else
+      raise e
+    end
+  end
+
+  def fo_icon(type, args={})
+    case type
+      when :species
+        'fa fa-book'
+      when :specimens
+        'fa fa-tags'
+      when :references
+        'fa fa-quote-left'
+      when :locations
+        'fa fa-globe'
+      when :users
+        args[:singular] ? 'fa fa-user' : 'fa fa-users'
+      when :languages
+        'fa fa-comments'
+      when :pages
+        'fa fa-file-text-o'
+      when :sign_in
+        'fa fa-sign-in'
+      when :sign_out
+        'fa fa-sign-out'
+      when :cancel
+        'fa fa-times'
+      when :admin
+        'fa fa-cogs'
+      else
+        raise 'unknown icon'
+    end
+  end
+
   def cyr_to_lat(str)
     Fungiorbis::CyrToLat.transliterate str
   end

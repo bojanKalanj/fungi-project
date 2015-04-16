@@ -53,3 +53,10 @@ sr:
         subject: 'Упутства за ресетовање лозинке'
       unlock_instructions:
         subject: 'Упутства за откључавање налога'
+    actions:
+      sign_in: Пријави се
+      sign_out: Одјави се
+      register: Регистрација
+    fields:
+      email: Email
+      password: Лозинка

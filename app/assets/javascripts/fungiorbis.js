@@ -28,4 +28,28 @@ $(document).on('ready page:load', function () {
     });
   });
 
+  $(document).on('click', '[data-toggle]', function (e) {
+    var targets = $(this).data('toggle').split(',');
+
+    $.each(targets, function( index, targetSelector ) {
+        $(targetSelector).toggleClass('hidden');
+    });
+
+    e.stopPropagation();
+    return false;
+  });
+
+  $(document).on('click', '[data-toggle-class]', function (e) {
+    var targets = $(this).data('toggle-class-target').split(',');
+    var classes = $(this).data('toggle-class').split(',');
+
+    $.each(targets, function( index1, targetSelector ) {
+      $.each(classes, function( index2, klass ) {
+        $(targetSelector).toggleClass(klass);
+      });
+    });
+
+    e.stopPropagation();
+    return false;
+  });
 });

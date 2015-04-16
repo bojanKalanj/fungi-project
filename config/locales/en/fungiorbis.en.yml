@@ -11,4 +11,10 @@ en:
       users: Users
       languages: Languages
       pages: Pages
-      
+    attributes:
+      name: Name
+  species:
+    attributes:
+      famillia: Famillia
+      growth_type: Growth type
+      nutritive_group: Nutritive group

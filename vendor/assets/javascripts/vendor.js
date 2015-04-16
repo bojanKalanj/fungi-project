@@ -2,3 +2,14 @@
 //= require redactor/langs/sr-cir
 //= require redactor/langs/sr-lat
 //= require redactor/langs/en
+//= require sb-admin-v2/plugins/metisMenu/jquery.metisMenu
+//= require sb-admin-v2/plugins/dataTables/jquery.dataTables
+//= require sb-admin-v2/plugins/dataTables/dataTables.bootstrap
+//= require sb-admin-v2/plugins/flot/jquery.flot.js
+//= require sb-admin-v2/plugins/flot/excanvas.min
+//= require sb-admin-v2/plugins/flot/jquery.flot.pie
+//= require sb-admin-v2/plugins/flot/jquery.flot.tooltip.min
+//= require sb-admin-v2/plugins/flot/jquery.flot.resize
+//= require sb-admin-v2/plugins/morris/morris
+//= require sb-admin-v2/plugins/morris/raphael-2.1.0.min
+//= require sb-admin-v2/sb-admin

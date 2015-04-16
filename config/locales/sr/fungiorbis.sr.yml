@@ -11,4 +11,10 @@ sr:
       users: Корисници
       languages: Језици
       pages: Стране
-      
+    attributes:
+      name: Име
+  species:
+    attributes:
+      famillia: Фамилија
+      growth_type: Начин раста
+      nutritive_group: Нутритивна група

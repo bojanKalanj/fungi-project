@@ -12,7 +12,6 @@
 // Font Awesome
 @import "fontawesome/font-awesome";
 
-
 // Your custom LESS stylesheets goes here
 //
 // Since bootstrap was imported above you have access to its mixins which
@@ -24,23 +23,28 @@
 // Example:
 // @link-color: #ff0000;
 
-.alert{
-  margin-top: 20px;
-}
+//.alert{
+//  position: relative;
+//  top: 0;
+//}
 
 body {
-  padding-top: 12px;
+  padding-top: 0;
 }
 
-.page-header {
-  padding-top: 1px;
-}
+//.page-header {
+//  padding-top: 1px;
+//}
+//
+//.page-header.no-border {
+//  border: none;
+//}
 
 .navbar-header {
   width: 100%;
   white-space: nowrap;
 
-  .navbar-toggle{
+  .navbar-toggle {
     float: left;
     margin-left: 10px;
   }
@@ -48,11 +52,21 @@ body {
     white-space: nowrap;
     margin-right: 10px;
     width: auto;
-    li{
-
-    }
   }
 }
+.navbar-static-side{
+  width: 25%;
+}
 
+#page-wrapper{
+  margin-left: 0px;
+  padding-top: 30px;
+  top: 50px;
+  position: absolute;
+  width: 100%;
 
+  .page-header{
+    margin-top: 0;
+  }
+}
 

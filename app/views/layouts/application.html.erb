@@ -24,8 +24,6 @@
     </ul>
   </div>
 
-
-
   <div class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
       <ul class="nav" id="side-menu">
@@ -37,8 +35,10 @@
 </nav>
 
 <div id="page-wrapper">
-  <%= bootstrap_flash %>
-  <%= yield %>
+  <div class="col-sm-9 col-sm-offset-3">
+    <%= bootstrap_flash %>
+    <%= yield %>
+  </div>
 </div>
 <!-- /#page-wrapper -->
 

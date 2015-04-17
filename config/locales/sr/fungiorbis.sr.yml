@@ -11,6 +11,7 @@ sr:
       users: Корисници
       languages: Језици
       pages: Стране
+      user_profile: Кориснички профил
     attributes:
       name: Име
   species:

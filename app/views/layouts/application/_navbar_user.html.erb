@@ -1,0 +1,40 @@
+<%= content_tag :li, class: 'dropdown' do %>
+  <%= link_to("#", :class => "dropdown-toggle", "data-toggle" => "dropdown") do %>
+    <%= content_tag :i, '', class: "fa fa-user fa-fw" %>
+    <%= content_tag :i, '', class: "fa fa-caret-down fa-fw" %>
+  <% end %>
+  <%= drop_down_list do %>
+
+    <% if current_user %>
+
+      <%= menu_item edit_user_registration_path do %>
+        <%= content_tag :i, '', class: "fa fa-user fa-fw" %>
+        <%= content_tag :span, t('shared.sections.user_profile') %>
+      <% end %>
+      <%= menu_item '#' do %>
+        <%= content_tag :i, '', class: "fa fa-gear fa-fw" %>
+        <%= content_tag :span, 'Settings' %>
+      <% end %>
+      <%= drop_down_divider  %>
+      <%= content_tag :li do %>
+        <%= link_to destroy_user_session_path, method: 'delete', title: t('devise.actions.sign_out') do %>
+          <%= content_tag :i, '', class: "fa fa-sign-out fa-fw" %>
+          <%= content_tag :span, t('devise.actions.sign_out') %>
+        <% end %>
+      <% end %>
+
+    <% else %>
+
+      <%= menu_item new_user_session_path, title: t('devise.actions.sign_in') do %>
+        <%= content_tag :i, '', class: "fa fa-sign-in fa-fw" %>
+        <%= content_tag :span, t('devise.actions.sign_in') %>
+      <% end %>
+
+      <%= menu_item new_user_registration_path, title: t('devise.actions.register') do %>
+        <%= content_tag :i, '', class: "fa fa-plus fa-fw" %>
+        <%= content_tag :span, t('devise.actions.register') %>
+      <% end %>
+
+    <% end %>
+  <% end %>
+<% end %>

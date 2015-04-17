@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'custom_devise/registrations',
+    confirmations: 'custom_devise/confirmations',
+    sessions: 'custom_devise/sessions'
+  }
 
   namespace :admin do
     resources :users
@@ -11,6 +15,7 @@ Rails.application.routes.draw do
     resources :characteristics, param: :uuid
     resources :languages
     resources :pages
+    resource :dashboard, only: :show, controller: 'dashboard'
   end
 
   localized do

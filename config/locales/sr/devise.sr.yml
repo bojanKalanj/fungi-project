@@ -57,6 +57,11 @@ sr:
       sign_in: Пријави се
       sign_out: Одјави се
       register: Регистрација
+      please_sign_in: Молим унесите Ваше приступне податке
+      forgot_your_password: Заборавили сте лозинку?
+      resend_confirmation_instructions: Нисте примили упутство за потврду налога?
+      password_format: 'Минимум %{number} карактера'
     fields:
       email: Email
       password: Лозинка
+      password_confirmation: Потврда лозинке

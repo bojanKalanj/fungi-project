@@ -3,9 +3,7 @@ require 'fungiorbis/cyr_to_lat'
 module ApplicationHelper
 
   def localized_url_helper(locale, args={})
-    if admin_page?
-      :species_index_path
-    elsif root_page?
+    if admin_page? || devise_page? || root_page?
       if locale == I18n.default_locale
         :root_path
       else
@@ -33,6 +31,10 @@ module ApplicationHelper
 
   def admin_page?
     request.env['PATH_INFO'].include? '/admin/'
+  end
+
+  def devise_page?
+    request.env['PATH_INFO'].include? '/users/'
   end
 
   def root_page?
@@ -119,7 +121,7 @@ module ApplicationHelper
     I18n.translate!(str, args)
   rescue Exception => e
     if I18n.locale == :'sr-Latn'
-      cyr_to_lat(I18n.translate!(str, args={}.merge(locale: :sr)))
+      cyr_to_lat(I18n.translate!(str, args.merge(locale: :sr)))
     else
       raise e
     end

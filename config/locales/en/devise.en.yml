@@ -61,6 +61,11 @@ en:
       sign_in: Sign in
       sign_out: Sign out
       register: Register
+      please_sign_in: Please Sign in
+      forgot_your_password: Forgot your password?
+      resend_confirmation_instructions: "Didn't receive confirmation instructions?"
+      password_format: "%{number} characters minimum"
     fields:
       email: Email
       password: Password
+      password_confirmation: Password confirmation

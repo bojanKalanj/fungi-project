@@ -1,0 +1,32 @@
+sr:
+  specimen:
+    attributes:
+      species: Име врсте
+      location: Локација
+      legator: Легатор
+      determinator: Детерминатор
+      habitats: Станишта
+      substrates: Супстрати
+      date: Датум
+      quantity: Бројност
+      approved: Потврђен
+    btn:
+      new:
+        title: Додај нов налаз
+      create:
+        title: Сачувај нов налаз
+      edit:
+        title: Измени налаз
+      delete:
+        title: Обриши налаз
+      show:
+        title: Прикажи налаз
+    notice:
+      created: Налаз је успешно сачуван.
+      destroyed: Налаз је успешно обрисан.
+      updated: Налаз је успешно измењен.
+    error:
+      destroyed: Налаз није обрисан.
+      not_found: Налаз није нађен.
+    interface:
+      new: Додај нов налаз

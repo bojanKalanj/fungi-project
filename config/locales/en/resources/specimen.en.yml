@@ -1,0 +1,32 @@
+en:
+  specimen:
+    attributes:
+      species: Species
+      location: Location
+      legator: Legator
+      determinator: Determinator
+      habitats: Habitats
+      substrates: Substrates
+      date: Date
+      quantity: Quantity
+      approved: Approved
+    btn:
+      new:
+        title: Add new Specimen
+      create:
+        title: Save new Specimen
+      edit:
+        title: Edit Specimen
+      delete:
+        title: Destroy Specimen
+      show:
+        title: Show Specimen
+    notice:
+      created: Specimen was successfully created.
+      destroyed: Specimen was successfully destroyed.
+      updated: Specimen was successfully updated.
+    error:
+      destroyed: Specimen was not destroyed.
+      not_found: Specimen not found.
+    interface:
+      new: Add new Specimen

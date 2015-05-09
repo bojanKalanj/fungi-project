@@ -4,12 +4,19 @@ en:
       fungiorbis: Fungiorbis
       administration: Dashboard
       species: Species
+      specimen: Specimens
       specimens: Specimens
+      sample: Samples
       samples: Samples
+      reference: References
       references: References
+      location: Locations
       locations: Locations
+      user: Users
       users: Users
+      language: Languages
       languages: Languages
+      page: Pages
       pages: Pages
       user_profile: User Profile
       dashboard: Dashboard

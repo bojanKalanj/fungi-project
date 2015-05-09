@@ -4,12 +4,19 @@ sr:
       fungiorbis: Фунгиорбис
       administration: Администрација
       species: Врсте
+      specimen: Налази
       specimens: Налази
+      sample: Узорци
       samples: Узорци
+      reference: Референце
       references: Референце
+      location: Локалитети
       locations: Локалитети
+      user: Корисници
       users: Корисници
+      language: Језици
       languages: Језици
+      page: Стране
       pages: Стране
       user_profile: Кориснички профил
       dashboard: Контролна табла

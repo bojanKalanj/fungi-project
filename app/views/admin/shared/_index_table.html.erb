@@ -7,22 +7,34 @@
             <thead>
             <tr>
               <% fields.each do |field| %>
-                <th><%= t("#{resource_name}.attributes.#{field[:name]}") %></th>
+                <th><%= field[:no_label] ? '' : t("#{resource_name}.attributes.#{field[:name]}") %></th>
               <% end %>
-              <th></th>
             </tr>
             </thead>
             <tbody>
             <% resources.each_slice(2) do |pair| %>
               <% pair.each_with_index do |resource, i| %>
                 <tr class="<%= i == 0 ? 'odd' : 'even' %>">
-                  <td class="<%= fields.first[:class] %>"><%= link_to resource.send(fields.first[:name]), resource.resource_name_path %></td>
+                  <% field_method = fields.first[:field] %>
+                  <% value = resource.send(fields.first[:name]) %>
+                  <% value = value.send(field_method) if field_method %>
 
-                  <% fields[1..-1].each do |field| %>
-                    <td class="<%= field[:class] %>"><%= resource.send(field[:name]) %></td>
+                  <td class="<%= fields.first[:class] %>">
+                    <%= link_to(value, resource.resource_name_path) %>
+                  </td>
+
+
+                  <% fields[1..-2].each do |field| %>
+                    <% field_method = field[:field] %>
+                    <% value = resource.send(field[:name]) %>
+                    <% value = value.send(field_method) if field_method %>
+
+                    <td class="<%= field[:class] %>">
+                      <%= value %>
+                    </td>
                   <% end %>
 
-                  <td>
+                  <td class="no-wrap">
                     <%= link_to resource.resource_edit_path, class: 'btn btn-outline btn-primary btn-xs', title: t("helpers.links.edit") do %>
                       <%= fo_icon_tag(:edit) %>
                     <% end %>

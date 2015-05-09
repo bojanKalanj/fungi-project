@@ -1,6 +1,7 @@
 class Specimen < ActiveRecord::Base
   extend FriendlyId
   include Uuid
+  include Resource
   include HabitatHelper
   include SubstrateHelper
 
@@ -9,8 +10,7 @@ class Specimen < ActiveRecord::Base
   SPECIES_VALIDATION_ERROR = 'must take species from the list for specific habitat and subhabitat'
   # SUBSTRATES_VALIDATION_ERROR = "have to be included in: #{all_substrate_keys.inspect}"
 
-  PER_PAGE = 60
-  MAX_PER_PAGE = 100
+  PUBLIC_FIELDS = [:species, :location, :legator, :determinator, :determinator_text, :habitats, :substrates, :date, :quantity, :approved]
 
   belongs_to :species
   belongs_to :location
@@ -26,6 +26,10 @@ class Specimen < ActiveRecord::Base
 
   validate :habitats_array
   validate :substrates_array
+
+  def resource_title
+    "#{self.species.full_name} - #{self.location.name} - #{self.date}"
+  end
 
   private
 

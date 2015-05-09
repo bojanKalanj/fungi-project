@@ -9,9 +9,6 @@ class Species < ActiveRecord::Base
   GROWTH_TYPE_VALIDATION_ERROR = "has to be one of: #{GROWTH_TYPES.inspect}"
   NUTRITIVE_GROUPS_VALIDATION_ERROR = "has to be one of: #{NUTRITIVE_GROUPS.inspect}"
 
-  PER_PAGE = 60
-  MAX_PER_PAGE = 100
-
   PUBLIC_FIELDS = [:name, :genus, :familia, :ordo, :subclassis, :classis, :subphylum, :phylum, :synonyms, :growth_type, :nutritive_group]
 
   has_many :characteristics, dependent: :destroy

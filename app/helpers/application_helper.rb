@@ -135,7 +135,7 @@ module ApplicationHelper
     case type
       when :species
         'fa fa-fw fa-book'
-      when :specimens
+      when :specimens, :specimen
         'fa fa-fw fa-tags'
       when :references
         'fa fa-fw fa-quote-left'

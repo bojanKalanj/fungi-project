@@ -12,7 +12,8 @@ class Admin::SpeciesController < ApplicationController
       { name: :full_name, input_html: { class: 'italic' } },
       { name: :familia },
       { name: :growth_type },
-      { name: :nutritive_group }
+      { name: :nutritive_group },
+      { name: :actions, no_label: true }
     ]
   end
 

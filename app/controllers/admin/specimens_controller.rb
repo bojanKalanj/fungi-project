@@ -1,28 +1,34 @@
 class Admin::SpecimensController < ApplicationController
-  before_action :set_specimen, only: [:show, :edit, :update, :destroy]
+  include StandardResponses
 
-  # GET /specimen
-  # GET /specimen.json
+  before_action :set_specimen, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+
   def index
-    @specimens = Specimen.includes(:species).all.paginate(:page => params[:page])
+    @specimens = Specimen.includes(:species, :location).all
+
+    @specimen_fields = [
+      { name: :species, field: :full_name, input_html: { class: 'italic' } },
+      { name: :location, field: :name },
+      { name: :habitats },
+      { name: :substrates },
+      { name: :date },
+      { name: :quantity },
+      { name: :approved, no_label: true },
+      { name: :actions, no_label: true }
+    ]
   end
 
-  # GET /specimen/1
-  # GET /specimen/1.json
   def show
   end
 
-  # GET /specimen/new
   def new
     @specimen = Specimen.new
   end
 
-  # GET /specimen/1/edit
   def edit
   end
 
-  # POST /specimen
-  # POST /specimen.json
   def create
     @specimen = Specimen.new(specimen_params)
 
@@ -37,8 +43,6 @@ class Admin::SpecimensController < ApplicationController
     end
   end
 
-  # PATCH/PUT /specimen/1
-  # PATCH/PUT /specimen/1.json
   def update
     respond_to do |format|
       if @specimen.update(specimen_params)
@@ -51,8 +55,6 @@ class Admin::SpecimensController < ApplicationController
     end
   end
 
-  # DELETE /specimen/1
-  # DELETE /specimen/1.json
   def destroy
     @specimen.destroy
     respond_to do |format|
@@ -62,12 +64,10 @@ class Admin::SpecimensController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_specimen
       @specimen = Specimen.friendly.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def specimen_params
       params[:specimen]
     end

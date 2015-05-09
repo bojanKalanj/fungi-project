@@ -32,14 +32,6 @@ body {
   padding-top: 0;
 }
 
-//.page-header {
-//  padding-top: 1px;
-//}
-//
-//.page-header.no-border {
-//  border: none;
-//}
-
 .navbar-header {
   width: 100%;
   white-space: nowrap;
@@ -64,9 +56,23 @@ body {
   top: 50px;
   position: absolute;
   width: 100%;
+  min-height: auto;
 
   .page-header{
     margin-top: 0;
+
+    .btn{
+      float: right;
+      margin-left: 10px;
+      outline: none;
+    }
   }
 }
 
+input.italic {
+  font-style: italic;
+}
+
+#page-wrapper .simple_form {
+  margin-bottom: 20px;
+}

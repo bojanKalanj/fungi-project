@@ -127,33 +127,75 @@ module ApplicationHelper
     end
   end
 
+  def fo_icon_tag(type, args={})
+    content_tag :i, '', class: fo_icon(type, args)
+  end
+
   def fo_icon(type, args={})
     case type
       when :species
-        'fa fa-book'
+        'fa fa-fw fa-book'
       when :specimens
-        'fa fa-tags'
+        'fa fa-fw fa-tags'
       when :references
-        'fa fa-quote-left'
+        'fa fa-fw fa-quote-left'
       when :locations
-        'fa fa-globe'
+        'fa fa-fw fa-globe'
       when :users
-        args[:singular] ? 'fa fa-user' : 'fa fa-users'
+        args[:singular] ? 'fa fa-fw fa-user' : 'fa fa-fw fa-users'
+      when :user_add, :new
+        'fa fa-fw fa-plus'
       when :languages
-        'fa fa-comments'
+        'fa fa-fw fa-comments'
       when :pages
-        'fa fa-file-text-o'
+        'fa fa-fw fa-file-text-o'
       when :sign_in
-        'fa fa-sign-in'
+        'fa fa-fw fa-sign-in'
       when :sign_out
-        'fa fa-sign-out'
-      when :cancel
-        'fa fa-times'
+        'fa fa-fw fa-sign-out'
+      when :cancel, :delete, :remove
+        'fa fa-fw fa-times'
       when :admin
-        'fa fa-cogs'
+        'fa fa-fw fa-cogs'
+      when :dashboard
+        'fa fa-fw fa-dashboard'
+      when :caret_down
+        'fa fa-caret-down fa-fw'
+      when :flag
+        'fa fa-flag fa-fw'
+
+      when :edit
+        'fa fa-fw fa-edit'
       else
-        raise 'unknown icon'
+        raise "unknown icon '#{type}'"
     end
+  end
+
+  def page_header_admin_menu(resource, action, args={})
+    output = ''
+    if current_user && current_user.supervisor?
+
+      resource_name = resource.is_a?(Symbol) ? resource.to_s : resource.class.name.underscore
+      resource_name_path = resource_name[-1] == 's' ? resource_name + '_index' : resource_name
+
+      output << link_to(send("admin_#{resource_name_path}_path".to_sym), class: 'btn btn-default btn-circle', title: t("helpers.links.cancel")) do
+        fo_icon_tag(:cancel)
+      end if [:new, :edit].include?(action)
+
+      output << link_to(send("new_admin_#{resource_name}_path".to_sym), class: 'btn btn-primary btn-circle', title: t("#{resource_name}.btn.new.title")) do
+        fo_icon_tag(:new)
+      end if action == :index
+
+      output << link_to(send("edit_admin_#{resource_name_path}_path".to_sym, resource), class: 'btn btn-primary btn-circle', title: t("#{resource_name}.btn.edit.title")) do
+        fo_icon_tag(:edit)
+      end if action == :show
+
+      output << link_to(send("admin_#{resource_name_path}_path".to_sym, resource), class: 'btn btn-danger btn-circle', title: t("#{resource_name}.btn.destroy.title"), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm")) }) do
+        fo_icon_tag(:delete)
+      end if action == :show
+
+    end
+    raw output
   end
 
   def cyr_to_lat(str)

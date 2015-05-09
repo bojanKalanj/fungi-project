@@ -5,7 +5,7 @@ class Admin::SpeciesController < ApplicationController
   # GET /species
   # GET /species.json
   def index
-    @species = Species.all.paginate(:page => params[:page])
+    @species = Species.all
   end
 
   # GET /species/1
@@ -70,6 +70,6 @@ class Admin::SpeciesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def species_params
-      params[:species]
+      params.require(:species).permit(:name, :genus, :familia, :ordo, :subclassis, :classis, :subphylum, :phylum, :synonyms, :growth_type, :nutritive_group)
     end
 end

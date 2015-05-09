@@ -1,0 +1,23 @@
+{
+  "sEmptyTable": "Табела је празна",
+  "sInfo": "Приказ _START_ до _END_ од укупно _TOTAL_ елемената",
+  "sInfoEmpty": "Приказ 0 до 0 од укупно 0 елемената",
+  "sInfoFiltered": "(филтрирано од укупно _MAX_ елемената)",
+  "sInfoPostFix": "",
+  "sInfoThousands": ",",
+  "sLengthMenu": "Прикажи _MENU_ елемената",
+  "sLoadingRecords": "Учитава се...",
+  "sProcessing": "Процесирање у току...",
+  "sSearch": "Претрага:",
+  "sZeroRecords": "Није пронађен ниједан резултат",
+  "oPaginate": {
+    "sFirst": "Почетна",
+    "sLast": "Последња",
+    "sNext": "Следећа",
+    "sPrevious": "Претходна"
+  },
+  "oAria": {
+    "sSortAscending": ": activate to sort column ascending",
+    "sSortDescending": ": activate to sort column descending"
+  }
+}

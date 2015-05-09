@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   localized do
-    resources :species, param: :url
+    resources :species, param: :url, only: [:index, :show]
 
     get '/:id' => 'localized_pages#show', :defaults => { :page_id => 1 }
     root to: 'localized_pages#show', :defaults => { :page_id => 1 }, param: :page_id

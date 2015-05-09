@@ -1,7 +1,7 @@
 <%= content_tag :li, class: 'dropdown' do %>
   <%= link_to("#", :class => "dropdown-toggle", "data-toggle" => "dropdown") do %>
-    <%= content_tag :i, '', class: "fa fa-flag fa-fw" %>
-    <%= content_tag :i, '', class: "fa fa-caret-down fa-fw" %>
+    <%= fo_icon_tag(:flag) %>
+    <%= fo_icon_tag(:caret_down) %>
   <% end %>
   <%= drop_down_list do %>
     <% Language.all.each do |language| %>

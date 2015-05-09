@@ -24,8 +24,8 @@ class Species < ActiveRecord::Base
   validates :phylum, presence: true
   # validates :url, presence: true, uniqueness: true
 
-  validates :growth_type, allow_nil: true, inclusion: { in: GROWTH_TYPES, message: GROWTH_TYPE_VALIDATION_ERROR }
-  validates :nutritive_group, allow_nil: true, inclusion: { in: NUTRITIVE_GROUPS, message: NUTRITIVE_GROUPS_VALIDATION_ERROR }
+  validates :growth_type, allow_blank: true, inclusion: { in: GROWTH_TYPES, message: GROWTH_TYPE_VALIDATION_ERROR }
+  validates :nutritive_group, allow_blank: true, inclusion: { in: NUTRITIVE_GROUPS, message: NUTRITIVE_GROUPS_VALIDATION_ERROR }
 
   def full_name
     "#{self.genus} #{self.name}"

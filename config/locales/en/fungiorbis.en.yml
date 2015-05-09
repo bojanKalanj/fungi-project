@@ -12,10 +12,34 @@ en:
       languages: Languages
       pages: Pages
       user_profile: User Profile
+      dashboard: Dashboard
     attributes:
       name: Name
   species:
     attributes:
-      famillia: Famillia
+      familia: Familia
       growth_type: Growth type
       nutritive_group: Nutritive group
+      name: Name
+      genus: Genus
+      ordo: Ordo
+      subclassis: Subclassis
+      classis: Classis
+      subphylum: Subphylum
+      phylum: Phylum
+      synonyms: Synonyms
+    btn:
+      new:
+        title: Add new Species
+      create:
+        title: Save new Species
+      edit:
+        title: Edit Species
+      destroy:
+        title: Destroy Species
+  page:
+    btn:
+      edit:
+        title: Edit Page
+      destroy:
+        title: Destroy Page

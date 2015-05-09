@@ -52,4 +52,9 @@ $(document).on('ready page:load', function () {
     e.stopPropagation();
     return false;
   });
+
+  $('#page-wrapper').css('min-height', window.innerHeight - $('.navbar-header').height());
+  $('.dataTable').dataTable({
+    "language": dataTablesI18n[$('html').attr('lang')]
+  });
 });

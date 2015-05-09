@@ -5,6 +5,7 @@
 //= require sb-admin-v2/plugins/metisMenu/jquery.metisMenu
 //= require sb-admin-v2/plugins/dataTables/jquery.dataTables
 //= require sb-admin-v2/plugins/dataTables/dataTables.bootstrap
+//= require sb-admin-v2/plugins/dataTables/dataTables.i18n
 //= require sb-admin-v2/plugins/flot/jquery.flot.js
 //= require sb-admin-v2/plugins/flot/excanvas.min
 //= require sb-admin-v2/plugins/flot/jquery.flot.pie

@@ -7,6 +7,13 @@ class Admin::SpeciesController < ApplicationController
 
   def index
     @species = Species.all
+
+    @species_fields = [
+      { name: :full_name, input_html: { class: 'italic' } },
+      { name: :familia },
+      { name: :growth_type },
+      { name: :nutritive_group }
+    ]
   end
 
   def show

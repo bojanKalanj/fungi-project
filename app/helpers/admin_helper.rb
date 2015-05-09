@@ -2,38 +2,16 @@ module AdminHelper
 
   def admin_page_header(resource, action, options={})
     output = ''
-    resource_name = resource_name(resource)
 
     if current_user && current_user.supervisor?
-      resource_name_index_path = resource_name[-1] == 's' ? resource_name + '_index' : resource_name
-
-      output << link_to(send("admin_#{resource_name_index_path}_path".to_sym), class: 'btn btn-default btn-circle', title: t("helpers.links.cancel")) do
-        fo_icon_tag(:cancel)
-      end if [:new, :edit, :show].include?(action)
-
-      output << link_to(send("new_admin_#{resource_name}_path".to_sym), class: 'btn btn-primary btn-circle', title: t("#{resource_name}.btn.new.title")) do
-        fo_icon_tag(:new)
-      end if action == :index
-
-      output << link_to(send("edit_admin_#{resource_name}_path".to_sym, resource), class: 'btn btn-primary btn-circle', title: t("#{resource_name}.btn.edit.title")) do
-        fo_icon_tag(:edit)
-      end if action == :show
-
-      output << link_to(send("admin_#{resource_name}_path".to_sym, resource), class: 'btn btn-default btn-circle', title: t("#{resource_name}.btn.show.title")) do
-        fo_icon_tag(:show)
-      end if action == :edit
-
-      output << link_to(send("admin_#{resource_name}_path".to_sym, resource), class: 'btn btn-danger btn-circle', title: t("#{resource_name}.btn.destroy.title"), :method => :delete, :data => { :confirm => t('helpers.links.confirm') }) do
-        fo_icon_tag(:delete)
-      end if [:edit, :show].include?(action)
-    end
-
-    if action == :index
-      title = t("shared.sections.#{resource_name}")
-    elsif action == :new
-      title = t("#{resource_name}.interface.new")
-    else
-      title = resource.resource_title
+      if [:new, :edit, :show].include?(action)
+        cancel_path = action == :edit ? resource.resource_name_path : resource.resource_name_index_path
+        output << admin_page_header_btn(:cancel, resource, class: 'btn-default', title: t('helpers.links.cancel'), path: cancel_path)
+      end
+      output << admin_page_header_btn(:new, resource, class: 'btn-primary') if [:index].include?(action)
+      output << admin_page_header_btn(:edit, resource, class: 'btn-primary') if [:show].include?(action)
+      output << admin_page_header_btn(:show, resource, class: 'btn-default') if [:edit].include?(action)
+      output << admin_page_header_btn(:delete, resource, class: 'btn-danger', :method => :delete, :data => { :confirm => t('helpers.links.confirm') }) if [:edit, :show].include?(action)
     end
 
     title_class = nil
@@ -42,21 +20,17 @@ module AdminHelper
     content_tag(:div, class: 'page-header') do
       raw(output)+
         content_tag(:h1, class: title_class) do
-          fo_icon_tag(resource_name.to_sym) + title
+          fo_icon_tag(resource.resource_name.to_sym) + resource_title(resource, action)
         end
     end
   end
 
-  def resource_name(resource)
-    resource.is_a?(Symbol) ? resource.to_s : resource.resource_name
-  end
-
   def admin_show_field(resource, field)
     value = resource.send(field)
-    resource_name = resource_name(resource)
+
     content_tag(:dt) do
       content_tag(:strong) do
-        t("#{resource_name}.attributes.#{field}") + ':'
+        t("#{resource.resource_name}.attributes.#{field}") + ':'
       end
     end +
       content_tag(:dd) do
@@ -74,8 +48,7 @@ module AdminHelper
   end
 
   def admin_edit_field(resource, field, form_object, options={})
-    resource_name = resource_name(resource)
-    options[:label] = t("#{resource_name}.attributes.#{field}")
+    options[:label] = t("#{resource.resource_name}.attributes.#{field}")
     name = options.delete(:name)
     form_object.input(name, options) + error_span(resource[field])
   end
@@ -103,25 +76,44 @@ module AdminHelper
   def admin_menu(resource, form_object, args={})
     output = ''
 
-    resource_name = resource_name(resource)
-    resource_name_index_path = resource_name[-1] == 's' ? resource_name + '_index' : resource_name
-
     action = form_object.object.new_record? ? :new : :edit
 
     output << link_to('#', :class => "btn btn-primary", onclick: "$(this).closest('form').submit()") do
-      fo_icon_tag(action.to_sym) +  t("#{resource_name}.btn.#{action}.title")
+      fo_icon_tag(action.to_sym) + t("#{resource.resource_name}.btn.#{action}.title")
     end
 
-    output << link_to(send("admin_#{resource_name}_path".to_sym, resource), class: 'btn btn-danger', :method => :delete, :data => { :confirm => t('helpers.links.confirm') }) do
-      fo_icon_tag(:delete) +  t("#{resource_name}.btn.destroy.title")
+    output << link_to(send("admin_#{resource.resource_name}_path".to_sym, resource), class: 'btn btn-danger', :method => :delete, :data => { :confirm => t('helpers.links.confirm') }) do
+      fo_icon_tag(:delete) + t("#{resource.resource_name}.btn.delete.title")
     end if [:edit, :show].include?(action)
 
-    cancel_path = form_object.object.new_record? ? resource_name_index_path : resource_name
-    output << link_to(send("admin_#{cancel_path}_path".to_sym, resource), :class => 'btn btn-default') do
-      fo_icon_tag(:cancel) + t("helpers.links.cancel")
+    cancel_path = form_object.object.new_record? ? resource.resource_name_index_path : resource.resource_name_path
+    output << link_to(cancel_path, :class => 'btn btn-default') do
+      fo_icon_tag(:cancel) + t('helpers.links.cancel')
     end
 
     content_tag(:div, class: 'col-sm-12 form-controls') { raw output }
   end
 
+
+  private
+
+  def resource_title(resource, action)
+    if action == :index
+      t("shared.sections.#{resource.resource_name}")
+    elsif action == :new
+      t("#{resource.resource_name}.interface.new")
+    else
+      resource.resource_title
+    end
+  end
+
+  def admin_page_header_btn(action, resource, options)
+    options[:class] ||= ''
+    options[:class] += ' btn btn-circle'
+    options[:title] ||= t("#{resource.resource_name}.btn.#{action}.title")
+
+    path = options.delete(:path) || resource.resource_action_path(action)
+
+    link_to(path, options) { fo_icon_tag(action) }
+  end
 end

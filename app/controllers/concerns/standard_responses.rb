@@ -12,7 +12,7 @@ module StandardResponses
       else
         error_flash = options[:error] || "#{resource.resource_name}.error.destroyed"
         redirection_path = options[:source] == 'index' ? resource.resource_name_index_path : resource.resource_name_path
-        format.html { redirect_to send(redirection_path), flash: { error: error_flash } }
+        format.html { redirect_to redirection_path, flash: { error: error_flash } }
         format.json { render json: @species.errors, status: :unprocessable_entity }
       end
     end
@@ -21,7 +21,7 @@ module StandardResponses
   def standard_create_response(resource, success, options={})
     respond_to do |format|
       if success
-        format.html { redirect_to send(resource.resource_name_path, resource), notice: 'species.notice.created' }
+        format.html { redirect_to resource.resource_name_path, notice: 'species.notice.created' }
         format.json { render :show, status: :created, location: resource }
       else
         format.html { render :new }

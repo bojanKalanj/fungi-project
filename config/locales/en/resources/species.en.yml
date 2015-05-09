@@ -1,6 +1,7 @@
 en:
   species:
     attributes:
+      full_name: Name
       familia: Familia
       growth_type: Growth type
       nutritive_group: Nutritive group
@@ -19,7 +20,7 @@ en:
         title: Save new Species
       edit:
         title: Edit Species
-      destroy:
+      delete:
         title: Destroy Species
       show:
         title: Show Species

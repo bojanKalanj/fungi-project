@@ -1,44 +1,4 @@
 <%= simple_form_for [:admin, @species], html: { :class => 'form-horizontal' } do |f| %>
-
-  <div class="row">
-    <div class="col-sm-5">
-      <%= f.input :name, input_html: { class: 'italic' }, label: t('species.attributes.name') %>
-      <%= error_span(@species[:name]) %>
-
-      <%= f.input :genus, label: t('species.attributes.genus') %>
-      <%= error_span(@species[:genus]) %>
-
-      <%= f.input :familia, label: t('species.attributes.familia') %>
-      <%= error_span(@species[:familia]) %>
-
-      <%= f.input :ordo, label: t('species.attributes.ordo') %>
-      <%= error_span(@species[:ordo]) %>
-
-      <%= f.input :subclassis, label: t('species.attributes.subclassis') %>
-      <%= error_span(@species[:subclassis]) %>
-
-      <%= f.input :classis, label: t('species.attributes.classis') %>
-      <%= error_span(@species[:classis]) %>
-    </div>
-
-    <div class="col-sm-6 col-sm-offset-1">
-      <%= f.input :subphylum, label: t('species.attributes.subphylum') %>
-      <%= error_span(@species[:subphylum]) %>
-
-      <%= f.input :phylum, label: t('species.attributes.phylum') %>
-      <%= error_span(@species[:phylum]) %>
-
-      <%= f.input :synonyms, as: :string, label: t('species.attributes.synonyms') %>
-      <%= error_span(@species[:synonyms]) %>
-
-      <%= f.input :growth_type, label: t('species.attributes.growth_type') %>
-      <%= error_span(@species[:growth_type]) %>
-
-      <%= f.input :nutritive_group, label: t('species.attributes.nutritive_group') %>
-      <%= error_span(@species[:nutritive_group]) %>
-    </div>
-  </div>
-
-  <%= f.button :submit, :class => 'btn-primary', value: f.object.new_record? ? t('species.btn.create.title') : t('species.btn.edit.title') %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")), admin_species_index_path, :class => 'btn btn-default' %>
+  <%= admin_edit_fields(@species, @species_fields, f) %>
+  <%= admin_menu(@species, f) %>
 <% end %>

@@ -1,0 +1,7 @@
+en:
+  page:
+    btn:
+      edit:
+        title: Edit Page
+      destroy:
+        title: Destroy Page

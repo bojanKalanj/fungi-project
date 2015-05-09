@@ -1,5 +1,7 @@
 class Species < ActiveRecord::Base
+  extend FriendlyId
   include Uuid
+  include Resource
 
   GROWTH_TYPES = %w(single group)
   NUTRITIVE_GROUPS = %w(parasitic mycorrhizal saprotrophic parasitic-saprotrophic saprotrophic-parasitic)
@@ -10,9 +12,14 @@ class Species < ActiveRecord::Base
   PER_PAGE = 60
   MAX_PER_PAGE = 100
 
+  PUBLIC_FIELDS = [:name, :genus, :familia, :ordo, :subclassis, :classis, :subphylum, :phylum, :synonyms, :growth_type, :nutritive_group]
+
   has_many :characteristics, dependent: :destroy
+  has_many :specimens
 
   before_validation :generate_url
+
+  friendly_id :url
 
   validates :name, presence: true, uniqueness: { scope: :genus, case_sensitive: false, message: NAME_GENUS_VALIDATION_ERROR }
   validates :genus, presence: true
@@ -33,6 +40,10 @@ class Species < ActiveRecord::Base
 
   def self.usability_count(usability)
     Characteristic.where(usability => true).select(:species_id).distinct.count
+  end
+
+  def resource_title
+    self.full_name
   end
 
   protected

@@ -1,49 +1,35 @@
 class Admin::SpeciesController < ApplicationController
+  include StandardResponses
+
   before_action :set_species, only: [:show, :edit, :update, :destroy]
+  before_action :set_species_fields, only: [:new, :edit, :update]
   before_action :authenticate_user!
 
-  # GET /species
-  # GET /species.json
   def index
     @species = Species.all
   end
 
-  # GET /species/1
-  # GET /species/1.json
   def show
+    standard_nil_record_response(Species) if @species.nil?
   end
 
-  # GET /species/new
   def new
     @species = Species.new
   end
 
-  # GET /species/1/edit
   def edit
+    standard_nil_record_response(Species) if @species.nil?
   end
 
-  # POST /species
-  # POST /species.json
   def create
     @species = Species.new(species_params)
-
-    respond_to do |format|
-      if @species.save
-        format.html { redirect_to @species, notice: 'Species was successfully created.' }
-        format.json { render :show, status: :created, location: @species }
-      else
-        format.html { render :new }
-        format.json { render json: @species.errors, status: :unprocessable_entity }
-      end
-    end
+    standard_create_response @species, @species.save
   end
 
-  # PATCH/PUT /species/1
-  # PATCH/PUT /species/1.json
   def update
     respond_to do |format|
       if @species.update(species_params)
-        format.html { redirect_to @species, notice: 'Species was successfully updated.' }
+        format.html { redirect_to admin_species_path(@species), notice: 'species.notice.updated' }
         format.json { render :show, status: :ok, location: @species }
       else
         format.html { render :edit }
@@ -52,24 +38,37 @@ class Admin::SpeciesController < ApplicationController
     end
   end
 
-  # DELETE /species/1
-  # DELETE /species/1.json
   def destroy
-    @species.destroy
-    respond_to do |format|
-      format.html { redirect_to species_index_url, notice: 'Species was successfully destroyed.' }
-      format.json { head :no_content }
+    if @species.specimens.count > 0
+      standard_destroy_response(@species, false, error: 'species.error.destroyed_has_specimens', source: params['source'])
+    else
+      standard_destroy_response(@species, @species.destroy, source: params['source'])
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_species
-      @species = Species.find(params[:url])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def species_params
-      params.require(:species).permit(:name, :genus, :familia, :ordo, :subclassis, :classis, :subphylum, :phylum, :synonyms, :growth_type, :nutritive_group)
-    end
+  def set_species
+    @species = Species.where(url: params[:url]).first
+  end
+
+  def set_species_fields
+    @species_fields = [
+      { name: :name, input_html: { class: 'italic' } },
+      { name: :genus },
+      { name: :familia },
+      { name: :ordo },
+      { name: :subclassis },
+      { name: :classis },
+      { name: :subphylum },
+      { name: :phylum },
+      { name: :synonyms, as: :string },
+      { name: :growth_type },
+      { name: :nutritive_group }
+    ]
+  end
+
+  def species_params
+    params.require(:species).permit(Species::PUBLIC_FIELDS)
+  end
 end

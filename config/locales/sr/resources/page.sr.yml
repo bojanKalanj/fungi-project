@@ -1,0 +1,7 @@
+sr:
+  page:
+    btn:
+      edit:
+        title: Измени страну
+      destroy:
+        title: Обриши страну

@@ -1,9 +1,2 @@
-<div class="page-header">
-  <%= page_header_admin_menu(@species, :edit) %>
-  <h1>
-    <%= fo_icon_tag(:species) %>
-    <%= t 'shared.sections.species' %>
-  </h1>
-</div>
-
+<%= admin_page_header(@species, :edit, title: { class: 'italic' }) %>
 <%= render :partial => 'form' %>

@@ -1,0 +1,35 @@
+en:
+  species:
+    attributes:
+      familia: Familia
+      growth_type: Growth type
+      nutritive_group: Nutritive group
+      name: Name
+      genus: Genus
+      ordo: Ordo
+      subclassis: Subclassis
+      classis: Classis
+      subphylum: Subphylum
+      phylum: Phylum
+      synonyms: Synonyms
+    btn:
+      new:
+        title: Add new Species
+      create:
+        title: Save new Species
+      edit:
+        title: Edit Species
+      destroy:
+        title: Destroy Species
+      show:
+        title: Show Species
+    notice:
+      created: Species was successfully created.
+      destroyed: Species was successfully destroyed.
+      updated: Species was successfully updated.
+    error:
+      destroyed_has_specimens: Can not destroy species that has associated specimens.
+      destroyed: Species was not destroyed.
+      not_found: Species not found.
+    interface:
+      new: Add new Species

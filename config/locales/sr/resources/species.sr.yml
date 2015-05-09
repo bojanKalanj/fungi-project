@@ -1,0 +1,35 @@
+sr:
+  species:
+    attributes:
+      familia: Фамилија
+      growth_type: Начин раста
+      nutritive_group: Нутритивна група
+      name: Име
+      genus: Род
+      ordo: Ред
+      subclassis: Поткласа
+      classis: Класа
+      subphylum: Подраздео
+      phylum: Раздео
+      synonyms: Синоними
+    btn:
+      new:
+        title: Додај нову врсту
+      create:
+        title: Сачувај нову врсту
+      edit:
+        title: Измени врсту
+      destroy:
+        title: Обриши врсту
+      show:
+        title: Прикажи врсту
+    notice:
+      created: Врста је успешно сачувана.
+      destroyed: Врста је успешно обрисана.
+      updated: Врста је успешно измењена.
+    error:
+      destroyed_has_specimens: Није могуће обрисати врсту која има припадајуће налазе.
+      destroyed: Врста није обрисана.
+      not_found: Врста није нађена.
+    interface:
+      new: Додај нову врсту

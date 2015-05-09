@@ -153,7 +153,9 @@ module ApplicationHelper
         'fa fa-fw fa-sign-in'
       when :sign_out
         'fa fa-fw fa-sign-out'
-      when :cancel, :delete, :remove
+      when :delete, :remove
+        'fa fa-fw fa-trash-o'
+      when :cancel
         'fa fa-fw fa-times'
       when :admin
         'fa fa-fw fa-cogs'
@@ -166,36 +168,11 @@ module ApplicationHelper
 
       when :edit
         'fa fa-fw fa-edit'
+      when :show
+        'fa fa-fw fa-file-archive-o'
       else
         raise "unknown icon '#{type}'"
     end
-  end
-
-  def page_header_admin_menu(resource, action, args={})
-    output = ''
-    if current_user && current_user.supervisor?
-
-      resource_name = resource.is_a?(Symbol) ? resource.to_s : resource.class.name.underscore
-      resource_name_path = resource_name[-1] == 's' ? resource_name + '_index' : resource_name
-
-      output << link_to(send("admin_#{resource_name_path}_path".to_sym), class: 'btn btn-default btn-circle', title: t("helpers.links.cancel")) do
-        fo_icon_tag(:cancel)
-      end if [:new, :edit].include?(action)
-
-      output << link_to(send("new_admin_#{resource_name}_path".to_sym), class: 'btn btn-primary btn-circle', title: t("#{resource_name}.btn.new.title")) do
-        fo_icon_tag(:new)
-      end if action == :index
-
-      output << link_to(send("edit_admin_#{resource_name_path}_path".to_sym, resource), class: 'btn btn-primary btn-circle', title: t("#{resource_name}.btn.edit.title")) do
-        fo_icon_tag(:edit)
-      end if action == :show
-
-      output << link_to(send("admin_#{resource_name_path}_path".to_sym, resource), class: 'btn btn-danger btn-circle', title: t("#{resource_name}.btn.destroy.title"), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm")) }) do
-        fo_icon_tag(:delete)
-      end if action == :show
-
-    end
-    raw output
   end
 
   def cyr_to_lat(str)

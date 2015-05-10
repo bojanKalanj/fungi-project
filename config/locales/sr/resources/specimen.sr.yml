@@ -5,6 +5,7 @@ sr:
       location: Локација
       legator: Легатор
       determinator: Детерминатор
+      determinator_text: Детерминатор - напомена
       habitats: Станишта
       habitat_title: Станиште
       substrates: Подлоге

@@ -5,6 +5,7 @@ en:
       location: Location
       legator: Legator
       determinator: Determinator
+      determinator_text: Determinator - additional note
       habitats: Habitats
       habitat_title: Habitat
       substrates: Substrates

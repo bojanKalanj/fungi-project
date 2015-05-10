@@ -2,6 +2,7 @@ class Admin::SpecimensController < ApplicationController
   include StandardResponses
 
   before_action :set_specimen, only: [:show, :edit, :update, :destroy]
+  before_action :set_specimen_fields, only: [:new, :edit, :update]
   before_action :authenticate_user!
 
   def index
@@ -18,6 +19,7 @@ class Admin::SpecimensController < ApplicationController
   end
 
   def show
+    standard_nil_record_response(Specimen) if @specimen.nil?
   end
 
   def new
@@ -65,6 +67,13 @@ class Admin::SpecimensController < ApplicationController
     def set_specimen
       @specimen = Specimen.friendly.find(params[:id])
     end
+
+  def set_specimen_fields
+    @species_fields = [
+      { name: :species, input_html: { class: 'italic' } },
+      { name: :location }
+    ]
+  end
 
     def specimen_params
       params[:specimen]

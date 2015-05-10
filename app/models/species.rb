@@ -34,13 +34,10 @@ class Species < ActiveRecord::Base
   def full_name
     "#{self.genus} #{self.name}"
   end
+  alias_method :resource_title, :full_name
 
   def self.usability_count(usability)
     Characteristic.where(usability => true).select(:species_id).distinct.count
-  end
-
-  def resource_title
-    self.full_name
   end
 
   protected

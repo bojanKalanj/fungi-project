@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
+  alias_method :resource_title, :full_name
 
   def supervisor?
     self.role == SUPERVISOR_ROLE

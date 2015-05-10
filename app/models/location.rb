@@ -12,6 +12,10 @@ class Location < ActiveRecord::Base
 
   friendly_id :slug_candidates, use: :slugged
 
+  def resource_title
+    self.name
+  end
+
   private
 
   def slug_candidates

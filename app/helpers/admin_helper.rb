@@ -34,7 +34,11 @@ module AdminHelper
       end
     end +
       content_tag(:dd) do
-        value.blank? ? '-' : value
+        if value.blank?
+          '-'
+        else
+          value.respond_to?(:resource_title) ? value.resource_title : value
+        end
       end
   end
 

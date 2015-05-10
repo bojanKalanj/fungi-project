@@ -10,7 +10,7 @@ module Resource
     end
 
     def resource_name_index_path
-      Rails.application.routes.url_helpers.send("admin_#{resource_name[-1] == 's' ? resource_name + '_index' : resource_name}_path".to_sym)
+      Rails.application.routes.url_helpers.send("admin_#{resource_name[-1] == 's' ? resource_name + '_index' : resource_name}s_path".to_sym)
     end
 
     def resource_new_path

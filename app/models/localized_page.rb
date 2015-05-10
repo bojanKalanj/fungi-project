@@ -2,12 +2,14 @@ require 'fungiorbis/cyr_to_lat'
 
 class LocalizedPage < ActiveRecord::Base
   extend FriendlyId
+  include Resource
+
   belongs_to :language
   belongs_to :page
 
   friendly_id :title, use: :slugged
 
-  validates :title, presence: true, uniqueness: true
+  validates :title, presence: true, uniqueness: true, unless: :dependant?
 
   def localized_field(field)
     if dependant?
@@ -15,6 +17,10 @@ class LocalizedPage < ActiveRecord::Base
     else
       self.send(field)
     end
+  end
+
+  def resource_title
+    localized_field(:title)
   end
 
   private

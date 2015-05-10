@@ -53,7 +53,7 @@ module AdminHelper
     end
   end
 
-  def admin_edit_field(resource, field, form_object, options={})
+  def admin_edit_field(resource, field, form_object, options)
     options[:label] = t("#{resource.resource_name}.attributes.#{field}")
     name = options.delete(:name)
     if options[:field]

@@ -22,3 +22,13 @@ module FungiorbisPureRails
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
+
+module I18n
+  # exception, locale, key, options
+  def self.transliterate_cyrillic(*args)
+    if args[1] == :'sr-Latn'
+      Fungiorbis::CyrToLat.transliterate(I18n.translate!(args[2], args[3].merge(locale: :sr)))
+    end
+  end
+end
+I18n.exception_handler = :transliterate_cyrillic

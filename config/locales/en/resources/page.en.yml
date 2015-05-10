@@ -1,7 +1,30 @@
 en:
   page:
+    attributes:
+      title: Title
     btn:
+      new:
+        title: Add new Page
+      create:
+        title: Save new Page
       edit:
         title: Edit Page
-      destroy:
+      delete:
         title: Destroy Page
+      show:
+        title: Show Page
+    notice:
+      created: Page was successfully created.
+      destroyed: Page was successfully destroyed.
+      updated: Page was successfully updated.
+    error:
+      destroyed: Page was not destroyed.
+      not_found: Page not found.
+    interface:
+      new: Add new Page
+      localized_fields: Localized fields
+      cyrillic_transliteration: The Cyrillic content will automatically get transliterated to Latin.
+  localized_page:
+    attributes:
+      title: Title
+      content: Content

@@ -7,6 +7,9 @@ en:
       root: "Index"
     pages:
       pages: "Pages"
+    admin:
+      pages:
+        root: "Pages"
   helpers:
     actions: "Actions"
     links:

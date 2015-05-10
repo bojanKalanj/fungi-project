@@ -1,7 +1,30 @@
 sr:
   page:
+    attributes:
+      title: Наслов
     btn:
+      new:
+        title: Додај нову страну
+      create:
+        title: Сачувај нову страну
       edit:
         title: Измени страну
-      destroy:
+      delete:
         title: Обриши страну
+      show:
+        title: Прикажи страну
+    notice:
+      created: Страна је успешно сачувана.
+      destroyed: Страна је успешно обрисана.
+      updated: Страна је успешно измењена.
+    error:
+      destroyed: Страна није обрисана.
+      not_found: Страна није нађена.
+    interface:
+      new: Додај нову страну
+      localized_fields: Локализована поља
+      cyrillic_transliteration: Унесени ћирилични садржај ће аутоматски бити транскрибован на латиницу.
+  localized_page:
+    attributes:
+      title: Наслов
+      content: Садржај

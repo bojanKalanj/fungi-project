@@ -1,12 +1,21 @@
 class Admin::PagesController < ApplicationController
+  include StandardResponses
 
   before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_action :set_page_fields
+  before_action :authenticate_user!
 
   def index
     @pages = Page.all
+
+    @page_fields = [
+      { name: :title },
+      { name: :actions, no_label: true }
+    ]
   end
 
   def show
+    standard_nil_record_response(Page) if @page.nil?
   end
 
   def new
@@ -15,40 +24,20 @@ class Admin::PagesController < ApplicationController
   end
 
   def edit
+    standard_nil_record_response(Page) if @page.nil?
   end
 
   def create
     @page = Page.new(page_params)
-
-    respond_to do |format|
-      if @page.save
-        format.html { redirect_to admin_pages_path, notice: 'Strana uspešno kreirana.' }
-        format.json { render :show, status: :created, location: @page }
-      else
-        format.html { render :new }
-        format.json { render json: @page.errors, status: :unprocessable_entity }
-      end
-    end
+    standard_create_response @page, @page.save
   end
 
   def update
-    respond_to do |format|
-      if @page.update_attributes(page_params)
-        format.html { redirect_to admin_pages_path, notice: 'Strana uspešno ažurirana.' }
-        format.json { render :show, status: :ok, location: @page }
-      else
-        format.html { render :edit }
-        format.json { render json: @page.errors, status: :unprocessable_entity }
-      end
-    end
+    standard_update_response @page, @page.update_attributes(page_params)
   end
 
   def destroy
-    @page.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_pages_url, notice: 'Strana uspešno obrisana.' }
-      format.json { head :no_content }
-    end
+    standard_destroy_response(@page, @page.destroy, source: params['source'])
   end
 
   private
@@ -57,7 +46,18 @@ class Admin::PagesController < ApplicationController
     @page = Page.friendly.find(params[:id])
   end
 
+  def set_page_fields
+    @page_fields = [
+      { name: :title }
+    ]
+
+    @localized_page_fields = [
+      { name: :title },
+      { name: :content, input_html: { class: 'wysiwyg' } }
+    ]
+  end
+
   def page_params
-    params.require(:page).permit([:title, localized_pages_attributes: [:id, :title, :content, :language_id]])
+    params.require(:page).permit([:title, localized_pages_attributes: [:id, :title, :content, :language_id, :page_id]])
   end
 end

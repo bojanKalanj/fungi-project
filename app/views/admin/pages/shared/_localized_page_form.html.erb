@@ -1,13 +1,13 @@
 <%= pf.simple_fields_for :localized_pages, localized_page do |f| %>
+
   <% if localized_page.language.parent %>
-    <p style="padding:20px;">Uneseni ćirilični sadržaj će automatski biti transkribovan na latinicu.</p>
+    <%= content_tag(:p, class: 'localized-page-transliteration-notice') { t('page.interface.cyrillic_transliteration')} %>
     <%= f.input :title, as: :hidden, input_html: { data: { parent: localized_page.language.parent.locale } } %>
+
   <% else %>
-    <%= f.input :title, label: 'Naslov strane', input_html: { data: { locale: localized_page.language.locale } } %>
-    <%= error_span(localized_page[:title]) %>
-    <%= f.input :content, label: 'Sadržaj strane', input_html: { class: :wysiwyg } %>
-    <%= error_span(localized_page[:content]) %>
+    <%= admin_edit_fields(localized_page, localized_page_fields, f) %>
   <% end %>
+
   <%= f.input :language_id, as: :hidden %>
   <%= f.input :page_id, as: :hidden %>
 <% end %>

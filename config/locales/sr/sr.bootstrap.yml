@@ -7,6 +7,9 @@ sr:
       root: "Индекс"
     pages:
       pages: "Стране"
+    admin:
+      pages:
+        root: "Стране"
   helpers:
     actions: "Акције"
     links:

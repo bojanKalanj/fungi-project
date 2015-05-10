@@ -1,5 +1,8 @@
 class Page < ActiveRecord::Base
   extend FriendlyId
+  include Resource
+
+  PUBLIC_FIELDS = [:title]
 
   has_many :localized_pages, dependent: :destroy
 
@@ -8,6 +11,10 @@ class Page < ActiveRecord::Base
   accepts_nested_attributes_for :localized_pages
 
   validates :title, presence: true, uniqueness: true
+
+  def resource_title
+    self.title
+  end
 end
 
 # == Schema Information

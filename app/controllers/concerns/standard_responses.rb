@@ -7,7 +7,7 @@ module StandardResponses
   def standard_destroy_response(resource, success, options={})
     respond_to do |format|
       if success
-        format.html { redirect_to send(resource.resource_name_index_path), notice: "#{resource.resource_name}.notice.destroyed" }
+        format.html { redirect_to resource.resource_name_index_path, notice: "#{resource.resource_name}.notice.destroyed" }
         format.json { head :no_content }
       else
         error_flash = options[:error] || "#{resource.resource_name}.error.destroyed"
@@ -21,7 +21,19 @@ module StandardResponses
   def standard_create_response(resource, success, options={})
     respond_to do |format|
       if success
-        format.html { redirect_to resource.resource_name_path, notice: 'species.notice.created' }
+        format.html { redirect_to resource.resource_name_path, notice: "#{resource.resource_name}.notice.created" }
+        format.json { render :show, status: :created, location: resource }
+      else
+        format.html { render :new }
+        format.json { render json: resource.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def standard_update_response(resource, success, options={})
+    respond_to do |format|
+      if success
+        format.html { redirect_to resource.resource_name_path, notice: "#{resource.resource_name}.notice.updated" }
         format.json { render :show, status: :created, location: resource }
       else
         format.html { render :new }
@@ -33,7 +45,7 @@ module StandardResponses
   def standard_nil_record_response(klass)
     resource = klass.new
     respond_to do |format|
-      format.html { redirect_to send(resource.resource_name_index_path), flash: { error: "#{resource.resource_name}.error.not_found" } }
+      format.html { redirect_to resource.resource_name_index_path, flash: { error: "#{resource.resource_name}.error.not_found" } }
       format.json { head :no_content }
     end
   end

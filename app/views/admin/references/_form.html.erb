@@ -1,16 +1,4 @@
 <%= simple_form_for [:admin, @reference], :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :title %>
-  <%= error_span(@reference[:title]) %>
-  <%= f.input :authors %>
-  <%= error_span(@reference[:authors]) %>
-  <%= f.input :isbn %>
-  <%= error_span(@reference[:isbn]) %>
-  <%= f.input :url %>
-  <%= error_span(@reference[:url]) %>
-  <%= f.input :uuid %>
-  <%= error_span(@reference[:uuid]) %>
-
-  <%= f.button :submit, :class => 'btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                admin_references_path, :class => 'btn btn-default' %>
+  <%= admin_edit_fields(@reference, @reference_fields, f) %>
+  <%= admin_menu(@reference, f) %>
 <% end %>

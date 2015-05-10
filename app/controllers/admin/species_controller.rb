@@ -35,15 +35,7 @@ class Admin::SpeciesController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @species.update(species_params)
-        format.html { redirect_to admin_species_path(@species), notice: 'species.notice.updated' }
-        format.json { render :show, status: :ok, location: @species }
-      else
-        format.html { render :edit }
-        format.json { render json: @species.errors, status: :unprocessable_entity }
-      end
-    end
+    standard_update_response @species, @species.update(species_params)
   end
 
   def destroy

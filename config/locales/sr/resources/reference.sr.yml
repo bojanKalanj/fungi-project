@@ -1,0 +1,28 @@
+sr:
+  reference:
+    attributes:
+      title: Наслов
+      authors: Аутори
+      isbn: ISBN
+      url: Интернет страница
+    btn:
+      new:
+        title: Додај нову референцу
+      create:
+        title: Сачувај нову референцу
+      edit:
+        title: Измени референцу
+      delete:
+        title: Обриши референцу
+      show:
+        title: Прикажи референцу
+    notice:
+      created: Референца је успешно сачувана.
+      destroyed: Референца је успешно обрисана.
+      updated: Референца је успешно измењена.
+    error:
+      destroyed_has_characteristics: Није могуће обрисати референцу која има припадајуће карактеристике врсте.
+      destroyed: Референца није обрисана.
+      not_found: Референца није нађена.
+    interface:
+      new: Додај нову референцу

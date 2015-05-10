@@ -1,0 +1,28 @@
+en:
+  reference:
+    attributes:
+      title: Title
+      authors: Authors
+      isbn: ISBN
+      url: Website
+    btn:
+      new:
+        title: Add new Reference
+      create:
+        title: Save new Reference
+      edit:
+        title: Edit Reference
+      delete:
+        title: Destroy Reference
+      show:
+        title: Show Reference
+    notice:
+      created: Reference was successfully created.
+      destroyed: Reference was successfully destroyed.
+      updated: Reference was successfully updated.
+    error:
+      destroyed_has_characteristics: Can not destroy reference that has associated species characteristics.
+      destroyed: Reference was not destroyed.
+      not_found: Reference not found.
+    interface:
+      new: Add new Reference

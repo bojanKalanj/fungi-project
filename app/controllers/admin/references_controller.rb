@@ -1,74 +1,68 @@
 class Admin::ReferencesController < ApplicationController
+  include StandardResponses
+
   before_action :set_reference, only: [:show, :edit, :update, :destroy]
+  before_action :set_reference_fields, only: [:new, :edit, :update]
+  before_action :authenticate_user!
 
-  # GET /references
-  # GET /references.json
   def index
-    @references = Reference.all.paginate(:page => params[:page])
+    @references = Reference.all
+
+    @reference_fields = [
+      { name: :title },
+      { name: :authors },
+      { name: :isbn },
+      { name: :url, method: :wrap_in_link, options: { external: true } },
+      { name: :actions, no_label: true }
+    ]
   end
 
-  # GET /references/1
-  # GET /references/1.json
   def show
+    standard_nil_record_response(Reference) if @reference.nil?
   end
 
-  # GET /references/new
   def new
     @reference = Reference.new
   end
 
-  # GET /references/1/edit
   def edit
+    standard_nil_record_response(Reference) if @reference.nil?
   end
 
-  # POST /references
-  # POST /references.json
   def create
     @reference = Reference.new(reference_params)
-
-    respond_to do |format|
-      if @reference.save
-        format.html { redirect_to @reference, notice: 'Reference was successfully created.' }
-        format.json { render :show, status: :created, location: @reference }
-      else
-        format.html { render :new }
-        format.json { render json: @reference.errors, status: :unprocessable_entity }
-      end
-    end
+    standard_create_response @reference, @reference.save
   end
 
-  # PATCH/PUT /references/1
-  # PATCH/PUT /references/1.json
   def update
-    respond_to do |format|
-      if @reference.update(reference_params)
-        format.html { redirect_to @reference, notice: 'Reference was successfully updated.' }
-        format.json { render :show, status: :ok, location: @reference }
-      else
-        format.html { render :edit }
-        format.json { render json: @reference.errors, status: :unprocessable_entity }
-      end
-    end
+    standard_update_response @reference, @reference.update(reference_params)
   end
 
-  # DELETE /references/1
-  # DELETE /references/1.json
   def destroy
-    @reference.destroy
-    respond_to do |format|
-      format.html { redirect_to references_url, notice: 'Reference was successfully destroyed.' }
-      format.json { head :no_content }
+    if @reference.characteristics.count > 0
+      standard_destroy_response(@reference, false, error: 'reference.error.destroyed_has_characteristics', source: params['source'])
+    else
+      standard_destroy_response(@reference, @reference.destroy, source: params['source'])
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_reference
       @reference = Reference.friendly.find(params[:id])
+    rescue
+      @reference = nil
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+  def set_reference_fields
+    @reference_fields = [
+      { name: :title },
+      { name: :authors },
+      { name: :isbn },
+      { name: :url }
+    ]
+  end
+
     def reference_params
-      params[:reference]
+      params.require(:reference).permit(Reference::PUBLIC_FIELDS)
     end
 end

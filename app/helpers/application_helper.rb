@@ -138,7 +138,7 @@ module ApplicationHelper
         'fa fa-fw fa-book'
       when :specimens, :specimen
         'fa fa-fw fa-tags'
-      when :references
+      when :references, :reference
         'fa fa-fw fa-quote-left'
       when :locations
         'fa fa-fw fa-globe'
@@ -159,9 +159,11 @@ module ApplicationHelper
       when :dashboard
         'fa fa-fw fa-dashboard'
       when :caret_down
-        'fa fa-caret-down fa-fw'
+        'fa fa-fw fa-caret-down'
       when :flag
-        'fa fa-flag fa-fw'
+        'fa fa-fw fa-flag'
+      when :external_link
+        'fa fa-fw fa-external-link'
 
       when :habitat, :habitats
         'fa fa-fw fa-tree'

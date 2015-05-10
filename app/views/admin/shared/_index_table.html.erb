@@ -30,8 +30,10 @@
                     <% value = value.send(field_method) if field_method %>
 
                     <td class="<%= field[:class] %>">
-                      <% if field[:method] %>
-                        <%= send(field[:method], value) %>
+                      <% if value.blank? %>
+                        -
+                      <% elsif field[:method] %>
+                        <%= send(field[:method], value, field[:options]) %>
                       <% else %>
                         <%= value %>
                     <% end %>

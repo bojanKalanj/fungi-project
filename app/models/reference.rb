@@ -1,11 +1,14 @@
 class Reference < ActiveRecord::Base
   extend FriendlyId
   include Uuid
+  include Resource
 
   PER_PAGE = 10
   MAX_PER_PAGE = 100
 
-  has_many :characteristics, dependent: :destroy
+  PUBLIC_FIELDS = [:title, :authors, :isbn, :url]
+
+  has_many :characteristics
 
   validates :title, presence: true
   validates :isbn, uniqueness: true, if: 'isbn.present?'
@@ -16,6 +19,12 @@ class Reference < ActiveRecord::Base
   def full_title
     "#{self.authors} -  #{self.title}"
   end
+  alias_method :resource_title, :full_title
+
+  # def resource_title
+  #   self.title
+  # end
+
 end
 
 # == Schema Information

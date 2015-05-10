@@ -1,0 +1,30 @@
+sr:
+  language:
+    attributes:
+      name: Интерни назив
+      title: Јавни назив
+      locale: Код
+      default: Примаран
+      parent: Везан за
+      flag: Застава
+    btn:
+      new:
+        title: Додај нов језик
+      create:
+        title: Сачувај нов језик
+      edit:
+        title: Измени језик
+      delete:
+        title: Обриши језик
+      show:
+        title: Прикажи језик
+    notice:
+      created: Језик је успешно сачуван.
+      destroyed: Језик је успешно обрисан.
+      updated: Језик је успешно измењен.
+    error:
+      destroyed_has_pages: Није могуће обрисати језик која има припадајуће стране.
+      destroyed: Језик није обрисан.
+      not_found: Језик није нађен.
+    interface:
+      new: Додај нов језик

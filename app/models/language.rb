@@ -1,9 +1,11 @@
 class Language < ActiveRecord::Base
   extend FriendlyId
+  include Resource
 
-  before_validation :transliterate
+  PUBLIC_FIELDS = [:name, :title, :locale, :flag, :default, :parent]
 
   belongs_to :parent, class_name: 'Language'
+  has_many :localized_pages
 
   friendly_id :name, use: :slugged
 
@@ -11,6 +13,9 @@ class Language < ActiveRecord::Base
     self.locale.downcase.gsub('-', '_')
   end
 
+  def resource_title
+    self.name
+  end
 end
 
 # == Schema Information

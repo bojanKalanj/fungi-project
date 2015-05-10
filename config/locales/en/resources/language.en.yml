@@ -1,0 +1,30 @@
+en:
+  language:
+    attributes:
+      name: Internal name
+      title: Public name
+      locale: Locale
+      default: Default
+      parent: Parent
+      flag: Flag
+    btn:
+      new:
+        title: Add new Language
+      create:
+        title: Save new Language
+      edit:
+        title: Edit Language
+      delete:
+        title: Destroy Language
+      show:
+        title: Show Language
+    notice:
+      created: Language was successfully created.
+      destroyed: Language was successfully destroyed.
+      updated: Language was successfully updated.
+    error:
+      destroyed_has_pages: Can not destroy language that has associated pages.
+      destroyed: Language was not destroyed.
+      not_found: Language not found.
+    interface:
+      new: Add new Language

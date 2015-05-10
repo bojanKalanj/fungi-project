@@ -25,7 +25,7 @@ module AdminHelper
     end
   end
 
-  def admin_show_field(resource, field)
+  def admin_show_field(resource, field, options={})
     value = resource.send(field)
 
     content_tag(:dt) do
@@ -36,15 +36,17 @@ module AdminHelper
       content_tag(:dd) do
         if value.blank?
           '-'
+        elsif options[:method]
+          send(options[:method], value, options)
         else
           value.respond_to?(:resource_title) ? value.resource_title : value
         end
       end
   end
 
-  def admin_show_fields(resource, fields)
+  def admin_show_fields(resource, fields, options={})
     output = ''
-    fields.each { |field| output << admin_show_field(resource, field) }
+    fields.each { |field| output << admin_show_field(resource, field, options.select{|f| f[:name] == field}.first ) }
 
     content_tag(:dl, class: 'dl-horizontal') do
       raw output
@@ -54,7 +56,11 @@ module AdminHelper
   def admin_edit_field(resource, field, form_object, options={})
     options[:label] = t("#{resource.resource_name}.attributes.#{field}")
     name = options.delete(:name)
-    form_object.input(name, options) + error_span(resource[field])
+    if options[:field]
+      form_object.association(name, options) + error_span(resource[field])
+    else
+      form_object.input(name, options) + error_span(resource[field])
+    end
   end
 
   def admin_edit_fields(resource, fields, form_object)

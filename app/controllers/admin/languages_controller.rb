@@ -1,74 +1,70 @@
 class Admin::LanguagesController < ApplicationController
-  before_action :set_language, only: [:show, :edit, :update, :destroy]
+  include StandardResponses
 
-  # GET /languages
-  # GET /languages.json
+  before_action :set_language, only: [:show, :edit, :update, :destroy]
+  before_action :set_language_fields, only: [:show, :new, :edit, :update]
+  before_action :authenticate_user!
+
   def index
     @languages = Language.all
+
+    @language_fields = [
+      { name: :name },
+      { name: :title },
+      { name: :locale },
+      { name: :flag, method: :parse_flag },
+      { name: :default, method: :boolean_to_icon },
+      { name: :parent, field: :name },
+      { name: :actions, no_label: true }
+    ]
   end
 
-  # GET /languages/1
-  # GET /languages/1.json
   def show
+    standard_nil_record_response(Language) if @language.nil?
   end
 
-  # GET /languages/new
   def new
     @language = Language.new
   end
 
-  # GET /languages/1/edit
   def edit
+    standard_nil_record_response(Language) if @language.nil?
   end
 
-  # POST /languages
-  # POST /languages.json
   def create
     @language = Language.new(language_params)
-
-    respond_to do |format|
-      if @language.save
-        format.html { redirect_to @language, notice: 'Language was successfully created.' }
-        format.json { render :show, status: :created, location: @language }
-      else
-        format.html { render :new }
-        format.json { render json: @language.errors, status: :unprocessable_entity }
-      end
-    end
+    standard_create_response @language, @language.save
   end
 
-  # PATCH/PUT /languages/1
-  # PATCH/PUT /languages/1.json
   def update
-    respond_to do |format|
-      if @language.update(language_params)
-        format.html { redirect_to @language, notice: 'Language was successfully updated.' }
-        format.json { render :show, status: :ok, location: @language }
-      else
-        format.html { render :edit }
-        format.json { render json: @language.errors, status: :unprocessable_entity }
-      end
-    end
+    standard_update_response @language, @language.update(language_params)
   end
 
-  # DELETE /languages/1
-  # DELETE /languages/1.json
   def destroy
-    @language.destroy
-    respond_to do |format|
-      format.html { redirect_to languages_url, notice: 'Language was successfully destroyed.' }
-      format.json { head :no_content }
+    if @language.localized_pages.count > 0
+      standard_destroy_response(@language, false, error: 'language.error.destroyed_has_pages', source: params['source'])
+    else
+      standard_destroy_response(@language, @language.destroy, source: params['source'])
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_language
-      @language = Language.friendly.find(params[:id])
-    end
+  def set_language
+    @language = Language.friendly.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def language_params
-      params.require(:language).permit(:name, :slug_2, :slug_3)
-    end
+  def set_language_fields
+    @language_fields = [
+      { name: :name },
+      { name: :title },
+      { name: :locale },
+      { name: :flag, method: :parse_flag },
+      { name: :default, method: :boolean_to_icon },
+      { name: :parent, field: :name }
+    ]
+  end
+
+  def language_params
+    params.require(:language).permit(Language::PUBLIC_FIELDS)
+  end
 end

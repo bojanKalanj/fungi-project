@@ -27,7 +27,7 @@
                   <% fields[1..-2].each do |field| %>
                     <% field_method = field[:field] %>
                     <% value = resource.send(field[:name]) %>
-                    <% value = value.send(field_method) if field_method %>
+                    <% value = value.send(field_method) if value && field_method %>
 
                     <td class="<%= field[:class] %>">
                       <% if value.blank? %>

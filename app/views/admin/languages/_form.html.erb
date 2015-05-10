@@ -1,14 +1,4 @@
 <%= simple_form_for [:admin, @language], :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :name %>
-  <%= error_span(@language[:name]) %>
-  <%= f.input :locale %>
-  <%= error_span(@language[:locale]) %>
-  <%= f.input :parent_id %>
-  <%= error_span(@language[:parent_id]) %>
-  <%= f.input :default %>
-  <%= error_span(@language[:default]) %>
-
-  <%= f.button :submit, :class => 'btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                admin_languages_path, :class => 'btn btn-default' %>
+  <%= admin_edit_fields(@language, @language_fields, f) %>
+  <%= admin_menu(@language, f) %>
 <% end %>

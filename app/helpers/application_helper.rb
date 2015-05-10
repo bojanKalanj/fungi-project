@@ -146,7 +146,7 @@ module ApplicationHelper
         args[:singular] ? 'fa fa-fw fa-user' : 'fa fa-fw fa-users'
       when :user_add, :new
         'fa fa-fw fa-plus'
-      when :languages
+      when :languages, :language
         'fa fa-fw fa-comments'
       when :pages
         'fa fa-fw fa-file-text-o'
@@ -164,6 +164,8 @@ module ApplicationHelper
         'fa fa-fw fa-flag'
       when :external_link
         'fa fa-fw fa-external-link'
+      when :yes, :true
+        'fa fa-fw fa-check'
 
       when :habitat, :habitats
         'fa fa-fw fa-tree'
@@ -174,7 +176,7 @@ module ApplicationHelper
         'fa fa-fw fa-file-archive-o'
       when :delete, :remove
         'fa fa-fw fa-trash-o'
-      when :cancel
+      when :cancel, :no, :false
         'fa fa-fw fa-times'
       else
         raise "unknown icon '#{type}'"

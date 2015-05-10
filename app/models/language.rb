@@ -9,6 +9,17 @@ class Language < ActiveRecord::Base
 
   friendly_id :name, use: :slugged
 
+  class << self
+    def parent_locale_for_current
+      l = Language.where(locale: I18n.locale).first
+      if l.parent.nil?
+        I18n.locale
+      else
+        l.parent.locale.to_sym
+      end
+    end
+  end
+
   def locale_slug
     self.locale.downcase.gsub('-', '_')
   end

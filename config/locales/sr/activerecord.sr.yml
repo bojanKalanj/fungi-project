@@ -5,7 +5,6 @@ sr:
         user:
           attributes:
             password:
-              blank: не сме бити празна
               too_short:
                 one: је прекратка (минимум је %{count} знак)
                 few: је прекратка (минимум је %{count} знака)

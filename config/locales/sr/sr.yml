@@ -33,7 +33,7 @@ sr:
     - Субота
     formats:
       default: "%d/%m/%Y"
-      long: "%B %e, %Y"
+      long: "%e %B %Y."
       short: "%e %b"
     month_names:
     -
@@ -122,10 +122,10 @@ sr:
     format: "%{attribute} %{message}"
     messages:
       accepted: мора бити прихваћено
-      blank: не сме бити празан
+      blank: обавезно поље
       present: мора бити празан
       confirmation: се не слаже са потврдом
-      empty: не сме бити празан
+      empty: обавезно поље
       equal_to: мора бити једнак %{count}
       even: мора бити паран
       exclusion: је резервисан

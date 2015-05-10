@@ -13,6 +13,7 @@ sr:
       date: Датум
       quantity: Бројност
       approved: Потврђен
+      note: Напомена
     btn:
       new:
         title: Додај нов налаз

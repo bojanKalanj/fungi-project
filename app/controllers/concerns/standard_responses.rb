@@ -72,7 +72,7 @@ module StandardResponses
     flash[:error] = []
     (error_messages.keys - field_names(options[:fields])).each do |field|
       error_messages[field].each do |msg|
-        flash[:error] << I18n.translate("#{resource.resource_name}.attributes.#{field}") + ' ' + msg
+        flash[:error] << I18n.translate("#{resource.resource_name}.attributes.#{field}") + ' - ' + msg
       end
     end
   end

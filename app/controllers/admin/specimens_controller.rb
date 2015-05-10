@@ -9,10 +9,10 @@ class Admin::SpecimensController < ApplicationController
     @specimens = Specimen.includes(:species, :location).all
 
     @specimen_fields = [
-      { name: :species, field: :full_name, class: 'italic' },
+      { name: :species, field: :full_name, class: 'italic no-wrap' },
       { name: :location, field: :name },
-      { name: :date },
-      { name: :habitat_title },
+      { name: :date, method: :localize_date, options: { format: :long }, class: 'no-wrap' },
+      { name: :habitat_title, class: 'no-wrap' },
       { name: :substrate_title },
       { name: :actions, no_label: true }
     ]
@@ -27,55 +27,44 @@ class Admin::SpecimensController < ApplicationController
   end
 
   def edit
+    standard_nil_record_response(Specimen) if @specimen.nil?
   end
 
   def create
     @specimen = Specimen.new(specimen_params)
-
-    respond_to do |format|
-      if @specimen.save
-        format.html { redirect_to @specimen, notice: 'Specimen was successfully created.' }
-        format.json { render :show, status: :created, location: @specimen }
-      else
-        format.html { render :new }
-        format.json { render json: @specimen.errors, status: :unprocessable_entity }
-      end
-    end
+    standard_create_response @specimen, @specimen.save, fields: @specimen_fields
   end
 
   def update
-    respond_to do |format|
-      if @specimen.update(specimen_params)
-        format.html { redirect_to @specimen, notice: 'Specimen was successfully updated.' }
-        format.json { render :show, status: :ok, location: @specimen }
-      else
-        format.html { render :edit }
-        format.json { render json: @specimen.errors, status: :unprocessable_entity }
-      end
-    end
+    standard_update_response @specimen, @specimen.update(specimen_params), fields: @specimen_fields
   end
 
   def destroy
-    @specimen.destroy
-    respond_to do |format|
-      format.html { redirect_to specimen_index_url, notice: 'Specimen was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    standard_destroy_response(@specimen, @specimen.destroy, source: params['source'])
   end
 
   private
-    def set_specimen
-      @specimen = Specimen.friendly.find(params[:id])
-    end
+  def set_specimen
+    @specimen = Specimen.friendly.find(params[:id])
+  end
 
   def set_specimen_fields
-    @species_fields = [
-      { name: :species, input_html: { class: 'italic' } },
-      { name: :location }
+    @specimen_fields = [
+      { name: :species, field: :full_name, label_method: :full_name, value_method: :id, input_html: { class: 'italic' } },
+      { name: :location, field: :name },
+      { name: :legator, field: :full_name, label_method: :full_name, value_method: :id },
+      { name: :determinator, field: :full_name, label_method: :full_name, value_method: :id },
+      { name: :habitats },
+      { name: :substrates },
+      { name: :quantity, as: :string },
+      { name: :note },
+      { name: :approved },
+      { name: :date, as: :string, input_html: { class: 'datepicker' }, method: :localize_date, options: { format: :long } }
     ]
   end
 
-    def specimen_params
-      params[:specimen]
-    end
+  def specimen_params
+    params.require(:specimen).permit(Specimen::PUBLIC_FIELDS)
+  end
+
 end

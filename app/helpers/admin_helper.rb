@@ -40,7 +40,7 @@ module AdminHelper
         elsif options[:method]
           send(options[:method], value, options)
         else
-          value.respond_to?(:resource_title) ? value.resource_title : value
+          value.respond_to?(:resource_title) ? value.resource_title : value.to_s
         end
       end
   end
@@ -67,7 +67,7 @@ module AdminHelper
   def admin_edit_fields(resource, fields, form_object)
     content_tag(:div, class: 'col-sm-12') do
       if fields.length > 3
-        limit = fields.length.odd? ? fields.length/2 + 1 : fields.length
+        limit = fields.length.odd? ? fields.length/2 + 1 : fields.length/2
 
         col_1 = ''
         col_2 = ''

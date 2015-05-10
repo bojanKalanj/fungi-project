@@ -11,7 +11,7 @@ class Specimen < ActiveRecord::Base
   SPECIES_VALIDATION_ERROR = 'must take species from the list for specific habitat and subhabitat'
   # SUBSTRATES_VALIDATION_ERROR = "have to be included in: #{all_substrate_keys.inspect}"
 
-  PUBLIC_FIELDS = [:species, :location, :legator, :determinator, :determinator_text, :habitats, :substrates, :date, :quantity, :approved]
+  PUBLIC_FIELDS = [:species_id, :location_id, :legator_id, :determinator_id, :determinator_text, :habitats, :substrates, :date, :quantity, :approved, :note]
 
   belongs_to :species
   belongs_to :location
@@ -25,6 +25,10 @@ class Specimen < ActiveRecord::Base
   serialize :habitats, JSON
   serialize :substrates, JSON
 
+  validates :species, presence: true
+  validates :location, presence: true
+  validates :legator, presence: true
+  validates :date, presence: true
   validate :habitats_array
   validate :substrates_array
 
@@ -54,7 +58,12 @@ class Specimen < ActiveRecord::Base
   private
 
   def slug_candidates
-    %W(#{self.species.full_name}_#{self.location.name}_#{date} #{self.species.full_name}_#{self.location.name}_#{date}_#{self.determinator.full_name})
+    candidates = []
+    candidates << "#{self.species.full_name}_#{self.location.name}_#{date}" if !self.species.nil? && !self.location.nil?
+    candidates << "#{self.species.full_name}_#{self.location.name}_#{date}_#{self.legator.full_name}" if !self.species.nil? && !self.location.nil? && !self.legator.nil?
+    candidates << Time.now.to_s if candidates.empty?
+
+    candidates
   end
 
   def habitats_array

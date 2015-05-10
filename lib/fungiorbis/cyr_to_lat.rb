@@ -9,7 +9,7 @@ module Fungiorbis
         return '' if string.nil?
         str = string.dup
         CYR.each_with_index do |letter, index|
-          str.gsub! letter, LAT[index]
+          str.gsub! letter, LAT[index] if string.respond_to?(:gsub!)
         end
         str
       end

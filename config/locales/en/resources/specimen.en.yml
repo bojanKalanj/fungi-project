@@ -13,6 +13,7 @@ en:
       date: Date
       quantity: Quantity
       approved: Approved
+      note: Note
     btn:
       new:
         title: Add new Specimen

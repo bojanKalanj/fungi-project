@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :species, param: :url
-    resources :specimens
+    resources :specimens, controller: 'specimens'
     resources :references
     resources :locations
     resources :characteristics, param: :uuid

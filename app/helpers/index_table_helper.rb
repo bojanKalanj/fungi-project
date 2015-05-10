@@ -30,9 +30,15 @@ module IndexTableHelper
 
   def translate_value(value, options={})
     options ||= {}
-
     options = options[:options] if options[:options]
 
     t(value, options)
+  end
+
+  def localize_date(value, options)
+    options ||= {}
+    options = options[:options] if options[:options]
+
+    l!(value, options)
   end
 end

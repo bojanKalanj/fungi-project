@@ -1,2 +1,2 @@
 <%= admin_page_header(@specimen, :show, title: { class: 'italic' }) %>
-<%= admin_show_fields(@specimen, Specimen::PUBLIC_FIELDS) %>
+<%= admin_show_fields(@specimen, @specimen_fields.map{|f| f.to_a.first.last}, @specimen_fields) %>

@@ -105,6 +105,18 @@ module ApplicationHelper
     end
   end
 
+  def parent_locale_for_current
+    @parent_locale_for_current ||= Language.parent_locale_for_current
+  end
+
+  def l!(value, args={})
+    if I18n.locale == parent_locale_for_current
+      l(value, args)
+    else
+      cyr_to_lat l(value, args.merge({locale: parent_locale_for_current}))
+    end
+  end
+
   def fo_icon_tag(type, args={})
     klass = args[:class].to_s + ' ' + fo_icon(type, args)
     content_tag :i, '', class: klass, title: args[:title]

@@ -6,7 +6,9 @@ en:
       legator: Legator
       determinator: Determinator
       habitats: Habitats
+      habitat_title: Habitat
       substrates: Substrates
+      substrate_title: Substrate
       date: Date
       quantity: Quantity
       approved: Approved

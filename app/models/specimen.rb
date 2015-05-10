@@ -4,6 +4,7 @@ class Specimen < ActiveRecord::Base
   include Resource
   include HabitatHelper
   include SubstrateHelper
+  include FoI18n
 
   # HABITATS_VALIDATION_ERROR = "have to be included in: #{elements_to_str(all_habitat_keys)}"
   SUBHABITATS_VALIDATION_ERROR = 'must take subhabitats from the list for specific habitat'
@@ -29,6 +30,25 @@ class Specimen < ActiveRecord::Base
 
   def resource_title
     "#{self.species.full_name} - #{self.location.name} - #{self.date}"
+  end
+
+  def habitat_title
+    h = self.habitats
+    if h.is_a?(String)
+      h
+    else
+      habitat = h.keys.first
+
+      if h[habitat]['subhabitat']
+        t("habitats.#{habitat}.subhabitat.#{h[habitat]['subhabitat']}.title")
+      else
+        t("habitats.#{habitat}.title")
+      end
+    end
+  end
+
+  def substrate_title
+    Array(self.substrates).map { |s| t("substrates.#{s}") }.join(', ')
   end
 
   private

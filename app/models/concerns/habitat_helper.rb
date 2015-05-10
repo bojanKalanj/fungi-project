@@ -6,7 +6,7 @@ module HabitatHelper
 
   include Fungiorbis::Util
 
-  HABITATS_FILE_PATH = 'config/locales/sr/habitats.yml'
+  HABITATS_FILE_PATH = 'config/locales/sr/habitats.sr.yml'
 
   def all_habitat_keys(options={ output: :symbol })
     @all_habitats ||= options[:output] == :symbol ? elements_to_sym(habitats_hash.keys) : elements_to_str(habitats_hash.keys)
@@ -45,6 +45,7 @@ module HabitatHelper
     allowed_species_groups(habitat, subhabitat).map { |species_group| species_keys(species_group) }.flatten
   end
 
+  # for specs
   # @param [Hash] options
   # @option options [int] :number_of_habitats
   # @option options [boolean] :has_subhabitat

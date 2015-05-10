@@ -128,7 +128,8 @@ module ApplicationHelper
   end
 
   def fo_icon_tag(type, args={})
-    content_tag :i, '', class: fo_icon(type, args)
+    klass = args[:class].to_s + ' ' + fo_icon(type, args)
+    content_tag :i, '', class: klass, title: args[:title]
   end
 
   def fo_icon(type, args={})
@@ -153,10 +154,6 @@ module ApplicationHelper
         'fa fa-fw fa-sign-in'
       when :sign_out
         'fa fa-fw fa-sign-out'
-      when :delete, :remove
-        'fa fa-fw fa-trash-o'
-      when :cancel
-        'fa fa-fw fa-times'
       when :admin
         'fa fa-fw fa-cogs'
       when :dashboard
@@ -166,10 +163,17 @@ module ApplicationHelper
       when :flag
         'fa fa-flag fa-fw'
 
+      when :habitat, :habitats
+        'fa fa-fw fa-tree'
+
       when :edit
         'fa fa-fw fa-edit'
       when :show
         'fa fa-fw fa-file-archive-o'
+      when :delete, :remove
+        'fa fa-fw fa-trash-o'
+      when :cancel
+        'fa fa-fw fa-times'
       else
         raise "unknown icon '#{type}'"
     end

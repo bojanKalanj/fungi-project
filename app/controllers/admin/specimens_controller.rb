@@ -8,13 +8,11 @@ class Admin::SpecimensController < ApplicationController
     @specimens = Specimen.includes(:species, :location).all
 
     @specimen_fields = [
-      { name: :species, field: :full_name, input_html: { class: 'italic' } },
+      { name: :species, field: :full_name, class: 'italic' },
       { name: :location, field: :name },
-      { name: :habitats },
-      { name: :substrates },
       { name: :date },
-      { name: :quantity },
-      { name: :approved, no_label: true },
+      { name: :habitat_title },
+      { name: :substrate_title },
       { name: :actions, no_label: true }
     ]
   end

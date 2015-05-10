@@ -9,7 +9,7 @@ class Admin::SpeciesController < ApplicationController
     @species = Species.all
 
     @species_fields = [
-      { name: :full_name, input_html: { class: 'italic' } },
+      { name: :full_name, class: 'italic' },
       { name: :familia },
       { name: :growth_type },
       { name: :nutritive_group },

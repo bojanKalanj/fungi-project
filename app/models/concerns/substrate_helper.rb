@@ -5,7 +5,7 @@ module SubstrateHelper
 
   include Fungiorbis::Util
 
-  SUBSTRATES_FILE_PATH = 'config/locales/sr/substrates.yml'
+  SUBSTRATES_FILE_PATH = 'config/locales/sr/substrates.sr.yml'
 
   def all_substrate_keys(options={ output: :symbol })
     @all_substrates ||= options[:output] == :symbol ? elements_to_sym(substrates_hash.keys) : elements_to_str(substrates_hash.keys)

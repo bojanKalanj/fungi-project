@@ -2,7 +2,7 @@ class Admin::SpecimensController < ApplicationController
   include StandardResponses
 
   before_action :set_specimen, only: [:show, :edit, :update, :destroy]
-  before_action :set_specimen_fields, only: [:new, :edit, :update]
+  before_action :set_specimen_fields
   before_action :authenticate_user!
 
   def index

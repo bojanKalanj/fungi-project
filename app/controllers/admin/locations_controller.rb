@@ -2,7 +2,7 @@ class Admin::LocationsController < ApplicationController
   include StandardResponses
 
   before_action :set_location, only: [:show, :edit, :update, :destroy]
-  before_action :set_location_fields, only: [:new, :edit, :update]
+  before_action :set_location_fields
   before_action :authenticate_user!
 
   def index
@@ -29,11 +29,11 @@ class Admin::LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
-    standard_create_response @location, @location.save
+    standard_create_response @location, @location.save, fields: @location_fields
   end
 
   def update
-    standard_update_response @location, @location.update(location_params)
+    standard_update_response @location, @location.update(location_params), fields: @location_fields
   end
 
   def destroy

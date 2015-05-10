@@ -2,7 +2,7 @@ class Admin::ReferencesController < ApplicationController
   include StandardResponses
 
   before_action :set_reference, only: [:show, :edit, :update, :destroy]
-  before_action :set_reference_fields, only: [:new, :edit, :update]
+  before_action :set_reference_fields
   before_action :authenticate_user!
 
   def index
@@ -31,11 +31,11 @@ class Admin::ReferencesController < ApplicationController
 
   def create
     @reference = Reference.new(reference_params)
-    standard_create_response @reference, @reference.save
+    standard_create_response @reference, @reference.save, fields: @reference_fields
   end
 
   def update
-    standard_update_response @reference, @reference.update(reference_params)
+    standard_update_response @reference, @reference.update(reference_params), fields: @reference_fields
   end
 
   def destroy

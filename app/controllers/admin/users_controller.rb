@@ -1,75 +1,85 @@
 class Admin::UsersController < ApplicationController
+  include StandardResponses
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_fields
   before_action :authenticate_user!
 
-  # GET /users
-  # GET /users.json
   def index
-    @users = User.all.paginate(:page => params[:page])
+    @users = User.all
+
+    @user_fields = [
+      { name: :full_name },
+      { name: :email, method: :wrap_in_mail_to },
+      { name: :phone },
+      { name: :institution },
+      { name: :role, method: :translate_value, options: { scope: [:user, :role] } },
+      { name: :actions, no_label: true }
+    ]
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
+    @user_fields = [
+      { name: :full_name },
+      { name: :title },
+      { name: :email, method: :wrap_in_mail_to },
+      { name: :phone },
+      { name: :institution },
+      { name: :role, method: :translate_value, options: { scope: [:user, :role] } }
+    ]
+    standard_nil_record_response(User) if @user.nil?
   end
 
-  # GET /users/new
   def new
     @user = User.new
   end
 
-  # GET /users/1/edit
   def edit
+    standard_nil_record_response(User) if @user.nil?
   end
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+    standard_create_response @user, @user.save, fields: @user_fields
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    standard_update_response @user, @user.update(user_params), fields: @user_fields
+  end
+
+  def destroy
+    if Specimen.where(determinator_id: @user.id).count > 0 || Specimen.where(legator_id: @user.id).count > 0
+      standard_destroy_response(@user, false, error: 'user.error.destroyed_has_specimens', source: params['source'])
+    else
+      standard_destroy_response(@user, @user.destroy, source: params['source'])
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.friendly.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:email, :first_name, :last_name, :title, :institution, :phone)
+  def set_user
+    @user = User.friendly.find(params[:id])
+  end
+
+  def set_user_fields
+    @user_fields = [
+      { name: :first_name },
+      { name: :last_name },
+      { name: :title },
+      { name: :email },
+      { name: :phone },
+      { name: :institution },
+      { name: :role, collection: User::ROLES.map { |r| [t("user.role.#{r}"), r] }, label_method: :first, value_method: :last, include_blank: false }
+    ]
+
+    if [:new, :create].include?(action_name.to_sym)
+      @user_fields << { name: :password, as: :string }
+      @user_fields << { name: :password_confirmation, as: :string }
     end
+  end
+
+  def user_params
+    params.require(:user).permit(User::PUBLIC_FIELDS)
+  end
 end

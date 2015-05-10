@@ -66,7 +66,7 @@ module AdminHelper
 
   def admin_edit_fields(resource, fields, form_object)
     content_tag(:div, class: 'col-sm-12') do
-      if fields.length > 9
+      if fields.length > 3
         limit = fields.length.odd? ? fields.length/2 + 1 : fields.length
 
         col_1 = ''
@@ -89,7 +89,7 @@ module AdminHelper
 
     action = form_object.object.new_record? ? :new : :edit
 
-    output << link_to('#', :class => "btn btn-primary", onclick: "$(this).closest('form').submit()") do
+    output << link_to('', :class => "submit-btn btn btn-primary", onclick: "$(this).closest('form').submit()") do
       fo_icon_tag(action.to_sym) + t("#{resource.resource_name}.btn.#{action}.title")
     end
 

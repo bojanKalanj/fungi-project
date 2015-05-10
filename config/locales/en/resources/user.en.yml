@@ -1,0 +1,38 @@
+en:
+  user:
+    attributes:
+      email: Email
+      full_name: Name
+      first_name: First name
+      last_name: Last name
+      title: Title
+      role: Role
+      institution: Institution
+      phone: Phone number
+      password: Password
+      password_confirmation: Password confirmation
+    btn:
+      new:
+        title: Add new User
+      create:
+        title: Save new User
+      edit:
+        title: Edit User
+      delete:
+        title: Destroy User
+      show:
+        title: Show User
+    notice:
+      created: User was successfully created.
+      destroyed: User was successfully destroyed.
+      updated: User was successfully updated.
+    error:
+      destroyed_has_specimens: Can not destroy location that has associated specimens.
+      destroyed: User was not destroyed.
+      not_found: User not found.
+    interface:
+      new: Add new User
+    role:
+      user: Regular user
+      contributor: Contributor
+      supervisor: Supervisor

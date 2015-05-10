@@ -120,7 +120,7 @@ module ApplicationHelper
         'fa fa-fw fa-quote-left'
       when :locations, :location
         'fa fa-fw fa-globe'
-      when :users
+      when :users, :user
         args[:singular] ? 'fa fa-fw fa-user' : 'fa fa-fw fa-users'
       when :user_add, :new
         'fa fa-fw fa-plus'
@@ -142,6 +142,8 @@ module ApplicationHelper
         'fa fa-fw fa-flag'
       when :external_link
         'fa fa-fw fa-external-link'
+      when :mail
+        'fa fa-fw fa-envelope-o'
       when :yes, :true
         'fa fa-fw fa-check'
 

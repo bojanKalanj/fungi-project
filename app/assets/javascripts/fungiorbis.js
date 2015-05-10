@@ -57,4 +57,9 @@ $(document).on('ready page:load', function () {
   $('.dataTable').dataTable({
     "language": dataTablesI18n[$('html').attr('lang')]
   });
+
+  $(document).on('click', 'a.submit-btn', function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+  });
 });

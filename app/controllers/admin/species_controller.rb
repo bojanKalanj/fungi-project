@@ -2,7 +2,7 @@ class Admin::SpeciesController < ApplicationController
   include StandardResponses
 
   before_action :set_species, only: [:show, :edit, :update, :destroy]
-  before_action :set_species_fields, only: [:new, :edit, :update]
+  before_action :set_species_fields
   before_action :authenticate_user!
 
   def index
@@ -31,11 +31,11 @@ class Admin::SpeciesController < ApplicationController
 
   def create
     @species = Species.new(species_params)
-    standard_create_response @species, @species.save
+    standard_create_response @species, @species.save, fields: @species_fields
   end
 
   def update
-    standard_update_response @species, @species.update(species_params)
+    standard_update_response @species, @species.update(species_params), fields: @species_fields
   end
 
   def destroy

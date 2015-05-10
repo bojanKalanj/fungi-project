@@ -1,0 +1,8 @@
+en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              password_complexity: 'must include at least one of each: lowercase letter, uppercase letter, numeric digit, special character.'

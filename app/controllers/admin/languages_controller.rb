@@ -2,7 +2,7 @@ class Admin::LanguagesController < ApplicationController
   include StandardResponses
 
   before_action :set_language, only: [:show, :edit, :update, :destroy]
-  before_action :set_language_fields, only: [:show, :new, :edit, :update]
+  before_action :set_language_fields
   before_action :authenticate_user!
 
   def index
@@ -33,11 +33,11 @@ class Admin::LanguagesController < ApplicationController
 
   def create
     @language = Language.new(language_params)
-    standard_create_response @language, @language.save
+    standard_create_response @language, @language.save, fields: @language_fields
   end
 
   def update
-    standard_update_response @language, @language.update(language_params)
+    standard_update_response @language, @language.update(language_params), fields: @language_fields
   end
 
   def destroy

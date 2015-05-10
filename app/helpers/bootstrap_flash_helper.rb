@@ -14,10 +14,11 @@ module BootstrapFlashHelper
       next unless ALERT_TYPES.include?(type)
 
       Array(message).each do |msg|
+        m = msg.include?(' ') ? msg : t(msg)
         text = content_tag(:div,
                            content_tag(:button, raw("&times;"), :class => "close", "data-dismiss" => "alert") +
-                           t(msg), :class => "alert fade in alert-#{type} #{options[:class]}")
-        flash_messages << text if msg
+                           m, :class => "alert fade in alert-#{type} #{options[:class]}")
+        flash_messages << text if m
       end
     end
     flash_messages.join("\n").html_safe

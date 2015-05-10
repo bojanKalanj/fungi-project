@@ -1,0 +1,38 @@
+sr:
+  user:
+    attributes:
+      email: Email
+      full_name: Име
+      first_name: Име
+      last_name: Презиме
+      title: Звање
+      role: Тип налога
+      institution: Институција
+      phone: Број телефона
+      password: Лозинка
+      password_confirmation: Потврда лозинке
+    btn:
+      new:
+        title: Додај новог корисника
+      create:
+        title: Сачувај новог корисника
+      edit:
+        title: Измени корисника
+      delete:
+        title: Обриши корисника
+      show:
+        title: Прикажи корисника
+    notice:
+      created: Корисник је успешно сачуван.
+      destroyed: Корисник је успешно обрисан.
+      updated: Корисник је успешно измењен.
+    error:
+      destroyed_has_specimens: Није могуће обрисати корисника који има припадајуће налазе.
+      destroyed: Корисник није обрисан.
+      not_found: Корисник није нађен.
+    interface:
+      new: Додај новог корисника
+    role:
+      user: Корисник
+      contributor: Сарадник
+      supervisor: Администратор

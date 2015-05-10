@@ -12,6 +12,12 @@ module IndexTableHelper
     end
   end
 
+  def wrap_in_mail_to(value, options={})
+    options ||= {}
+
+    raw(value + '  ' + link_to("mailto:#{value}") { fo_icon_tag(:mail) })
+  end
+
   def boolean_to_icon(value, options={})
     options ||= {}
     value ? fo_icon_tag(:true) : fo_icon_tag(:false)
@@ -20,5 +26,13 @@ module IndexTableHelper
   def parse_flag(value, options={})
     options ||= {}
     content_tag :span, '', class: "flag-icon flag-icon-#{value}"
+  end
+
+  def translate_value(value, options={})
+    options ||= {}
+
+    options = options[:options] if options[:options]
+
+    t(value, options)
   end
 end

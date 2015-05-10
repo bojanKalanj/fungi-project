@@ -1,26 +1,4 @@
 <%= simple_form_for [:admin, @user], :html => { :class => "form-horizontal user" } do |f| %>
-  <%= f.input :email %>
-  <%= error_span(@user[:email]) %>
-
-  <%= f.input :first_name %>
-  <%= error_span(@user[:first_name]) %>
-
-  <%= f.input :last_name %>
-  <%= error_span(@user[:last_name]) %>
-
-  <%= f.input :title %>
-  <%= error_span(@user[:title]) %>
-
-  <%= f.input :role %>
-  <%= error_span(@user[:role]) %>
-
-  <%= f.input :institution %>
-  <%= error_span(@user[:institution]) %>
-
-  <%= f.input :phone %>
-  <%= error_span(@user[:phone]) %>
-
-  <%= f.button :submit, :class => 'btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")), admin_users_path, :class => 'btn btn-default' %>
-
+  <%= admin_edit_fields(@user, @user_fields, f) %>
+  <%= admin_menu(@user, f) %>
 <% end %>

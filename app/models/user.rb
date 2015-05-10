@@ -1,16 +1,14 @@
 class User < ActiveRecord::Base
   extend FriendlyId
   include Uuid
+  include Resource
 
   USER_ROLE = 'user'
   CONTRIBUTOR_ROLE = 'contributor'
   SUPERVISOR_ROLE = 'supervisor'
   ROLES = [USER_ROLE, CONTRIBUTOR_ROLE, SUPERVISOR_ROLE]
 
-  PER_PAGE = 10
-  MAX_PER_PAGE = 100
-
-  # acts_as_token_authenticatable
+  PUBLIC_FIELDS = [:email, :first_name, :last_name, :role, :institution, :phone, :title, :password, :password_confirmation]
 
   devise :database_authenticatable, :registerable, :recoverable, :trackable, :validatable, :confirmable
 
@@ -59,7 +57,7 @@ class User < ActiveRecord::Base
 
   def password_complexity
     if password.present? && password_confirmed? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W]).+/)
-      errors.add :password, 'must include at least one of each: lowercase letter, uppercase letter, numeric digit, special character.'
+      errors.add :password, I18n.translate('activerecord.errors.models.user.attributes.password.password_complexity')
     end
   end
 

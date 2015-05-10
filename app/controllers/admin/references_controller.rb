@@ -47,11 +47,11 @@ class Admin::ReferencesController < ApplicationController
   end
 
   private
-    def set_reference
-      @reference = Reference.friendly.find(params[:id])
-    rescue
-      @reference = nil
-    end
+  def set_reference
+    @reference = Reference.friendly.find(params[:id])
+  rescue
+    @reference = nil
+  end
 
   def set_reference_fields
     @reference_fields = [
@@ -62,7 +62,7 @@ class Admin::ReferencesController < ApplicationController
     ]
   end
 
-    def reference_params
-      params.require(:reference).permit(Reference::PUBLIC_FIELDS)
-    end
+  def reference_params
+    params.require(:reference).permit(Reference::PUBLIC_FIELDS)
+  end
 end

@@ -3,9 +3,6 @@ class Reference < ActiveRecord::Base
   include Uuid
   include Resource
 
-  PER_PAGE = 10
-  MAX_PER_PAGE = 100
-
   PUBLIC_FIELDS = [:title, :authors, :isbn, :url]
 
   has_many :characteristics
@@ -20,10 +17,6 @@ class Reference < ActiveRecord::Base
     "#{self.authors} -  #{self.title}"
   end
   alias_method :resource_title, :full_title
-
-  # def resource_title
-  #   self.title
-  # end
 
 end
 

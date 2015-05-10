@@ -1,0 +1,26 @@
+en:
+  location:
+    attributes:
+      name: Name
+      utm: UTM
+    btn:
+      new:
+        title: Add new Location
+      create:
+        title: Save new Location
+      edit:
+        title: Edit Location
+      delete:
+        title: Destroy Location
+      show:
+        title: Show Location
+    notice:
+      created: Location was successfully created.
+      destroyed: Location was successfully destroyed.
+      updated: Location was successfully updated.
+    error:
+      destroyed_has_specimens: Can not destroy location that has associated specimens.
+      destroyed: Location was not destroyed.
+      not_found: Location not found.
+    interface:
+      new: Add new Location

@@ -1,11 +1,11 @@
 class Location < ActiveRecord::Base
   extend FriendlyId
   include Uuid
+  include Resource
 
-  PER_PAGE = 10
-  MAX_PER_PAGE = 100
+  PUBLIC_FIELDS = [:name, :utm]
 
-  has_many :specimens, dependent: :destroy
+  has_many :specimens
 
   validates :name, presence: true, uniqueness: true
   validates :utm, presence: true

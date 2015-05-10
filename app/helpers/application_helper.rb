@@ -140,7 +140,7 @@ module ApplicationHelper
         'fa fa-fw fa-tags'
       when :references, :reference
         'fa fa-fw fa-quote-left'
-      when :locations
+      when :locations, :location
         'fa fa-fw fa-globe'
       when :users
         args[:singular] ? 'fa fa-fw fa-user' : 'fa fa-fw fa-users'

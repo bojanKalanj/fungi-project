@@ -1,74 +1,64 @@
 class Admin::LocationsController < ApplicationController
+  include StandardResponses
+
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_action :set_location_fields, only: [:new, :edit, :update]
+  before_action :authenticate_user!
 
-  # GET /locations
-  # GET /locations.json
   def index
-    @locations = Location.all.paginate(:page => params[:page])
+    @locations = Location.all
+
+    @location_fields = [
+      { name: :name },
+      { name: :utm },
+      { name: :actions, no_label: true }
+    ]
   end
 
-  # GET /locations/1
-  # GET /locations/1.json
   def show
+    standard_nil_record_response(Location) if @location.nil?
   end
 
-  # GET /locations/new
   def new
     @location = Location.new
   end
 
-  # GET /locations/1/edit
   def edit
+    standard_nil_record_response(Location) if @location.nil?
   end
 
-  # POST /locations
-  # POST /locations.json
   def create
     @location = Location.new(location_params)
-
-    respond_to do |format|
-      if @location.save
-        format.html { redirect_to @location, notice: 'Location was successfully created.' }
-        format.json { render :show, status: :created, location: @location }
-      else
-        format.html { render :new }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
-      end
-    end
+    standard_create_response @location, @location.save
   end
 
-  # PATCH/PUT /locations/1
-  # PATCH/PUT /locations/1.json
   def update
-    respond_to do |format|
-      if @location.update(location_params)
-        format.html { redirect_to @location, notice: 'Location was successfully updated.' }
-        format.json { render :show, status: :ok, location: @location }
-      else
-        format.html { render :edit }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
-      end
-    end
+    standard_update_response @location, @location.update(location_params)
   end
 
-  # DELETE /locations/1
-  # DELETE /locations/1.json
   def destroy
-    @location.destroy
-    respond_to do |format|
-      format.html { redirect_to locations_url, notice: 'Location was successfully destroyed.' }
-      format.json { head :no_content }
+    if @location.specimens.count > 0
+      standard_destroy_response(@location, false, error: 'location.error.destroyed_has_specimens', source: params['source'])
+    else
+      standard_destroy_response(@location, @location.destroy, source: params['source'])
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_location
-      @location = Location.friendly.find(params[:id])
-    end
+  def set_location
+    @location = Location.friendly.find(params[:id])
+  rescue
+    @location = nil
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def location_params
-      params[:location]
-    end
+  def set_location_fields
+    @location_fields = [
+      { name: :name },
+      { name: :utm }
+    ]
+  end
+
+  def location_params
+    params.require(:location).permit(Location::PUBLIC_FIELDS)
+  end
 end

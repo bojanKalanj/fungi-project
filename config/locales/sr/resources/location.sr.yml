@@ -1,0 +1,26 @@
+sr:
+  location:
+    attributes:
+      name: Назив
+      utm: UTM
+    btn:
+      new:
+        title: Додај нов локалитет
+      create:
+        title: Сачувај нов локалитет
+      edit:
+        title: Измени локалитет
+      delete:
+        title: Обриши локалитет
+      show:
+        title: Прикажи локалитет
+    notice:
+      created: Локалитет је успешно сачувана.
+      destroyed: Локалитет је успешно обрисана.
+      updated: Локалитет је успешно измењена.
+    error:
+      destroyed_has_specimens: Није могуће обрисати локалитет који има припадајуће налазе.
+      destroyed: Локалитет није обрисан.
+      not_found: Локалитет није нађен.
+    interface:
+      new: Додај нов локалитет

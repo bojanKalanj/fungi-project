@@ -26,6 +26,7 @@ module AdminHelper
   end
 
   def admin_show_field(resource, field, options={})
+    options ||= {}
     value = resource.send(field)
 
     content_tag(:dt) do
@@ -53,7 +54,7 @@ module AdminHelper
     end
   end
 
-  def admin_edit_field(resource, field, form_object, options)
+  def admin_edit_field(resource, field, form_object, options={})
     options[:label] = t("#{resource.resource_name}.attributes.#{field}")
     name = options.delete(:name)
     if options[:field]

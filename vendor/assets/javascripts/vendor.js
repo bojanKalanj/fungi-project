@@ -14,3 +14,7 @@
 //= require sb-admin-v2/plugins/morris/morris
 //= require sb-admin-v2/plugins/morris/raphael-2.1.0.min
 //= require sb-admin-v2/sb-admin
+//= require bootstrap-datepicker-1.4.0/js/bootstrap-datepicker.js
+//= require bootstrap-datepicker-1.4.0/locales/bootstrap-datepicker.en-GB.min
+//= require bootstrap-datepicker-1.4.0/locales/bootstrap-datepicker.sr.min
+//= require bootstrap-datepicker-1.4.0/locales/bootstrap-datepicker.sr-latin.min

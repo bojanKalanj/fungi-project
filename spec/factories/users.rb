@@ -39,7 +39,6 @@ end
 #  role                   :string(255)      default("user"), not null
 #  institution            :string(255)
 #  phone                  :string(255)
-#  uuid                   :string(255)
 #  slug                   :string(255)      not null
 #  authentication_token   :string(255)
 #  deactivated_at         :datetime
@@ -63,5 +62,4 @@ end
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
-#  index_users_on_uuid                  (uuid)
 #

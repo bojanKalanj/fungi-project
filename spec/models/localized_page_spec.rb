@@ -11,7 +11,7 @@ end
 #  id          :integer          not null, primary key
 #  language_id :integer
 #  page_id     :integer
-#  title       :string(255)
+#  title       :string(255)      not null
 #  content     :text(65535)
 #  slug        :string(255)
 #  created_at  :datetime         not null

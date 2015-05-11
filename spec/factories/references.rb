@@ -22,7 +22,6 @@ end
 #  authors    :string(255)
 #  isbn       :string(255)
 #  url        :string(255)
-#  uuid       :string(255)
 #  slug       :string(255)      not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -30,5 +29,4 @@ end
 # Indexes
 #
 #  index_references_on_slug  (slug)
-#  index_references_on_uuid  (uuid)
 #

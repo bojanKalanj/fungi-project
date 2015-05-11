@@ -136,6 +136,8 @@ module ApplicationHelper
         args[:singular] ? 'fa fa-fw fa-user' : 'fa fa-fw fa-users'
       when :user_add, :new
         'fa fa-fw fa-plus'
+      when :characteristics, :characteristic
+        'fa fa-fw fa-star'
       when :languages, :language
         'fa fa-fw fa-comments'
       when :pages, :page

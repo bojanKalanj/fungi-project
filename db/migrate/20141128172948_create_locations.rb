@@ -4,7 +4,6 @@ class CreateLocations < ActiveRecord::Migration
       t.string :name, null: false, unique: true, index: true
       t.string :utm, null: false
 
-      t.string :uuid
       t.string :slug, null: false, index: true, unique: true
 
       t.timestamps null: false

@@ -20,7 +20,6 @@ class CreateSpecimen < ActiveRecord::Migration
 
       t.boolean :approved
 
-      t.string :uuid, index: true, unique: true
       t.string :slug, null: false, index: true, unique: true
 
       t.timestamps null: false

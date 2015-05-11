@@ -1,6 +1,5 @@
 class Location < ActiveRecord::Base
   extend FriendlyId
-  include Uuid
   include Resource
 
   PUBLIC_FIELDS = [:name, :utm]
@@ -30,7 +29,6 @@ end
 #  id         :integer          not null, primary key
 #  name       :string(255)      not null
 #  utm        :string(255)      not null
-#  uuid       :string(255)
 #  slug       :string(255)      not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

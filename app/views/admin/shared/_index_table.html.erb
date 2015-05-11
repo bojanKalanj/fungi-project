@@ -1,3 +1,5 @@
+<% nested = {} unless defined?(nested) %>
+
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
@@ -20,7 +22,11 @@
                   <% value = value.send(field_method) if field_method %>
 
                   <td class="<%= fields.first[:class] %>">
-                    <%= link_to(value, resource.resource_name_path) %>
+                    <% if !nested.blank? %>
+                      <%= link_to(value, send(nested[:path], resource, nested[:in]), remote: true) %>
+                    <% else %>
+                      <%= link_to(value, resource.resource_name_path) %>
+                    <% end %>
                   </td>
 
 
@@ -36,15 +42,18 @@
                         <%= send(field[:method], value, field[:options]) %>
                       <% else %>
                         <%= value %>
-                    <% end %>
+                      <% end %>
                     </td>
                   <% end %>
 
                   <td class="no-wrap">
-                    <%= link_to resource.resource_edit_path, class: 'btn btn-outline btn-primary btn-xs', title: t("helpers.links.edit") do %>
+                    <% path = nested.blank? ? resource.resource_edit_path : send(nested[:edit_path], resource, nested[:in]) %>
+                    <%= link_to path, class: 'btn btn-outline btn-primary btn-xs', title: t("helpers.links.edit"), remote: !nested.blank? do %>
                       <%= fo_icon_tag(:edit) %>
                     <% end %>
-                    <%= link_to resource.resource_name_path(source: 'index'), title: t("helpers.links.destroy"), method: :delete,
+
+                    <% path = nested.blank? ? resource.resource_name_path(source: 'index') : send(nested[:path], resource, nested[:in], source: 'index') %>
+                    <%= link_to path, title: t("helpers.links.destroy"), method: :delete, remote: !nested.blank?,
                                 data: { :confirm => t('helpers.links.confirm') }, class: 'btn btn-xs btn-danger btn-outline' do %>
                       <%= fo_icon_tag(:delete) %>
                     <% end %>

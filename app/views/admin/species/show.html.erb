@@ -1,2 +1,16 @@
 <%= admin_page_header(@species, :show, title: { class: 'italic' }) %>
 <%= admin_show_fields(@species, Species::PUBLIC_FIELDS) %>
+
+<span id="characteristics-container">
+  <% options = {
+    new_path: new_admin_species_characteristic_path(@species),
+    edit_path: edit_admin_species_characteristic_path(@species, @species.characteristics),
+    path: admin_species_characteristic_path(@species, @species.characteristics),
+    remote: true
+  } %>
+
+  <%= admin_page_subresource_header(@species.characteristics, :index, options) %>
+
+  <% nested = { in: @species, edit_path: :edit_admin_species_characteristic_path, path: :admin_species_characteristic_path } %>
+  <%= render partial: 'admin/shared/index_table', locals: { resource_name: 'characteristic', fields: @characteristic_fields, resources: @species.characteristics, nested: nested } %>
+</span>

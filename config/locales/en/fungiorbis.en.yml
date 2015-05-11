@@ -20,5 +20,6 @@ en:
       pages: Pages
       user_profile: User Profile
       dashboard: Dashboard
+      characteristic: Species Characteristics
     attributes:
       name: Name

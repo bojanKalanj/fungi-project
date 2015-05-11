@@ -16,7 +16,6 @@ class CreateSpecies < ActiveRecord::Migration
       t.string :nutritive_group
 
       t.string :url, index: true, unique: true
-      t.string :uuid, index: true, unique: true
 
       t.timestamps null: false
     end

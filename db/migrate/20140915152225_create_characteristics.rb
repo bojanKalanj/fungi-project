@@ -18,7 +18,7 @@ class CreateCharacteristics < ActiveRecord::Migration
       t.text :habitats
       t.text :substrates
 
-      t.string :uuid, index: true, unique: true
+      t.string :slug, null: false, index: true, unique: true
 
       t.timestamps null: false
     end

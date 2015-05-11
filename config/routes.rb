@@ -8,11 +8,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
-    resources :species, param: :url
+    resources :species, param: :url do
+      resources :characteristics
+    end
     resources :specimens, controller: 'specimens'
     resources :references
     resources :locations
-    resources :characteristics, param: :uuid
     resources :languages
     resources :pages
     resource :dashboard, only: :show, controller: 'dashboard'

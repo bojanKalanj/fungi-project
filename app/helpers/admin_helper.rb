@@ -29,6 +29,35 @@ module AdminHelper
     end
   end
 
+  def admin_page_subresource_header(resource, action, options={})
+    output = ''
+
+    title = resource_title(resource, action)
+
+    resource = resource.page if resource.is_a?(LocalizedPage)
+    if current_user && current_user.supervisor?
+
+      if [:new, :edit, :show].include?(action)
+        cancel_path = action == :edit ? resource.resource_name_path : resource.resource_name_index_path
+        output << admin_page_header_btn(:cancel, resource, class: 'btn-default', title: t('helpers.links.cancel'), path: cancel_path)
+      end
+      output << admin_page_header_btn(:new, resource, class: 'btn-primary', path: options[:new_path], remote: options[:remote]) if [:index].include?(action)
+      output << admin_page_header_btn(:edit, resource, class: 'btn-primary', path: options[:edit_path], remote: options[:remote]) if [:show].include?(action)
+      output << admin_page_header_btn(:show, resource, class: 'btn-default', path: options[:path], remote: options[:remote]) if [:edit].include?(action)
+      output << admin_page_header_btn(:delete, resource, class: 'btn-danger', path: options[:path], remote: options[:remote], :method => :delete, :data => { :confirm => t('helpers.links.confirm') }) if [:edit, :show].include?(action)
+    end
+
+    title_class = nil
+    title_class = options[:title][:class] if options[:title]
+
+    content_tag(:div, class: 'page-header subheader') do
+      raw(output)+
+        content_tag(:h2, class: title_class) do
+          fo_icon_tag(resource.resource_name.to_sym) + title
+        end
+    end
+  end
+
   def admin_show_field(resource, field, options={})
     options ||= {}
     value = resource.send(field)

@@ -20,5 +20,6 @@ sr:
       pages: Стране
       user_profile: Кориснички профил
       dashboard: Контролна табла
+      characteristic: Карактеристике врсте
     attributes:
       name: Име

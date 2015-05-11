@@ -1,0 +1,26 @@
+en:
+  characteristic:
+    attributes:
+      species: Species
+      reference: Reference
+    btn:
+      new:
+        title: Add new Characteristic
+      create:
+        title: Save new Characteristic
+      edit:
+        title: Edit Characteristic
+      delete:
+        title: Destroy Characteristic
+      show:
+        title: Show Characteristic
+    notice:
+      created: Characteristic was successfully created.
+      destroyed: Characteristic was successfully destroyed.
+      updated: Characteristic was successfully updated.
+    error:
+      destroyed: Characteristic was not destroyed.
+      not_found: Characteristic not found.
+    interface:
+      new: Add new Characteristic
+      index: Species Characteristics

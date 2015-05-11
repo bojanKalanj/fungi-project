@@ -50,6 +50,12 @@ class Admin::SpeciesController < Admin::AdminController
         { name: :growth_type },
         { name: :nutritive_group }
       ]
+      if action == :show
+        @characteristic_fields = [
+          { name: :reference, field: :full_title },
+          { name: :actions, no_label: true }
+        ]
+      end
     end
   end
 

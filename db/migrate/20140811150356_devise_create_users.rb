@@ -12,7 +12,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :institution
       t.string :phone
 
-      t.string :uuid, index: true, unique: true
       t.string :slug, null: false
 
       t.string :authentication_token

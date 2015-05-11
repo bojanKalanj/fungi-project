@@ -27,14 +27,14 @@ ActiveRecord::Schema.define(version: 20150411170719) do
     t.text     "note",          limit: 65535
     t.text     "habitats",      limit: 65535
     t.text     "substrates",    limit: 65535
-    t.string   "uuid",          limit: 255
+    t.string   "slug",          limit: 255,   null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
 
   add_index "characteristics", ["reference_id"], name: "index_characteristics_on_reference_id", using: :btree
+  add_index "characteristics", ["slug"], name: "index_characteristics_on_slug", using: :btree
   add_index "characteristics", ["species_id"], name: "index_characteristics_on_species_id", using: :btree
-  add_index "characteristics", ["uuid"], name: "index_characteristics_on_uuid", using: :btree
 
   create_table "languages", force: :cascade do |t|
     t.integer  "parent_id",  limit: 4
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20150411170719) do
   create_table "localized_pages", force: :cascade do |t|
     t.integer  "language_id", limit: 4
     t.integer  "page_id",     limit: 4
-    t.string   "title",       limit: 255
+    t.string   "title",       limit: 255,   null: false
     t.text     "content",     limit: 65535
     t.string   "slug",        limit: 255
     t.datetime "created_at",                null: false
@@ -66,7 +66,6 @@ ActiveRecord::Schema.define(version: 20150411170719) do
   create_table "locations", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
     t.string   "utm",        limit: 255, null: false
-    t.string   "uuid",       limit: 255
     t.string   "slug",       limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -76,7 +75,7 @@ ActiveRecord::Schema.define(version: 20150411170719) do
   add_index "locations", ["slug"], name: "index_locations_on_slug", using: :btree
 
   create_table "pages", force: :cascade do |t|
-    t.string   "title",      limit: 255
+    t.string   "title",      limit: 255, null: false
     t.string   "slug",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -87,14 +86,12 @@ ActiveRecord::Schema.define(version: 20150411170719) do
     t.string   "authors",    limit: 255
     t.string   "isbn",       limit: 255
     t.string   "url",        limit: 255
-    t.string   "uuid",       limit: 255
     t.string   "slug",       limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
   add_index "references", ["slug"], name: "index_references_on_slug", using: :btree
-  add_index "references", ["uuid"], name: "index_references_on_uuid", using: :btree
 
   create_table "species", force: :cascade do |t|
     t.string   "name",            limit: 255,   null: false
@@ -109,13 +106,11 @@ ActiveRecord::Schema.define(version: 20150411170719) do
     t.string   "growth_type",     limit: 255
     t.string   "nutritive_group", limit: 255
     t.string   "url",             limit: 255
-    t.string   "uuid",            limit: 255
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
 
   add_index "species", ["url"], name: "index_species_on_url", using: :btree
-  add_index "species", ["uuid"], name: "index_species_on_uuid", using: :btree
 
   create_table "specimen", force: :cascade do |t|
     t.integer  "species_id",        limit: 4,     null: false
@@ -130,7 +125,6 @@ ActiveRecord::Schema.define(version: 20150411170719) do
     t.text     "quantity",          limit: 65535
     t.text     "note",              limit: 65535
     t.boolean  "approved",          limit: 1
-    t.string   "uuid",              limit: 255
     t.string   "slug",              limit: 255,   null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
@@ -141,7 +135,6 @@ ActiveRecord::Schema.define(version: 20150411170719) do
   add_index "specimen", ["location_id"], name: "index_specimen_on_location_id", using: :btree
   add_index "specimen", ["slug"], name: "index_specimen_on_slug", using: :btree
   add_index "specimen", ["species_id"], name: "index_specimen_on_species_id", using: :btree
-  add_index "specimen", ["uuid"], name: "index_specimen_on_uuid", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255,                  null: false
@@ -152,7 +145,6 @@ ActiveRecord::Schema.define(version: 20150411170719) do
     t.string   "role",                   limit: 255, default: "user", null: false
     t.string   "institution",            limit: 255
     t.string   "phone",                  limit: 255
-    t.string   "uuid",                   limit: 255
     t.string   "slug",                   limit: 255,                  null: false
     t.string   "authentication_token",   limit: 255
     t.datetime "deactivated_at"
@@ -175,7 +167,6 @@ ActiveRecord::Schema.define(version: 20150411170719) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["uuid"], name: "index_users_on_uuid", using: :btree
 
   add_foreign_key "characteristics", "references"
   add_foreign_key "characteristics", "species"

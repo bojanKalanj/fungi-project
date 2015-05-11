@@ -1,6 +1,5 @@
 class Species < ActiveRecord::Base
   extend FriendlyId
-  include Uuid
   include Resource
 
   GROWTH_TYPES = %w(single group)
@@ -65,12 +64,10 @@ end
 #  growth_type     :string(255)
 #  nutritive_group :string(255)
 #  url             :string(255)
-#  uuid            :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
 # Indexes
 #
-#  index_species_on_url   (url)
-#  index_species_on_uuid  (uuid)
+#  index_species_on_url  (url)
 #

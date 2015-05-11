@@ -8,8 +8,8 @@ class Ability
       if @user.supervisor?
         can :manage, :all
       else
-        can [:show, :update], User, uuid: @user.uuid
-        can :activate, User, uuid: @user.uuid
+        can [:show, :update], User, id: @user.id
+        can :activate, User, id: @user.id
       end
     end
 

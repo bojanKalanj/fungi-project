@@ -25,7 +25,6 @@ end
 #  quantity          :text(65535)
 #  note              :text(65535)
 #  approved          :boolean
-#  uuid              :string(255)
 #  slug              :string(255)      not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
@@ -37,5 +36,4 @@ end
 #  index_specimen_on_location_id      (location_id)
 #  index_specimen_on_slug             (slug)
 #  index_specimen_on_species_id       (species_id)
-#  index_specimen_on_uuid             (uuid)
 #

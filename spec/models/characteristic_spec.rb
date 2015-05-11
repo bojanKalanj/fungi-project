@@ -42,13 +42,13 @@ end
 #  note          :text(65535)
 #  habitats      :text(65535)
 #  substrates    :text(65535)
-#  uuid          :string(255)
+#  slug          :string(255)      not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
 # Indexes
 #
 #  index_characteristics_on_reference_id  (reference_id)
+#  index_characteristics_on_slug          (slug)
 #  index_characteristics_on_species_id    (species_id)
-#  index_characteristics_on_uuid          (uuid)
 #

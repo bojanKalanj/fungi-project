@@ -1,5 +1,6 @@
 class Characteristic < ActiveRecord::Base
-  include Uuid
+  extend FriendlyId
+  include Resource
   include HabitatHelper
   include SubstrateHelper
 
@@ -8,11 +9,10 @@ class Characteristic < ActiveRecord::Base
   SPECIES_VALIDATION_ERROR = 'must take species from the list for specific habitat and subhabitat'
   # SUBSTRATES_VALIDATION_ERROR = "have to be included in: #{all_substrate_keys.inspect}"
 
-  PER_PAGE = 10
-  MAX_PER_PAGE = 100
-
   belongs_to :species
   belongs_to :reference
+
+  friendly_id :slug_candidates, use: :slugged
 
   serialize :fruiting_body, JSON
   serialize :microscopy, JSON
@@ -88,6 +88,9 @@ class Characteristic < ActiveRecord::Base
     end
   end
 
+  def slug_candidates
+    [self.reference.title, self.reference.full_title]
+  end
 end
 
 # == Schema Information
@@ -108,13 +111,13 @@ end
 #  note          :text(65535)
 #  habitats      :text(65535)
 #  substrates    :text(65535)
-#  uuid          :string(255)
+#  slug          :string(255)      not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
 # Indexes
 #
 #  index_characteristics_on_reference_id  (reference_id)
+#  index_characteristics_on_slug          (slug)
 #  index_characteristics_on_species_id    (species_id)
-#  index_characteristics_on_uuid          (uuid)
 #

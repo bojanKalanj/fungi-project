@@ -1,42 +1,9 @@
-class Admin::ReferencesController < ApplicationController
-  include StandardResponses
+class Admin::ReferencesController < Admin::AdminController
 
-  before_action :set_reference, only: [:show, :edit, :update, :destroy]
+  before_action :set_reference
   before_action :set_reference_fields
-  before_action :authenticate_user!
 
-  def index
-    @references = Reference.all
-
-    @reference_fields = [
-      { name: :title },
-      { name: :authors },
-      { name: :isbn },
-      { name: :url, method: :wrap_in_link, options: { external: true } },
-      { name: :actions, no_label: true }
-    ]
-  end
-
-  def show
-    standard_nil_record_response(Reference) if @reference.nil?
-  end
-
-  def new
-    @reference = Reference.new
-  end
-
-  def edit
-    standard_nil_record_response(Reference) if @reference.nil?
-  end
-
-  def create
-    @reference = Reference.new(reference_params)
-    standard_create_response @reference, @reference.save, fields: @reference_fields
-  end
-
-  def update
-    standard_update_response @reference, @reference.update(reference_params), fields: @reference_fields
-  end
+  authorize_resource
 
   def destroy
     if @reference.characteristics.count > 0
@@ -48,21 +15,41 @@ class Admin::ReferencesController < ApplicationController
 
   private
   def set_reference
-    @reference = Reference.friendly.find(params[:id])
-  rescue
-    @reference = nil
+    if action == :new
+      @reference = Reference.new
+    elsif action == :create
+      @reference = Reference.new(resource_params)
+    elsif action == :index
+          @references = Reference.all
+    else
+      @reference = Reference.friendly.find(params[:id])
+    end
   end
 
   def set_reference_fields
-    @reference_fields = [
-      { name: :title },
-      { name: :authors },
-      { name: :isbn },
-      { name: :url }
-    ]
+    if action == :index
+      @fields = [
+        { name: :title },
+        { name: :authors },
+        { name: :isbn },
+        { name: :url, method: :wrap_in_link, options: { external: true } },
+        { name: :actions, no_label: true }
+      ]
+    else
+      @fields = [
+        { name: :title },
+        { name: :authors },
+        { name: :isbn },
+        { name: :url }
+      ]
+    end
   end
 
-  def reference_params
+  def resource_params
     params.require(:reference).permit(Reference::PUBLIC_FIELDS)
+  end
+
+  def current_resource
+    @reference
   end
 end

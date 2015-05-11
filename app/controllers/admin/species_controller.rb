@@ -1,42 +1,9 @@
-class Admin::SpeciesController < ApplicationController
-  include StandardResponses
+class Admin::SpeciesController < Admin::AdminController
 
-  before_action :set_species, only: [:show, :edit, :update, :destroy]
+  before_action :set_species
   before_action :set_species_fields
-  before_action :authenticate_user!
 
-  def index
-    @species = Species.all
-
-    @species_fields = [
-      { name: :full_name, class: 'italic' },
-      { name: :familia },
-      { name: :growth_type },
-      { name: :nutritive_group },
-      { name: :actions, no_label: true }
-    ]
-  end
-
-  def show
-    standard_nil_record_response(Species) if @species.nil?
-  end
-
-  def new
-    @species = Species.new
-  end
-
-  def edit
-    standard_nil_record_response(Species) if @species.nil?
-  end
-
-  def create
-    @species = Species.new(species_params)
-    standard_create_response @species, @species.save, fields: @species_fields
-  end
-
-  def update
-    standard_update_response @species, @species.update(species_params), fields: @species_fields
-  end
+  authorize_resource
 
   def destroy
     if @species.specimens.count > 0
@@ -49,26 +16,48 @@ class Admin::SpeciesController < ApplicationController
   private
 
   def set_species
-    @species = Species.where(url: params[:url]).first
+    if action == :new
+      @species = Species.new
+    elsif action == :create
+      @species = Species.new(resource_params)
+    elsif action == :index
+      @species = Species.all
+    else
+      @species = Species.where(url: params[:url]).first
+    end
   end
 
   def set_species_fields
-    @species_fields = [
-      { name: :name, input_html: { class: 'italic' } },
-      { name: :genus },
-      { name: :familia },
-      { name: :ordo },
-      { name: :subclassis },
-      { name: :classis },
-      { name: :subphylum },
-      { name: :phylum },
-      { name: :synonyms, as: :string },
-      { name: :growth_type },
-      { name: :nutritive_group }
-    ]
+    if action == :index
+      @fields = [
+        { name: :full_name, class: 'italic' },
+        { name: :familia },
+        { name: :growth_type },
+        { name: :nutritive_group },
+        { name: :actions, no_label: true }
+      ]
+    else
+      @fields = [
+        { name: :name, input_html: { class: 'italic' } },
+        { name: :genus },
+        { name: :familia },
+        { name: :ordo },
+        { name: :subclassis },
+        { name: :classis },
+        { name: :subphylum },
+        { name: :phylum },
+        { name: :synonyms, as: :string },
+        { name: :growth_type },
+        { name: :nutritive_group }
+      ]
+    end
   end
 
-  def species_params
+  def resource_params
     params.require(:species).permit(Species::PUBLIC_FIELDS)
+  end
+
+  def current_resource
+    @species
   end
 end

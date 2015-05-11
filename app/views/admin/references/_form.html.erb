@@ -1,4 +1,4 @@
 <%= simple_form_for [:admin, @reference], :html => { :class => 'form-horizontal' } do |f| %>
-  <%= admin_edit_fields(@reference, @reference_fields, f) %>
+  <%= admin_edit_fields(@reference, @fields, f) %>
   <%= admin_menu(@reference, f) %>
 <% end %>

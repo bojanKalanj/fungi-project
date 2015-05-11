@@ -1,40 +1,9 @@
-class Admin::LocationsController < ApplicationController
-  include StandardResponses
+class Admin::LocationsController < Admin::AdminController
 
-  before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_action :set_location
   before_action :set_location_fields
-  before_action :authenticate_user!
 
-  def index
-    @locations = Location.all
-
-    @location_fields = [
-      { name: :name },
-      { name: :utm },
-      { name: :actions, no_label: true }
-    ]
-  end
-
-  def show
-    standard_nil_record_response(Location) if @location.nil?
-  end
-
-  def new
-    @location = Location.new
-  end
-
-  def edit
-    standard_nil_record_response(Location) if @location.nil?
-  end
-
-  def create
-    @location = Location.new(location_params)
-    standard_create_response @location, @location.save, fields: @location_fields
-  end
-
-  def update
-    standard_update_response @location, @location.update(location_params), fields: @location_fields
-  end
+  authorize_resource
 
   def destroy
     if @location.specimens.count > 0
@@ -45,20 +14,39 @@ class Admin::LocationsController < ApplicationController
   end
 
   private
+  
   def set_location
-    @location = Location.friendly.find(params[:id])
-  rescue
-    @location = nil
+    if action == :new
+      @location = Location.new
+    elsif action == :create
+      @location = Location.new(resource_params)
+    elsif action == :index
+      @locations = Location.all
+    else
+      @location = Location.friendly.find(params[:id])
+    end
   end
 
   def set_location_fields
-    @location_fields = [
-      { name: :name },
-      { name: :utm }
-    ]
+    if action == :index
+      @fields = [
+        { name: :name },
+        { name: :utm },
+        { name: :actions, no_label: true }
+      ]
+    else
+      @fields = [
+        { name: :name },
+        { name: :utm }
+      ]
+    end
   end
 
-  def location_params
+  def resource_params
     params.require(:location).permit(Location::PUBLIC_FIELDS)
+  end
+
+  def current_resource
+    @location
   end
 end

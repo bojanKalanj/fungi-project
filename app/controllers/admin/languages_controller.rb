@@ -1,44 +1,9 @@
-class Admin::LanguagesController < ApplicationController
-  include StandardResponses
+class Admin::LanguagesController < Admin::AdminController
 
-  before_action :set_language, only: [:show, :edit, :update, :destroy]
+  before_action :set_language
   before_action :set_language_fields
-  before_action :authenticate_user!
 
-  def index
-    @languages = Language.all
-
-    @language_fields = [
-      { name: :name },
-      { name: :title },
-      { name: :locale },
-      { name: :flag, method: :parse_flag },
-      { name: :default, method: :boolean_to_icon },
-      { name: :parent, field: :name },
-      { name: :actions, no_label: true }
-    ]
-  end
-
-  def show
-    standard_nil_record_response(Language) if @language.nil?
-  end
-
-  def new
-    @language = Language.new
-  end
-
-  def edit
-    standard_nil_record_response(Language) if @language.nil?
-  end
-
-  def create
-    @language = Language.new(language_params)
-    standard_create_response @language, @language.save, fields: @language_fields
-  end
-
-  def update
-    standard_update_response @language, @language.update(language_params), fields: @language_fields
-  end
+  authorize_resource
 
   def destroy
     if @language.localized_pages.count > 0
@@ -50,21 +15,45 @@ class Admin::LanguagesController < ApplicationController
 
   private
   def set_language
-    @language = Language.friendly.find(params[:id])
+    if action == :new
+      @language = Language.new
+    elsif action == :create
+      @language = Language.new(resource_params)
+    elsif action == :index
+      @languages = Language.all
+    else
+      @language = Language.friendly.find(params[:id])
+    end
   end
 
   def set_language_fields
-    @language_fields = [
-      { name: :name },
-      { name: :title },
-      { name: :locale },
-      { name: :flag, method: :parse_flag },
-      { name: :default, method: :boolean_to_icon },
-      { name: :parent, field: :name }
-    ]
+    if action == :index
+      @fields = [
+        { name: :name },
+        { name: :title },
+        { name: :locale },
+        { name: :flag, method: :parse_flag },
+        { name: :default, method: :boolean_to_icon },
+        { name: :parent, field: :name },
+        { name: :actions, no_label: true }
+      ]
+    else
+      @fields = [
+        { name: :name },
+        { name: :title },
+        { name: :locale },
+        { name: :flag, method: :parse_flag },
+        { name: :default, method: :boolean_to_icon },
+        { name: :parent, field: :name }
+      ]
+    end
   end
 
-  def language_params
+  def resource_params
     params.require(:language).permit(Language::PUBLIC_FIELDS)
+  end
+
+  def current_resource
+    @language
   end
 end

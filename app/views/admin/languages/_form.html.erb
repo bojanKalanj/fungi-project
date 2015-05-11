@@ -1,4 +1,4 @@
 <%= simple_form_for [:admin, @language], :html => { :class => 'form-horizontal' } do |f| %>
-  <%= admin_edit_fields(@language, @language_fields, f) %>
+  <%= admin_edit_fields(@language, @fields, f) %>
   <%= admin_menu(@language, f) %>
 <% end %>

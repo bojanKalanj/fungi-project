@@ -3,7 +3,11 @@ module AdminHelper
   def admin_page_header(resource, action, options={})
     output = ''
 
+    title = resource_title(resource, action)
+
+    resource = resource.page if resource.is_a?(LocalizedPage)
     if current_user && current_user.supervisor?
+
       if [:new, :edit, :show].include?(action)
         cancel_path = action == :edit ? resource.resource_name_path : resource.resource_name_index_path
         output << admin_page_header_btn(:cancel, resource, class: 'btn-default', title: t('helpers.links.cancel'), path: cancel_path)
@@ -20,7 +24,7 @@ module AdminHelper
     content_tag(:div, class: 'page-header') do
       raw(output)+
         content_tag(:h1, class: title_class) do
-          fo_icon_tag(resource.resource_name.to_sym) + resource_title(resource, action)
+          fo_icon_tag(resource.resource_name.to_sym) + title
         end
     end
   end

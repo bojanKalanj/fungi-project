@@ -1,10 +1,5 @@
-<div class="page-header">
-  <%= admin_page_header(@localized_page.page, :show) %>
-  <h1>
-    <%= fo_icon_tag(:species) %>
-    <%= @localized_page.localized_field(:title) %>
-  </h1>
-</div>
+<%= admin_page_header(@localized_page, :show) %>
+
 
 <dl class="dl-horizontal">
   <%= raw @localized_page.localized_field(:content) %>

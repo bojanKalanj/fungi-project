@@ -12,6 +12,8 @@ class Admin::CharacteristicsController < Admin::AdminController
     { name: :reference, field: :full_title },
     { name: :short, no_label: true, method: :short_characteristics },
     { name: :long, no_label: true, method: :long_characteristics },
+    { name: :habitats, method: :habitat_icons },
+    { name: :substrates, method: :substrate_icons },
     { name: :actions, no_label: true }
   ]
 
@@ -93,7 +95,9 @@ class Admin::CharacteristicsController < Admin::AdminController
         { name: :microscopy, method: :localized_characteristic_preview },
         { name: :flesh, method: :localized_characteristic_preview },
         { name: :chemistry, method: :localized_characteristic_preview },
-        { name: :note, method: :localized_characteristic_preview }
+        { name: :note, method: :localized_characteristic_preview },
+        { name: :habitats, method: :habitats_preview },
+        { name: :substrates, method: :substrates_preview }
       ]
     end
   end

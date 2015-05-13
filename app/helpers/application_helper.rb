@@ -186,6 +186,8 @@ module ApplicationHelper
 
       when :habitat, :habitats
         'fa fa-fw fa-tree'
+      when :substrate, :substrates
+        'fa fa-fw fa-leaf'
 
       when :edit
         'fa fa-fw fa-edit'

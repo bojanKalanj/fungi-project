@@ -83,4 +83,66 @@ module IndexTableHelper
     content_tag(:ul, class: 'localized-nav-tabs nav nav-tabs', role: 'tablist') { raw navs_tabs.join } +
       content_tag(:div, class: 'localized-tab tab-content') { raw content_tabs.join }
   end
+
+  def habitat_icons(values, options)
+    output = ''
+
+    values.each do |value|
+      habitat = value.keys.first
+
+      subhabitat = value[habitat]['subhabitat']
+      species = value[habitat]['species']
+
+      title = subhabitat ? t("habitats.#{habitat}.subhabitat.#{subhabitat}.title") : t("habitats.#{habitat}.title")
+
+      title += ' - ' + species.map{ |s| t(s) } if species
+
+      output += fo_icon_tag(:habitat, title: title, class: [habitat, :pointer].join(' '))
+    end
+
+    raw output
+  end
+
+  def substrate_icons(values, options)
+    output = ''
+
+    values.each do |value|
+      title = t("substrates.#{value}")
+
+      output += fo_icon_tag(:substrate, title: title, class: [:pointer, :substrate, value].join(' '))
+    end
+
+    raw output
+  end
+
+  def habitats_preview(values, options)
+    output = ''
+
+    values.each do |value|
+      habitat = value.keys.first
+
+      subhabitat = value[habitat]['subhabitat']
+      species = value[habitat]['species']
+
+      title = subhabitat ? t("habitats.#{habitat}.subhabitat.#{subhabitat}.title") : t("habitats.#{habitat}.title")
+
+      title += ' - ' + species.map{ |s| t(s) } if species
+
+      output += content_tag(:div) { fo_icon_tag(:habitat, title: title, class: [habitat, :pointer].join(' ')) + title }
+    end
+
+    raw output
+  end
+
+  def substrates_preview(values, options)
+    output = ''
+
+    values.each do |value|
+      title = t("substrates.#{value}")
+
+      output += content_tag(:div) { fo_icon_tag(:substrate, title: title, class: [:pointer, :substrate, value].join(' ')) + '   ' + title }
+    end
+
+    raw output
+  end
 end

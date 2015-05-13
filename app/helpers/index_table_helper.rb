@@ -59,4 +59,28 @@ module IndexTableHelper
     end
     raw output
   end
+
+  def localized_characteristic_preview(value, options)
+    navs_tabs = []
+    content_tabs = []
+
+    value.keys.each_with_index do |locale, index|
+      language = Language.where(locale: locale).first
+
+      o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+      id = (0...50).map { o[rand(o.length)] }.join
+
+      nav = content_tag :li, role: 'presentation', class: (index == 0 ? 'active' : '') do
+        caption = "<i class='flag-icon flag-icon-#{language.flag}'></i> #{language.title}"
+        link_to caption.html_safe, "##{id}-#{locale}", 'aria-controls' => "#{id}-#{locale}", role: 'tab', data: { toggle: 'tab' }
+      end
+      navs_tabs << nav
+
+      content = content_tag(:div, id: "#{id}-#{locale}", role: 'tabpanel', class: (index == 0 ? 'tab-pane active' : 'tab-pane')) { value[locale].blank? ? '-' : value[locale] }
+      content_tabs << content
+    end
+
+    content_tag(:ul, class: 'localized-nav-tabs nav nav-tabs', role: 'tablist') { raw navs_tabs.join } +
+      content_tag(:div, class: 'localized-tab tab-content') { raw content_tabs.join }
+  end
 end

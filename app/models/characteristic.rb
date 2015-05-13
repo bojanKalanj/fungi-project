@@ -9,7 +9,12 @@ class Characteristic < ActiveRecord::Base
   SPECIES_VALIDATION_ERROR = 'must take species from the list for specific habitat and subhabitat'
   # SUBSTRATES_VALIDATION_ERROR = "have to be included in: #{all_substrate_keys.inspect}"
 
-  PUBLIC_FIELDS = [:reference_id]
+  PUBLIC_FIELDS = [:reference_id, :species_id, :edible, :cultivated, :poisonous, :medicinal,
+                   { fruiting_body: I18n.available_locales },
+                   { microscopy: I18n.available_locales },
+                   { flesh: I18n.available_locales },
+                   { chemistry: I18n.available_locales },
+                   { note: I18n.available_locales }]
 
   belongs_to :species
   belongs_to :reference
@@ -42,7 +47,7 @@ class Characteristic < ActiveRecord::Base
 
   def long
     [:fruiting_body, :microscopy, :flesh, :chemistry].map do |field|
-      locale =  I18n.locale == :'sr-Latn' ? 'sr' : I18n.locale.to_s
+      locale = I18n.locale == :'sr-Latn' ? 'sr' : I18n.locale.to_s
 
       { field => self.send(field)[locale] } unless self.send(field)[locale].blank?
     end.compact

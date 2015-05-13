@@ -87,11 +87,45 @@ module AdminHelper
     end
   end
 
+  def localized_tabs_field(form_object, field)
+    navs_tabs = []
+    content_tabs = []
+
+    current_language = Language.where(locale: I18n.locale).first
+    current_language = Language.find(current_language.parent_id) if current_language.parent_id
+    current_locale = current_language.locale
+
+    form_object.simple_fields_for field do |f|
+      Language.where('parent_id IS NULL').each do |language|
+
+        id = "#{field}_#{language.locale}"
+
+
+
+        nav = content_tag :li, role: 'presentation', class: (language.locale == current_locale ? 'active' : '') do
+          caption = "<i class='flag-icon flag-icon-#{language.flag}'></i> #{language.title}"
+          link_to caption.html_safe, "##{id}", 'aria-controls' => id, role: 'tab', data: { toggle: 'tab' }
+        end
+        navs_tabs << nav
+
+        content = content_tag :div, id: "#{id}", role: 'tabpanel', class: (language.locale == current_locale ? 'tab-pane active' : 'tab-pane') do
+          f.input language.locale, label: false, as: :text
+        end
+        content_tabs << content
+      end
+    end
+
+    content_tag(:ul, class: 'localized-nav-tabs nav nav-tabs', role: 'tablist') { raw navs_tabs.join } +
+      content_tag(:div, class: 'localized-tab tab-content') { raw content_tabs.join }
+  end
+
   def admin_edit_field(resource, field, form_object, options={})
     options[:label] = t("#{resource.resource_name}.attributes.#{field}")
     name = options.delete(:name)
     if options[:field]
       form_object.association(name, options) + error_span(resource[field])
+    elsif options[:method].to_s.include?('localized')
+      localized_tabs_field(form_object, field)
     else
       form_object.input(name, options) + error_span(resource[field])
     end

@@ -89,11 +89,11 @@ class Admin::CharacteristicsController < Admin::AdminController
         { name: :cultivated, method: :boolean_to_icon },
         { name: :poisonous, method: :boolean_to_icon },
         { name: :medicinal, method: :boolean_to_icon },
-        { name: :fruiting_body },
-        { name: :microscopy },
-        { name: :flesh },
-        { name: :chemistry },
-        { name: :note }
+        { name: :fruiting_body, method: :localized_characteristic_preview },
+        { name: :microscopy, method: :localized_characteristic_preview },
+        { name: :flesh, method: :localized_characteristic_preview },
+        { name: :chemistry, method: :localized_characteristic_preview },
+        { name: :note, method: :localized_characteristic_preview }
       ]
     end
   end

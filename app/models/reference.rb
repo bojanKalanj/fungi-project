@@ -13,7 +13,7 @@ class Reference < ActiveRecord::Base
   friendly_id :full_title, use: :slugged
 
   def full_title
-    "#{self.authors} -  #{self.title}"
+    self.authors.blank? ? self.title : "#{self.authors} -  #{self.title}"
   end
   alias_method :resource_title, :full_title
 

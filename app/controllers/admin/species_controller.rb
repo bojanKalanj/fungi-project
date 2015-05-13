@@ -55,6 +55,13 @@ class Admin::SpeciesController < Admin::AdminController
           { name: :reference, field: :full_title },
           { name: :actions, no_label: true }
         ]
+
+        @subheader_options = {
+          new_path: new_admin_species_characteristic_path(@species),
+          edit_path: edit_admin_species_characteristic_path(@species, @species.characteristics),
+          path: admin_species_characteristic_path(@species, @species.characteristics),
+          remote: true
+        }
       end
     end
   end

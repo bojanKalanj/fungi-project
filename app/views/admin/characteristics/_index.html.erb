@@ -1,0 +1,4 @@
+<%= admin_page_resource_subheader(characteristics, :index, options) %>
+
+<% nested = { in: species, edit_path: :edit_admin_species_characteristic_path, path: :admin_species_characteristic_path } %>
+<%= render partial: 'admin/shared/index_table', locals: { resource_name: 'characteristic', fields: characteristic_fields, resources: characteristics, nested: nested } %>

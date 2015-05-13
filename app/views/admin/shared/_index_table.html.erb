@@ -23,7 +23,7 @@
 
                   <td class="<%= fields.first[:class] %>">
                     <% if !nested.blank? %>
-                      <%= link_to(value, send(nested[:path], resource, nested[:in]), remote: true) %>
+                      <%= link_to(value, send(nested[:path], nested[:in], resource), remote: true) %>
                     <% else %>
                       <%= link_to(value, resource.resource_name_path) %>
                     <% end %>
@@ -47,12 +47,12 @@
                   <% end %>
 
                   <td class="no-wrap">
-                    <% path = nested.blank? ? resource.resource_edit_path : send(nested[:edit_path], resource, nested[:in]) %>
+                    <% path = nested.blank? ? resource.resource_edit_path : send(nested[:edit_path], nested[:in], resource) %>
                     <%= link_to path, class: 'btn btn-outline btn-primary btn-xs', title: t("helpers.links.edit"), remote: !nested.blank? do %>
                       <%= fo_icon_tag(:edit) %>
                     <% end %>
 
-                    <% path = nested.blank? ? resource.resource_name_path(source: 'index') : send(nested[:path], resource, nested[:in], source: 'index') %>
+                    <% path = nested.blank? ? resource.resource_name_path(source: 'index') : send(nested[:path], nested[:in], resource, source: 'index') %>
                     <%= link_to path, title: t("helpers.links.destroy"), method: :delete, remote: !nested.blank?,
                                 data: { :confirm => t('helpers.links.confirm') }, class: 'btn btn-xs btn-danger btn-outline' do %>
                       <%= fo_icon_tag(:delete) %>

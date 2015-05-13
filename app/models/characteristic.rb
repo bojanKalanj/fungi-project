@@ -9,6 +9,8 @@ class Characteristic < ActiveRecord::Base
   SPECIES_VALIDATION_ERROR = 'must take species from the list for specific habitat and subhabitat'
   # SUBSTRATES_VALIDATION_ERROR = "have to be included in: #{all_substrate_keys.inspect}"
 
+  PUBLIC_FIELDS = [:reference_id]
+
   belongs_to :species
   belongs_to :reference
 
@@ -29,6 +31,10 @@ class Characteristic < ActiveRecord::Base
   validate :habitats_array
   validate :substrates_array
   validate :localized_hashes
+
+  def resource_title
+    I18n.translate('characteristic.interface.index')
+  end
 
   private
 

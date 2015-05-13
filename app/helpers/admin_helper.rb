@@ -29,7 +29,7 @@ module AdminHelper
     end
   end
 
-  def admin_page_subresource_header(resource, action, options={})
+  def admin_page_resource_subheader(resource, action, options={})
     output = ''
 
     title = resource_title(resource, action)
@@ -38,8 +38,8 @@ module AdminHelper
     if current_user && current_user.supervisor?
 
       if [:new, :edit, :show].include?(action)
-        cancel_path = action == :edit ? resource.resource_name_path : resource.resource_name_index_path
-        output << admin_page_header_btn(:cancel, resource, class: 'btn-default', title: t('helpers.links.cancel'), path: cancel_path)
+        cancel_path = options[:index_path] || (action == :edit ? resource.resource_name_path : resource.resource_name_index_path)
+        output << admin_page_header_btn(:cancel, resource, class: 'btn-default', title: t('helpers.links.cancel'), path: cancel_path, remote: options[:remote])
       end
       output << admin_page_header_btn(:new, resource, class: 'btn-primary', path: options[:new_path], remote: options[:remote]) if [:index].include?(action)
       output << admin_page_header_btn(:edit, resource, class: 'btn-primary', path: options[:edit_path], remote: options[:remote]) if [:show].include?(action)
@@ -117,7 +117,7 @@ module AdminHelper
     end
   end
 
-  def admin_menu(resource, form_object, args={})
+  def admin_menu(resource, form_object, options={})
     output = ''
 
     action = form_object.object.new_record? ? :new : :edit
@@ -126,12 +126,15 @@ module AdminHelper
       fo_icon_tag(action.to_sym) + t("#{resource.resource_name}.btn.#{action}.title")
     end
 
-    output << link_to(send("admin_#{resource.resource_name}_path".to_sym, resource), class: 'btn btn-danger', :method => :delete, :data => { :confirm => t('helpers.links.confirm') }) do
-      fo_icon_tag(:delete) + t("#{resource.resource_name}.btn.delete.title")
-    end if [:edit, :show].include?(action)
+    if [:edit, :show].include?(action)
+      path = options[:path] || send("admin_#{resource.resource_name}_path".to_sym, resource)
+      output << link_to(path, class: 'btn btn-danger', :method => :delete, :data => { :confirm => t('helpers.links.confirm') }, remote: options[:remote]) do
+        fo_icon_tag(:delete) + t("#{resource.resource_name}.btn.delete.title")
+      end
+    end
 
-    cancel_path = form_object.object.new_record? ? resource.resource_name_index_path : resource.resource_name_path
-    output << link_to(cancel_path, :class => 'btn btn-default') do
+    cancel_path = options[:index_path] || (form_object.object.new_record? ? resource.resource_name_index_path : resource.resource_name_path)
+    output << link_to(cancel_path, :class => 'btn btn-default', remote: options[:remote]) do
       fo_icon_tag(:cancel) + t('helpers.links.cancel')
     end
 

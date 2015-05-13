@@ -51,10 +51,7 @@ class Admin::SpeciesController < Admin::AdminController
         { name: :nutritive_group }
       ]
       if action == :show
-        @characteristic_fields = [
-          { name: :reference, field: :full_title },
-          { name: :actions, no_label: true }
-        ]
+        @characteristic_fields = Admin::CharacteristicsController::INDEX_FIELDS
 
         @subheader_options = {
           new_path: new_admin_species_characteristic_path(@species),

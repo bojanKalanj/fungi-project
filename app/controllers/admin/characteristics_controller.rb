@@ -8,6 +8,13 @@ class Admin::CharacteristicsController < Admin::AdminController
 
   respond_to :js
 
+  INDEX_FIELDS = [
+    { name: :reference, field: :full_title },
+    { name: :short, no_label: true, method: :short_characteristics },
+    { name: :long, no_label: true, method: :long_characteristics },
+    { name: :actions, no_label: true }
+  ]
+
   def index
   end
 
@@ -74,13 +81,19 @@ class Admin::CharacteristicsController < Admin::AdminController
     end
 
     if [:index, :update, :create, :destroy].include?(action)
-      @fields = [
-        { name: :reference, field: :full_title },
-        { name: :actions, no_label: true }
-      ]
+      @fields = INDEX_FIELDS
     else
       @fields = [
-        { name: :reference, field: :full_title, include_blank: false, as: :collection_select, collection: Reference.where('id not in (?)', Characteristic.where(species_id: @species.id).pluck(:reference_id)) }
+        { name: :reference, field: :full_title, include_blank: false, as: :collection_select, collection: Reference.where('id not in (?)', Characteristic.where(species_id: @species.id).pluck(:reference_id)) },
+        { name: :edible, method: :boolean_to_icon },
+        { name: :cultivated, method: :boolean_to_icon },
+        { name: :poisonous, method: :boolean_to_icon },
+        { name: :medicinal, method: :boolean_to_icon },
+        { name: :fruiting_body },
+        { name: :microscopy },
+        { name: :flesh },
+        { name: :chemistry },
+        { name: :note }
       ]
     end
   end

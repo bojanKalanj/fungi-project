@@ -3,6 +3,17 @@ sr:
     attributes:
       species: Врста
       reference: Референца
+      edible: Јестива
+      cultivated: Гајена
+      poisonous: Отровна
+      medicinal: Лековита
+      fruiting_body: Плодно тело
+      microscopy: Микроскопија
+      flesh: Месо
+      chemistry: Хемијске карактеристике
+      note: Коментар
+      habitats: Станишта
+      substrates: Подлоге
     btn:
       new:
         title: Додај нову карактеристику

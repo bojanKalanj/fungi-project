@@ -41,4 +41,22 @@ module IndexTableHelper
 
     l!(value, options)
   end
+
+  def short_characteristics(values, options)
+    output = ''
+    values.each do |value|
+      output += fo_icon_tag(value, title: t("characteristic.attributes.#{value}"), class: :pointer)
+    end
+    raw output
+  end
+
+  def long_characteristics(values, options)
+    output = ''
+    values.each do |value|
+      key = value.keys.first
+      title = t("characteristic.attributes.#{key}") + ': ' + value[key]
+      output += fo_icon_tag(key, title: title, class: :pointer)
+    end
+    raw output
+  end
 end

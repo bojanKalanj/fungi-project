@@ -3,6 +3,17 @@ en:
     attributes:
       species: Species
       reference: Reference
+      edible: Edible
+      cultivated: Cultivated
+      poisonous: Poisonous
+      medicinal: Medicinal
+      fruiting_body: Fruiting Body
+      microscopy: Microscopy
+      flesh: Flesh
+      chemistry: Chemistry
+      note: Note
+      habitats: Habitats
+      substrates: Substrates
     btn:
       new:
         title: Add new Characteristic

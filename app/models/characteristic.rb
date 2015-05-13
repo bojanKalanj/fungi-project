@@ -36,11 +36,23 @@ class Characteristic < ActiveRecord::Base
     I18n.translate('characteristic.interface.index')
   end
 
+  def short
+    [:edible, :cultivated, :poisonous, :medicinal].map { |field| field if self.send(field) }.compact
+  end
+
+  def long
+    [:fruiting_body, :microscopy, :flesh, :chemistry].map do |field|
+      locale =  I18n.locale == :'sr-Latn' ? 'sr' : I18n.locale.to_s
+
+      { field => self.send(field)[locale] } unless self.send(field)[locale].blank?
+    end.compact
+  end
+
   private
 
   def localized_hashes
     locales = elements_to_str I18n.available_locales
-    [:fruiting_body, :microscopy, :flesh, :chemistry, :note].each do |field|
+    [:fruiting_body, :microscopy, :flesh, :chemistry].each do |field|
       hash = self.send(field)
       unless hash.blank? || array_is_superset?(locales, hash.keys)
         errors.add field, "locale keys have to be included in #{locales}"

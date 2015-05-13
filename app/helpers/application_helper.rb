@@ -113,7 +113,7 @@ module ApplicationHelper
     if I18n.locale == parent_locale_for_current
       l(value, args)
     else
-      cyr_to_lat l(value, args.merge({locale: parent_locale_for_current}))
+      cyr_to_lat l(value, args.merge({ locale: parent_locale_for_current }))
     end
   end
 
@@ -137,6 +137,29 @@ module ApplicationHelper
       when :user_add, :new
         'fa fa-fw fa-plus'
       when :characteristics, :characteristic
+        'fa fa-fw fa-star'
+
+      when :edible
+        'fa fa-fw fa-cutlery'
+      when :cultivated
+        'fa fa-fw fa-thumbs-o-up'
+      when :medicinal
+        'fa fa-fw fa-heart-o'
+      when :poisonous
+        'fa fa-fw fa-exclamation-triangle'
+
+      when :fruiting_body
+        'fa fa-fw fa-lemon-o'
+      when :microscopy
+        'fa fa-fw fa-search'
+      when :flesh
+        'fa fa-fw fa-asterisk'
+      when :chemistry
+        'fa fa-fw fa-flask'
+      when :note
+        'fa fa-fw fa-star'
+
+      when :sample, :samples
         'fa fa-fw fa-star'
       when :languages, :language
         'fa fa-fw fa-comments'

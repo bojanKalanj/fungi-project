@@ -66,6 +66,7 @@ class Admin::CharacteristicsController < Admin::AdminController
     end
 
     @characteristic.habitats = params['characteristic']['habitats'].values.uniq if params && params['characteristic'] && params['characteristic']['habitats']
+    @characteristic.substrates = params['characteristic']['substrates'].reject! { |s| s.empty? } if params && params['characteristic'] && params['characteristic']['substrates']
   end
 
   def set_species

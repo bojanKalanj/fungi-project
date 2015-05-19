@@ -141,13 +141,19 @@ module AdminHelper
       end
   end
 
+  def substrates_field(form_object, name, options)
+    content_tag(:div, class: 'form-group') do
+      form_object.input :substrates, label: t('characteristic.attributes.substrates'), requied: false, collection: all_substrate_keys.map{|key| [t("substrates.#{key}"), key] }, label_method: :first, value_method: :last, input_html: {multiple: true}
+    end
+  end
+
   def admin_edit_field(resource, field, form_object, options={})
     options[:label] = t("#{resource.resource_name}.attributes.#{field}")
     name = options.delete(:name)
     if field == :habitats
       habitats_field form_object, name, options
     elsif field == :substrates
-      ''
+      substrates_field form_object, name, options
     elsif options[:field]
       form_object.association(name, options) + error_span(resource[field])
     elsif options[:method].to_s.include?('localized')

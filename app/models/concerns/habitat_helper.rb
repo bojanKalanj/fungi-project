@@ -31,9 +31,9 @@ module HabitatHelper
   def allowed_species_groups(habitat_key, subhabitat_key=nil)
     raise "Unknown habitat #{habitat_key}" unless habitats_hash[habitat_key.to_s]
 
-    if subhabitat_key
+    if !subhabitat_key.blank?
       raise "Habitat #{habitat_key} has no subhabitats" unless habitats_hash[habitat_key.to_s]['subhabitat']
-      raise "Unknown subhabitat #{subhabitat_key}" unless habitats_hash[habitat_key.to_s]['subhabitat'][subhabitat_key.to_s]
+      raise "Unknown subhabitat '#{subhabitat_key}'" unless habitats_hash[habitat_key.to_s]['subhabitat'][subhabitat_key.to_s]
 
       habitats_hash[habitat_key.to_s]['subhabitat'][subhabitat_key.to_s]['allowed_species_groups'] || []
     else

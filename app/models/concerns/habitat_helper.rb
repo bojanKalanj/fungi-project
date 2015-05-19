@@ -45,6 +45,18 @@ module HabitatHelper
     allowed_species_groups(habitat, subhabitat).map { |species_group| species_keys(species_group) }.flatten
   end
 
+  def localized_habitat_species_name(key)
+    name = nil
+    t(:species_group_title).keys.each do |species_group_key|
+      name = t(key, scope: [:species, species_group_key]) if t(species_group_key, scope: :species).keys.include?(key.to_sym)
+    end
+    if name
+      "#{name} (#{key})"
+    else
+      raise "no localization found for species #{key}"
+    end
+  end
+
   # for specs
   # @param [Hash] options
   # @option options [int] :number_of_habitats

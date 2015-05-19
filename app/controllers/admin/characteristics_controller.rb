@@ -1,4 +1,5 @@
 class Admin::CharacteristicsController < Admin::AdminController
+  include HabitatHelper
 
   before_action :set_species
   before_action :set_characteristic
@@ -63,6 +64,8 @@ class Admin::CharacteristicsController < Admin::AdminController
     else
       @characteristic = Characteristic.friendly.find(params[:id])
     end
+
+    @characteristic.habitats = params['characteristic']['habitats'].values.uniq if params && params['characteristic'] && params['characteristic']['habitats']
   end
 
   def set_species
@@ -91,13 +94,13 @@ class Admin::CharacteristicsController < Admin::AdminController
         { name: :cultivated, method: :boolean_to_icon },
         { name: :poisonous, method: :boolean_to_icon },
         { name: :medicinal, method: :boolean_to_icon },
+        { name: :habitats, method: :habitats_preview },
+        { name: :substrates, method: :substrates_preview },
         { name: :fruiting_body, method: :localized_characteristic_preview },
         { name: :microscopy, method: :localized_characteristic_preview },
         { name: :flesh, method: :localized_characteristic_preview },
         { name: :chemistry, method: :localized_characteristic_preview },
-        { name: :note, method: :localized_characteristic_preview },
-        { name: :habitats, method: :habitats_preview },
-        { name: :substrates, method: :substrates_preview }
+        { name: :note, method: :localized_characteristic_preview }
       ]
     end
   end

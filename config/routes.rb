@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :locations
     resources :languages
     resources :pages
+    resources :habitats, only: :index
     resource :dashboard, only: :show, controller: 'dashboard'
   end
 

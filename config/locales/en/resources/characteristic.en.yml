@@ -14,6 +14,8 @@ en:
       note: Note
       habitats: Habitats
       substrates: Substrates
+      subhabitat: Subhabitat
+      habitat_species: Species
     btn:
       new:
         title: Add new Characteristic
@@ -35,3 +37,6 @@ en:
     interface:
       new: Add new Characteristic
       index: Species Characteristics
+      remove_habitat: Remove Habitat
+      add_habitat: Add Habitat
+      choose_subhabitat: Choose Subhabitat

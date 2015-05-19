@@ -14,6 +14,8 @@ sr:
       note: Коментар
       habitats: Станишта
       substrates: Подлоге
+      subhabitat: Под-станиште
+      habitat_species: Врсте
     btn:
       new:
         title: Додај нову карактеристику
@@ -35,3 +37,6 @@ sr:
     interface:
       new: Додај нову карактеристику
       index: Карактеристике врсте
+      remove_habitat: Избаци станиште
+      add_habitat: Додај станиште
+      choose_subhabitat: Одабери под-станиште

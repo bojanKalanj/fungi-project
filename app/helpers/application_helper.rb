@@ -105,6 +105,8 @@ module ApplicationHelper
     end
   end
 
+
+
   def parent_locale_for_current
     @parent_locale_for_current ||= Language.parent_locale_for_current
   end

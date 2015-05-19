@@ -49,7 +49,7 @@ class Characteristic < ActiveRecord::Base
     [:fruiting_body, :microscopy, :flesh, :chemistry].map do |field|
       locale = I18n.locale == :'sr-Latn' ? 'sr' : I18n.locale.to_s
 
-      { field => self.send(field)[locale] } unless self.send(field)[locale].blank?
+      { field => self.send(field)[locale] } if self.send(field) && !self.send(field)[locale].blank?
     end.compact
   end
 
@@ -74,6 +74,7 @@ class Characteristic < ActiveRecord::Base
         elsif all_habitat_keys(output: :string).include?(habitat.keys.first.to_s)
           habitat_key = habitat.keys.first.to_s
           habitat = habitat.values.first
+          habitat = {} unless habitat.is_a?(Hash)
           unless habitat.empty? || !habitat[:subhabitat]
             allowed_subhabitats = subhabitat_keys(habitat_key)
             unless array_is_superset?(allowed_subhabitats, Array(habitat[:subhabitat]))

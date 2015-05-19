@@ -80,14 +80,14 @@ module AdminHelper
 
   def admin_show_fields(resource, fields, options={})
     output = ''
-    fields.each { |field| output << admin_show_field(resource, field, options.select{|f| f[:name] == field}.first ) }
+    fields.each { |field| output << admin_show_field(resource, field, options.select { |f| f[:name] == field }.first) }
 
     content_tag(:dl, class: 'dl-horizontal') do
       raw output
     end
   end
 
-  def localized_tabs_field(form_object, field)
+  def localized_tabs_field(form_object, field, options={})
     navs_tabs = []
     content_tabs = []
 
@@ -100,32 +100,58 @@ module AdminHelper
 
         id = "#{field}_#{language.locale}"
 
-
-
         nav = content_tag :li, role: 'presentation', class: (language.locale == current_locale ? 'active' : '') do
           caption = "<i class='flag-icon flag-icon-#{language.flag}'></i> #{language.title}"
           link_to caption.html_safe, "##{id}", 'aria-controls' => id, role: 'tab', data: { toggle: 'tab' }
         end
         navs_tabs << nav
 
-        content = content_tag :div, id: "#{id}", role: 'tabpanel', class: (language.locale == current_locale ? 'tab-pane active' : 'tab-pane') do
+        content = content_tag(:div, id: "#{id}", role: 'tabpanel', class: (language.locale == current_locale ? 'tab-pane active' : 'tab-pane')) do
           f.input language.locale, label: false, as: :text
         end
         content_tabs << content
       end
     end
 
-    content_tag(:ul, class: 'localized-nav-tabs nav nav-tabs', role: 'tablist') { raw navs_tabs.join } +
+    form_object.label(options[:label]) +
+      content_tag(:ul, class: 'localized-nav-tabs nav nav-tabs', role: 'tablist') { raw navs_tabs.join } +
       content_tag(:div, class: 'localized-tab tab-content') { raw content_tabs.join }
+  end
+
+  def habitats_field(form_object, name, options)
+    output = content_tag(:div, class: 'form-group') { form_object.label :habitats, label: t('characteristic.attributes.habitats'), requied: false }
+
+    if form_object.object.send(name)
+      form_object.object.send(name).each_with_index do |habitat_hash, index|
+        habitat = habitat_hash.keys.first
+        subhabitat = habitat_hash[habitat]['subhabitat']
+        selected_species = habitat_hash[habitat]['species']
+
+        subhabitats = subhabitat.blank? ? nil : subhabitat_keys(habitat).map { |key| [t("habitats.#{habitat}.subhabitat.#{key}.title"), key] }
+        species = allowed_species(habitat, subhabitat).map { |key| [localized_habitat_species_name(key), key] }
+        output += render partial: 'admin/shared/habitat_form', locals: { habitat: habitat, subhabitat: subhabitat, subhabitats: subhabitats, selected_species: selected_species, species: species, index: index }
+      end
+    end
+
+    habitats = all_habitat_keys.map { |key| [t("habitats.#{key}.title"), key] }
+    content_tag(:div, class: :habitats) { output } +
+      content_tag(:div, class: 'form-group') do
+        select_tag('habitats-select', options_for_select(habitats, nil), include_blank: false, data: { url: admin_habitats_path(habitat: '') }, prompt: t('characteristic.interface.add_habitat')) +
+        link_to('', class: 'btn btn-primary btn-circle add-habitat', title: t('characteristic.interface.add_habitat'), remote: true) { fo_icon_tag(:new) }
+      end
   end
 
   def admin_edit_field(resource, field, form_object, options={})
     options[:label] = t("#{resource.resource_name}.attributes.#{field}")
     name = options.delete(:name)
-    if options[:field]
+    if field == :habitats
+      habitats_field form_object, name, options
+    elsif field == :substrates
+      ''
+    elsif options[:field]
       form_object.association(name, options) + error_span(resource[field])
     elsif options[:method].to_s.include?('localized')
-      localized_tabs_field(form_object, field)
+      localized_tabs_field(form_object, field, options)
     else
       form_object.input(name, options) + error_span(resource[field])
     end

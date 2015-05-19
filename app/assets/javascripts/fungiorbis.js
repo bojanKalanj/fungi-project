@@ -21,8 +21,8 @@ $(document).on('ready page:load', function () {
   $(document).on('click', 'form[data-transliterate] .btn-primary', function (e) {
     var $form = $(this).closest('form');
 
-    $form.find('[data-parent]').each(function( index ) {
-      var $parentValue = $form.find('[data-locale='+ $(this).data('parent')+']').val();
+    $form.find('[data-parent]').each(function (index) {
+      var $parentValue = $form.find('[data-locale=' + $(this).data('parent') + ']').val();
 
       $(this).val(Fungiorbis.transliterate($parentValue));
     });
@@ -31,8 +31,8 @@ $(document).on('ready page:load', function () {
   $(document).on('click', '[data-toggle]', function (e) {
     var targets = $(this).data('toggle').split(',');
 
-    $.each(targets, function( index, targetSelector ) {
-        $(targetSelector).toggleClass('hidden');
+    $.each(targets, function (index, targetSelector) {
+      $(targetSelector).toggleClass('hidden');
     });
 
     e.stopPropagation();
@@ -43,8 +43,8 @@ $(document).on('ready page:load', function () {
     var targets = $(this).data('toggle-class-target').split(',');
     var classes = $(this).data('toggle-class').split(',');
 
-    $.each(targets, function( index1, targetSelector ) {
-      $.each(classes, function( index2, klass ) {
+    $.each(targets, function (index1, targetSelector) {
+      $.each(classes, function (index2, klass) {
         $(targetSelector).toggleClass(klass);
       });
     });
@@ -62,4 +62,45 @@ $(document).on('ready page:load', function () {
     e.stopPropagation();
     e.preventDefault();
   });
+
+  $(document).on('change', '#habitats-select', function (e) {
+    if ($(this).val().length > 0) {
+      var url = $(this).data('url') + $(this).val();
+      $('.add-habitat').attr('href', url);
+    }
+  });
+
+  $(document).on('click', '.add-habitat', function (e) {
+    if ($(this).attr('href').split('habitats=')[1] === undefined){
+      console.log("!")
+      e.stopPropagation();
+      e.preventDefault();
+      return false;
+    }
+  });
+
+  $(document).on('click', '.remove-habitat', function (e) {
+    $(this).closest('.habitat.panel').remove();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+
+  $(document).on('click', '.choose-subhabitat', function (e) {
+    $(this).parent().find('select').removeClass('hidden');
+    $(this).remove();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+
+  $(document).on('change', '.select.subhabitat', function (e) {
+    if ($(this).val().length > 0) {
+      $('.select.subhabitat.active').removeClass('active');
+      $(this).addClass('active');
+      var url = $(this).data('habitats-url') + $(this).val();
+      $.get(url, function (data) {
+      });
+    }
+  });
+
+
 });

@@ -32,6 +32,7 @@ class Characteristic < ActiveRecord::Base
 
   validates :species_id, presence: true
   validates :reference_id, presence: true
+  validates :reference_id, uniqueness: { scope: :species }
 
   validate :habitats_array
   validate :substrates_array

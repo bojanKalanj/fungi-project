@@ -72,7 +72,6 @@ $(document).on('ready page:load', function () {
 
   $(document).on('click', '.add-habitat', function (e) {
     if ($(this).attr('href').split('habitats=')[1] === undefined){
-      console.log("!")
       e.stopPropagation();
       e.preventDefault();
       return false;

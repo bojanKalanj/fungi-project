@@ -93,7 +93,7 @@ module IndexTableHelper
       subhabitat = value[habitat]['subhabitat']
       species = value[habitat]['species']
 
-      title = subhabitat ? t("habitats.#{habitat}.subhabitat.#{subhabitat}.title") : t("habitats.#{habitat}.title")
+      title = subhabitat.blank? ? t("habitats.#{habitat}.title") : t("habitats.#{habitat}.subhabitat.#{subhabitat}.title")
 
       title += ' - ' + species.map{ |s| localized_habitat_species_name(s) }.join(', ') if species
 

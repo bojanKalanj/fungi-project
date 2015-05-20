@@ -12,7 +12,9 @@ Rails.application.routes.draw do
       resources :characteristics
     end
     resources :specimens, controller: 'specimens'
-    resources :references
+    resources :references do
+      resources :characteristics
+    end
     resources :locations
     resources :languages
     resources :pages

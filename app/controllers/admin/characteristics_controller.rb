@@ -2,6 +2,7 @@ class Admin::CharacteristicsController < Admin::AdminController
   include HabitatHelper
 
   before_action :set_species
+  before_action :set_reference
   before_action :set_characteristic
   before_action :set_fields
 
@@ -9,21 +10,23 @@ class Admin::CharacteristicsController < Admin::AdminController
 
   respond_to :js
 
-  INDEX_FIELDS = [
-    { name: :reference, field: :full_title },
-    { name: :short, no_label: true, method: :short_characteristics },
-    { name: :long, no_label: true, method: :long_characteristics },
-    { name: :habitats, method: :habitat_icons },
-    { name: :substrates, method: :substrate_icons },
-    { name: :actions, no_label: true }
-  ]
+  def self.index_fields_for(resource)
+    fields = [(resource == :species ? { name: :reference, field: :full_title } : { name: :species, field: :full_name, class: 'italic' })]
+    fields + [
+      { name: :short, no_label: true, method: :short_characteristics },
+      { name: :long, no_label: true, method: :long_characteristics },
+      { name: :habitats, method: :habitat_icons },
+      { name: :substrates, method: :substrate_icons },
+      { name: :actions, no_label: true }
+    ]
+  end
 
   def index
   end
 
   def create
     if @characteristic.save
-      @characteristics = @characteristic.species.characteristics
+      @characteristics = @species ? @characteristic.species.characteristics : @characteristic.reference.characteristics
       render :index
     else
       puts @characteristic.errors.messages.inspect
@@ -34,7 +37,7 @@ class Admin::CharacteristicsController < Admin::AdminController
   def update
     if @characteristic.update(resource_params)
       flash.now[:message] = 'success'
-      @characteristics = @characteristic.species.characteristics
+      @characteristics = @species ? @characteristic.species.characteristics : @characteristic.reference.characteristics
       render :index
     else
       puts @characteristic.errors.messages.inspect
@@ -44,7 +47,7 @@ class Admin::CharacteristicsController < Admin::AdminController
 
   def destroy
     if @characteristic.destroy
-      @characteristics = @characteristic.species.characteristics
+      @characteristics = @species ? @characteristic.species.characteristics : @characteristic.reference.characteristics
       render :index
     else
       puts @characteristic.errors.messages.inspect
@@ -54,13 +57,14 @@ class Admin::CharacteristicsController < Admin::AdminController
   end
 
   private
+
   def set_characteristic
     if action == :new
-      @characteristic = @species.characteristics.new
+      @characteristic = @species ? @species.characteristics.new : @reference.characteristics.new
     elsif action == :create
-      @characteristic = @species.characteristics.new(resource_params)
+      @characteristic = @species ? @species.characteristics.new(resource_params) : @reference.characteristics.new(resource_params)
     elsif action == :index
-      @characteristics = @species.characteristics
+      @characteristics = @species ? @species.characteristics : @reference.characteristics
     else
       @characteristic = Characteristic.friendly.find(params[:id])
     end
@@ -71,26 +75,30 @@ class Admin::CharacteristicsController < Admin::AdminController
 
   def set_species
     @species = Species.where(url: params[:species_url]).first
-    # @species = @characteristic.species
+  end
+
+  def set_reference
+    @reference = Reference.friendly.find(params[:reference_id])
   end
 
   def set_fields
     @options = {
-      index_path: admin_species_characteristics_path(@species),
-      new_path: new_admin_species_characteristic_path(@species),
+      index_path: @species ? admin_species_characteristics_path(@species) : admin_reference_characteristics_path(@reference),
+      new_path: @species ? new_admin_species_characteristic_path(@species) : new_admin_reference_characteristic_path(@reference),
       remote: true
     }
 
     unless [:index, :new, :create].include?(action)
-      @options[:edit_path] = edit_admin_species_characteristic_path(@species, @characteristic)
-      @options[:path] = admin_species_characteristic_path(@species, @characteristic)
+      @options[:edit_path] = @species ? edit_admin_species_characteristic_path(@species, @characteristic) : edit_admin_reference_characteristic_path(@reference, @characteristic)
+      @options[:path] = @species ? admin_species_characteristic_path(@species, @characteristic) : admin_reference_characteristic_path(@reference, @characteristic)
     end
 
     if [:index, :update, :create, :destroy].include?(action)
-      @fields = INDEX_FIELDS
+      @fields = Admin::CharacteristicsController.index_fields_for(@species ? :species : :reference)
     else
-      @fields = [
-        { name: :reference, field: :full_title, include_blank: false, as: :collection_select, collection: Reference.where('id not in (?)', Characteristic.where(species_id: @species.id).pluck(:reference_id)) },
+      @fields = [@species ? { name: :reference, field: :full_title, include_blank: false, as: :collection_select, collection: Reference.where('id not in (?)', Characteristic.where(species_id: @species.id).pluck(:reference_id)) }
+                 : { name: :species, field: :full_name, include_blank: false, as: :collection_select, label_method: :full_name, value_method: :id, collection: Species.where('id not in (?)', Characteristic.where(reference_id: @reference.id).pluck(:species_id)), input_html: { class: 'italic' } }]
+      @fields += [
         { name: :edible, method: :boolean_to_icon },
         { name: :cultivated, method: :boolean_to_icon },
         { name: :poisonous, method: :boolean_to_icon },
@@ -113,5 +121,4 @@ class Admin::CharacteristicsController < Admin::AdminController
   def current_resource
     @characteristic
   end
-
 end

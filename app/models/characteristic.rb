@@ -114,7 +114,7 @@ class Characteristic < ActiveRecord::Base
   end
 
   def slug_candidates
-    [self.reference.title, self.reference.full_title]
+    [self.reference.title+'-'+self.species.full_name, self.reference.title, self.reference.full_title]
   end
 end
 

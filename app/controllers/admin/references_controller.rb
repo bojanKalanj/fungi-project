@@ -20,7 +20,7 @@ class Admin::ReferencesController < Admin::AdminController
     elsif action == :create
       @reference = Reference.new(resource_params)
     elsif action == :index
-          @references = Reference.all
+      @references = Reference.all
     else
       @reference = Reference.friendly.find(params[:id])
     end
@@ -42,6 +42,17 @@ class Admin::ReferencesController < Admin::AdminController
         { name: :isbn },
         { name: :url }
       ]
+
+      if action == :show
+        @characteristic_fields = Admin::CharacteristicsController.index_fields_for(:reference)
+
+        @subheader_options = {
+          new_path: new_admin_reference_characteristic_path(@reference),
+          edit_path: edit_admin_reference_characteristic_path(@reference, @reference.characteristics),
+          path: admin_reference_characteristic_path(@reference, @reference.characteristics),
+          remote: true
+        }
+      end
     end
   end
 

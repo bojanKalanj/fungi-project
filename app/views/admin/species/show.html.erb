@@ -2,5 +2,5 @@
 <%= admin_show_fields(@species, Species::PUBLIC_FIELDS) %>
 
 <span id="characteristics-container">
-  <%= render partial: 'admin/characteristics/index', locals: {options: @subheader_options, characteristics: @species.characteristics, species: @species, characteristic_fields: @characteristic_fields } %>
+  <%= render partial: 'admin/characteristics/index', locals: {options: @subheader_options, characteristics: @species.characteristics, species: @species, reference: nil, characteristic_fields: @characteristic_fields } %>
 </span>

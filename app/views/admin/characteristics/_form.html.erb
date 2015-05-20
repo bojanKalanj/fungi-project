@@ -1,6 +1,6 @@
 <%= admin_page_resource_subheader(characteristic, action, options) %>
 
-<% path = characteristic.new_record? ? admin_species_characteristics_path(characteristic.species) : admin_species_characteristic_path(characteristic.species, characteristic) %>
+<% path = characteristic.new_record? ? options[:index_path] : options[:path] %>
 
 <%= simple_form_for characteristic, url: path, method: characteristic.new_record? ? :post : :patch, :html => { :class => 'form-horizontal' }, remote: true do |f| %>
   <%= admin_edit_fields(characteristic, fields, f) %>

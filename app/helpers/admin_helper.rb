@@ -137,13 +137,38 @@ module AdminHelper
     content_tag(:div, class: :habitats) { output } +
       content_tag(:div, class: 'form-group') do
         select_tag('habitats-select', options_for_select(habitats, nil), include_blank: false, data: { url: admin_habitats_path(habitat: '') }, prompt: t('characteristic.interface.add_habitat')) +
-        link_to('', class: 'btn btn-primary btn-circle add-habitat', title: t('characteristic.interface.add_habitat'), remote: true) { fo_icon_tag(:new) }
+          link_to('', class: 'btn btn-primary btn-circle add-habitat', title: t('characteristic.interface.add_habitat'), remote: true) { fo_icon_tag(:new) }
+      end
+  end
+
+  def habitat_field(form_object, name, options)
+    output = content_tag(:div, class: 'form-group') { form_object.label :habitats, label: t('specimen.attributes.habitat'), requied: false }
+
+    habitat = nil
+    if form_object.object.send(name)
+      habitat_hash = form_object.object.send(name)
+      habitat_hash = { habitat_hash => habitat_hash } unless habitat_hash.is_a?(Hash)
+
+      habitat = habitat_hash.keys.first
+      subhabitat = habitat_hash[habitat]['subhabitat']
+      selected_species = habitat_hash[habitat]['species']
+
+      subhabitats = subhabitat.blank? ? nil : subhabitat_keys(habitat).map { |key| [t("habitats.#{habitat}.subhabitat.#{key}.title"), key] }
+      species = allowed_species(habitat, subhabitat).map { |key| [localized_habitat_species_name(key), key] }
+      output += render partial: 'admin/shared/specimen_habitat_form', locals: { habitat: habitat, subhabitat: subhabitat, subhabitats: subhabitats, selected_species: selected_species, species: species }
+    end
+
+    habitats = all_habitat_keys.map { |key| [t("habitats.#{key}.title"), key] }
+    content_tag(:div, class: :habitats) { output } +
+      content_tag(:div, class: "form-group #{'hidden' if habitat}") do
+        select_tag('habitats-select', options_for_select(habitats, nil), include_blank: false, data: { url: admin_habitats_path(for_specimen: 1, habitat: '') }, prompt: t('characteristic.interface.add_habitat')) +
+          link_to('', class: 'btn btn-primary btn-circle add-habitat', title: t('characteristic.interface.add_habitat'), remote: true, data: { max: 1 }) { fo_icon_tag(:new) }
       end
   end
 
   def substrates_field(form_object, name, options)
     content_tag(:div, class: 'form-group') do
-      form_object.input :substrates, label: t('characteristic.attributes.substrates'), requied: false, collection: all_substrate_keys.map{|key| [t("substrates.#{key}"), key] }, label_method: :first, value_method: :last, input_html: {multiple: true}
+      form_object.input :substrates, label: t('characteristic.attributes.substrates'), requied: false, collection: all_substrate_keys.map { |key| [t("substrates.#{key}"), key] }, label_method: :first, value_method: :last, input_html: { multiple: true }
     end
   end
 
@@ -152,6 +177,8 @@ module AdminHelper
     name = options.delete(:name)
     if field == :habitats
       habitats_field form_object, name, options
+    elsif field == :habitat
+      habitat_field form_object, name, options
     elsif field == :substrates
       substrates_field form_object, name, options
     elsif options[:field]

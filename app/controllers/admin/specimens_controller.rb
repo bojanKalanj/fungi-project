@@ -17,6 +17,8 @@ class Admin::SpecimensController < Admin::AdminController
     else
       @specimen = Specimen.friendly.find(params[:id])
     end
+
+    @specimen.habitat = params['specimen']['habitat'] if params && params['specimen'] && params['specimen']['habitat']
   end
 
   def set_specimen_fields
@@ -25,8 +27,8 @@ class Admin::SpecimensController < Admin::AdminController
         { name: :species, field: :full_name, class: 'italic no-wrap' },
         { name: :location, field: :name },
         { name: :date, method: :localize_date, options: { format: :long }, class: 'no-wrap' },
-        { name: :habitat_title, class: 'no-wrap' },
-        { name: :substrate_title },
+        { name: :habitat, method: :habitat_icons },
+        { name: :substrate, method: :substrate_icons },
         { name: :actions, no_label: true }
       ]
     else
@@ -35,8 +37,8 @@ class Admin::SpecimensController < Admin::AdminController
         { name: :location, field: :name },
         { name: :legator, field: :full_name, label_method: :full_name, value_method: :id },
         { name: :determinator, field: :full_name, label_method: :full_name, value_method: :id },
-        { name: :habitats },
-        { name: :substrates },
+        { name: :habitat, method: :habitat_title },
+        { name: :substrate, method: :subhabitat_title, collection: all_substrate_keys.map{ |key| [t("substrates.#{key}"), key]}, label_method: :first, value_method: :last },
         { name: :quantity, as: :string },
         { name: :note },
         { name: :approved },

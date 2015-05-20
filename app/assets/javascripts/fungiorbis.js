@@ -71,15 +71,21 @@ $(document).on('ready page:load', function () {
   });
 
   $(document).on('click', '.add-habitat', function (e) {
-    if ($(this).attr('href').split('habitats=')[1] === undefined){
+    if ($(this).attr('href').split('habitats')[1] === undefined) {
       e.stopPropagation();
       e.preventDefault();
       return false;
+    }
+    else {
+      if ($(this).data('max') == 1) {
+        $(this).parent().addClass('hidden');
+      }
     }
   });
 
   $(document).on('click', '.remove-habitat', function (e) {
     $(this).closest('.habitat.panel').remove();
+    $('.add-habitat').parent().removeClass('hidden');
     e.stopPropagation();
     e.preventDefault();
   });

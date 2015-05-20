@@ -19,8 +19,8 @@ end
 #  legator_text      :string(255)
 #  determinator_id   :integer
 #  determinator_text :string(255)
-#  habitats          :text(65535)
-#  substrates        :text(65535)
+#  habitat           :text(65535)
+#  substrate         :text(65535)
 #  date              :date             not null
 #  quantity          :text(65535)
 #  note              :text(65535)

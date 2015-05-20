@@ -140,8 +140,8 @@ module Fungiorbis
           s.determinator = determinator
           s.determinator_text = specimen[5]
           s.date = date
-          s.habitats = habitat
-          s.substrates = substrate
+          s.habitat = habitat
+          s.substrate = substrate
           s.quantity = quantity
           s.note = note
 
@@ -344,7 +344,7 @@ module Fungiorbis
           'šuma / listopadna / hrast/lipa/grab/dren' => 'forest / deciduous / quercus, tilia, carpinus, cornus',
           'šuma / listopadna / vrba/topola' => 'forest / deciduous / salix, populus',
           'šuma / mešovita' => 'forest / mixed',
-          'šuma / mešovita / bukva/hrast/sađena jela' => 'forest / mixed / fagus, querqus, abies',
+          'šuma / mešovita / bukva/hrast/sađena jela' => 'forest / mixed / fagus, quercus, abies',
           'šuma / mešovita / lipa/sađeni bor' => 'forest / mixed / tilia, pinus',
           'šuma / mešovita / bukva /smrča' => 'forest / mixed / fagus, picea',
           'travnjak' => 'meadow'

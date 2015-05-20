@@ -16,5 +16,6 @@ class Admin::HabitatsController < ApplicationController
       @subhabitats = subhabitat_keys(@habitat).to_a.map { |key| [t("habitats.#{@habitat}.subhabitat.#{key}.title"), key] }
       @species = allowed_species(@habitat, nil).map { |key| [localized_habitat_species_name(key), key] }
     end
+    @for_specimen = params[:for_specimen]
   end
 end

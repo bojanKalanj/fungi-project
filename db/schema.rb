@@ -119,8 +119,8 @@ ActiveRecord::Schema.define(version: 20150411170719) do
     t.string   "legator_text",      limit: 255
     t.integer  "determinator_id",   limit: 4
     t.string   "determinator_text", limit: 255
-    t.text     "habitats",          limit: 65535
-    t.text     "substrates",        limit: 65535
+    t.text     "habitat",           limit: 65535
+    t.text     "substrate",         limit: 65535
     t.date     "date",                            null: false
     t.text     "quantity",          limit: 65535
     t.text     "note",              limit: 65535

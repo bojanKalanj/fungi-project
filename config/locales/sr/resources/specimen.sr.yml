@@ -6,10 +6,8 @@ sr:
       legator: Легатор
       determinator: Детерминатор
       determinator_text: Детерминатор - напомена
-      habitats: Станишта
-      habitat_title: Станиште
-      substrates: Подлоге
-      substrate_title: Подлога
+      habitat: Станиште
+      substrate: Подлога
       date: Датум
       quantity: Бројност
       approved: Потврђен

@@ -10,8 +10,8 @@ class CreateSpecimen < ActiveRecord::Migration
       t.references :determinator, index: true
       t.string :determinator_text
 
-      t.text :habitats
-      t.text :substrates
+      t.text :habitat
+      t.text :substrate
 
       t.date :date, null: false
       t.text :quantity

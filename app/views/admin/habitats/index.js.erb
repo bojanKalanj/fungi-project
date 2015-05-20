@@ -1,7 +1,8 @@
+<% prefix = @for_specimen ? 'specimen_' : '' %>
 <% if @subhabitats%>
-  $('.habitats').append('<%= j(render partial: 'admin/shared/habitat_form', locals: { habitat: @habitat, subhabitat: nil, subhabitats: @subhabitats, species: @species, index: Time.now.to_i, selected_species: nil }) %>');
+  $('.habitats').append('<%= j(render partial: "admin/shared/#{prefix}habitat_form", locals: { habitat: @habitat, subhabitat: nil, subhabitats: @subhabitats, species: @species, index: Time.now.to_i, selected_species: nil }) %>');
 <% else %>
   var $subhabitat = $('select.subhabitat.active');
-  $subhabitat.parents('.habitat').find(".select.habitat-species").html('<%= j(render partial: 'admin/shared/habitat_species_select', locals: { habitat: @habitat, species: @species, selected_species: nil, index: @index }) %>')
+  $subhabitat.parents('.habitat').find(".select.habitat-species").html('<%= j(render partial: "admin/shared/#{prefix}habitat_species_select", locals: { habitat: @habitat, species: @species, selected_species: nil, index: @index }) %>')
   $subhabitat.removeClass('active');
 <% end %>

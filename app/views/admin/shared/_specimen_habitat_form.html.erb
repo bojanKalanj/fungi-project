@@ -1,0 +1,32 @@
+<div class="habitat panel panel-default">
+  <div class="panel-heading">
+    <i class="fa fa-fw fa-tree <%= habitat %>"></i>
+    <label class="string optional"><%= t("habitats.#{habitat}.title") %></label>
+    <a href="" title="<%= t('characteristic.interface.remove_habitat') %>" class="btn btn-default btn-circle remove-habitat"><i class=" fa fa-fw fa-trash-o"></i></a>
+  </div>
+  <% if !subhabitats.blank? || !species.blank? %>
+    <div class="panel-body">
+      <% unless subhabitats.blank? %>
+        <div class="form-group optional">
+          <label class="string optional"><%= t('characteristic.attributes.subhabitat') %></label>
+          <% unless subhabitat %>
+            <a href="" title="<%= t('characteristic.interface.choose_subhabitat') %>" class="btn btn-default btn-circle choose-subhabitat"><i class=" fa fa-fw fa-plus"></i></a>
+          <% end %>
+          <select name="specimen[habitat][<%= habitat %>][subhabitat]" data-habitats-url="<%= admin_habitats_url(habitat: habitat, index: nil, subhabitat: '') %>" class="select subhabitat <%= 'hidden' unless subhabitat %>">
+            <option value=""></option>
+            <%= options_for_select subhabitats, subhabitat %>
+          </select>
+        </div>
+      <% end %>
+
+      <% unless species.blank? %>
+        <div class="form-group select optional habitat-species">
+          <% if species %>
+            <%= render partial: 'admin/shared/specimen_habitat_species_select', locals: { habitat: habitat, species: species, selected_species: selected_species } %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <input name="specimen[habitat][<%= habitat %>][habitat]" type="hidden" value="<%= habitat %>">
+</div>

@@ -1,0 +1,4 @@
+<label class="select optional control-label"><%= t('characteristic.attributes.habitat_species') %></label>
+<select name="specimen[habitat][<%= habitat %>][species][]" class="select optional form-control" multiple="multiple">
+  <%= options_for_select species, selected_species %>
+</select>

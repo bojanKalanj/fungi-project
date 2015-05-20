@@ -84,33 +84,42 @@ module IndexTableHelper
       content_tag(:div, class: 'localized-tab tab-content') { raw content_tabs.join }
   end
 
+  def habitat_title(value, options)
+    value = { value => value } unless value.is_a?(Hash)
+
+    habitat = value.keys.first
+    subhabitat = value[habitat]['subhabitat']
+    species = value[habitat]['species']
+
+    title = subhabitat.blank? ? t("habitats.#{habitat}.title") : t("habitats.#{habitat}.subhabitat.#{subhabitat}.title")
+    title += ' - ' + species.map { |s| localized_habitat_species_name(s) }.join(', ') if species
+
+    title
+  end
+
   def habitat_icons(values, options)
     output = ''
 
-    values.each do |value|
-      habitat = value.keys.first
-
-      subhabitat = value[habitat]['subhabitat']
-      species = value[habitat]['species']
-
-      title = subhabitat.blank? ? t("habitats.#{habitat}.title") : t("habitats.#{habitat}.subhabitat.#{subhabitat}.title")
-
-      title += ' - ' + species.map{ |s| localized_habitat_species_name(s) }.join(', ') if species
-
-      output += fo_icon_tag(:habitat, title: title, class: [habitat, :pointer].join(' '))
+    if values.is_a?(Hash)
+      values = [values]
+    elsif values.is_a?(String)
+      values = [{ values => values }]
     end
 
+    values.each { |value| output += fo_icon_tag(:habitat, title: habitat_title(value, {}), class: [value.keys.first, :pointer].join(' ')) }
+
     raw output
+  end
+
+  def subhabitat_title(value, options)
+    t("substrates.#{value}")
   end
 
   def substrate_icons(values, options)
     output = ''
 
-    values.each do |value|
-      title = t("substrates.#{value}")
-
-      output += fo_icon_tag(:substrate, title: title, class: [:pointer, :substrate, value].join(' '))
-    end
+    values = [values] unless values.is_a?(Array)
+    values.each { |value| output += fo_icon_tag(:substrate, title: subhabitat_title(value, {}), class: [:pointer, :substrate, value].join(' ')) }
 
     raw output
   end
@@ -126,7 +135,7 @@ module IndexTableHelper
 
       title = subhabitat ? t("habitats.#{habitat}.subhabitat.#{subhabitat}.title") : t("habitats.#{habitat}.title")
 
-      title += ' - ' + species.map{ |s| t(s) } if species
+      title += ' - ' + species.map { |s| t(s) } if species
 
       output += content_tag(:div) { fo_icon_tag(:habitat, title: title, class: [habitat, :pointer].join(' ')) + title }
     end

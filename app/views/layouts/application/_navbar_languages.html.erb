@@ -6,7 +6,7 @@
   <%= drop_down_list do %>
     <% Language.all.each do |language| %>
       <% unless language.locale == I18n.locale.to_s %>
-        <%= menu_item send(localized_url_helper(language.locale_slug)), title: language.title do %>
+        <%= menu_item send(*localized_url_helper(language.locale_slug)), title: language.title do %>
           <%= content_tag :span, '', class: "flag-icon flag-icon-#{language.flag}" %>
           <%= content_tag :span, language.title %>
         <% end %>

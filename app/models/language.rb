@@ -10,8 +10,13 @@ class Language < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   class << self
+    def for_locale(locale)
+      locale = 'sr-Latn' if locale == 'sr_latn'
+      Language.where(locale: locale).first
+    end
+
     def parent_locale_for_current
-      l = Language.where(locale: I18n.locale).first
+      l = Language.for_locale(I18n.locale)
       if l.parent.nil?
         I18n.locale
       else

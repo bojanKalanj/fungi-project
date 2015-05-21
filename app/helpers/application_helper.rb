@@ -2,7 +2,7 @@ require 'fungiorbis/cyr_to_lat'
 
 module ApplicationHelper
 
-  def localized_url_helper(locale, args={})
+  def localized_url_helper(locale, options={})
     if admin_page? || devise_page? || root_page?
       if locale == I18n.default_locale
         :root_path
@@ -24,7 +24,11 @@ module ApplicationHelper
         when 'edit'
           "edit_#{args[:controller]}_#{locale}_path".to_sym
         else
-          "#{args[:controller]}_#{locale}_path".to_sym
+          if args[:controller] == 'localized_pages' && @localized_page
+            ["#{args[:controller][0..-2]}_#{locale}_path".to_sym, @localized_page.for_locale(locale).title]
+          else
+            "#{args[:controller][0..-2]}_#{locale}_path".to_sym
+          end
       end
     end
   end

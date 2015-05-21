@@ -5,6 +5,7 @@
     <%= f.input :title, as: :hidden, input_html: { data: { parent: localized_page.language.parent.locale } } %>
 
   <% else %>
+    <% localized_page_fields = localized_page_fields.map{ |pf| pf[:name] == :title ? pf.merge({input_html: { data: { locale: localized_page.language.locale } }}) : pf } %>
     <%= admin_edit_fields(localized_page, localized_page_fields, f) %>
   <% end %>
 

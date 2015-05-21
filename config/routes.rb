@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   localized do
     resources :species, param: :url, only: [:index, :show]
 
-    get '/:id' => 'localized_pages#show', :defaults => { :page_id => 1 }
+    resources :localized_pages, only: :show, :defaults => { :page_id => 1 }, :path => '/'
     root to: 'localized_pages#show', :defaults => { :page_id => 1 }, param: :page_id
   end
 end

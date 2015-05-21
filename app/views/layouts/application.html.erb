@@ -5,42 +5,50 @@
 
 <div id="wrapper">
 
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <%= link_to t('shared.sections.fungiorbis'), root_path, class: 'navbar-brand' %>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to t('shared.sections.fungiorbis'), root_path, class: 'navbar-brand' %>
 
-    <ul class="nav navbar-top-links navbar-right">
-      <%#= render partial: 'layouts/application/navbar_messages' %>
-      <%#= render partial: 'layouts/application/navbar_tasks' %>
-      <%#= render partial: 'layouts/application/navbar_alerts' %>
-      <%= render partial: 'layouts/application/navbar_user' %>
-      <%= render partial: 'layouts/application/navbar_languages' %>
-    </ul>
-  </div>
+      <%= menu_group pull: :left, class: 'navbar-top-links' do %>
+        <% LocalizedPage.for_locale(I18n.locale).without_home.ordered.each do |p| %>
+          <%= menu_item p.title, send(("localized_page_#{I18n.locale}_path".downcase.gsub('-', '_')).to_sym, p.title) %>
+        <% end %>
+        <%= menu_item t('shared.sections.species'), send(("species_index_#{I18n.locale}_path".downcase.gsub('-', '_')).to_sym) %>
+      <% end %>
 
-  <div class="navbar-default navbar-static-side" role="navigation">
-    <div class="sidebar-collapse">
-      <ul class="nav" id="side-menu">
-        <%= render partial: 'layouts/application/sidebar_search' %>
-        <%= render partial: 'layouts/application/sidebar_admin' %>
+
+      <ul class="nav navbar-top-links navbar-right">
+        <%#= render partial: 'layouts/application/navbar_messages' %>
+        <%#= render partial: 'layouts/application/navbar_tasks' %>
+        <%#= render partial: 'layouts/application/navbar_alerts' %>
+        <%= render partial: 'layouts/application/navbar_admin' %>
+        <%= render partial: 'layouts/application/navbar_user' %>
+        <%= render partial: 'layouts/application/navbar_languages' %>
       </ul>
     </div>
-  </div>
-</nav>
 
-<div id="page-wrapper">
-  <div class="col-sm-9 col-sm-offset-3">
-    <%= bootstrap_flash %>
-    <%= yield %>
+    <div class="navbar-default navbar-static-side" role="navigation">
+      <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+          <%= render partial: 'layouts/application/sidebar_search' %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="page-wrapper">
+    <div class="col-sm-9 col-sm-offset-3">
+      <%= bootstrap_flash %>
+      <%= yield %>
+    </div>
   </div>
-</div>
-<!-- /#page-wrapper -->
+  <!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->

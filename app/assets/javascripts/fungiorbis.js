@@ -18,7 +18,7 @@ var Fungiorbis = (function () {
 
 $(document).on('ready page:load', function () {
 
-  $(document).on('click', 'form[data-transliterate] .btn-primary', function (e) {
+  $(document).on('blur', 'input[data-locale]', function (e) {
     var $form = $(this).closest('form');
 
     $form.find('[data-parent]').each(function (index) {

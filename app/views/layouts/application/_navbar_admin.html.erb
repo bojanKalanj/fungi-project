@@ -1,0 +1,66 @@
+<% if current_user && current_user.supervisor? %>
+  <%= content_tag :li, class: 'dropdown' do %>
+    <%= link_to("#", :class => "dropdown-toggle", "data-toggle" => "dropdown") do %>
+      <%= fo_icon_tag(:dashboard) %>
+      <%= fo_icon_tag(:caret_down) %>
+    <% end %>
+    <%= drop_down_list do %>
+
+      <%= content_tag :li do %>
+        <%= link_to admin_dashboard_path do %>
+          <%= fo_icon_tag(:dashboard) %>
+          <%= " #{t('shared.sections.dashboard')}" %>
+        <% end %>
+      <% end %>
+
+      <%= content_tag :li do %>
+        <%= link_to admin_species_index_path do %>
+          <%= fo_icon_tag(:species) %>
+          <%= " #{t('shared.sections.species')}" %>
+        <% end %>
+      <% end %>
+
+      <%= content_tag :li do %>
+        <%= link_to admin_specimens_path do %>
+          <%= fo_icon_tag(:specimens) %>
+          <%= " #{t('shared.sections.specimens')}" %>
+        <% end %>
+      <% end %>
+
+      <%= content_tag :li do %>
+        <%= link_to admin_references_path do %>
+          <%= fo_icon_tag(:references) %>
+          <%= " #{t('shared.sections.references')}" %>
+        <% end %>
+      <% end %>
+
+      <%= content_tag :li do %>
+        <%= link_to admin_locations_path do %>
+          <%= fo_icon_tag(:locations) %>
+          <%= " #{t('shared.sections.locations')}" %>
+        <% end %>
+      <% end %>
+
+      <%= content_tag :li do %>
+        <%= link_to admin_users_path do %>
+          <%= fo_icon_tag(:users) %>
+          <%= " #{t('shared.sections.users')}" %>
+        <% end %>
+      <% end %>
+
+      <%= content_tag :li do %>
+        <%= link_to admin_languages_path do %>
+          <%= fo_icon_tag(:languages) %>
+          <%= " #{t('shared.sections.languages')}" %>
+        <% end %>
+      <% end %>
+
+      <%= content_tag :li do %>
+        <%= link_to admin_pages_path do %>
+          <%= fo_icon_tag(:pages) %>
+          <%= " #{t('shared.sections.pages')}" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

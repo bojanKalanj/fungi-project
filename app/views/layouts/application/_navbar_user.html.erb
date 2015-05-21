@@ -6,7 +6,6 @@
   <%= drop_down_list do %>
 
     <% if current_user %>
-
       <%= menu_item edit_user_registration_path do %>
         <%= fo_icon_tag(:users, singular: true) %>
         <%= content_tag :span, t('shared.sections.user_profile') %>

@@ -2,13 +2,14 @@
 lock '3.4.0'
 
 set :application, 'fungiorbis_rails'
-set :deploy_user, 'markob'
+
 set :scm, :git
 set :repo_url, 'git@github.com:bosskovic/fungiorbis_pure_rails.git'
 
 set :rvm_ruby_version, '2.1.5@fungiorbis2'
 set :passenger_rvm_ruby_version, '2.1.5@fungiorbis2'
 set :passenger_restart_with_sudo, true
+
 set :stages, ['production']
 set :bundle_without, %w{development test}.join(' ')
 

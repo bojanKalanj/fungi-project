@@ -34,15 +34,20 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'route_translator'
 gem 'simple_form'
 
+gem 'figaro'
+
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
+
   gem 'capistrano'
   gem 'capistrano-rails'
+  gem 'capistrano-rails-console'
   gem 'capistrano-bundler'
+  gem 'capistrano-passenger'
   gem 'capistrano-rvm', require: false
-  gem 'daemons'
 
+  gem 'daemons'
 
   gem 'rspec-rails'
   gem 'factory_girl_rails'

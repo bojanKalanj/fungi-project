@@ -1,0 +1,54 @@
+server {
+  server_name fungiorbis.pmf.uns.ac.rs;
+  listen 80;
+
+  #root var/www;
+  root <%= fetch(:deploy_to) %>/current/;
+
+  location ~(/.*|$) {
+    alias <%= fetch(:deploy_to) %>/current/public$1;
+
+    access_log    <%= fetch(:deploy_to) %>/current/log/access.log;
+    error_log     <%= fetch(:deploy_to) %>/current/log/error.log;
+
+    passenger_enabled on;
+    passenger_app_env production;
+    passenger_friendly_error_pages on;
+    passenger_ruby /usr/local/rvm/gems/ruby-<%= fetch(:passenger_rvm_ruby_version) %>/wrappers/ruby;
+    passenger_base_uri /;
+    passenger_app_root <%= fetch(:deploy_to) %>/current;
+  }
+
+  client_max_body_size 4G;
+  keepalive_timeout 10;
+}
+
+<% if fetch(:enable_ssl) %>
+server {
+  server_name <%= fetch(:server_name) %>;
+  listen 443;
+
+  root <%= fetch(:deploy_to) %>/current/;
+
+  location ~(/.*|$) {
+    alias <%= fetch(:deploy_to) %>/current/public$1;
+
+    access_log    <%= fetch(:deploy_to) %>/current/log/access.log;
+    error_log     <%= fetch(:deploy_to) %>/current/log/error.log;
+
+    passenger_enabled on;
+    passenger_app_env production;
+    passenger_friendly_error_pages on;
+    passenger_ruby /usr/local/rvm/gems/ruby-<%= fetch(:passenger_rvm_ruby_version) %>/wrappers/ruby;
+    passenger_base_uri /;
+    passenger_app_root <%= fetch(:deploy_to) %>/current;
+  }
+
+  client_max_body_size 4G;
+  keepalive_timeout 10;
+
+  ssl on;
+  ssl_certificate <%= fetch(:deploy_to) %>/shared/ssl_cert.crt;
+  ssl_certificate_key <%= fetch(:deploy_to) %>/shared/ssl_private_key.key;
+}
+<% end %>

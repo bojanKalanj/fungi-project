@@ -14,7 +14,8 @@ server {
     passenger_enabled on;
     passenger_app_env production;
     passenger_friendly_error_pages on;
-    passenger_ruby /usr/local/rvm/gems/ruby-<%= fetch(:passenger_rvm_ruby_version) %>/wrappers/ruby;
+    #passenger_ruby /usr/local/rvm/gems/ruby-<%= fetch(:passenger_rvm_ruby_version) %>/wrappers/ruby;
+    passenger_ruby <%= fetch(:rvm_gemset_wrappers_dir) %>;
     passenger_base_uri /;
     passenger_app_root <%= fetch(:deploy_to) %>/current;
   }
@@ -39,7 +40,8 @@ server {
     passenger_enabled on;
     passenger_app_env production;
     passenger_friendly_error_pages on;
-    passenger_ruby /usr/local/rvm/gems/ruby-<%= fetch(:passenger_rvm_ruby_version) %>/wrappers/ruby;
+    #passenger_ruby /usr/local/rvm/gems/ruby-<%= fetch(:passenger_rvm_ruby_version) %>/wrappers/ruby;
+    passenger_ruby <%= fetch(:rvm_gemset_wrappers_dir) %>;
     passenger_base_uri /;
     passenger_app_root <%= fetch(:deploy_to) %>/current;
   }

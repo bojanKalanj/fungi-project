@@ -7,4 +7,8 @@ class SpeciesController < ApplicationController
   def show
     @species = Species.find(params[:url])
   end
+
+  def search
+    @species = Species.includes(:characteristics).includes(:specimens).paginate(:page => params[:page])
+  end
 end

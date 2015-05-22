@@ -9,6 +9,8 @@ class Characteristic < ActiveRecord::Base
   SPECIES_VALIDATION_ERROR = 'must take species from the list for specific habitat and subhabitat'
   # SUBSTRATES_VALIDATION_ERROR = "have to be included in: #{all_substrate_keys.inspect}"
 
+  FLAGS = [:edible, :cultivated, :poisonous, :medicinal]
+
   PUBLIC_FIELDS = [:reference_id, :species_id, :edible, :cultivated, :poisonous, :medicinal,
                    { fruiting_body: I18n.available_locales },
                    { microscopy: I18n.available_locales },

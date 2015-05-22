@@ -23,3 +23,5 @@ en:
       characteristic: Species Characteristics
     attributes:
       name: Name
+  species_search:
+    specimens_count: Number of Specimens

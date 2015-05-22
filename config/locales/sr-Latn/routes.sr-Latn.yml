@@ -2,3 +2,4 @@
 sr-Latn:
   routes:
     species: vrste
+    search: pretraga

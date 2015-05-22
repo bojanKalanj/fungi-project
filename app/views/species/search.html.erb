@@ -1,0 +1,7 @@
+<div class="species-search-results">
+  <% @species.each do |species| %>
+    <%= species_card(species) %>
+  <% end %>
+</div>
+
+<%= will_paginate @species, renderer: BootstrapPagination::Rails %>

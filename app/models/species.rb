@@ -17,6 +17,8 @@ class Species < ActiveRecord::Base
 
   friendly_id :url
 
+  self.per_page = 20
+
   validates :name, presence: true, uniqueness: { scope: :genus, case_sensitive: false, message: NAME_GENUS_VALIDATION_ERROR }
   validates :genus, presence: true
   validates :familia, presence: true
@@ -33,10 +35,47 @@ class Species < ActiveRecord::Base
   def full_name
     "#{self.genus} #{self.name}"
   end
+
   alias_method :resource_title, :full_name
 
   def self.usability_count(usability)
     Characteristic.where(usability => true).select(:species_id).distinct.count
+  end
+
+  def systematics
+    [:name, :genus, :familia, :ordo, :subclassis, :classis, :subphylum, :phylum].map{ |s| self.send(s)}
+  end
+
+  def combined_characteristics(locale=I18n.locale)
+    hash = {
+      fruiting_body: [],
+      microscopy: [],
+      flesh: [],
+      chemistry: [],
+      note: [],
+      habitats: [],
+      substrates: [],
+      edible: [],
+      cultivated: [],
+      poisonous: [],
+      medicinal: []
+    }
+
+    characteristics_keys = hash.keys
+
+    self.characteristics.each do |c|
+      characteristics_keys.each do |key|
+        unless c.send(key).blank?
+          if Characteristic::FLAGS.include?(key) && c.send(key)  || [:habitats, :substrates].include?(key)
+            hash[key] << { value: c.send(key), reference_id: c.reference_id }
+          elsif c.send(key).is_a?(Hash) && !c.send(key)[locale].blank?
+            hash[key] << { value: c.send(key)[locale], reference_id: c.reference_id }
+          end
+        end
+      end
+    end
+
+    hash
   end
 
   protected

@@ -8,6 +8,7 @@ gem 'rails'
 gem 'devise'
 gem 'cancancan'
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 gem 'rails-i18n'
 gem 'mysql2'

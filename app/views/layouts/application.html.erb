@@ -17,9 +17,8 @@
 
       <%= menu_group pull: :left, class: 'navbar-top-links' do %>
         <% LocalizedPage.for_locale(I18n.locale).without_home.ordered.each do |p| %>
-          <%= menu_item p.title, send(("localized_page_#{I18n.locale}_path".downcase.gsub('-', '_')).to_sym, p.title) %>
+          <%= menu_item p.title, send(:localized_page_path, p.title, locale: I18n.locale) %>
         <% end %>
-        <%= menu_item t('shared.sections.species'), send(("species_index_#{I18n.locale}_path".downcase.gsub('-', '_')).to_sym) %>
       <% end %>
 
 

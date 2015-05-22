@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   end
 
   localized do
-    resources :species, param: :url, only: [:index, :show]
+    resources :species, param: :url, only: [:index, :show] do
+      get :search, on: :collection
+    end
 
     resources :localized_pages, only: :show, :defaults => { :page_id => 1 }, :path => '/'
     root to: 'localized_pages#show', :defaults => { :page_id => 1 }, param: :page_id

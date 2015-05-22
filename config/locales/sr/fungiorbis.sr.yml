@@ -23,3 +23,5 @@ sr:
       characteristic: Карактеристике врсте
     attributes:
       name: Име
+  species_search:
+    specimens_count: Број налаза

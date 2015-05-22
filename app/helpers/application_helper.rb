@@ -23,14 +23,23 @@ module ApplicationHelper
           "new_#{args[:controller]}_#{locale}_path".to_sym
         when 'edit'
           "edit_#{args[:controller]}_#{locale}_path".to_sym
+        when 'search'
+          [:search_species_index_url, locale: locale]
         else
           if args[:controller] == 'localized_pages' && @localized_page
-            ["#{args[:controller][0..-2]}_#{locale}_path".to_sym, @localized_page.for_locale(locale).title]
+            ["#{args[:controller][0..-2]}_path".to_sym, @localized_page.for_locale(locale).title, locale: locale]
+          elsif args[:controller][-1] == 's'
+            "#{args[:controller]}_#{locale}_path".to_sym
           else
             "#{args[:controller][0..-2]}_#{locale}_path".to_sym
           end
       end
     end
+  end
+
+  def is_species_search?
+    args = Rails.application.routes.recognize_path request.env['PATH_INFO']
+    args[:controller] == 'species' && args[:action] == 'search'
   end
 
   def admin_page?
@@ -108,7 +117,6 @@ module ApplicationHelper
       raise e
     end
   end
-
 
 
   def parent_locale_for_current
@@ -194,6 +202,12 @@ module ApplicationHelper
         'fa fa-fw fa-tree'
       when :substrate, :substrates
         'fa fa-fw fa-leaf'
+      when :nutritive_group
+        'fa fa-fw fa-certificate'
+      when :growth_type
+        'fa fa-fw fa-cubes'
+      when :systematics
+        'fa fa-fw fa-book'
 
       when :edit
         'fa fa-fw fa-edit'

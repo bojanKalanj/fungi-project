@@ -22,12 +22,13 @@ gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'flag_icon_css_rails'
+gem 'twitter-typeahead-rails'
 
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
 gem "therubyracer"
 gem "less-rails"
-gem 'will_paginate-bootstrap'
+
 
 gem 'friendly_id', '~> 5.1.0'
 gem 'route_translator'

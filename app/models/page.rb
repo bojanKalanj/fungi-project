@@ -12,6 +12,12 @@ class Page < ActiveRecord::Base
 
   validates :title, presence: true, uniqueness: true
 
+  class << self
+    def first?(id)
+      id == Page.order('created_at ASC').pluck(:id).first
+    end
+  end
+
   def resource_title
     self.title
   end

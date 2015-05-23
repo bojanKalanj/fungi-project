@@ -25,6 +25,10 @@ class LocalizedPage < ActiveRecord::Base
     end
   end
 
+  def first?
+    Page.first?(self.page_id)
+  end
+
   def localized_field(field)
     if dependant?
       Fungiorbis::CyrToLat.transliterate self.page.localized_pages.find_by_language_id(self.language.parent.id).send(field)

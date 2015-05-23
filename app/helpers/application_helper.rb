@@ -7,7 +7,7 @@ module ApplicationHelper
       if locale == I18n.default_locale
         :root_path
       else
-        "root_#{locale}_path".to_sym
+        "root_#{locale}_path".downcase.gsub('-', '_').to_sym
       end
     else
       args = Rails.application.routes.recognize_path request.env['PATH_INFO']
@@ -23,17 +23,24 @@ module ApplicationHelper
           "new_#{args[:controller]}_#{locale}_path".to_sym
         when 'edit'
           "edit_#{args[:controller]}_#{locale}_path".to_sym
-        when 'search'
-          [:search_species_index_url, locale: locale]
         else
           if args[:controller] == 'localized_pages' && @localized_page
-            ["#{args[:controller][0..-2]}_path".to_sym, @localized_page.for_locale(locale).title, locale: locale]
+            ["#{args[:controller][0..-2]}_url".to_sym, @localized_page.for_locale(locale).title]
           elsif args[:controller][-1] == 's'
-            "#{args[:controller]}_#{locale}_path".to_sym
+            ["#{args[:controller]}_url".to_sym, locale: locale]
           else
-            "#{args[:controller][0..-2]}_#{locale}_path".to_sym
+            ["#{args[:controller][0..-2]}_url".to_sym, locale: locale]
           end
       end
+    end
+  end
+
+  def language_picker_url(locale)
+    args = Rails.application.routes.recognize_path request.env['PATH_INFO']
+    if args[:controller] == 'localized_pages' && @localized_page && !@localized_page.first?
+      "/#{@localized_page.for_locale(locale).title}"
+    else
+      locale.to_sym == I18n.default_locale ? '/' : "/#{locale}"
     end
   end
 

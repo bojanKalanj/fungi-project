@@ -24,7 +24,11 @@ module AdminHelper
     content_tag(:div, class: 'page-header') do
       raw(output)+
         content_tag(:h1, class: title_class) do
-          fo_icon_tag(resource.resource_name.to_sym) + title
+          if options[:no_header_icon]
+            title
+          else
+            fo_icon_tag(resource.resource_name.to_sym) + title
+          end
         end
     end
   end
@@ -233,7 +237,6 @@ module AdminHelper
 
     content_tag(:div, class: 'col-sm-12 form-controls') { raw output }
   end
-
 
   private
 

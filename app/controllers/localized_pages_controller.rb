@@ -1,9 +1,11 @@
 class LocalizedPagesController < ApplicationController
 
   def show
-    if params[:page_id] && (params[:id].blank? || I18n.available_locales.include?(params[:id].to_sym))
-      if !params[:id].blank? && I18n.available_locales.include?(params[:id].to_sym)
-        language = Language.find_by_locale params[:id] || Language.find_by_locale(I18n.locale)
+    locale = params[:id] == 'sr-latn' ? :'sr-Latn' : params[:id].to_s.to_sym
+
+    if params[:page_id] && (params[:id].blank? || I18n.available_locales.include?(locale))
+      if !params[:id].blank? && I18n.available_locales.include?(locale)
+        language = Language.find_by_locale locale || Language.find_by_locale(I18n.locale)
         I18n.locale = language.locale
       else
         language = Language.find_by_locale I18n.locale
@@ -11,9 +13,8 @@ class LocalizedPagesController < ApplicationController
 
       @localized_page = LocalizedPage.where(page_id: params[:page_id], language_id: language.id).first
     else
-      language = Language.find_by_locale I18n.locale
-      page_id = LocalizedPage.where(title: params[:id]).pluck(:page_id).first
-      @localized_page = LocalizedPage.where(page_id: page_id, language_id: language.id).first
+      @localized_page = LocalizedPage.where(title: params[:id]).first
+      I18n.locale = @localized_page.language.locale
     end
   end
 end

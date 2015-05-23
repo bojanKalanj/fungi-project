@@ -38,6 +38,8 @@ namespace :deploy do
   # compile assets locally then rsync
   after :finishing, 'deploy:cleanup'
 
+  before :deploy, 'deploy:setup_config'
+
   # remove the default nginx configuration as it will tend to conflict with our configs.
   before 'deploy:setup_config', 'nginx:remove_default_vhost'
 
@@ -46,6 +48,9 @@ namespace :deploy do
 
   # Restart monit so it will pick up any monit configurations we've added
   # after 'deploy:setup_config', 'monit:restart'
+
+
+  after 'deploy:publishing', 'deploy:restart'
 end
 
 # usage example:

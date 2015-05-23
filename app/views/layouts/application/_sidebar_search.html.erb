@@ -1,4 +1,4 @@
-<li class="sidebar-search" data-species-search-active="<%= is_species_search? %>" data-species-search-path="<%= send(:search_species_index_url, locale: I18n.locale).encode(Encoding::UTF_8)  %>">
+<li class="sidebar-search" data-species-search-active="<%= is_species_search? %>" data-species-search-path="<%= Rack::Utils.escape send(:search_species_index_url, locale: I18n.locale)  %>">
   <div class="input-group custom-search-form">
     <input type="text" class="form-control" placeholder="Search...">
       <span class="input-group-btn">

@@ -1,4 +1,5 @@
 class Admin::ReferencesController < Admin::AdminController
+  include HabitatHelper
 
   before_action :set_reference
   before_action :set_reference_fields

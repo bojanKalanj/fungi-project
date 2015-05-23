@@ -1,7 +1,7 @@
 <%= content_tag :li, class: 'dropdown' do %>
   <%= link_to("#", :class => "dropdown-toggle", "data-toggle" => "dropdown") do %>
     <%= fo_icon_tag(:users, singular: true) %>
-    <%= current_user.first_name %>
+    <%= current_user.first_name if current_user %>
     <%= fo_icon_tag(:caret_down) %>
   <% end %>
   <%= drop_down_list do %>

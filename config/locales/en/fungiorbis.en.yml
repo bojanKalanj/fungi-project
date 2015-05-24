@@ -25,6 +25,19 @@ en:
       name: Name
   species_search:
     specimens_count: Number of Specimens
+    enter_systematics:
+      title: Enter
+      name: Name
+      familia: Familia
+      genus: Genus
+      ordo: Ordo
+      subclassis: Subclassis
+      classis: Classis
+      subphylum: Subphylum
+      phylum: Phylum
+    placeholder:
+      species: species search
+      specimens: specimens search
   stats:
     monthly_specimens_count:
       title: Specimens count

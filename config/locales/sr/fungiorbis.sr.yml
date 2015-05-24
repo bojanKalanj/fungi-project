@@ -25,6 +25,19 @@ sr:
       name: Име
   species_search:
     specimens_count: Број налаза
+    enter_systematics:
+      title: Унеси
+      name: Име
+      familia: Фамилију
+      genus: Род
+      ordo: Ред
+      subclassis: Поткласу
+      classis: Класу
+      subphylum: Подраздео
+      phylum: Раздео
+    placeholder:
+      species: претрага врста
+      specimens: претрага налаза
   stats:
     monthly_specimens_count:
       title: Број налаза

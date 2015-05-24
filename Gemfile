@@ -35,7 +35,7 @@ gem 'simple_form'
 
 gem 'figaro'
 
-gem 'airbrake'
+gem 'airbrake', git: 'http://github.com/airbrake/airbrake.git', branch: :master
 
 group :development, :test do
   gem 'better_errors'

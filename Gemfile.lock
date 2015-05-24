@@ -1,3 +1,12 @@
+GIT
+  remote: http://github.com/airbrake/airbrake.git
+  revision: a05fbc3f512fcdd3e46fa5d3da8f33e784303c1f
+  branch: master
+  specs:
+    airbrake (4.1.0)
+      builder
+      multi_json
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -36,9 +45,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    airbrake (4.1.0)
-      builder
-      multi_json
     annotate (2.6.8)
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
@@ -253,7 +259,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  airbrake
+  airbrake!
   annotate (~> 2.6.5)
   autoprefixer-rails
   better_errors

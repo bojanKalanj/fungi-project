@@ -112,18 +112,4 @@ $(document).on('ready page:load', function () {
       window.location.href = $(this).data('species-search-path')
     }
   });
-
-  if ($('#monthly_specimens_count').length > 0 && monthly_specimens_count_data !== undefined){
-    setTimeout(function(){
-      Morris.Line(monthly_specimens_count_data);
-      $('#monthly_specimens_count').find('i').remove();
-    }, 2000);
-  }
-
-  if ($('#yearly_field_studies').length > 0 && yearly_field_studies !== undefined){
-    setTimeout(function(){
-      Morris.Area(yearly_field_studies);
-      $('#yearly_field_studies').find('i').remove();
-    }, 3000);
-  }
 });

@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     resource :dashboard, only: :show, controller: 'dashboard'
   end
 
+  resources :statistics, only: :show
+
   localized do
     resources :species, param: :url, only: [:index, :show] do
       get :search, on: :collection

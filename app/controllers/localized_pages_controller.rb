@@ -19,9 +19,7 @@ class LocalizedPagesController < ApplicationController
     end
 
     if @localized_page.first?
-      @monthly_specimens_count = Fungiorbis::Statistics.new(:monthly_specimens_count).get
       @general_db_stats = Fungiorbis::Statistics.new(:general_db_stats).get
-      @yearly_field_studies = Fungiorbis::Statistics.new(:yearly_field_studies).get
     end
   end
 

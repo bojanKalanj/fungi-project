@@ -35,7 +35,7 @@ gem 'simple_form'
 
 gem 'figaro'
 
-# gem "airbrake"
+gem 'airbrake'
 
 group :development, :test do
   gem 'better_errors'

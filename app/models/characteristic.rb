@@ -3,6 +3,7 @@ class Characteristic < ActiveRecord::Base
   include Resource
   include HabitatHelper
   include SubstrateHelper
+  include LastUpdate
 
   # HABITATS_VALIDATION_ERROR = "have to be included in: #{elements_to_str(all_habitat_keys)}"
   SUBHABITATS_VALIDATION_ERROR = 'must take subhabitats from the list for specific habitat'

@@ -25,3 +25,42 @@ sr:
       name: Име
   species_search:
     specimens_count: Број налаза
+  stats:
+    monthly_specimens_count:
+      title: Број налаза
+      label:
+        total: Број налаза
+    general_db_stats:
+      title: Опште статистике
+      label:
+        species_count: Врста
+        genus_count: Родова
+        familia_count: Фамилија
+        edible_species_count: Јестивих
+        poisonous_species_count: Отровних
+        medicinal_species_count: Лековитих
+        cultivated_species_count: Узгајаних
+        specimens_count: Налаза
+        locations_count: Макролокалитета
+        field_studies_count: Одлазака на терен
+        users_count: Регистрованих корисника
+        habitats_count: Станишта
+        substrates_count: Подлога
+        photos_count: Фотографија
+        samples_count: Узорака
+    yearly_field_studies:
+      title: Одласци на терен
+      label:
+        field_studies: Одлазака на терен
+        locations: Обиђено локалитета
+        specimens_count: Прикупљено налаза
+  project:
+    disclaimer: 'Апликација за управљање базом података Фунгиорбис је формирана у оквиру пројекта "Формирање базе података гљива као основе за очување њиховог биодиверзитета" 2013-2014, руководилац доц Др Маја Караман, носилац пројекта: Природно-математички факултет у Новом Саду. Пројекат је финансиран од стране Покрајинског секретаријата за науку и технолошки развој, Аутономна покрајина Војводина.'
+    pmf:
+      line_1: Univerzitet u Novom Sadu
+      line_2: Prirodno-matematički fakultet
+      line_3: Novi Sad
+    apv:
+      line_1: Autonomna pokrajina Vojvodina
+      line_2: Pokrajinski sekretarijat za
+      line_3: nauku i tehnološki razvoj

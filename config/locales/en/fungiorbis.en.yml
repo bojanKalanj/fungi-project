@@ -25,3 +25,42 @@ en:
       name: Name
   species_search:
     specimens_count: Number of Specimens
+  stats:
+    monthly_specimens_count:
+      title: Specimens count
+      label:
+        total: Specimens count
+    general_db_stats:
+      title: General statistics
+      label:
+        species_count: Species
+        genus_count: Geni
+        familia_count: Families
+        edible_species_count: Edible
+        poisonous_species_count: Poisonous
+        medicinal_species_count: Medicinal
+        cultivated_species_count: Cultivated
+        specimens_count: Specimens
+        locations_count: Locations
+        field_studies_count: Field Studies
+        users_count: Registered Users
+        habitats_count: Habitats
+        substrates_count: Substrates
+        photos_count: Photos
+        samples_count: Samples
+    yearly_field_studies:
+      title: Number of field studies, visited locations and collected specimens
+      label:
+        field_studies: Field Studies
+        locations: Locations
+        specimens_count: Collected Specimens
+  project:
+    disclaimer: 'Aplikacija za upravljanje bazom podataka Fungiorbis je formirana u okviru projekta "Formiranje baze podataka gljiva kao osnove za očuvanje njihovog biodiverziteta" 2013-2014, rukovodilac doc Dr Maja Karaman, nosilac projekta: Prirodno-matematički fakultet u Novom Sadu. Projekat je finansiran od strane Pokrajinskog sekretarijata za nauku i tehnološki razvoj, Autonomna pokrajina Vojvodina.'
+    pmf:
+      line_1: Univerzitet u Novom Sadu
+      line_2: Prirodno-matematički fakultet
+      line_3: Novi Sad
+    apv:
+      line_1: Autonomna pokrajina Vojvodina
+      line_2: Pokrajinski sekretarijat za
+      line_3: nauku i tehnološki razvoj

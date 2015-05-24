@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150411170719) do
+ActiveRecord::Schema.define(version: 20150524101624) do
 
   create_table "characteristics", force: :cascade do |t|
     t.integer  "reference_id",  limit: 4,     null: false
@@ -135,6 +135,13 @@ ActiveRecord::Schema.define(version: 20150411170719) do
   add_index "specimen", ["location_id"], name: "index_specimen_on_location_id", using: :btree
   add_index "specimen", ["slug"], name: "index_specimen_on_slug", using: :btree
   add_index "specimen", ["species_id"], name: "index_specimen_on_species_id", using: :btree
+
+  create_table "stats", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.text     "data",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255,                  null: false

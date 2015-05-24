@@ -1,6 +1,7 @@
 class Species < ActiveRecord::Base
   extend FriendlyId
   include Resource
+  include LastUpdate
 
   GROWTH_TYPES = %w(single group)
   NUTRITIVE_GROUPS = %w(parasitic mycorrhizal saprotrophic parasitic-saprotrophic saprotrophic-parasitic)

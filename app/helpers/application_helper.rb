@@ -153,6 +153,8 @@ module ApplicationHelper
         'fa fa-fw fa-quote-left'
       when :locations, :location
         'fa fa-fw fa-globe'
+      when :field_studies
+        'fa fa-fw fa-car'
       when :users, :user
         args[:singular] ? 'fa fa-fw fa-user' : 'fa fa-fw fa-users'
       when :user_add, :new
@@ -215,6 +217,11 @@ module ApplicationHelper
         'fa fa-fw fa-cubes'
       when :systematics
         'fa fa-fw fa-book'
+
+      when :statistics
+        'fa fa-fw fa-bar-chart-o'
+      when :photos, :photo
+        'fa fa-fw fa-camera'
 
       when :edit
         'fa fa-fw fa-edit'

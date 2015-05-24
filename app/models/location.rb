@@ -1,6 +1,7 @@
 class Location < ActiveRecord::Base
   extend FriendlyId
   include Resource
+  include LastUpdate
 
   PUBLIC_FIELDS = [:name, :utm]
 

@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= fo_icon_tag :field_studies %>
+    <%= t('stats.yearly_field_studies.title') %>
+  </div>
+  <div class="panel-body">
+    <div id="yearly_field_studies">
+      <i class="fa fa-5x fa-spinner fa-pulse"></i>
+    </div>
+  </div>
+</div>
+
+<script type="application/javascript">
+  var yearly_field_studies = <%= raw JSON.pretty_generate(yearly_field_studies) %>;
+</script>

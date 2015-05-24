@@ -1,3 +1,4 @@
+require 'fungiorbis/statistics'
 class LocalizedPagesController < ApplicationController
 
   def show
@@ -16,5 +17,12 @@ class LocalizedPagesController < ApplicationController
       @localized_page = LocalizedPage.where(title: params[:id]).first
       I18n.locale = @localized_page.language.locale
     end
+
+    if @localized_page.first?
+      @monthly_specimens_count = Fungiorbis::Statistics.new(:monthly_specimens_count).get
+      @general_db_stats = Fungiorbis::Statistics.new(:general_db_stats).get
+      @yearly_field_studies = Fungiorbis::Statistics.new(:yearly_field_studies).get
+    end
   end
+
 end

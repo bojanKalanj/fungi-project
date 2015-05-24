@@ -106,10 +106,4 @@ $(document).on('ready page:load', function () {
       });
     }
   });
-
-  $(document).on('focusin', '.sidebar-search', function (e) {
-    if ($(this).data('species-search-active') == false) {
-      window.location.href = $(this).data('species-search-path')
-    }
-  });
 });

@@ -1,10 +1,39 @@
-<li class="sidebar-search" data-species-search-active="<%= is_species_search? %>" data-species-search-path="<%= send(:search_species_index_url, locale: I18n.locale)  %>">
-  <div class="input-group custom-search-form">
-    <input type="text" class="form-control" placeholder="Search...">
+<li class="sidebar-search" data-species-search-active="<%= is_species_search? %>">
+  <form action="<%= send(:search_species_index_url, locale: I18n.locale) %>">
+
+    <!--<div class="input-group systematics">-->
+      <!--<span><%= t('species_search.enter_systematics.title') %></span>-->
+      <!--<select>-->
+        <!--<%= options_for_select((Species::SYSTEMATICS - [:name]).map{ |s| [t("species_search.enter_systematics.#{s}"), s.to_s] }, 'genus') %>-->
+      <!--</select>-->
+    <!--</div>-->
+
+    <div class="input-group custom-search-form">
+
+      <div class="input-group-btn" id="search-domain-select">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          <%= fo_icon_tag :species %>
+          <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu" role="menu">
+          <li class="active"><a href="#" data-search-domain="species" data-icon="<%= fo_icon(:species) %>" data-placeholder="<%= t('species_search.placeholder.species') %>...">
+            <%= fo_icon_tag :species %> <%= t('shared.sections.species') %>
+          </a></li>
+          <li><a href="#" data-search-domain="specimens" data-icon="<%= fo_icon(:specimens) %>" data-placeholder="<%= t('species_search.placeholder.specimens') %>...">
+            <%= fo_icon_tag :specimens %> <%= t('shared.sections.specimens') %>
+          </a></li>
+        </ul>
+      </div>
+
+      <input type="hidden" name="search_domain" id="search_domain" value="species">
+      <input type="text" class="form-control systematics typeahead" placeholder="<%= t('species_search.placeholder.species') %>...">
+
       <span class="input-group-btn">
         <button class="btn btn-default" type="button">
           <i class="fa fa-search"></i>
         </button>
       </span>
-  </div>
+    </div>
+  </form>
 </li>

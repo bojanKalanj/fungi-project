@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   end
 
   resources :statistics, only: :show
+  resources :systematics, only: :show
 
   localized do
     resources :species, param: :url, only: [:index, :show] do

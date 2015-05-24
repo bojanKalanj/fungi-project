@@ -36,6 +36,8 @@ gem 'simple_form'
 
 gem 'figaro'
 
+gem "airbrake"
+
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'

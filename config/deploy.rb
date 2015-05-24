@@ -48,6 +48,8 @@ namespace :deploy do
   after 'deploy:publishing', 'deploy:restart'
 end
 
+after 'deploy:finished', 'airbrake:deploy'
+
 # usage example:
 # cap production run_rake[namespace:task_name,parameter]
 desc 'Executes rake task in the selected environment with passed arguments'

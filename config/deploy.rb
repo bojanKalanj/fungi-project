@@ -48,7 +48,7 @@ namespace :deploy do
   after 'deploy:publishing', 'deploy:restart'
 end
 
-after 'deploy:finished', 'airbrake:deploy'
+# after 'deploy:finished', 'airbrake:deploy'
 
 # usage example:
 # cap production run_rake[namespace:task_name,parameter]

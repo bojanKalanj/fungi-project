@@ -21,7 +21,6 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
-# gem 'flag_icon_css_rails'
 gem 'twitter-typeahead-rails'
 
 gem 'twitter-bootstrap-rails'
@@ -36,7 +35,7 @@ gem 'simple_form'
 
 gem 'figaro'
 
-gem "airbrake"
+# gem "airbrake"
 
 group :development, :test do
   gem 'better_errors'

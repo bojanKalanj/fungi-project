@@ -4,7 +4,7 @@
     <div class="input-group systematics">
       <span><%= t('species_search.enter_systematics.title') %></span>
       <select>
-        <%= options_for_select((Species::SYSTEMATICS - [:name]).map{ |s| [t("species_search.enter_systematics.#{s}"), s.to_s] }, 'genus') %>
+        <%= options_for_select((Species::SYSTEMATICS - [:name]).map { |s| [t("species_search.enter_systematics.#{s}"), s.to_s] }, 'genus') %>
       </select>
     </div>
 
@@ -17,17 +17,28 @@
         </button>
 
         <ul class="dropdown-menu" role="menu">
-          <li class="active"><a href="#" data-search-domain="species" data-icon="<%= fo_icon(:species) %>" data-placeholder="<%= t('species_search.placeholder.species') %>...">
-            <%= fo_icon_tag :species %> <%= t('shared.sections.species') %>
-          </a></li>
-          <li><a href="#" data-search-domain="specimens" data-icon="<%= fo_icon(:specimens) %>" data-placeholder="<%= t('species_search.placeholder.specimens') %>...">
-            <%= fo_icon_tag :specimens %> <%= t('shared.sections.specimens') %>
-          </a></li>
+          <li class="active">
+            <a href="#" data-search-domain="species" data-icon="<%= fo_icon(:species) %>" data-placeholder="<%= t('species_search.placeholder.species') %>...">
+              <%= fo_icon_tag :species %> <%= t('shared.sections.species') %>
+            </a></li>
+          <li>
+            <a href="#" data-search-domain="specimens" data-icon="<%= fo_icon(:specimens) %>" data-placeholder="<%= t('species_search.placeholder.specimens') %>...">
+              <%= fo_icon_tag :specimens %> <%= t('shared.sections.specimens') %>
+            </a></li>
         </ul>
       </div>
 
       <input type="hidden" name="search_domain" id="search_domain" value="species">
-      <input type="text" class="form-control systematics typeahead" placeholder="<%= t('species_search.placeholder.species') %>...">
+      <input type="text"
+             class="form-control systematics typeahead"
+             placeholder="<%= t('species_search.placeholder.species') %>..."
+             data-genus="<%= t('species.attributes.genus') %>"
+             data-familia="<%= t('species.attributes.familia') %>"
+             data-ordo="<%= t('species.attributes.ordo') %>"
+             data-subclassis="<%= t('species.attributes.subclassis') %>"
+             data-classis="<%= t('species.attributes.classis') %>"
+             data-subphylum="<%= t('species.attributes.subphylum') %>"
+             data-phylum="<%= t('species.attributes.phylum') %>" >
 
       <span class="input-group-btn">
         <button class="btn btn-default" type="button">

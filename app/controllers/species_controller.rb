@@ -10,5 +10,10 @@ class SpeciesController < ApplicationController
 
   def search
     @species = Species.includes(:characteristics).includes(:specimens).paginate(:page => params[:page])
+
+    unless params[:s].blank?
+      @species = @species.where('genus = ? or familia = ? or ordo = ? or subclassis = ? or classis = ? or subphylum = ? or phylum = ?',
+                                params[:s], params[:s], params[:s], params[:s], params[:s], params[:s], params[:s])
+    end
   end
 end

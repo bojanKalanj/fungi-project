@@ -49,6 +49,11 @@ module ApplicationHelper
     args[:controller] == 'species' && args[:action] == 'search'
   end
 
+  def is_specimens_search?
+    args = Rails.application.routes.recognize_path request.env['PATH_INFO']
+    args[:controller] == 'specimens' && args[:action] == 'search'
+  end
+
   def admin_page?
     request.env['PATH_INFO'].include? '/admin/'
   end

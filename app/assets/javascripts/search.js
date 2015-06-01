@@ -15,34 +15,37 @@ $(document).on('ready page:load', function () {
     $form.find('input.systematics').attr('placeholder', $(this).data('placeholder'))
   });
 
-//  var genus = new Bloodhound({
-//    datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
-//    queryTokenizer: Bloodhound.tokenizers.whitespace,
-//    prefetch: "/systematics/genus.json"
-//  });
-//  genus.initialize();
-//
-//  var familia = new Bloodhound({
-//    datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
-//    queryTokenizer: Bloodhound.tokenizers.whitespace,
-//    prefetch: "/systematics/familia.json"
-//  });
-//  familia.initialize();
-//
-//  $('.systematics.typeahead').typeahead(null,
-//    {
-//      name: 'genus',
-//      source: genus,
-//      templates: {
-//        header: '<h3 class="league-name">NBA Teams</h3>'
-//      }
-//    },
-//    {
-//      name: 'familia',
-//      source: familia,
+  var bhGenus = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: "/systematics/genus.json"
+  });
+
+
+  var bhFamilia = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: "/systematics/familia.json"
+  });
+
+  $('.systematics.typeahead').typeahead({
+    hint: true,
+    highlight: true,
+    minLength: 1
+  }, {
+    name: 'genus',
+    source: bhGenus
+//    ,
+//    templates: {
+//      header: '<h3 class="league-name">NBA Teams</h3>'
+//    }
+  }, {
+    name: 'familia',
+    source: bhFamilia
+//      ,
 //      templates: {
 //        header: '<h3 class="league-name">NHL Teams</h3>'
 //      }
-//    });
+  });
 
 });

@@ -24,7 +24,6 @@
 //= require twitter/bootstrap/collapse
 //= require twitter/bootstrap/carousel
 //= require twitter/bootstrap/affix
-//= require twitter/typeahead
 //= require turbolinks
 //= require vendor
 //= require_tree .

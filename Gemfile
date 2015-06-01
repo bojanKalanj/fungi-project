@@ -21,8 +21,6 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
-gem 'twitter-typeahead-rails'
-
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
 gem "therubyracer"

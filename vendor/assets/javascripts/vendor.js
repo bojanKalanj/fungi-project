@@ -18,3 +18,4 @@
 //= require bootstrap-datepicker-1.4.0/locales/bootstrap-datepicker.en-GB.min
 //= require bootstrap-datepicker-1.4.0/locales/bootstrap-datepicker.sr.min
 //= require bootstrap-datepicker-1.4.0/locales/bootstrap-datepicker.sr-latin.min
+//= require twitter-typeahead/typeahead

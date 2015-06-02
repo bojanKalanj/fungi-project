@@ -43,11 +43,11 @@
       </span>
     </div>
 
-    <div id="habitat-input">
+    <div id="habitat-input" class="input-container">
       <%= fo_icon_tag(:habitat) %>
       <div class="right-cell">
         <div>
-          <a class="add-habitat">
+          <a class="add-habitat add-link">
             <%= t('species_search.select.habitat') %>
           </a>
         </div>
@@ -56,7 +56,7 @@
             <option value=""></option>
             <%= options_for_select all_habitat_keys.map { |key| [t("habitats.#{key}.title"), key] } %>
           </select>
-          <a class="clear-habitat">
+          <a class="clear-habitat clear-link">
             <%= fo_icon_tag(:cancel) %>
           </a>
         </div>
@@ -69,11 +69,11 @@
       </div>
     </div>
 
-    <div id="substrate-input">
+    <div id="substrate-input" class="input-container">
       <%= fo_icon_tag(:substrate) %>
       <div class="right-cell">
         <div>
-          <a class="add-substrate">
+          <a class="add-substrate add-link">
             <%= t('species_search.select.substrate') %>
           </a>
         </div>
@@ -82,7 +82,47 @@
             <option value=""></option>
             <%= options_for_select all_substrate_keys.map { |key| [t("substrates.#{key}"), key] } %>
           </select>
-          <a class="clear-substrate">
+          <a class="clear-substrate clear-link">
+            <%= fo_icon_tag(:cancel) %>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div id="nutritive-group-input" class="input-container">
+      <%= fo_icon_tag(:nutritive_group) %>
+      <div class="right-cell">
+        <div>
+          <a class="add-nutritive-group add-link">
+            <%= t('species_search.select.nutritive_group') %>
+          </a>
+        </div>
+        <div id="nutritive-group-select" class="hidden">
+          <select name="ng">
+            <option value=""></option>
+            <%= options_for_select Species::NUTRITIVE_GROUPS.map { |key| [t("species.nutritive_group.#{key}"), key] } %>
+          </select>
+          <a class="clear-nutritive-group clear-link">
+            <%= fo_icon_tag(:cancel) %>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div id="growth-type-input" class="input-container">
+      <%= fo_icon_tag(:growth_type) %>
+      <div class="right-cell">
+        <div>
+          <a class="add-growth-type add-link">
+            <%= t('species_search.select.growth_type') %>
+          </a>
+        </div>
+        <div id="growth-type-select" class="hidden">
+          <select name="gt">
+            <option value=""></option>
+            <%= options_for_select Species::GROWTH_TYPES.map { |key| [t("species.growth_type.#{key}"), key] } %>
+          </select>
+          <a class="clear-growth-type clear-link">
             <%= fo_icon_tag(:cancel) %>
           </a>
         </div>

@@ -13,6 +13,15 @@ sr:
       subphylum: Подраздео
       phylum: Раздео
       synonyms: Синоними
+    nutritive_group:
+      parasitic: Паразитска
+      mycorrhizal: Микоризна
+      saprotrophic: Сапротофна
+      parasitic-saprotrophic: Паразитско-сапротрофна
+      saprotrophic-parasitic: Сапротрофно-паразитска
+    growth_type:
+      single: Појединачно
+      group: У групи
     btn:
       new:
         title: Додај нову врсту

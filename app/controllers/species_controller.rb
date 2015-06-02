@@ -42,6 +42,9 @@ class SpeciesController < ApplicationController
 
     c = c.where('substrates like ?', '%' + params['sb'] + '%') unless params[:sb].blank?
 
+    @species = @species.where(nutritive_group: params['ng']) unless params[:ng].blank?
+    @species = @species.where(growth_type: params['gt']) unless params[:gt].blank?
+
     @species = @species.where(id: c.pluck(:species_id)) unless c == Characteristic
 
     @params = params

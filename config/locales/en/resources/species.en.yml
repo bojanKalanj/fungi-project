@@ -13,6 +13,15 @@ en:
       subphylum: Subphylum
       phylum: Phylum
       synonyms: Synonyms
+    nutritive_group:
+      parasitic: Parasitic
+      mycorrhizal: Mycorrhizal
+      saprotrophic: Saprotrophic
+      parasitic-saprotrophic: Parasitic-saprotrophic
+      saprotrophic-parasitic: Saprotrophic-parasitic
+    growth_type:
+      single: Single
+      group: Group
     btn:
       new:
         title: Add new Species

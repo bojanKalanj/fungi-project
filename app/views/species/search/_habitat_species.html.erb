@@ -4,7 +4,7 @@
       <% if selected.include?(sp.last.to_s) %>
         <div>
           <%= sp.first %>
-          <a class="clear-habitat-species" data-sp="<%= sp.last %>">
+          <a class="clear-habitat-species clear-link" data-sp="<%= sp.last %>">
             <%= fo_icon_tag(:cancel) %>
           </a>
           <input type="hidden" name="sp[]" value="<%= sp.last %>">
@@ -14,7 +14,7 @@
   <% end %>
 </div>
 <div>
-  <a class="add-habitat-species">
+  <a class="add-habitat-species add-link">
     <%= t('species_search.select.species') %>
   </a>
 </div>

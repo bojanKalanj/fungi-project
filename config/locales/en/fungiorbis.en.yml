@@ -43,6 +43,8 @@ en:
       subhabitat: Select subhabitat
       species: Add species
       substrate: Select substrate
+      nutritive_group: Select nutritive group
+      growth_type: Select growth type
     no_hits: No matches for provided parameters.
   stats:
     monthly_specimens_count:

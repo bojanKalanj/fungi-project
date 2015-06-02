@@ -43,6 +43,8 @@ sr:
       subhabitat: Задај подстаниште
       species: Задај врсту
       substrate: Задај подлогу
+      nutritive_group: Задај нутритивну групу
+      growth_type: Задај начин раста
     no_hits: Нема погодака за задате параметре.
   stats:
     monthly_specimens_count:

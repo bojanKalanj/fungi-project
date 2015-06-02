@@ -11,8 +11,9 @@ var FungiorbisSearch = (function () {
     bindSearchDomainSelect();
 
     initHabitat();
-
     initSubstrate();
+    initNutritiveGroup();
+    initGrowthType();
   }
 
   function submit() {
@@ -236,8 +237,6 @@ var FungiorbisSearch = (function () {
       else {
         $('.add-subhabitat', '#habitat-input').removeClass('hidden');
       }
-
-      var selectedSpecies = $('input[name="sp"]')
     }
   }
 
@@ -278,6 +277,86 @@ var FungiorbisSearch = (function () {
     if ($substrateSelect.val().length > 0) {
       $('.add-substrate', '#substrate-input').addClass('hidden');
       $('#substrate-select').removeClass('hidden');
+    }
+  }
+
+  function bindAddNutritiveGroup() {
+    $(document).on('click', '#nutritive-group-input .add-nutritive-group', function (e) {
+      $(this).addClass('hidden');
+      $('#nutritive-group-select').removeClass('hidden');
+    });
+  }
+
+  function bindClearNutritiveGroup() {
+    $(document).on('click', '#nutritive-group-input .clear-nutritive-group', function (e) {
+      $('.add-nutritive-group', '#nutritive-group-input').removeClass('hidden');
+      $('#nutritive-group-select').addClass('hidden');
+      var $select = $('select', '#nutritive-group-select');
+      if ($select.val().length > 0) {
+        $select.val('');
+        submit();
+      }
+    });
+  }
+
+  function bindNutritiveGroupChange() {
+    $(document).on('change', '#nutritive-group-select select', function (e) {
+      if ($(this).val() == '') {
+        $('.clear-nutritive-group', '#nutritive-group-input').click();
+      }
+      submit();
+    });
+  }
+
+  function initNutritiveGroup(){
+    bindAddNutritiveGroup();
+    bindClearNutritiveGroup();
+    bindNutritiveGroupChange();
+
+    var $nutritiveGroupSelect = $('select', '#nutritive-group-select');
+    if ($nutritiveGroupSelect.val().length > 0) {
+      $('.add-nutritive-group', '#nutritive-group-input').addClass('hidden');
+      $('#nutritive-group-select').removeClass('hidden');
+    }
+  }
+
+  function bindAddGrowthType() {
+    $(document).on('click', '#growth-type-input .add-growth-type', function (e) {
+      $(this).addClass('hidden');
+      $('#growth-type-select').removeClass('hidden');
+    });
+  }
+
+  function bindClearGrowthType() {
+    $(document).on('click', '#growth-type-input .clear-growth-type', function (e) {
+      $('.add-growth-type', '#growth-type-input').removeClass('hidden');
+      $('#growth-type-select').addClass('hidden');
+      var $select = $('select', '#growth-type-select');
+      if ($select.val().length > 0) {
+        $select.val('');
+        submit();
+      }
+    });
+  }
+
+  function bindGrowthTypeChange() {
+    $(document).on('change', '#growth-type-select select', function (e) {
+      if ($(this).val() == '') {
+        $('.clear-growth-type', '#growth-type-input').click();
+      }
+      submit();
+    });
+  }
+
+  function initGrowthType(){
+    bindAddGrowthType();
+    bindClearGrowthType();
+    bindGrowthTypeChange();
+
+    var $growthTypeSelect = $('select', '#growth-type-select');
+    if ($growthTypeSelect.val().length > 0) {
+      $('.add-growth-type', '#growth-type-input').addClass('hidden');
+      $('#growth-type-select').removeClass('hidden');
     }
   }
 

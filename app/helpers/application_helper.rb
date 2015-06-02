@@ -1,6 +1,9 @@
 require 'fungiorbis/cyr_to_lat'
 
 module ApplicationHelper
+  include HabitatHelper
+  include SubstrateHelper
+
 
   def localized_url_helper(locale, options={})
     if admin_page? || devise_page? || root_page?

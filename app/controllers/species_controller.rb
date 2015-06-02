@@ -6,7 +6,7 @@ class SpeciesController < ApplicationController
   end
 
   def show
-    @species = Species.find(params[:url])
+    @species = Species.where(url: params[:url]).first
   end
 
   def search

@@ -1,0 +1,15 @@
+$('#content-column').html('<%= j(render partial: 'species/search/search', locals: { species: @species}) %>');
+
+<% if @subhabitats.blank? %>
+  $('#subhabitat').html('');
+<% else %>
+  $('#subhabitat').html('<%= j(render partial: 'species/search/subhabitats', locals: { subhabitats: @subhabitats}) %>');
+<% end %>
+
+
+<% unless @params['sh'].blank? %>
+  var $subhabitatSelect = $('select', '#subhabitat-select');
+  $('.add-subhabitat', '#habitat-input').addClass('hidden');
+  $('#subhabitat-select').removeClass('hidden');
+  $subhabitatSelect.val('<%= @params['sh'] %>');
+<% end %>

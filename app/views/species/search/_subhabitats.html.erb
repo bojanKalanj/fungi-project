@@ -1,0 +1,14 @@
+<div>
+  <a class="add-subhabitat">
+    <%= t('species_search.select.subhabitat') %>
+  </a>
+</div>
+<div id="subhabitat-select" class="hidden">
+  <select name='sh'>
+    <option value=""></option>
+    <%= options_for_select subhabitats unless subhabitats.blank? %>
+  </select>
+  <a class="clear-subhabitat">
+    <%= fo_icon_tag(:cancel) %>
+  </a>
+</div>

@@ -38,6 +38,11 @@ en:
     placeholder:
       species: species search
       specimens: specimens search
+    select:
+      habitat: Select habitat
+      subhabitat: Select subhabitat
+      species: Add species
+      substrate: Select substrate
   stats:
     monthly_specimens_count:
       title: Specimens count

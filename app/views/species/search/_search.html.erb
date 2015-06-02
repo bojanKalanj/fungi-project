@@ -1,0 +1,13 @@
+<div class="species-search-results">
+  <% @species.each do |species| %>
+    <%= species_card(species) %>
+  <% end %>
+</div>
+
+<%= will_paginate @species, renderer: BootstrapPagination::Rails %>
+
+<% unless @subhabitats.blank? %>
+  <% content_for :subhabitat_select do %>
+    <%= render partial: 'species/search/subhabitats', locals: { subhabitats: @subhabitats } %>
+  <% end %>
+<% end %>

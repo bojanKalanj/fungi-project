@@ -38,6 +38,11 @@ sr:
     placeholder:
       species: претрага врста
       specimens: претрага налаза
+    select:
+      habitat: Задај станиште
+      subhabitat: Задај подстаниште
+      species: Задај врсту
+      substrate: Задај подлогу
   stats:
     monthly_specimens_count:
       title: Број налаза
@@ -70,10 +75,10 @@ sr:
   project:
     disclaimer: 'Апликација за управљање базом података Фунгиорбис је формирана у оквиру пројекта "Формирање базе података гљива као основе за очување њиховог биодиверзитета" 2013-2014, руководилац доц Др Маја Караман, носилац пројекта: Природно-математички факултет у Новом Саду. Пројекат је финансиран од стране Покрајинског секретаријата за науку и технолошки развој, Аутономна покрајина Војводина.'
     pmf:
-      line_1: Univerzitet u Novom Sadu
-      line_2: Prirodno-matematički fakultet
-      line_3: Novi Sad
+      line_1: Универзитет у Новом Саду
+      line_2: Природно-математички факултет
+      line_3: Нови Сад
     apv:
-      line_1: Autonomna pokrajina Vojvodina
-      line_2: Pokrajinski sekretarijat za
-      line_3: nauku i tehnološki razvoj
+      line_1: Аутономна покрајина Војводина
+      line_2: Покрајински секретаријат за
+      line_3: науку и технолошки развој

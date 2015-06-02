@@ -44,7 +44,9 @@
   <div id="page-wrapper">
     <div class="col-sm-9 col-sm-offset-3">
       <%= bootstrap_flash %>
-      <%= yield %>
+      <div id="content-column">
+        <%= yield %>
+      </div>
     </div>
   </div>
   <!-- /#page-wrapper -->

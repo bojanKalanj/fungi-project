@@ -70,7 +70,7 @@ $(document).on('ready page:load', function () {
     }
   });
 
-  $(document).on('click', '.add-habitat', function (e) {
+  $(document).on('click', '#habitats-select .add-habitat', function (e) {
     if ($(this).attr('href').split('habitats')[1] === undefined) {
       e.stopPropagation();
       e.preventDefault();

@@ -1,14 +1,10 @@
-<li class="sidebar-search" data-species-search-active="<%= is_species_search? %>">
-  <form action="<%= send(:search_species_index_url, locale: I18n.locale) %>">
+<li>
+  <form id="sidebar-search" method="get"
+        <%= (is_species_search? || is_specimens_search?) ? " data-remote='true' " : '' %>
+        data-species-action="<%= send(:search_species_index_url, locale: I18n.locale) %>"
+        data-specimens-action="<%= '' %>">
 
-    <div class="input-group systematics">
-      <span><%= t('species_search.enter_systematics.title') %></span>
-      <select>
-        <%= options_for_select((Species::SYSTEMATICS - [:name]).map { |s| [t("species_search.enter_systematics.#{s}"), s.to_s] }, 'genus') %>
-      </select>
-    </div>
-
-    <div class="input-group custom-search-form">
+    <div class="input-group" id="systematics-input">
 
       <div class="input-group-btn" id="search-domain-select">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -28,8 +24,8 @@
         </ul>
       </div>
 
-      <input type="hidden" name="search_domain" id="search_domain" value="species">
-      <input type="text"
+      <input type="hidden" id="search_domain" value="species">
+      <input type="text" id="systematics-typeahead" name="s"
              class="form-control systematics typeahead"
              placeholder="<%= t('species_search.placeholder.species') %>..."
              data-genus="<%= t('species.attributes.genus') %>"
@@ -38,13 +34,37 @@
              data-subclassis="<%= t('species.attributes.subclassis') %>"
              data-classis="<%= t('species.attributes.classis') %>"
              data-subphylum="<%= t('species.attributes.subphylum') %>"
-             data-phylum="<%= t('species.attributes.phylum') %>" >
+             data-phylum="<%= t('species.attributes.phylum') %>">
 
-      <span class="input-group-btn">
+      <span id="cancel-species" class="input-group-btn hidden">
         <button class="btn btn-default" type="button">
-          <i class="fa fa-search"></i>
+          <%= fo_icon_tag(:cancel) %>
         </button>
       </span>
     </div>
+
+    <div id="habitat-input">
+      <%= fo_icon_tag(:habitat) %>
+      <div class="right-cell">
+        <div>
+          <a class="add-habitat">
+            <%= t('species_search.select.habitat') %>
+          </a>
+        </div>
+        <div id="habitat-select" class="hidden">
+          <select name="h">
+            <option value=""></option>
+            <%= options_for_select all_habitat_keys.map { |key| [t("habitats.#{key}.title"), key] } %>
+          </select>
+          <a class="clear-habitat">
+            <%= fo_icon_tag(:cancel) %>
+          </a>
+        </div>
+        <div id="subhabitat">
+          <%= content_for?(:subhabitat_select) ? yield(:subhabitat_select) : '' %>
+        </div>
+      </div>
+    </div>
+
   </form>
 </li>

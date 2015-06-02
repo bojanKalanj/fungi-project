@@ -21,6 +21,7 @@ var FungiorbisSearch = (function () {
         var pageTitle = $('title').html();
         window.history.pushState(pageTitle, pageTitle, path);
       }
+      $('#content-column').html('<i class="fa fa-5x fa-spinner fa-pulse"></i>');
       $form.submit();
     }
   }
@@ -57,7 +58,9 @@ var FungiorbisSearch = (function () {
       $('.add-habitat', '#habitat-input').addClass('hidden');
 
       $('#habitat-select').addClass('hidden');
+      $('#habitat-species-select').addClass('hidden');
       $('.add-habitat', '#habitat-input').removeClass('hidden');
+      $('#selected-habitat-species').html('');
       var $select = $('select', '#habitat-select');
       if ($select.val().length > 0) {
         $select.val('');
@@ -69,31 +72,34 @@ var FungiorbisSearch = (function () {
   function bindHabitatChange() {
     $(document).on('change', '#habitat-select select', function (e) {
       resetSubhabitat();
-      if ($(this).val() == ''){
+      if ($(this).val() == '') {
         $('.clear-habitat', '#habitat-input').click();
       }
       submit();
     });
   }
 
-  function resetSubhabitat($subhabitatSelect){
-    if ($subhabitatSelect == undefined){
+  function resetSubhabitat($subhabitatSelect) {
+    if ($subhabitatSelect == undefined) {
       $subhabitatSelect = $('select', '#subhabitat-select');
     }
     $subhabitatSelect.val('');
     $('#subhabitat-select').addClass('hidden');
+    $('#selected-habitat-species').html('');
   }
 
   function bindAddSubhabitat() {
     $(document).on('click', '#habitat-input .add-subhabitat', function (e) {
       $(this).addClass('hidden');
       $('#subhabitat-select').removeClass('hidden');
+      $('#selected-habitat-species').html('');
     });
   }
 
   function bindClearSubhabitat() {
     $(document).on('click', '#habitat-input .clear-subhabitat', function (e) {
       $('#subhabitat-select').addClass('hidden');
+      $('#habitat-species-select').addClass('hidden');
       $('.add-subhabitat', '#habitat-input').removeClass('hidden');
       var $select = $('select', '#subhabitat-select');
       if ($select.val().length > 0) {
@@ -105,12 +111,49 @@ var FungiorbisSearch = (function () {
 
   function bindSubhabitatChange() {
     $(document).on('change', '#subhabitat-select select', function (e) {
-      if ($(this).val() == ''){
+      if ($(this).val() == '') {
         $('.clear-subhabitat', '#habitat-input').click();
       }
+      $('#selected-habitat-species').html('');
       submit();
     });
   }
+
+  function bindAddHabitatSpecies() {
+    $(document).on('click', '#habitat-input .add-habitat-species', function (e) {
+      $(this).addClass('hidden');
+      $('#habitat-species-select').removeClass('hidden');
+    });
+  }
+
+  function bindHabitatSpeciesChange() {
+    $(document).on('change', '#habitat-species-select select', function (e) {
+      if ($(this).val().length > 0) {
+        var key = $(this).val();
+        var option = $(this).find('.' + key);
+        $('#selected-habitat-species').append(
+            '<li>'
+            + option.html()
+            + '<a class="clear-habitat-species" data-sp="' + key + '"><i class=" fa fa-fw fa-times"></i></a>'
+            + '<input type="hidden" name="sp[]" value="' + key + '">' + '</li>');
+        option.addClass('hidden');
+        $(this).val('');
+        $(this).parent().addClass('hidden');
+        $('.add-habitat-species', '#habitat-input').removeClass('hidden');
+        submit();
+      }
+    });
+  }
+
+  function bindClearHabitatSpecies() {
+    $(document).on('click', '#habitat-input .clear-habitat-species', function (e) {
+      var key = $(this).data('sp');
+      $('option.' + key, '#habitat-species-select').removeClass('hidden');
+      $(this).parent().remove();
+      submit();
+    });
+  }
+
 
   function initTypeahead() {
     function systematicsTypeaheadSettings(name) {
@@ -164,7 +207,7 @@ var FungiorbisSearch = (function () {
     resize($systematicsTypeahead);
   }
 
-  function initHabitat(){
+  function initHabitat() {
     bindAddHabitat();
     bindClearHabitat();
     bindHabitatChange();
@@ -173,19 +216,26 @@ var FungiorbisSearch = (function () {
     bindClearSubhabitat();
     bindSubhabitatChange();
 
+    bindAddHabitatSpecies();
+    bindHabitatSpeciesChange();
+    bindClearHabitatSpecies();
+
     var $habitatSelect = $('select', '#habitat-select');
     if ($habitatSelect.val().length > 0) {
       $('.add-habitat', '#habitat-input').addClass('hidden');
       $('#habitat-select').removeClass('hidden');
 
       var $subhabitatSelect = $('select', '#subhabitat-select');
+      $subhabitatSelect.val($subhabitatSelect.find('[selected]').val());
       if ($subhabitatSelect.length > 0 && $subhabitatSelect.val().length > 0) {
         $('.add-subhabitat', '#habitat-input').addClass('hidden');
         $('#subhabitat-select').removeClass('hidden');
       }
-      else{
+      else {
         $('.add-subhabitat', '#habitat-input').removeClass('hidden');
       }
+
+      var selectedSpecies = $('input[name="sp"]')
     }
   }
 

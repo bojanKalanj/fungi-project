@@ -1,6 +1,6 @@
-#sidebar-search{
-  #systematics-input{
-    div.systematics{
+#sidebar-search {
+  #systematics-input {
+    div.systematics {
       select {
         border: none;
         background: none;
@@ -9,7 +9,7 @@
         margin-bottom: 5px;
       }
     }
-    .twitter-typeahead{
+    .twitter-typeahead {
       display: table-cell !important;
     }
 
@@ -74,22 +74,22 @@
     margin-bottom: 20px;
   }
 
-  #habitat-input{
-    i{
+  #habitat-input {
+    i {
       vertical-align: top;
       margin-top: 4px;
     }
 
-    .right-cell{
-      .add-habitat, .add-subhabitat{
+    .right-cell {
+      .add-habitat, .add-subhabitat, .add-habitat-species {
         text-transform: lowercase;
         text-decoration: none;
         border-bottom: 1px dashed;
         cursor: pointer;
       }
 
-      #habitat-select, #subhabitat-select{
-        select{
+      #habitat-select, #subhabitat-select, #habitat-species-select {
+        select {
           border-bottom: 1px solid #ccc;
           background: white;
           line-height: 30px;
@@ -99,7 +99,15 @@
         }
       }
 
-      .clear-habitat, .clear-subhabitat{
+      #habitat-species-select {
+        margin-top: 10px;
+      }
+
+      #selected-habitat-species {
+        margin-top: 10px;
+      }
+
+      .clear-habitat, .clear-subhabitat, .clear-habitat-species {
         cursor: pointer;
       }
 

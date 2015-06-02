@@ -1,0 +1,30 @@
+<div id="selected-habitat-species">
+  <% unless habitat_species.blank? %>
+    <% habitat_species.each do |sp| %>
+      <% if selected.include?(sp.last.to_s) %>
+        <div>
+          <%= sp.first %>
+          <a class="clear-habitat-species" data-sp="<%= sp.last %>">
+            <%= fo_icon_tag(:cancel) %>
+          </a>
+          <input type="hidden" name="sp[]" value="<%= sp.last %>">
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <a class="add-habitat-species">
+    <%= t('species_search.select.species') %>
+  </a>
+</div>
+<div id="habitat-species-select" class="hidden">
+  <% unless habitat_species.blank? %>
+    <select>
+      <option></option>
+      <% habitat_species.each do |sp| %>
+        <option value="<%= sp.last %>" class="<%= sp.last.to_s + (selected.include?(sp.last.to_s) ? ' hidden' : '') %>"><%= sp.first %></option>
+      <% end %>
+    </select>
+  <% end %>
+</div>

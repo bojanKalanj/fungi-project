@@ -6,7 +6,7 @@
 <div id="subhabitat-select" class="hidden">
   <select name='sh'>
     <option value=""></option>
-    <%= options_for_select subhabitats unless subhabitats.blank? %>
+    <%= options_for_select subhabitats, selected unless subhabitats.blank? %>
   </select>
   <a class="clear-subhabitat">
     <%= fo_icon_tag(:cancel) %>

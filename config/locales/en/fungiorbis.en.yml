@@ -43,6 +43,7 @@ en:
       subhabitat: Select subhabitat
       species: Add species
       substrate: Select substrate
+    no_hits: No matches for provided parameters.
   stats:
     monthly_specimens_count:
       title: Specimens count

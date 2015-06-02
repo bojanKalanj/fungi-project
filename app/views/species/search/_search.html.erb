@@ -1,13 +1,24 @@
-<div class="species-search-results">
-  <% @species.each do |species| %>
-    <%= species_card(species) %>
-  <% end %>
-</div>
+<% if species.blank? %>
+  <%= t('species_search.no_hits') %>
+<% else %>
+  <div class="species-search-results">
+    <% species.each do |species| %>
+      <%= species_card(species) %>
+    <% end %>
+  </div>
 
-<%= will_paginate @species, renderer: BootstrapPagination::Rails %>
+  <%= will_paginate species, renderer: BootstrapPagination::Rails %>
+<% end %>
 
-<% unless @subhabitats.blank? %>
+<% unless subhabitats.blank? %>
   <% content_for :subhabitat_select do %>
-    <%= render partial: 'species/search/subhabitats', locals: { subhabitats: @subhabitats } %>
+    <%= render partial: 'species/search/subhabitats', locals: { subhabitats: subhabitats, selected: params[:sh] } %>
+  <% end %>
+<% end %>
+
+
+<% unless habitat_species.blank? %>
+  <% content_for :habitat_species do %>
+    <%= render partial: 'species/search/habitat_species', locals: { habitat_species: habitat_species, selected: params[:sp] || [] } %>
   <% end %>
 <% end %>

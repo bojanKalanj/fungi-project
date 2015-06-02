@@ -69,5 +69,25 @@
       </div>
     </div>
 
+    <div id="substrate-input">
+      <%= fo_icon_tag(:substrate) %>
+      <div class="right-cell">
+        <div>
+          <a class="add-substrate">
+            <%= t('species_search.select.substrate') %>
+          </a>
+        </div>
+        <div id="substrate-select" class="hidden">
+          <select name="sb">
+            <option value=""></option>
+            <%= options_for_select all_substrate_keys.map { |key| [t("substrates.#{key}"), key] } %>
+          </select>
+          <a class="clear-substrate">
+            <%= fo_icon_tag(:cancel) %>
+          </a>
+        </div>
+      </div>
+    </div>
+
   </form>
 </li>

@@ -75,12 +75,18 @@
   }
 
   #habitat-input {
+    margin-left: 18px;
+    margin-bottom: 20px;
+
     i {
       vertical-align: top;
       margin-top: 4px;
     }
 
     .right-cell {
+      display: inline-block;
+      margin-left: 18px;
+
       .add-habitat, .add-subhabitat, .add-habitat-species {
         text-transform: lowercase;
         text-decoration: none;
@@ -110,12 +116,44 @@
       .clear-habitat, .clear-subhabitat, .clear-habitat-species {
         cursor: pointer;
       }
+    }
+  }
 
-      display: inline-block;
-      margin-left: 18px;
+  #substrate-input {
+    margin-left: 18px;
+    margin-bottom: 20px;
+
+    i {
+      vertical-align: top;
+      margin-top: 4px;
     }
 
-    margin-left: 18px;
+    .right-cell {
+      display: inline-block;
+      margin-left: 18px;
+
+      .add-substrate {
+        text-transform: lowercase;
+        text-decoration: none;
+        border-bottom: 1px dashed;
+        cursor: pointer;
+      }
+
+      #substrate-select {
+        select {
+          border-bottom: 1px solid #ccc;
+          background: white;
+          line-height: 30px;
+          outline: none;
+          padding: 2px;
+          margin-bottom: 10px;
+        }
+      }
+
+      .clear-substrate {
+        cursor: pointer;
+      }
+    }
   }
 
   padding: 15px;

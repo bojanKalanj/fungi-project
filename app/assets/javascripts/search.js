@@ -11,6 +11,8 @@ var FungiorbisSearch = (function () {
     bindSearchDomainSelect();
 
     initHabitat();
+
+    initSubstrate();
   }
 
   function submit() {
@@ -236,6 +238,46 @@ var FungiorbisSearch = (function () {
       }
 
       var selectedSpecies = $('input[name="sp"]')
+    }
+  }
+
+  function bindAddSubstrate() {
+    $(document).on('click', '#substrate-input .add-substrate', function (e) {
+      $(this).addClass('hidden');
+      $('#substrate-select').removeClass('hidden');
+    });
+  }
+
+  function bindClearSubstrate() {
+    $(document).on('click', '#substrate-input .clear-substrate', function (e) {
+      $('.add-substrate', '#substrate-input').removeClass('hidden');
+      $('#substrate-select').addClass('hidden');
+      var $select = $('select', '#substrate-select');
+      if ($select.val().length > 0) {
+        $select.val('');
+        submit();
+      }
+    });
+  }
+
+  function bindSubstrateChange() {
+    $(document).on('change', '#substrate-select select', function (e) {
+      if ($(this).val() == '') {
+        $('.clear-substrate', '#substrate-input').click();
+      }
+      submit();
+    });
+  }
+
+  function initSubstrate(){
+    bindAddSubstrate();
+    bindClearSubstrate();
+    bindSubstrateChange();
+
+    var $substrateSelect = $('select', '#substrate-select');
+    if ($substrateSelect.val().length > 0) {
+      $('.add-substrate', '#substrate-input').addClass('hidden');
+      $('#substrate-select').removeClass('hidden');
     }
   }
 

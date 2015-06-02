@@ -46,6 +46,7 @@ en:
       nutritive_group: Select nutritive group
       growth_type: Select growth type
     no_hits: No matches for provided parameters.
+    usability: Usability
   stats:
     monthly_specimens_count:
       title: Specimens count

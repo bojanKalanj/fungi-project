@@ -44,7 +44,7 @@
     </div>
 
     <div id="habitat-input" class="input-container">
-      <%= fo_icon_tag(:habitat) %>
+      <%= fo_icon_tag(:habitat, title: t('species_search.select.habitat'), class: :pointer) %>
       <div class="right-cell">
         <div>
           <a class="add-habitat add-link">
@@ -70,7 +70,7 @@
     </div>
 
     <div id="substrate-input" class="input-container">
-      <%= fo_icon_tag(:substrate) %>
+      <%= fo_icon_tag(:substrate, title: t('species_search.select.substrate'), class: :pointer) %>
       <div class="right-cell">
         <div>
           <a class="add-substrate add-link">
@@ -90,7 +90,7 @@
     </div>
 
     <div id="nutritive-group-input" class="input-container">
-      <%= fo_icon_tag(:nutritive_group) %>
+      <%= fo_icon_tag(:nutritive_group, title: t('species_search.select.nutritive_group'), class: :pointer) %>
       <div class="right-cell">
         <div>
           <a class="add-nutritive-group add-link">
@@ -110,7 +110,7 @@
     </div>
 
     <div id="growth-type-input" class="input-container">
-      <%= fo_icon_tag(:growth_type) %>
+      <%= fo_icon_tag(:growth_type, title: t('species_search.select.growth_type'), class: :pointer) %>
       <div class="right-cell">
         <div>
           <a class="add-growth-type add-link">
@@ -127,6 +127,18 @@
           </a>
         </div>
       </div>
+    </div>
+
+    <div id="usability" class="input-container">
+      <div class="title"><%= t('species_search.usability') %></div>
+      <a class="usability" data-usability="edible"><%= fo_icon_tag(:edible, title: t('characteristic.attributes.edible')) %></a>
+      <a class="usability" data-usability="cultivated"><%= fo_icon_tag(:cultivated, title: t('characteristic.attributes.cultivated')) %></a>
+      <a class="usability" data-usability="medicinal"><%= fo_icon_tag(:medicinal, title: t('characteristic.attributes.medicinal')) %></a>
+      <a class="usability" data-usability="poisonous"><%= fo_icon_tag(:poisonous, title: t('characteristic.attributes.poisonous')) %></a>
+      <input type="hidden" name="edible">
+      <input type="hidden" name="cultivated">
+      <input type="hidden" name="medicinal">
+      <input type="hidden" name="poisonous">
     </div>
 
   </form>

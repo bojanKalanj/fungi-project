@@ -46,6 +46,7 @@ sr:
       nutritive_group: Задај нутритивну групу
       growth_type: Задај начин раста
     no_hits: Нема погодака за задате параметре.
+    usability: Употребљивост
   stats:
     monthly_specimens_count:
       title: Број налаза

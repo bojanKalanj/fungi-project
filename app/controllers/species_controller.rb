@@ -42,6 +42,11 @@ class SpeciesController < ApplicationController
 
     c = c.where('substrates like ?', '%' + params['sb'] + '%') unless params[:sb].blank?
 
+    c = c.where(edible: true) unless params[:edible].blank?
+    c = c.where(cultivated: true) unless params[:cultivated].blank?
+    c = c.where(medicinal: true) unless params[:medicinal].blank?
+    c = c.where(poisonous: true) unless params[:poisonous].blank?
+
     @species = @species.where(nutritive_group: params['ng']) unless params[:ng].blank?
     @species = @species.where(growth_type: params['gt']) unless params[:gt].blank?
 

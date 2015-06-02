@@ -14,13 +14,14 @@ var FungiorbisSearch = (function () {
     initSubstrate();
     initNutritiveGroup();
     initGrowthType();
+    initUsability();
   }
 
   function submit() {
     if ($('#search_domain').val() == 'species') {
       $form.attr('action', $form.data('species-action'));
       if ($form.data('remote')) {
-        var path = location.protocol + '//' + location.host + location.pathname + '?' + $form.serialize();
+        var path = location.protocol + '//' + location.host + location.pathname + '?' + $form.serialize().replace(/[^&]+=\.?(?:&|$)/g, '');
         var pageTitle = $('title').html();
         window.history.pushState(pageTitle, pageTitle, path);
       }
@@ -268,7 +269,7 @@ var FungiorbisSearch = (function () {
     });
   }
 
-  function initSubstrate(){
+  function initSubstrate() {
     bindAddSubstrate();
     bindClearSubstrate();
     bindSubstrateChange();
@@ -308,7 +309,7 @@ var FungiorbisSearch = (function () {
     });
   }
 
-  function initNutritiveGroup(){
+  function initNutritiveGroup() {
     bindAddNutritiveGroup();
     bindClearNutritiveGroup();
     bindNutritiveGroupChange();
@@ -348,7 +349,7 @@ var FungiorbisSearch = (function () {
     });
   }
 
-  function initGrowthType(){
+  function initGrowthType() {
     bindAddGrowthType();
     bindClearGrowthType();
     bindGrowthTypeChange();
@@ -357,6 +358,36 @@ var FungiorbisSearch = (function () {
     if ($growthTypeSelect.val().length > 0) {
       $('.add-growth-type', '#growth-type-input').addClass('hidden');
       $('#growth-type-select').removeClass('hidden');
+    }
+  }
+
+  function bindToggleUsability() {
+    $(document).on('click', '#usability .usability', function (e) {
+      $(this).toggleClass('active');
+      var $input = $(this).parent().find('input[name="' + $(this).data('usability') + '"]');
+      if ($input.val().length > 0) {
+        $input.val('');
+      }
+      else {
+        $input.val('true');
+      }
+      submit();
+    });
+  }
+
+  function initUsability() {
+    bindToggleUsability();
+    if ($('input[name="edible"]').val().length > 0){
+      $('[data-usability="edible"]').addClass('active');
+    }
+    if ($('input[name="cultivated"]').val().length > 0){
+      $('[data-usability="cultivated"]').addClass('active');
+    }
+    if ($('input[name="medicinal"]').val().length > 0){
+      $('[data-usability="medicinal"]').addClass('active');
+    }
+    if ($('input[name="poisonous"]').val().length > 0){
+      $('[data-usability="poisonous"]').addClass('active');
     }
   }
 

@@ -15,7 +15,7 @@ gem 'mysql2'
 gem 'annotate', '~> 2.6.5'
 
 
-gem 'jquery-rails'
+# gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 

@@ -2,8 +2,8 @@ language: ruby
 rvm:
   - 2.1.5
 
-before_install:
-  - gem install libv8 -v '3.16.14.3' -- --with-system-v8
+#before_install:
+#  - gem install libv8 -v '3.16.14.3' -- --with-system-v8
 
 before_script:
   - mysql -e 'create database fungiorbis_test;'

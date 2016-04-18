@@ -281,6 +281,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   less-rails
+  libv8 (~> 3.16.14.7)
   mysql2
   rails
   rails-i18n

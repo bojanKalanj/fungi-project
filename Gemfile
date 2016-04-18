@@ -23,8 +23,10 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
-gem "therubyracer"
-gem "less-rails"
+
+gem 'libv8', '~>3.16.14.7'
+gem 'therubyracer'
+gem 'less-rails'
 
 
 gem 'friendly_id', '~> 5.1.0'

@@ -1,10 +1,6 @@
 FactoryGirl.define do
   factory :localized_page do
-    title "MyString"
-content "MyText"
-slug "MyString"
-language nil
-page nil
+    title 'home'
   end
 
 end

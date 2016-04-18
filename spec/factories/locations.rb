@@ -1,7 +1,7 @@
 FactoryGirl.define do
-  factory :location do
-    name Faker::Lorem.sentence
-    utm %w(34TDR200 34TDR210 34TDQ209 34TDR210).sample
+  factory :location do |l|
+    l.name { Faker::Lorem.sentence + Time.now.to_s }
+    l.utm { %w(34TDR200 34TDR210 34TDQ209 34TDR210).sample }
   end
 end
 

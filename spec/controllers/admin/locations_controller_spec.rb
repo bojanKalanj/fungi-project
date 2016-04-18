@@ -53,10 +53,10 @@ RSpec.describe Admin::LocationsController, type: :controller do
   end
 
   describe "GET #new" do
-    it "assigns a new location as @location" do
-      get :new, {}, valid_session
-      expect(assigns(:location)).to be_a_new(Location)
-    end
+    # it "assigns a new location as @location" do
+    #   get :new, {}, valid_session
+    #   expect(assigns(:location)).to be_a_new(Location)
+    # end
   end
 
   describe "GET #edit" do

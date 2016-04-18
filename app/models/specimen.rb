@@ -30,6 +30,10 @@ class Specimen < ActiveRecord::Base
   validates :legator, presence: true
   validates :date, presence: true
 
+  validate :habitat_json
+  validate :substrate_json
+
+
   def resource_title
     "#{self.species.full_name} - #{self.location.name} - #{self.date}"
   end
@@ -46,6 +50,48 @@ class Specimen < ActiveRecord::Base
     candidates
   end
 
+  def habitat_json
+    unless habitat.blank?
+      if habitat.is_a?(String)
+        unless all_habitat_keys(output: :string).include?(habitat)
+          errors.add :habitat, "has to be included in: #{elements_to_str(all_habitat_keys)}"
+          false
+        end
+      elsif habitat.keys.length > 1
+        errors.add :habitat, 'incorrect habitats format'
+        false
+      elsif all_habitat_keys(output: :string).include?(habitat.keys.first)
+        habitat_key = habitat.keys.first.to_s
+        habitat_value = habitat.values.first
+        habitat_value = {} unless habitat_value.is_a?(Hash)
+        if habitat_value['subhabitat']
+          allowed_subhabitats = subhabitat_keys(habitat_key)
+          unless array_is_superset?(allowed_subhabitats, Array(habitat_value['subhabitat']))
+            errors.add :habitat, SUBHABITATS_VALIDATION_ERROR
+            false
+          end
+        end
+        if habitat_value['species']
+          allowed_species = elements_to_str(allowed_species(habitat_key, habitat_value['subhabitat']))
+          species = elements_to_str(Array(habitat_value['species']))
+          unless array_is_superset?(allowed_species, species)
+            errors.add :habitat, SPECIES_VALIDATION_ERROR
+            false
+          end
+        end
+      else
+        errors.add :habitat, "has to be included in: #{elements_to_str(all_habitat_keys)}"
+        false
+      end
+    end
+  end
+
+  def substrate_json
+    if !substrate.blank? && !all_substrate_keys(output: :string).include?(substrate)
+      errors.add :substrate, "has to be included in: #{all_substrate_keys.inspect}"
+      false
+    end
+  end
 end
 
 # == Schema Information

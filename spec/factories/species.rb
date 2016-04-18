@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :species do |s|
-    s.name { Faker::Name.last_name }
+    s.name { Faker::Name.last_name  }
     s.genus { Faker::Name.last_name }
     s.familia { Faker::Name.last_name }
     s.ordo { Faker::Name.last_name }

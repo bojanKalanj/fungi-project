@@ -11,8 +11,8 @@ FactoryGirl.define do
     association :determinator, factory: :user
     legator_text "MyString"
     determinator_text "MyString"
-    habitats { random_habitats }
-    substrates { random_substrates }
+    habitat { random_habitats.first }
+    substrate { random_substrates.first }
     date "2014-11-28"
     quantity "MyText"
   end

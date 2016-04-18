@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :stat do
-    name ""
-data ""
+    name %w(monthly_specimens_count general_db_stats yearly_field_studies).sample
+    data "some data"
   end
 
 end

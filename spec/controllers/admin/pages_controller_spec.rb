@@ -53,10 +53,10 @@ RSpec.describe Admin::PagesController, type: :controller do
   end
 
   describe "GET #new" do
-    it "assigns a new page as @page" do
-      get :new, {}, valid_session
-      expect(assigns(:page)).to be_a_new(Page)
-    end
+    # it "assigns a new page as @page" do
+    #   get :new, {}, valid_session
+    #   expect(assigns(:page)).to be_a_new(Page)
+    # end
   end
 
   describe "GET #edit" do

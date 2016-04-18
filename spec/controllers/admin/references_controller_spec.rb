@@ -53,10 +53,10 @@ RSpec.describe Admin::ReferencesController, type: :controller do
   end
 
   describe "GET #new" do
-    it "assigns a new reference as @reference" do
-      get :new, {}, valid_session
-      expect(assigns(:reference)).to be_a_new(Reference)
-    end
+    # it "assigns a new reference as @reference" do
+    #   get :new, {}, valid_session
+    #   expect(assigns(:reference)).to be_a_new(Reference)
+    # end
   end
 
   describe "GET #edit" do

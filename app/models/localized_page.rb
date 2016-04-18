@@ -48,7 +48,8 @@ class LocalizedPage < ActiveRecord::Base
   private
 
   def dependant?
-    self.language.parent_id?
+    # TODO check if language is mandatory
+    self.language && self.language.parent_id?
   end
 end
 

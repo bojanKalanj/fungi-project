@@ -7,6 +7,11 @@ RSpec.describe Species, :type => :model do
     expect(subject).to be_valid
   end
 
+  describe 'associations' do
+    it { is_expected.to have_many(:characteristics) }
+    it { is_expected.to have_many(:specimens) }
+  end
+
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:genus) }
@@ -19,10 +24,31 @@ RSpec.describe Species, :type => :model do
 
     it { is_expected.to validate_uniqueness_of(:name).scoped_to(:genus).with_message(Species::NAME_GENUS_VALIDATION_ERROR) }
 
-    it { is_expected.to ensure_inclusion_of(:nutritive_group).in_array(Species::NUTRITIVE_GROUPS) }
-    it { is_expected.to ensure_inclusion_of(:growth_type).in_array(Species::GROWTH_TYPES) }
+    it { is_expected.to validate_inclusion_of(:nutritive_group).in_array(Species::NUTRITIVE_GROUPS) }
+    it { is_expected.to validate_inclusion_of(:growth_type).in_array(Species::GROWTH_TYPES) }
   end
 
+  describe 'callbacks' do
+    context 'before_validation' do
+
+      describe 'generate_url' do
+        context 'when new record' do
+          it 'generates url' do
+            species = Species.new FactoryGirl.attributes_for(:species)
+            expect(species).to receive(:generate_url).and_call_original
+            species.save
+          end
+        end
+
+        context 'when existing record' do
+          it 'generates url' do
+            expect(subject).to receive(:generate_url).and_call_original
+            subject.save
+          end
+        end
+      end
+    end
+  end
 end
 
 # == Schema Information

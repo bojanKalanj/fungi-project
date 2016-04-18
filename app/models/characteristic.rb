@@ -61,12 +61,15 @@ class Characteristic < ActiveRecord::Base
 
   def localized_hashes
     locales = elements_to_str I18n.available_locales
+    ok = true
     [:fruiting_body, :microscopy, :flesh, :chemistry].each do |field|
       hash = self.send(field)
-      unless hash.blank? || array_is_superset?(locales, hash.keys)
+      if !hash.blank? && !array_is_superset?(locales, hash.keys)
         errors.add field, "locale keys have to be included in #{locales}"
+        ok = ok && false
       end
     end
+    ok
   end
 
   def habitats_array
@@ -74,33 +77,34 @@ class Characteristic < ActiveRecord::Base
       habitats.each do |habitat|
         if habitat.keys.length > 1
           errors.add :habitats, 'incorrect habitats format'
-          return false
-        elsif all_habitat_keys(output: :string).include?(habitat.keys.first.to_s)
+          false
+        elsif all_habitat_keys(output: :string).include?(habitat.keys.first)
           habitat_key = habitat.keys.first.to_s
           habitat = habitat.values.first
           habitat = {} unless habitat.is_a?(Hash)
-          unless habitat.empty? || !habitat[:subhabitat]
+          if habitat['subhabitat']
             allowed_subhabitats = subhabitat_keys(habitat_key)
-            unless array_is_superset?(allowed_subhabitats, Array(habitat[:subhabitat]))
+            unless array_is_superset?(allowed_subhabitats, Array(habitat['subhabitat']))
               errors.add :habitats, SUBHABITATS_VALIDATION_ERROR
-              return false
+              false
             end
           end
-          unless habitat.empty? || !habitat[:species]
-            allowed_species = elements_to_str(allowed_species(habitat_key, habitat[:subhabitat]))
-            species = elements_to_str(Array(habitat[:species]))
+          if habitat['species']
+            allowed_species = elements_to_str(allowed_species(habitat_key, habitat['subhabitat']))
+            species = elements_to_str(Array(habitat['species']))
             unless array_is_superset?(allowed_species, species)
               errors.add :habitats, SPECIES_VALIDATION_ERROR
-              return false
+              false
             end
           end
         else
           errors.add :habitats, "have to be included in: #{elements_to_str(all_habitat_keys)}"
-          return false
+          false
         end
       end
-    else
-      true
+    elsif !habitats.blank? && !all_habitat_keys(output: :string).include?(habitats)
+      errors.add :habitats, "have to be included in: #{elements_to_str(all_habitat_keys)}"
+      false
     end
   end
 
@@ -111,8 +115,9 @@ class Characteristic < ActiveRecord::Base
         errors.add :substrates, "have to be included in: #{all_substrate_keys.inspect}"
         false
       end
-    else
-      true
+    elsif !substrates.blank? && !all_substrate_keys(output: :string).include?(substrates)
+      errors.add :substrates, "have to be included in: #{all_substrate_keys.inspect}"
+      false
     end
   end
 

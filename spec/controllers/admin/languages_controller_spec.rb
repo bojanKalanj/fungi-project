@@ -53,10 +53,10 @@ RSpec.describe Admin::LanguagesController, type: :controller do
   end
 
   describe "GET #new" do
-    it "assigns a new language as @language" do
-      get :new, {}, valid_session
-      expect(assigns(:language)).to be_a_new(Language)
-    end
+    # it "assigns a new language as @language" do
+    #   get :new, {}, valid_session
+    #   expect(assigns(:language)).to be_a_new(Language)
+    # end
   end
 
   describe "GET #edit" do

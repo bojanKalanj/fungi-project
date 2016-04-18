@@ -1,7 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe Stat, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { FactoryGirl.create(:stat) }
+
+  it 'has a valid factory' do
+    expect(subject).to be_valid
+  end
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:data) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_uniqueness_of(:name) }
+  end
+
+  describe 'serialization' do
+    it { is_expected.to serialize(:data) }
+  end
 end
 
 # == Schema Information

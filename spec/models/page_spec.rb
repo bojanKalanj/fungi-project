@@ -1,7 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe Page, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  subject { FactoryGirl.create(:page) }
+
+  it 'has a valid factory' do
+    expect(subject).to be_valid
+  end
+
+  describe 'associations' do
+    it { is_expected.to have_many(:localized_pages) }
+  end
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to validate_uniqueness_of(:title) }
+  end
+
+  describe 'nested attributes' do
+    it { is_expected.to accept_nested_attributes_for :localized_pages }
+  end
 end
 
 # == Schema Information

@@ -1,8 +1,9 @@
 FactoryGirl.define do
   factory :language do
-    name "MyString"
-slug_2 "MyString"
-slug_3 "MyString"
+    name 'English'
+    title 'english'
+    locale 'en'
+    flag 'gb'
   end
 
 end

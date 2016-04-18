@@ -1,7 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe LocalizedPage, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { FactoryGirl.create(:localized_page) }
+
+  it 'has a valid factory' do
+    expect(subject).to be_valid
+  end
+
+  describe 'associations' do
+    it { is_expected.to belong_to(:language) }
+    it { is_expected.to belong_to(:page) }
+  end
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:title) }
+  end
 end
 
 # == Schema Information

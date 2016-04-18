@@ -9,6 +9,11 @@ class Language < ActiveRecord::Base
 
   friendly_id :name, use: :slugged
 
+  validates :name, presence: true
+  validates :title, presence: true
+  validates :locale, presence: true
+  validates :flag, presence: true
+
   class << self
     def for_locale(locale)
       locale = 'sr-Latn' if locale == 'sr_latn'

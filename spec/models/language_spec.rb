@@ -1,7 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe Language, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  subject { FactoryGirl.create(:language) }
+
+  it 'has a valid factory' do
+    expect(subject).to be_valid
+  end
+
+  describe 'associations' do
+    it { is_expected.to belong_to(:parent) }
+    it { is_expected.to have_many(:localized_pages) }
+  end
+
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to validate_presence_of(:locale) }
+    it { is_expected.to validate_presence_of(:flag) }
+  end
+
 end
 
 # == Schema Information

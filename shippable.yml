@@ -4,8 +4,8 @@ rvm:
 
 before_install:
   - sudo apt-get update
-  - apt-get install libmysqlclient-dev
-#  - apt-get install mysql-server mysql-client libmysqlclient-dev
+#  - apt-get install libmysqlclient-dev
+  - apt-get install mysql-server mysql-client libmysqlclient-dev
 #  - gem install libv8 -v '3.16.14.3' -- --with-system-v8
 
 #before_script:

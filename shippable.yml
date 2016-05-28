@@ -25,5 +25,5 @@ before_script:
   - RAILS_ENV=test rake db:create
   - RAILS_ENV=test rake db:migrate
 
-script:
-  - bin/rspec -f documentation -o shippable/testresults/results.txt
+#script:
+#  - bin/rspec -f documentation -o shippable/testresults/results.txt

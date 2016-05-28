@@ -14,6 +14,19 @@ RSpec.describe LocalizedPage, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:title) }
   end
+
+  describe 'callbacks' do
+    context 'before_validation' do
+      describe 'set_locale' do
+        specify do
+          subject.locale = nil
+          expect(subject).to receive(:set_locale).once.and_call_original
+          subject.valid?
+          expect(subject.locale).to eq subject.language.locale
+        end
+      end
+    end
+  end
 end
 
 # == Schema Information
@@ -28,6 +41,7 @@ end
 #  slug        :string(255)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  locale      :string(255)      default("sr")
 #
 # Indexes
 #

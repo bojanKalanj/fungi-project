@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :localized_page do
     title 'home'
+    language {FactoryGirl.create(:language)}
+    page {FactoryGirl.create(:page)}
   end
 
 end
@@ -17,6 +19,7 @@ end
 #  slug        :string(255)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  locale      :string(255)      default("sr")
 #
 # Indexes
 #

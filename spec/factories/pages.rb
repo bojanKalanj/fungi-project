@@ -1,6 +1,11 @@
 FactoryGirl.define do
   factory :page do
-    title "MyString"
+    title Faker::Shakespeare.hamlet_quote
+    before(:create) do |page|
+      while Page.where(title: page.title).count > 0 do
+        page.title = Faker::Shakespeare.hamlet_quote
+      end
+    end
   end
 
 end

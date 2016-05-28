@@ -1,8 +1,12 @@
 require 'simplecov'
 require 'simplecov-csv'
-SimpleCov.formatter = SimpleCov::Formatter::CSVFormatter
-SimpleCov.coverage_dir(ENV["COVERAGE_REPORTS"])
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  SimpleCov.coverage_dir(ENV['COVERAGE_REPORTS'])
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter::new [
+    SimpleCov::Formatter::HTMLFormatter,
+    SimpleCov::Formatter::CSVFormatter
+  ]
+end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'

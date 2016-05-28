@@ -12,6 +12,6 @@ before_install:
 #  - mysqladmin variables | grep socket
 #  - gem install libv8 -v '3.16.14.3' -- --with-system-v8
 
-#before_script:
-#  - mysql -e 'create database fungiorbis_test;'
-#  - RAILS_ENV=test rake db:migrate
+before_script:
+  - mysql -e 'create database fungiorbis_test;'
+  - RAILS_ENV=test rake db:migrate

@@ -13,6 +13,7 @@ development:
 
 test: &test
   <<: *default
+  host: localhost
   database: fungiorbis_test
 
 production:

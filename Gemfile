@@ -58,6 +58,11 @@ end
 group :test do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
+
+  gem 'ci_reporter_rspec'
+  gem 'simplecov'
+  gem 'simplecov-csv'
+  gem 'rspec_junit_formatter'
 end
 
 group :doc do

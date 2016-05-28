@@ -4,7 +4,6 @@ module ApplicationHelper
   include HabitatHelper
   include SubstrateHelper
 
-
   def localized_url_helper(locale, options={})
     if admin_page? || devise_page? || root_page?
       if locale == I18n.default_locale
@@ -43,7 +42,14 @@ module ApplicationHelper
     if args[:controller] == 'localized_pages' && @localized_page && !@localized_page.first?
       "/#{@localized_page.for_locale(locale).title}"
     else
-      locale.to_sym == I18n.default_locale ? '/' : "/#{locale}"
+      ''
+    end
+  end
+
+  def language_menu_item(locale, &block)
+    path="#"
+    content_tag :li, :class => is_active?(path, {}) do
+      link_to language_switcher_path(locale, path: language_picker_url(locale)), method: :patch, &block
     end
   end
 

@@ -9,6 +9,8 @@ class LocalizedPage < ActiveRecord::Base
 
   friendly_id :title, use: :slugged
 
+  before_validation :set_locale
+
   validates :title, presence: true, uniqueness: true, unless: :dependant?
 
   class << self
@@ -51,6 +53,10 @@ class LocalizedPage < ActiveRecord::Base
     # TODO check if language is mandatory
     self.language && self.language.parent_id?
   end
+
+  def set_locale
+    self.locale = self.language.locale if self.language
+  end
 end
 
 # == Schema Information
@@ -65,6 +71,7 @@ end
 #  slug        :string(255)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  locale      :string(255)      default("sr")
 #
 # Indexes
 #

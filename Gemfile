@@ -29,7 +29,6 @@ gem 'less-rails'
 
 
 gem 'friendly_id', '~> 5.1.0'
-gem 'route_translator'
 gem 'simple_form'
 
 gem 'figaro'

@@ -6,7 +6,7 @@
   <%= drop_down_list do %>
     <% Language.all.each do |language| %>
       <% unless language.locale == I18n.locale.to_s %>
-        <%= menu_item language_picker_url(language.locale) do %>
+        <%= language_menu_item language.locale do %>
           <%= content_tag :span, '', class: "flag-icon flag-icon-#{language.flag}", title: language.title %>
           <%= content_tag :span, language.title %>
         <% end %>

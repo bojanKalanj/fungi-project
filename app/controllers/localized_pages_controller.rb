@@ -2,25 +2,14 @@ require 'fungiorbis/statistics'
 class LocalizedPagesController < ApplicationController
 
   def show
-    locale = params[:id] == 'sr-latn' ? :'sr-Latn' : params[:id].to_s.to_sym
-
-    if params[:page_id] && (locale.blank? || I18n.available_locales.include?(locale))
-      if !locale.blank? && I18n.available_locales.include?(locale)
-        language = Language.find_by_locale locale || Language.find_by_locale(I18n.locale)
-        I18n.locale = language.locale
-      else
-        language = Language.find_by_locale I18n.locale
-      end
-
-      @localized_page = LocalizedPage.where(page_id: params[:page_id], language_id: language.id).first
-    else
-      @localized_page = LocalizedPage.where(title: locale).first
-      I18n.locale = @localized_page.language.locale
-    end
-
-    if @localized_page.first?
+    locale = I18n.available_locales.select { |l| l.to_s.downcase.underscore == params['id'].to_s.downcase.underscore }.first
+    if params[:id].blank? || locale
+      @localized_page = LocalizedPage.where(locale: locale || I18n.default_locale).first
       @general_db_stats = Fungiorbis::Statistics.new(:general_db_stats).get
+    else
+      @localized_page = LocalizedPage.where(title: params[:id]).first
     end
+    I18n.locale = @localized_page.language.locale.to_sym
   end
 
 end

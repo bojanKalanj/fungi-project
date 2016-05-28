@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150524101624) do
+ActiveRecord::Schema.define(version: 20160528194826) do
 
   create_table "characteristics", force: :cascade do |t|
     t.integer  "reference_id",  limit: 4,     null: false
     t.integer  "species_id",    limit: 4,     null: false
-    t.boolean  "edible",        limit: 1
-    t.boolean  "cultivated",    limit: 1
-    t.boolean  "poisonous",     limit: 1
-    t.boolean  "medicinal",     limit: 1
+    t.boolean  "edible"
+    t.boolean  "cultivated"
+    t.boolean  "poisonous"
+    t.boolean  "medicinal"
     t.text     "fruiting_body", limit: 65535
     t.text     "microscopy",    limit: 65535
     t.text     "flesh",         limit: 65535
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20150524101624) do
     t.string   "title",      limit: 255, null: false
     t.string   "locale",     limit: 255, null: false
     t.string   "flag",       limit: 255, null: false
-    t.boolean  "default",    limit: 1
+    t.boolean  "default"
     t.string   "slug",       limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -53,11 +53,12 @@ ActiveRecord::Schema.define(version: 20150524101624) do
   create_table "localized_pages", force: :cascade do |t|
     t.integer  "language_id", limit: 4
     t.integer  "page_id",     limit: 4
-    t.string   "title",       limit: 255,   null: false
+    t.string   "title",       limit: 255,                  null: false
     t.text     "content",     limit: 65535
     t.string   "slug",        limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "locale",      limit: 255,   default: "sr"
   end
 
   add_index "localized_pages", ["language_id"], name: "index_localized_pages_on_language_id", using: :btree
@@ -124,7 +125,7 @@ ActiveRecord::Schema.define(version: 20150524101624) do
     t.date     "date",                            null: false
     t.text     "quantity",          limit: 65535
     t.text     "note",              limit: 65535
-    t.boolean  "approved",          limit: 1
+    t.boolean  "approved"
     t.string   "slug",              limit: 255,   null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false

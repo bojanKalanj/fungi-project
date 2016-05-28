@@ -2,6 +2,9 @@ language: ruby
 rvm:
   - 2.1.5
 
+env:
+  - CI_REPORTS=shippable/testresults COVERAGE_REPORTS=shippable/codecoverage
+
 services:
   - mysql
 
@@ -21,3 +24,6 @@ before_script:
 #  - sudo mysqladmin variables | grep socket
   - RAILS_ENV=test rake db:create
   - RAILS_ENV=test rake db:migrate
+
+script:
+  - bin/rspec -f documentation -o shippable/testresults/results.txt

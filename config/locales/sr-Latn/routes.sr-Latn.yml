@@ -2,4 +2,5 @@
 sr-Latn:
   routes:
     species: vrste
+    specimens: nalazi
     search: pretraga

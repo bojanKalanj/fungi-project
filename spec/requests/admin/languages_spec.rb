@@ -1,5 +1,4 @@
-# require 'rails_helper'
-#
+# #
 # RSpec.describe "Languages", type: :request do
 #   describe "GET /languages" do
 #     it "works! (now write some real specs)" do

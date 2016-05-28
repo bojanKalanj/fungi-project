@@ -1,4 +1,3 @@
-require 'rails_helper'
 
 RSpec.describe Specimen, :type => :model do
   subject { FactoryGirl.create(:specimen) }

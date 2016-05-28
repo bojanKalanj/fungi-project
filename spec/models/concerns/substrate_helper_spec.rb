@@ -1,4 +1,3 @@
-require 'rails_helper'
 require "#{Rails.root}/app/models/concerns/substrate_helper"
 
 RSpec.describe SubstrateHelper do

@@ -1,4 +1,3 @@
-require 'rails_helper'
 
 RSpec.describe LocalizedPage, type: :model do
   subject { FactoryGirl.create(:localized_page) }

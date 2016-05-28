@@ -1,5 +1,3 @@
-# require "rails_helper"
-#
 # RSpec.describe SpeciesController, type: :routing do
 #   describe "routing" do
 #

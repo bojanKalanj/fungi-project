@@ -1,4 +1,3 @@
-require 'rails_helper'
 
 RSpec.describe "species/edit", type: :view do
   # before(:each) do

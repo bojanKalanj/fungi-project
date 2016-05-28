@@ -1,5 +1,4 @@
-# require 'rails_helper'
-#
+# #
 # RSpec.describe "Locations", type: :request do
 #   describe "GET /locations" do
 #     it "works! (now write some real specs)" do

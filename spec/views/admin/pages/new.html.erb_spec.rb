@@ -1,4 +1,3 @@
-require 'rails_helper'
 
 RSpec.describe "pages/new", type: :view do
   # before(:each) do

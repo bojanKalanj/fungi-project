@@ -1,4 +1,3 @@
-require 'rails_helper'
 require "#{Rails.root}/app/models/concerns/habitat_helper"
 
 RSpec.describe HabitatHelper do

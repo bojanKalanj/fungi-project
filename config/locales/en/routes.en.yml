@@ -2,4 +2,5 @@
 en:
   routes:
     species: species
+    specimens: specimens
     search: search

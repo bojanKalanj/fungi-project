@@ -1,5 +1,4 @@
-# require 'rails_helper'
-#
+# #
 # RSpec.describe "Specimen", type: :request do
 #   describe "GET /specimen" do
 #     it "works! (now write some real specs)" do

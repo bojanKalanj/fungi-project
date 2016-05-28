@@ -26,7 +26,11 @@ Rails.application.routes.draw do
   resources :systematics, only: :show
 
   localized do
-    resources :species, param: :url, only: [:index, :show] do
+    resources :species, param: :url, only: [:show] do
+      get :search, on: :collection
+    end
+
+    resources :specimens, controller: 'specimens', only: [:show] do
       get :search, on: :collection
     end
 

@@ -1,4 +1,3 @@
-require 'rails_helper'
 
 RSpec.describe "references/edit", type: :view do
   # before(:each) do

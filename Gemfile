@@ -24,8 +24,8 @@ gem 'autoprefixer-rails'
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
 
-# gem 'therubyracer'
-# gem 'less-rails'
+gem 'therubyracer'
+gem 'less-rails'
 
 
 gem 'friendly_id', '~> 5.1.0'
@@ -53,6 +53,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'forgery'
+  gem 'thin'
 end
 
 group :test do

@@ -32,13 +32,13 @@ class User < ActiveRecord::Base
     self.role == SUPERVISOR_ROLE
   end
 
-  def self.active
-    where(:deactivated_at => nil)
-  end
-
-  def active?
-    self.deactivated_at.nil?
-  end
+  # def self.active
+  #   where(:deactivated_at => nil)
+  # end
+  #
+  # def active?
+  #   self.deactivated_at.nil?
+  # end
 
   def deactivate!
     self.update!(deactivated_at: DateTime.now)

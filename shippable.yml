@@ -2,11 +2,14 @@ language: ruby
 rvm:
   - 2.1.5
 
+services:
+  - mysql
+
 before_install:
   - sudo apt-get update
   - apt-get install mysql-server mysql-client libmysqlclient-dev
-  - mysqladmin -u root -p status
-  - mysqladmin variables | grep socket
+#  - mysqladmin -u root -p status
+#  - mysqladmin variables | grep socket
 #  - gem install libv8 -v '3.16.14.3' -- --with-system-v8
 
 #before_script:

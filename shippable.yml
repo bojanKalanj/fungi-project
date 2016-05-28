@@ -13,6 +13,7 @@ before_install:
 #  - gem install libv8 -v '3.16.14.3' -- --with-system-v8
 
 before_script:
+  - cp config/database.yml.shippable config/database.yml
   - mysql -e 'create database fungiorbis_test;'
   - sudo mysqladmin variables | grep socket
   - RAILS_ENV=test rake db:migrate

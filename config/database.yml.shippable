@@ -1,0 +1,26 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: fungiorbis
+  password: fungiorbis
+  socket: /var/run/mysqld/mysqld.sock
+  host: localhost
+
+development:
+  <<: *default
+  database: fungiorbis_development
+
+test: &test
+  <<: *default
+  database: fungiorbis_test
+
+production:
+#  <<: *default
+  adapter: mysql2
+  encoding: utf8
+  socket: /var/run/mysqld/mysqld.sock
+  url: <%= ENV['database_url'] %>
+
+cucumber:
+  <<: *test

@@ -3,7 +3,7 @@ rvm:
   - 2.1.5
 
 before_install:
-  - apt-get install mysql-server mysql-client libmysqlclient-dev
+#  - apt-get install mysql-server mysql-client libmysqlclient-dev
 #  - gem install libv8 -v '3.16.14.3' -- --with-system-v8
 
 #before_script:

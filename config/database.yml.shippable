@@ -5,7 +5,6 @@ default: &default
   username: fungiorbis
   password:
   socket: /var/run/mysqld/mysqld.sock
-  host: localhost
 
 development:
   <<: *default

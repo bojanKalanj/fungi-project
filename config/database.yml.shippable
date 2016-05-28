@@ -3,7 +3,7 @@ default: &default
   encoding: utf8
   pool: 5
   username: fungiorbis
-  password:
+  password: fungiorbis
   socket: /var/run/mysqld/mysqld.sock
 
 development:

@@ -8,22 +8,12 @@ env:
 services:
   - mysql
 
-before_install:
-#  - sudo apt-get update
-#  - apt-get install mysql-server mysql-client libmysqlclient-dev
-#  - mysqladmin -u root -p status
-#  - mysqladmin variables | grep socket
-#  - gem install libv8 -v '3.16.14.3' -- --with-system-v8
+#before_install:
 
 before_script:
   - mkdir -p shippable/testresults
   - mkdir -p shippable/codecoverage
   - cp config/database.yml.shippable config/database.yml
   - mysql -e "GRANT ALL ON *.* TO fungiorbis@localhost IDENTIFIED BY ''; FLUSH PRIVILEGES;"
-#  - mysql -e 'create database fungiorbis_test;'
-#  - sudo mysqladmin variables | grep socket
   - RAILS_ENV=test rake db:create
   - RAILS_ENV=test rake db:migrate
-
-#script:
-#  - bin/rspec -f documentation -o shippable/testresults/results.txt

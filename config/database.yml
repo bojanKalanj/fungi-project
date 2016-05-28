@@ -7,13 +7,11 @@ default: &default
 
 development:
   <<: *default
-  host: localhost
   database: fungiorbis_development
-#  socket: /var/run/mysqld/mysqld.sock
+  socket: /var/run/mysqld/mysqld.sock
 
 test: &test
   <<: *default
-  host: localhost
   database: fungiorbis_test
 
 production:

@@ -15,3 +15,4 @@ db/old_data/logs
 db/local_backup
 config/application.yml
 data
+coverage

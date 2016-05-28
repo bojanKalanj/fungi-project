@@ -14,6 +14,7 @@ before_install:
 
 before_script:
   - cp config/database.yml.shippable config/database.yml
-  - mysql -e 'create database fungiorbis_test;'
+#  - mysql -e 'create database fungiorbis_test;'
 #  - sudo mysqladmin variables | grep socket
+  - RAILS_ENV=test rake db:create
   - RAILS_ENV=test rake db:migrate

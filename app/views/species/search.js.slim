@@ -1,0 +1,22 @@
+| $('#content-column').html('
+= j(render partial: 'species/search/search', locals: { species: @species, subhabitats: @subhabitats, habitat_species: @habitat_species, params: @params})
+| ');
+
+- if @subhabitats.blank?
+  |  $('#subhabitat').html('');
+- else
+  |  $('#subhabitat').html('
+  = j(render partial: 'shared/search/subhabitats', locals: { subhabitats: @subhabitats, selected: @params[:sh]})
+  | ');
+
+- if @habitat_species.blank?
+  |  $('#habitat-species').html('');
+- else
+  |  $('#habitat-species').html('
+  = j(render partial: 'shared/search/habitat_species', locals: { habitat_species: @habitat_species, selected: @params[:sp] || [] })
+  | ');
+
+- unless @params['sh'].blank?
+  |  var $subhabitatSelect = $('select', '#subhabitat-select'); $('.add-subhabitat', '#habitat-input').addClass('hidden'); $('#subhabitat-select').removeClass('hidden'); $subhabitatSelect.val('
+  = @params['sh']
+  | ');

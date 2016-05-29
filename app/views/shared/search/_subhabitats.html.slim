@@ -1,0 +1,9 @@
+div
+  a.add-subhabitat.add-link
+    = t('species_search.select.subhabitat')
+#subhabitat-select.hidden
+  select[name="sh"]
+    option[value=""]
+    = options_for_select subhabitats, selected unless subhabitats.blank?
+  a.clear-subhabitat.clear-link
+    = fo_icon_tag(:cancel)

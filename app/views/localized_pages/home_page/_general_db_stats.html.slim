@@ -1,0 +1,14 @@
+.col-lg-4
+  .panel.panel-default
+    .panel-heading
+      = fo_icon_tag :statistics
+      = t('stats.general_db_stats.title')
+    .panel-body
+      .list-group
+        - all_stats.each do |stat|
+          span.list-group-item[href="#"]
+            = fo_icon_tag stat.last
+            = t("stats.general_db_stats.label.#{stat.first}")
+            span.pull-right.text-muted.small
+              strong
+                = data[stat.first] || 0

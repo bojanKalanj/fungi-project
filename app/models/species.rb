@@ -34,18 +34,29 @@ class Species < ActiveRecord::Base
   validates :growth_type, allow_blank: true, inclusion: { in: GROWTH_TYPES, message: GROWTH_TYPE_VALIDATION_ERROR }
   validates :nutritive_group, allow_blank: true, inclusion: { in: NUTRITIVE_GROUPS, message: NUTRITIVE_GROUPS_VALIDATION_ERROR }
 
+  class << self
+    def with_systematics(s)
+      s ? where('genus = ? or familia = ? or ordo = ? or subclassis = ? or classis = ? or subphylum = ? or phylum = ?', s, s, s, s, s, s, s) : where({})
+    end
+
+    def with_nutritive_group(ng)
+      ng ? where(nutritive_group: ng) : where({})
+    end
+
+    def with_growth_type(gt)
+      gt ? where(growth_type: gt) : where({})
+    end
+  end
+
   def full_name
     "#{self.genus} #{self.name}"
   end
 
   alias_method :resource_title, :full_name
 
-  def self.usability_count(usability)
-    Characteristic.where(usability => true).select(:species_id).distinct.count
-  end
 
   def systematics
-    [:name, :genus, :familia, :ordo, :subclassis, :classis, :subphylum, :phylum].map{ |s| self.send(s)}
+    [:name, :genus, :familia, :ordo, :subclassis, :classis, :subphylum, :phylum].map { |s| self.send(s) }
   end
 
   def combined_characteristics(locale=I18n.locale)
@@ -68,7 +79,7 @@ class Species < ActiveRecord::Base
     self.characteristics.each do |c|
       characteristics_keys.each do |key|
         unless c.send(key).blank?
-          if Characteristic::FLAGS.include?(key) && c.send(key)  || [:habitats, :substrates].include?(key)
+          if Characteristic::FLAGS.include?(key) && c.send(key) || [:habitats, :substrates].include?(key)
             hash[key] << { value: c.send(key), reference_id: c.reference_id }
           elsif c.send(key).is_a?(Hash) && !c.send(key)[locale].blank?
             hash[key] << { value: c.send(key)[locale], reference_id: c.reference_id }

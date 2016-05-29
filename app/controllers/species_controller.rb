@@ -1,38 +1,24 @@
 class SpeciesController < ApplicationController
   include HabitatHelper
 
-  def index
-    @species = Species.all
-  end
-
+  # GET /species/:url
   def show
     @species = Species.where(url: params[:url]).first
   end
 
+  # GET /species/search
   def search
-    @species = Species.includes(:characteristics).includes(:specimens).paginate(:page => params[:page])
+    @species = Species.includes(:characteristics).includes(:specimens).
+      with_systematics(params[:s]).
+      with_nutritive_group(params[:ng]).
+      with_growth_type(params[:gt])
 
-    unless params[:s].blank?
-      @species = @species.where('genus = ? or familia = ? or ordo = ? or subclassis = ? or classis = ? or subphylum = ? or phylum = ?',
-                                params[:s], params[:s], params[:s], params[:s], params[:s], params[:s], params[:s])
-    end
+    @species = @species.where(id: species_ids_for_characteristics).paginate(:page => params[:page])
 
-    @subhabitats = nil
-    @habitat_species = nil
-    c = Characteristic
-    unless params[:h].blank?
-      if params[:sh].blank?
-        c = c.where('habitats like ?', '%' + params['h'] + '%')
-      else
-        c = c.where('habitats like ?', '%' + params['sh'] + '%')
-      end
-
-      unless params[:sp].blank?
-        params[:sp].each do |sp|
-          c = c.where('habitats like ?', '%' + sp + '%')
-        end
-      end
-
+    if params[:h].blank?
+      @subhabitats = nil
+      @habitat_species = nil
+    else
       subhabitat_keys = subhabitat_keys(params[:h])
       @subhabitats = subhabitat_keys.map { |key| [t("habitats.#{params[:h]}.subhabitat.#{key}.title"), key] } unless subhabitat_keys.blank?
 
@@ -40,18 +26,23 @@ class SpeciesController < ApplicationController
       @habitat_species = habitat_species_keys.map { |key| [localized_habitat_species_name(key), key] } unless habitat_species_keys.blank?
     end
 
-    c = c.where('substrates like ?', '%' + params['sb'] + '%') unless params[:sb].blank?
-
-    c = c.where(edible: true) unless params[:edible].blank?
-    c = c.where(cultivated: true) unless params[:cultivated].blank?
-    c = c.where(medicinal: true) unless params[:medicinal].blank?
-    c = c.where(poisonous: true) unless params[:poisonous].blank?
-
-    @species = @species.where(nutritive_group: params['ng']) unless params[:ng].blank?
-    @species = @species.where(growth_type: params['gt']) unless params[:gt].blank?
-
-    @species = @species.where(id: c.pluck(:species_id)) unless c == Characteristic
-
     @params = params
+  end
+
+  private
+
+  def species_ids_for_characteristics
+    species_ids = @species.pluck(:id)
+
+    base_characteristics = Characteristic.where(species_id: species_ids)
+
+    species_ids = base_characteristics.with_habitat(params).pluck(:species_id) &
+      base_characteristics.with_substrate(params).pluck(:species_id) unless species_ids.blank?
+
+    Characteristic::FLAGS.each do |flag|
+      species_ids = species_ids & base_characteristics.where(flag => true).pluck(:species_id) if params[flag] && !species_ids.blank?
+    end
+
+    species_ids
   end
 end

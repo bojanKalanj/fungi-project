@@ -13,17 +13,17 @@ RSpec.describe LocalizedPagesController, type: :controller do
   describe 'GET #show' do
     context 'when root page requested' do
       context 'with blank id' do
-        it 'sets default locale and renders root page' do
-          old_locale = I18n.locale
-          locale = (I18n.available_locales - [old_locale]).sample
-          I18n.locale = locale
+        I18n.available_locales.each do |locale|
+          it "#{locale} - sets default locale and renders root page" do
+            I18n.locale = locale
 
-          response = get :show
+            response = get :show
 
-          expect(response).to be_success
-          expect(assigns(:localized_page)).to eq page.localized_pages.for_locale(old_locale).first
-          expect(assigns(:general_db_stats)).to be_truthy
-          expect(I18n.locale).to eq old_locale
+            expect(response).to be_success
+            expect(assigns(:localized_page)).to eq page.localized_pages.for_locale(I18n.default_locale).first
+            expect(assigns(:general_db_stats)).to be_truthy
+            expect(I18n.locale).to eq I18n.default_locale
+          end
         end
       end
 

@@ -20,6 +20,15 @@ FactoryGirl.define do
     habitats { random_habitats }
     substrates { random_substrates }
   end
+
+  factory :blank_characteristic, parent: :characteristic do
+    edible { nil }
+    cultivated { nil }
+    poisonous { nil }
+    medicinal { nil }
+    habitats { {} }
+    substrates { [] }
+  end
 end
 
 # == Schema Information

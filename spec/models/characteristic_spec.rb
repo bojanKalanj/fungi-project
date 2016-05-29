@@ -1,4 +1,3 @@
-
 RSpec.describe Characteristic, :type => :model do
   subject { FactoryGirl.create(:characteristic) }
 

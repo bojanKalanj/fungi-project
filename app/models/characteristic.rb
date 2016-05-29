@@ -41,6 +41,16 @@ class Characteristic < ActiveRecord::Base
   validate :substrates_array
   validate :localized_hashes
 
+  class << self
+    def with_habitat(params={})
+      where('habitats like ?', "%#{params[:h].to_s}%#{params[:sh].to_s}%#{params[:sp].to_a.sort.join('%')}%")
+    end
+
+    def with_substrate(params={})
+      where('substrates like ?', "%#{params[:sb].to_s}%")
+    end
+  end
+
   def resource_title
     I18n.translate('characteristic.interface.index')
   end

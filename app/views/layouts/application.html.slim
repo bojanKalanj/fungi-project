@@ -1,0 +1,33 @@
+doctype html
+html[lang=I18n.locale]
+= render partial: 'layouts/application/head'
+body
+  #wrapper
+    nav.navbar.navbar-default.navbar-fixed-top[role="navigation" style="margin-bottom: 0"]
+      .navbar-header
+        button.navbar-toggle[type="button" data-toggle="collapse" data-target=".sidebar-collapse"]
+          span.sr-only
+            | Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        = link_to t('shared.sections.fungiorbis'), I18n.locale == I18n.default_locale ? root_path : "/#{I18n.locale}", class: 'navbar-brand'
+        = menu_group pull: :left, class: 'navbar-top-links' do
+          - LocalizedPage.for_locale(I18n.locale).without_home.ordered.each do |p|
+            = menu_item p.title, send(:localized_page_path, p.title)
+        ul.nav.navbar-top-links.navbar-right
+          - #= render partial: 'layouts/application/navbar_messages'
+          - #= render partial: 'layouts/application/navbar_tasks'
+          - #= render partial: 'layouts/application/navbar_alerts'
+          = render partial: 'layouts/application/navbar_admin'
+          = render partial: 'layouts/application/navbar_user'
+          = render partial: 'layouts/application/navbar_languages'
+      .navbar-default.navbar-static-side[role="navigation"]
+        .sidebar-collapse
+          ul#side-menu.nav
+            = render partial: 'layouts/application/sidebar_search'
+    #page-wrapper
+      .col-sm-9.col-sm-offset-3
+        = bootstrap_flash
+        #content-column
+          = yield

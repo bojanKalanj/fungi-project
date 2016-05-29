@@ -1,9 +1,9 @@
-RSpec.describe StatisticsController, type: :controller do
+RSpec.describe SystematicsController, type: :controller do
 
-  let!(:specimen){FactoryGirl.create(:specimen)}
+  let!(:species){FactoryGirl.create(:species)}
 
   describe 'GET #show' do
-    %w(yearly_field_studies monthly_specimens_count).each do |id|
+    %w(phylum subphylum classis subclassis ordo familia genus).each do |id|
       context "when requesting #{id}" do
         it 'returns http success' do
           response = get :show, id: id, format: :json

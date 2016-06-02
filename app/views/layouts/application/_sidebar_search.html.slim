@@ -1,0 +1,68 @@
+li
+  form[id="sidebar-search" method="get" data-remote='true' action=(is_specimens_search? ? send(:search_specimens_url) : send(:search_species_index_url))]
+    #systematics-input.input-group
+      #search-domain-select.input-group-btn
+        button.btn.btn-default.dropdown-toggle[type="button" data-toggle="dropdown" aria-expanded="false"]
+          = fo_icon_tag(is_specimens_search? ? :specimens : :species)
+          span.caret
+        ul.dropdown-menu[role="menu"]
+          li[class=('active' unless is_specimens_search?)] : a[href=search_species_index_path data-search-domain="species" data-icon=fo_icon(:species) data-placeholder=t('species_search.placeholder.species')+'...']
+            = fo_icon_tag(:species)
+            = t('shared.sections.species')
+          li[class=('active' if is_specimens_search?)] : a [href=search_specimens_path data-search-domain="specimens" data-icon=fo_icon(:specimens) data-placeholder=t('species_search.placeholder.specimens')+'...']
+            = fo_icon_tag(:specimens)
+            = t('shared.sections.specimens')
+            /
+      input#search_domain[type="hidden" value="species"]
+      input[type="text" id="systematics-typeahead" name="s" class="form-control systematics typeahead" placeholder=t('species_search.placeholder.species')+'...' data-genus=t('species.attributes.genus') data-familia=t('species.attributes.familia') data-ordo=t('species.attributes.ordo') data-subclassis=t('species.attributes.subclassis') data-classis=t('species.attributes.classis') data-subphylum=t('species.attributes.subphylum') data-phylum=t('species.attributes.phylum')]
+      span#cancel-species.input-group-btn.hidden
+        button.btn.btn-default[type="button"] = fo_icon_tag(:cancel)
+
+    #habitat-input.input-container
+      = fo_icon_tag(:habitat, title: t('species_search.select.habitat'), class: :pointer)
+      .right-cell
+        div : a.add-habitat.add-link = t('species_search.select.habitat')
+        #habitat-select.hidden
+          select[name="h"]
+            option[value=""]
+            = options_for_select all_habitat_keys.map { |key| [t("habitats.#{key}.title"), key] }, selected: params['h']
+          a.clear-habitat.clear-link = fo_icon_tag(:cancel)
+        #subhabitat = content_for?(:subhabitat_select) ? yield(:subhabitat_select) : ''
+        #habitat-species = content_for?(:habitat_species) ? yield(:habitat_species) : ''
+
+    #substrate-input.input-container
+      = fo_icon_tag(:substrate, title: t('species_search.select.substrate'), class: :pointer)
+      .right-cell
+        div : a.add-substrate.add-link = t('species_search.select.substrate')
+        #substrate-select.hidden
+          select[name="sb"]
+            option[value=""]
+            = options_for_select all_substrate_keys.map { |key| [t("substrates.#{key}"), key] }, selected: params['sb']
+          a.clear-substrate.clear-link = fo_icon_tag(:cancel)
+
+    #nutritive-group-input.input-container
+      = fo_icon_tag(:nutritive_group, title: t('species_search.select.nutritive_group'), class: :pointer)
+      .right-cell
+        div : a.add-nutritive-group.add-link = t('species_search.select.nutritive_group')
+        #nutritive-group-select.hidden
+          select[name="ng"]
+            option[value=""]
+            = options_for_select Species::NUTRITIVE_GROUPS.map { |key| [t("species.nutritive_group.#{key}"), key] }, selected: params['ng']
+          a.clear-nutritive-group.clear-link = fo_icon_tag(:cancel)
+
+    #growth-type-input.input-container
+      = fo_icon_tag(:growth_type, title: t('species_search.select.growth_type'), class: :pointer)
+      .right-cell
+        div : a.add-growth-type.add-link = t('species_search.select.growth_type')
+        #growth-type-select.hidden
+          select[name="gt"]
+            option[value=""]
+            = options_for_select Species::GROWTH_TYPES.map { |key| [t("species.growth_type.#{key}"), key] }, selected: params['gt']
+          a.clear-growth-type.clear-link = fo_icon_tag(:cancel)
+
+    #usability.input-container
+      .title = t('species_search.usability')
+      - Characteristic::FLAGS.each do |usability_flag|
+        a.usability[class=('active' unless params[usability_flag.to_s].blank?) data-usability=usability_flag.to_s]
+          = fo_icon_tag(usability_flag, title: t("characteristic.attributes.#{usability_flag}"))
+        input[type="hidden" name=usability_flag.to_s value=params[usability_flag.to_s].to_s]

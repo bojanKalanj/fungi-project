@@ -26,4 +26,10 @@
 //= require twitter/bootstrap/affix
 //= require turbolinks
 //= require vendor
+//= require search/form
+//= require search/growth_type
+//= require search/habitat
+//= require search/nutritive_group
+//= require search/substrate
+//= require search/usability
 //= require_tree .

@@ -14,6 +14,9 @@ SimpleCov.start do
   SimpleCov.add_group 'Models', 'app/models'
   SimpleCov.add_group 'Helpers', 'app/helpers'
   SimpleCov.add_group 'Libraries', 'lib/'
+
+  # SimpleCov.merge_timeout(600)
+  SimpleCov.use_merging(true)
 end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'

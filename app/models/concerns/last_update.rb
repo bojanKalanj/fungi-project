@@ -6,7 +6,7 @@ module LastUpdate
 
   module ClassMethods
     def last_update
-      self.order('updated_at DESC').pluck(:updated_at).last
+      self.order('updated_at DESC').pluck(:updated_at).first
     end
   end
 end

@@ -1,5 +1,9 @@
 class Stat < ActiveRecord::Base
 
+  STAT_MONTHLY_SPECIMENS_COUNT = 'monthly_specimens_count'.freeze
+  STAT_GENERAL_DB_STATS = 'general_db_stats'.freeze
+  STAT_YEARLY_FIELD_STUDIES = 'yearly_field_studies'.freeze
+
   serialize :data, JSON
 
   validates :data, presence: true
@@ -8,11 +12,11 @@ class Stat < ActiveRecord::Base
 
   def update_needed?
     case self.name
-      when 'monthly_specimens_count'
+      when STAT_MONTHLY_SPECIMENS_COUNT
         self.updated_at.year < Date.today.year || self.updated_at.month < Date.today.month
-      when 'general_db_stats'
+      when STAT_GENERAL_DB_STATS
         updated_at < Species.last_update || updated_at < Specimen.last_update || updated_at < Location.last_update || updated_at < Characteristic.last_update
-      when 'yearly_field_studies'
+      when STAT_YEARLY_FIELD_STUDIES
         updated_at < Specimen.last_update
       else
         rails 'unknown stats name'

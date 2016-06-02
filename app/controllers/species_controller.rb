@@ -1,6 +1,8 @@
 class SpeciesController < ApplicationController
   include HabitatHelper
 
+  before_action :clean_params, only: :search
+
   # GET /species/:url
   def show
     @species = Species.where(url: params[:url]).first
@@ -44,5 +46,11 @@ class SpeciesController < ApplicationController
     end
 
     species_ids
+  end
+
+  def clean_params
+    params.keys.each do |key|
+      params[key] = nil if params[key].blank?
+    end
   end
 end

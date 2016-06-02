@@ -19,7 +19,7 @@ class LocalizedPage < ActiveRecord::Base
     end
 
     def without_home
-      where.not(page_id: 1)
+      where.not(page_id: Page.home.id)
     end
 
     def ordered

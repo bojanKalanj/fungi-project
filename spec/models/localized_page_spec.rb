@@ -27,6 +27,17 @@ RSpec.describe LocalizedPage, type: :model do
       end
     end
   end
+
+  describe 'scopes' do
+    describe 'without_home' do
+      let(:page1){ FactoryGirl.create(:page)}
+      let!(:lp1){ FactoryGirl.create(:localized_page, page: page1)}
+      let(:page2){ FactoryGirl.create(:page)}
+      let!(:lp2){ FactoryGirl.create(:localized_page, page: page2, title: 'abc')}
+
+      specify { expect(LocalizedPage.without_home).to eq [lp2]}
+    end
+  end
 end
 
 # == Schema Information

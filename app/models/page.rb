@@ -16,6 +16,10 @@ class Page < ActiveRecord::Base
     def first?(id)
       id == Page.order('created_at ASC').pluck(:id).first
     end
+
+    def home
+      Page.order('created_at ASC').first
+    end
   end
 
   def resource_title

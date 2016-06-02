@@ -1,0 +1,13 @@
+- if specimens.blank?
+  = t('species_search.no_hits')
+- else
+  .species-search-results
+    - specimens.each do |specimen|
+      = specimen_card(specimen)
+  = will_paginate specimens, renderer: BootstrapPagination::Rails
+- unless subhabitats.blank?
+  - content_for :subhabitat_select do
+    = render partial: 'shared/search/subhabitats', locals: { subhabitats: subhabitats, selected: params[:sh] }
+- unless habitat_species.blank?
+  - content_for :habitat_species do
+    = render partial: 'shared/search/habitat_species', locals: { habitat_species: habitat_species, selected: params[:sp] || [] }

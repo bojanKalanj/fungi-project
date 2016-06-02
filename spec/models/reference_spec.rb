@@ -1,4 +1,3 @@
-
 RSpec.describe Reference, :type => :model do
   subject { FactoryGirl.create(:reference) }
 
@@ -12,10 +11,8 @@ RSpec.describe Reference, :type => :model do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:title) }
-
-    it { is_expected.to validate_uniqueness_of(:isbn) unless subject.isbn.nil? }
-
-    it { is_expected.to validate_uniqueness_of(:url) unless subject.url.nil? }
+    it { is_expected.to validate_uniqueness_of(:isbn).allow_nil }
+    it { is_expected.to validate_uniqueness_of(:url).allow_nil }
     it { is_expected.to allow_value('http://www.some_site.com').for(:url) }
     it { is_expected.not_to allow_value('www.some_site.com').for(:url) }
   end

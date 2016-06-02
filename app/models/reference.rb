@@ -7,8 +7,8 @@ class Reference < ActiveRecord::Base
   has_many :characteristics
 
   validates :title, presence: true
-  validates :isbn, uniqueness: true, if: 'isbn.present?'
-  validates :url, format: { with: URI.regexp }, uniqueness: true, if: 'url.present?'
+  validates :isbn, uniqueness: true, allow_nil: true
+  validates :url, format: { with: URI.regexp }, uniqueness: true, allow_nil: true
 
   friendly_id :full_title, use: :slugged
 

@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :reference do
     title { Faker::Lorem.sentence }
     authors { Faker::Name.name }
-    url { [Faker::Internet.url, nil].sample }
+    url { ["http://#{Time.now.to_i}", nil].sample }
     isbn { [Faker::Code.isbn, nil].sample }
   end
 

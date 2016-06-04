@@ -8,6 +8,9 @@ FactoryGirl.define do
     end
   end
 
+  factory :randomized_page, parent: :page do |page|
+    title { rand(Time.now.to_i) }
+  end
 end
 
 # == Schema Information

@@ -3,6 +3,18 @@ RSpec.describe Admin::UsersController, :type => :controller do
   let!(:record){FactoryGirl.create(:user)}
 
   describe 'GET #index' do
+    context 'when signed in as supervisor' do
+      login_supervisor
+
+      let!(:localized_page){ FactoryGirl.create(:page, title: :home)}
+
+      it 'lists users' do
+        response = get :index
+        expect(response).to be_success
+        expect(assigns(:users)).to eq User.all
+        expect(response).to render_template(:index)
+      end
+    end
 
     context 'with user or contributor' do
       it_behaves_like 'forbidden for non supervisors', :get, :index, {}

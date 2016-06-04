@@ -10,7 +10,7 @@ module StandardResponses
         format.html { redirect_to resource.resource_name_index_path, notice: "#{resource.resource_name}.notice.destroyed" }
         format.json { head :no_content }
       else
-        puts resource.errors.inspect if Rails.env.development?
+        # puts resource.errors.inspect if Rails.env.development?
 
         error_flash = options[:error] || "#{resource.resource_name}.error.destroyed"
         redirection_path = options[:source] == 'index' ? resource.resource_name_index_path : resource.resource_name_path
@@ -26,11 +26,11 @@ module StandardResponses
         format.html { redirect_to resource.resource_name_path, notice: "#{resource.resource_name}.notice.created" }
         format.json { render :show, status: :created, location: resource }
       else
-        puts resource.errors.inspect if Rails.env.development?
+         # puts resource.errors.inspect unless Rails.env.production?
 
         flash_uncaught_messages(resource, resource.errors, options)
 
-        format.html { render :new }
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: resource.errors, status: :unprocessable_entity }
       end
     end
@@ -42,11 +42,11 @@ module StandardResponses
         format.html { redirect_to resource.resource_name_path, notice: "#{resource.resource_name}.notice.updated" }
         format.json { render :show, status: :created, location: resource }
       else
-        puts resource.errors.inspect if Rails.env.development?
+        # puts resource.errors.inspect unless Rails.env.production?
 
         flash_uncaught_messages(resource, resource.errors, options)
 
-        format.html { render :edit }
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: resource.errors, status: :unprocessable_entity }
       end
     end

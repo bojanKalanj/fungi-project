@@ -139,6 +139,15 @@ module ApplicationHelper
     end
   end
 
+  def l(str, args={})
+    I18n.localize(str, args)
+  rescue Exception => e
+    if I18n.locale == :'sr-Latn'
+      cyr_to_lat(I18n.localize(str, args.merge(locale: :sr)))
+    else
+      raise e
+    end
+  end
 
   def parent_locale_for_current
     @parent_locale_for_current ||= Language.parent_locale_for_current

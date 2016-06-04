@@ -12,7 +12,7 @@ describe Admin::AuditsController, type: :controller do
       it 'indexes all audits' do
         response = get :index
         expect(response).to be_success
-        expect(assigns(:audits)).to eq Audit.all.order('created_at desc').limit(500)
+        expect(assigns(:audits)).to eq Audit.all.order('created_at desc').limit(300)
         expect(response).to render_template(:index)
       end
     end

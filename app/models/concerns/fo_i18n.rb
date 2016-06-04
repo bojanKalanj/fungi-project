@@ -14,6 +14,16 @@ module FoI18n
     end
   end
 
+  def l(str, args={})
+    I18n.localize(str, args)
+  rescue Exception => e
+    if I18n.locale == :'sr-Latn'
+      cyr_to_lat(I18n.localize(str, args.merge(locale: :sr)))
+    else
+      raise e
+    end
+  end
+
   private
 
   def cyr_to_lat(str)

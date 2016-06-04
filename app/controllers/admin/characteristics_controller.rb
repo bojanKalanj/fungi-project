@@ -78,7 +78,7 @@ class Admin::CharacteristicsController < Admin::AdminController
   end
 
   def set_reference
-    @reference = Reference.friendly.find(params[:reference_id])
+    @reference = params[:reference_id] ? Reference.friendly.find(params[:reference_id]) : nil
   end
 
   def set_fields
@@ -96,7 +96,7 @@ class Admin::CharacteristicsController < Admin::AdminController
     if [:index, :update, :create, :destroy].include?(action)
       @fields = Admin::CharacteristicsController.index_fields_for(@species ? :species : :reference)
     else
-      @fields = [@species ? { name: :reference, field: :full_title, include_blank: false, as: :collection_select, collection: Reference.where('id not in (?)', Characteristic.where(species_id: @species.id).pluck(:reference_id)) }
+      @fields = [@species ? { name: :reference, field: :full_title, include_blank: false, as: :collection_select, collection: Reference.where.not(id: Characteristic.where(species_id: @species.id).pluck(:reference_id)) }
                  : { name: :species, field: :full_name, include_blank: false, as: :collection_select, label_method: :full_name, value_method: :id, collection: Species.where('id not in (?)', Characteristic.where(reference_id: @reference.id).pluck(:species_id)), input_html: { class: 'italic' } }]
       @fields += [
         { name: :edible, method: :boolean_to_icon },

@@ -38,7 +38,7 @@ RSpec.describe LocalizedPage, type: :model do
       let(:page2){ FactoryGirl.create(:page)}
       let!(:lp2){ FactoryGirl.create(:localized_page, page: page2, title: 'abc')}
 
-      specify { expect(LocalizedPage.without_home).to eq [lp2]}
+      specify { expect(LocalizedPage.without_home.to_a).to eq [lp2]}
     end
   end
 end

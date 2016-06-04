@@ -1,6 +1,8 @@
 RSpec.describe LanguageSwitcherController, type: :controller do
   include Fungiorbis::FactoryHelper
 
+  render_views
+
   describe 'PATCH update' do
 
     let(:page) { FactoryGirl.create(:page) }
@@ -10,6 +12,10 @@ RSpec.describe LanguageSwitcherController, type: :controller do
       create_languages!
       localize_page!(page)
       localize_page!(page2)
+    end
+
+    after(:each) do
+      I18n.locale = I18n.default_locale
     end
 
     context 'when path is given' do

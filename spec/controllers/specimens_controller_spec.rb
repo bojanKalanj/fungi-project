@@ -1,6 +1,8 @@
 RSpec.describe SpecimensController, type: :controller do
+  render_views
 
   let(:species) { FactoryGirl.create(:species_with_characteristics) }
+  let!(:localized_page){ FactoryGirl.create(:page, title: :home)}
 
   describe 'GET #show' do
     let(:specimen) { FactoryGirl.create(:specimen, species: species) }

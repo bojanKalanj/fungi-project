@@ -1,4 +1,5 @@
 RSpec.describe StatisticsController, type: :controller do
+  render_views
 
   let!(:specimen){FactoryGirl.create(:specimen)}
 

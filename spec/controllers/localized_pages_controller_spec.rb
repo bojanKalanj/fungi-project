@@ -1,6 +1,8 @@
 RSpec.describe LocalizedPagesController, type: :controller do
   include Fungiorbis::FactoryHelper
 
+  render_views
+
   let(:page){ FactoryGirl.create(:page)}
   let(:page2){ FactoryGirl.create(:page)}
 
@@ -8,6 +10,10 @@ RSpec.describe LocalizedPagesController, type: :controller do
     create_languages!
     localize_page!(page)
     localize_page!(page2)
+  end
+
+  after(:each) do
+    I18n.locale = I18n.default_locale
   end
 
   describe 'GET #show' do
@@ -74,6 +80,4 @@ RSpec.describe LocalizedPagesController, type: :controller do
       end
     end
   end
-
-
 end

@@ -1,4 +1,5 @@
 RSpec.describe SystematicsController, type: :controller do
+  render_views
 
   let!(:species){FactoryGirl.create(:species)}
 

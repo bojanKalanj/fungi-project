@@ -1,0 +1,9 @@
+<% if I18n.locale == :sr %>
+  <%= File.read(Rails.root+'vendor/assets/javascripts/timeago/jquery.timeago.sr.js') %>
+<% elsif I18n.locale == :'sr-Latn' %>
+  <%= File.read(Rails.root+'vendor/assets/javascripts/timeago/jquery.timeago.sr-Latn.js') %>
+<% end %>
+
+jQuery(document).ready(function () {
+  jQuery("time.timeago").timeago();
+});

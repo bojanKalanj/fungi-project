@@ -1,0 +1,34 @@
+en:
+  admin:
+    dashboard:
+      audits:
+        title:
+          recent: Recent changes
+          all: Last %{count} changes
+        auditable_type:
+          characteristic: Species characteristic %{action}
+          language: Language %{action}
+          localized_page: Localized page %{action}
+          location: Location %{action}
+          page: Page %{action}
+          reference: Reference %{action}
+          species: Species %{action}
+          specimen: Specimen %{action}
+          user: User %{action}
+        action:
+          create_m: created
+          create_n: created
+          create_f: created
+          update_m: changed
+          update_n: changed
+          update_f: changed
+          destroy_m: destroyed
+          destroy_n: destroyed
+          destroy_f: destroyed
+        show_details: show details...
+        show_all: show all
+        show_all_for_record: changes log
+        table:
+          time: time
+          action: action
+          user: user

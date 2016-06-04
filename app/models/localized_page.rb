@@ -3,11 +3,14 @@ require 'fungiorbis/cyr_to_lat'
 class LocalizedPage < ActiveRecord::Base
   extend FriendlyId
   include Resource
+  include AuditCommentable
 
   belongs_to :language
   belongs_to :page
 
   friendly_id :title, use: :slugged
+
+  audited except: [:slug]
 
   before_validation :set_locale
 
@@ -46,6 +49,7 @@ class LocalizedPage < ActiveRecord::Base
   def resource_title
     localized_field(:title)
   end
+  alias_method :audit_title, :resource_title
 
   private
 

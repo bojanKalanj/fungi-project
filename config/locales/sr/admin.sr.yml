@@ -1,0 +1,34 @@
+sr:
+  admin:
+    dashboard:
+      audits:
+        title:
+          recent: Недавне измене
+          all: Последњих %{count} измена
+        auditable_type:
+          characteristic: Карактеристика врсте %{action}
+          language: Језик %{action}
+          localized_page: Превод стране %{action}
+          location: Локација %{action}
+          page: Страна %{action}
+          reference: Референца %{action}
+          species: Врста %{action}
+          specimen: Узорак %{action}
+          user: Корисник %{action}
+        action:
+          create_m: креиран
+          create_n: креирано
+          create_f: креирана
+          update_m: измењен
+          update_n: измењено
+          update_f: измењена
+          destroy_m: обрисан
+          destroy_n: обрисано
+          destroy_f: обрисана
+        show_details: прикажи детаље...
+        show_all: прикажи све
+        show_all_for_record: историја измена
+        table:
+          time: време
+          action: акција
+          user: корисник

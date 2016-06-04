@@ -1,0 +1,25 @@
+- css_classes = []
+- css_classes << audit_counter.even? ? 'timeline-badge' : 'timeline-inverted'
+
+li[class=('timeline-inverted' unless audit_counter.even?)]
+  .timeline-badge[class=audit.css_class]
+    i[class=fo_icon(audit.auditable_type.downcase.to_sym)]
+  .timeline-panel
+    .timeline-heading
+      h4.timeline-title = audit.title
+      p : strong = audit.comment
+      p
+        small.text-muted
+          i.fa.fa-time
+          - if audit.user
+            b = audit.user.full_name
+            '
+          time.timeago[datetime=audit.created_at.to_s ]
+    .timeline-body
+      .audit-details.hidden
+        hr
+        p = render partial: 'admin/dashboard/audits/shared/audit_details', locals: { audit: audit }
+
+        p = link_to t('admin.dashboard.audits.show_all_for_record'), admin_audit_path(audit)
+      .show-audit-details.pull-right
+        a[href='#'] = t('admin.dashboard.audits.show_details')

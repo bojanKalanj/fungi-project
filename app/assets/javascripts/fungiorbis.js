@@ -54,6 +54,7 @@ $(document).on('ready page:load', function () {
   });
 
   $('#page-wrapper').css('min-height', window.innerHeight - $('.navbar-header').height());
+
   $('.dataTable').dataTable({
     "language": dataTablesI18n[$('html').attr('lang')]
   });

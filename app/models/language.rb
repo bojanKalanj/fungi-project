@@ -1,6 +1,7 @@
 class Language < ActiveRecord::Base
   extend FriendlyId
   include Resource
+  include AuditCommentable
 
   PUBLIC_FIELDS = [:name, :title, :locale, :flag, :default, :parent]
 
@@ -8,6 +9,8 @@ class Language < ActiveRecord::Base
   has_many :localized_pages
 
   friendly_id :name, use: :slugged
+
+  audited except: [:slug]
 
   validates :name, presence: true
   validates :title, presence: true
@@ -37,6 +40,7 @@ class Language < ActiveRecord::Base
   def resource_title
     self.name
   end
+  alias_method :audit_title, :resource_title
 end
 
 # == Schema Information

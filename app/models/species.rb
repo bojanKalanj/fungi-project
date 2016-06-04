@@ -2,6 +2,7 @@ class Species < ActiveRecord::Base
   extend FriendlyId
   include Resource
   include LastUpdate
+  include AuditCommentable
 
   GROWTH_TYPES = %w(single group)
   NUTRITIVE_GROUPS = %w(parasitic mycorrhizal saprotrophic parasitic-saprotrophic saprotrophic-parasitic)
@@ -14,6 +15,8 @@ class Species < ActiveRecord::Base
 
   has_many :characteristics, dependent: :destroy
   has_many :specimens
+
+  audited except: [:url]
 
   before_validation :generate_url
 
@@ -51,8 +54,8 @@ class Species < ActiveRecord::Base
   def full_name
     "#{self.genus} #{self.name}"
   end
-
   alias_method :resource_title, :full_name
+  alias_method :audit_title, :full_name
 
 
   def systematics

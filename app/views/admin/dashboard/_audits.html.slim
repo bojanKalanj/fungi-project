@@ -1,0 +1,10 @@
+.panel.panel-default
+  .panel-heading
+    i.fa.fa-database.fa-fw
+    = t('admin.dashboard.audits.title.recent')
+    .pull-right
+      .btn-group
+        a.btn.btn-default.btn-xs[href=admin_audits_path] = t('admin.dashboard.audits.show_all')
+  .panel-body
+    ul.timeline
+      = render partial: 'admin/dashboard/audits/audit_item', collection: audits, as: :audit

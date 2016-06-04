@@ -5,6 +5,7 @@ class Admin::DashboardController < ApplicationController
 
   def show
     authorize! :show, :dashboard
+    @audits = Audit.order('created_at DESC').limit(10)
   end
 
 end

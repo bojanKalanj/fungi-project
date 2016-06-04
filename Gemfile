@@ -34,6 +34,8 @@ gem 'simple_form'
 
 gem 'figaro'
 
+gem 'audited-activerecord', '~> 4.0'
+
 gem 'airbrake', git: 'http://github.com/airbrake/airbrake.git', branch: :master
 
 group :development, :test do

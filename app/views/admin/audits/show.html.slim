@@ -1,0 +1,28 @@
+.page-header
+  a.btn-default.btn.btn-circle[href="/admin/audits" title=""]
+    i.fa.fa-fw.fa-times
+  h1
+    i.fa.fa-fw.fa-database
+    = @audit.resource_title
+
+table.audits
+  tr
+    th= t('admin.dashboard.audits.table.time')
+    td= l @audit.created_at, format: :short
+  tr
+    th= t('admin.dashboard.audits.table.action')
+    td
+      - if @audit.record
+        = link_to @audit.resource_title, @audit.url
+      - else
+        = @audit.resource_title
+  - if @audit.user
+    tr
+      th= t('admin.dashboard.audits.table.user')
+      td= link_to @audit.user.full_name, admin_user_path(@audit.user)
+
+hr
+= render partial: 'admin/dashboard/audits/shared/audit_details', locals: { audit: @audit }
+hr
+
+= render partial: 'admin/audits/audits_table', locals: {audits: Audit.for(@audit.auditable_id)}

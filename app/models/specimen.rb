@@ -5,6 +5,7 @@ class Specimen < ActiveRecord::Base
   include SubstrateHelper
   include FoI18n
   include LastUpdate
+  include AuditCommentable
 
   # HABITATS_VALIDATION_ERROR = "have to be included in: #{elements_to_str(all_habitat_keys)}"
   SUBHABITATS_VALIDATION_ERROR = 'must take subhabitats from the list for specific habitat'
@@ -25,6 +26,8 @@ class Specimen < ActiveRecord::Base
   serialize :habitat, JSON
   serialize :substrate, JSON
 
+  audited except: [:slug]
+
   validates :species, presence: true
   validates :location, presence: true
   validates :legator, presence: true
@@ -37,6 +40,7 @@ class Specimen < ActiveRecord::Base
   def resource_title
     "#{self.species.full_name} - #{self.location.name} - #{self.date}"
   end
+  alias_method :audit_title, :resource_title
 
 
   private

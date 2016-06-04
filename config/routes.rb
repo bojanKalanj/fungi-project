@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :pages
     resources :habitats, only: :index
     resource :dashboard, only: :show, controller: 'dashboard'
+    resources :audits, only: [:index, :show]
   end
 
   resources :statistics, only: :show

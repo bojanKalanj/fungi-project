@@ -4,6 +4,7 @@ class Characteristic < ActiveRecord::Base
   include HabitatHelper
   include SubstrateHelper
   include LastUpdate
+  include AuditCommentable
 
   # HABITATS_VALIDATION_ERROR = "have to be included in: #{elements_to_str(all_habitat_keys)}"
   SUBHABITATS_VALIDATION_ERROR = 'must take subhabitats from the list for specific habitat'
@@ -33,6 +34,8 @@ class Characteristic < ActiveRecord::Base
   serialize :habitats, JSON
   serialize :substrates, JSON
 
+  audited except: [:slug]
+
   validates :species_id, presence: true
   validates :reference_id, presence: true
   validates :reference_id, uniqueness: { scope: :species }
@@ -53,6 +56,10 @@ class Characteristic < ActiveRecord::Base
 
   def resource_title
     I18n.translate('characteristic.interface.index')
+  end
+
+  def audit_title
+    resource_title + ' ' + self.species.audit_title
   end
 
   def short

@@ -1,12 +1,15 @@
 class Page < ActiveRecord::Base
   extend FriendlyId
   include Resource
+  include AuditCommentable
 
   PUBLIC_FIELDS = [:title]
 
   has_many :localized_pages, dependent: :destroy
 
   friendly_id :title, use: :slugged
+
+  audited except: [:slug]
 
   accepts_nested_attributes_for :localized_pages
 
@@ -25,6 +28,7 @@ class Page < ActiveRecord::Base
   def resource_title
     self.title
   end
+  alias_method :audit_title, :resource_title
 end
 
 # == Schema Information

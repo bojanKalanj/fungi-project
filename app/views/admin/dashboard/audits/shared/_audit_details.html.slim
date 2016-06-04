@@ -1,0 +1,11 @@
+table.audits
+  - audit.localized_changes.each do |key, value|
+    tr
+      th = key + ':'
+      td
+        - if value.is_a?(Array)
+          ul
+            li : del= value.first
+            li = value.last
+        - else
+          = value

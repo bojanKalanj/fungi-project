@@ -1,10 +1,13 @@
 class Reference < ActiveRecord::Base
   extend FriendlyId
   include Resource
+  include AuditCommentable
 
   PUBLIC_FIELDS = [:title, :authors, :isbn, :url]
 
   has_many :characteristics
+
+  audited except: [:slug]
 
   validates :title, presence: true
   validates :isbn, uniqueness: true, allow_nil: true
@@ -15,7 +18,9 @@ class Reference < ActiveRecord::Base
   def full_title
     self.authors.blank? ? self.title : "#{self.authors} -  #{self.title}"
   end
+
   alias_method :resource_title, :full_title
+  alias_method :audit_title, :resource_title
 
 end
 

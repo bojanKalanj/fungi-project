@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   extend FriendlyId
   include Resource
+  include AuditCommentable
 
   USER_ROLE = 'user'
   CONTRIBUTOR_ROLE = 'contributor'
@@ -10,6 +11,8 @@ class User < ActiveRecord::Base
   PUBLIC_FIELDS = [:email, :first_name, :last_name, :role, :institution, :phone, :title, :password, :password_confirmation]
 
   devise :database_authenticatable, :registerable, :recoverable, :trackable, :validatable, :confirmable
+
+  audited only: [:email, :first_name, :last_name, :title, :role, :institution, :phone, :deactivated_at, :reset_password_sent_at, :confirmed_at]
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -27,6 +30,7 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
   alias_method :resource_title, :full_name
+  alias_method :audit_title, :resource_title
 
   def supervisor?
     self.role == SUPERVISOR_ROLE

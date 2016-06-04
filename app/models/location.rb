@@ -2,10 +2,13 @@ class Location < ActiveRecord::Base
   extend FriendlyId
   include Resource
   include LastUpdate
+  include AuditCommentable
 
   PUBLIC_FIELDS = [:name, :utm]
 
   has_many :specimens
+
+  audited except: [:slug]
 
   validates :name, presence: true, uniqueness: true
   validates :utm, presence: true
@@ -15,6 +18,7 @@ class Location < ActiveRecord::Base
   def resource_title
     self.name
   end
+  alias_method :audit_title, :resource_title
 
   private
 

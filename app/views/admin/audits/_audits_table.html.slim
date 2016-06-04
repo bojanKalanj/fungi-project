@@ -1,0 +1,18 @@
+table class="table table-striped table-bordered table-hover dataTable display responsive no-wrap"
+  thead
+    tr
+      th.text-capitalize = t('admin.dashboard.audits.table.time')
+      th.text-capitalize = t('admin.dashboard.audits.table.action')
+      th.text-capitalize = t('admin.dashboard.audits.table.user')
+  tbody
+    - audits.each do |audit|
+      tr.pointer[data-path=admin_audit_path(audit) class=audit.css_class]
+        td = I18n.l(audit.created_at, format: :short)
+        td = audit.resource_title
+        td = audit.user ? audit.user.full_name : ''
+
+
+javascript:
+  $(document).on('click', 'table tr[data-path]', function (e) {
+    window.location.href = $(this).data('path');
+  });

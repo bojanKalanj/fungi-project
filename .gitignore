@@ -16,3 +16,4 @@ db/local_backup
 config/application.yml
 data
 coverage
+todo.txt

@@ -1,0 +1,12 @@
+.row
+  .col-lg-12
+    h1.page-header
+      = t('shared.sections.dashboard')
+.row
+  .col-lg-8
+    = render partial: 'admin/dashboard/audits', locals: { audits: @audits }
+    = render partial: 'admin/dashboard/area_chart_example'
+    = render partial: 'admin/dashboard/bar_chart_example'
+  .col-lg-4
+    = render partial: 'admin/dashboard/notifications'
+    = render partial: 'admin/dashboard/messages'

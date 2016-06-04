@@ -1,0 +1,6 @@
+.page-header
+  h1
+    i.fa.fa-fw.fa-database
+    = t('admin.dashboard.audits.title.all', count: @audits.length)
+
+= render partial: 'admin/audits/audits_table', locals: {audits: @audits}

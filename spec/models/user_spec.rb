@@ -1,10 +1,25 @@
+RSpec.describe User, type: :model do
+  subject { FactoryGirl.create(:user) }
 
-RSpec.describe User, :type => :model do
+  it_behaves_like 'resource name', {
+    class: User,
+    resource_name: 'user'
+  }
 
-  subject { FactoryGirl.build(:user) }
+  it_behaves_like 'resource paths', {
+    class: User,
+    resource_name_index_path: 'admin_users_path',
+    resource_new_path: 'new_admin_user_path'
+  }
 
   it 'has a valid factory' do
     expect(FactoryGirl.build(:user)).to be_valid
+  end
+
+  describe 'concerns' do
+    it { expect(subject.class.ancestors.include? ResourceName).to be_truthy }
+    it { expect(subject.class.ancestors.include? ResourcePaths).to be_truthy }
+    it { expect(subject.class.ancestors.include? AuditCommentable).to be_truthy }
   end
 
   describe 'validations' do
@@ -14,7 +29,6 @@ RSpec.describe User, :type => :model do
 
     it { is_expected.to validate_inclusion_of(:role).in_array(User::ROLES) }
   end
-
 end
 
 # == Schema Information

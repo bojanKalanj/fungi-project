@@ -1,14 +1,10 @@
-module Resource
+module ResourcePaths
   extend ActiveSupport::Concern
 
   included do
   end
 
   module ClassMethods
-    def resource_name
-      self.name.underscore
-    end
-
     def resource_name_index_path
       path = "admin_#{resource_name[-1] == 's' ? resource_name + '_index' : resource_name + 's'}_path"
       Rails.application.routes.url_helpers.send(path.to_sym)
@@ -27,18 +23,6 @@ module Resource
         raise 'unknown action'
       end
     end
-  end
-
-  def resource_title
-    raise "resource_title method not implemented for model: #{self.class.name}"
-  end
-
-  def resource_name
-    self.class.name.underscore
-  end
-
-  def resource_name_sym
-    self.resource_name.to_sym
   end
 
   def resource_action_path(action)
@@ -66,5 +50,4 @@ module Resource
   def resource_new_path
     self.class.resource_new_path
   end
-
 end

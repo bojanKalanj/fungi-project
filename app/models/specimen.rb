@@ -1,6 +1,7 @@
 class Specimen < ActiveRecord::Base
   extend FriendlyId
-  include Resource
+  include ResourceName
+  include ResourcePaths
   include HabitatHelper
   include SubstrateHelper
   include FoI18n

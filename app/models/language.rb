@@ -1,6 +1,7 @@
 class Language < ActiveRecord::Base
   extend FriendlyId
-  include Resource
+  include ResourceName
+  include ResourcePaths
   include AuditCommentable
 
   PUBLIC_FIELDS = [:name, :title, :locale, :flag, :default, :parent]

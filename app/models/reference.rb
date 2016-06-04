@@ -1,6 +1,7 @@
 class Reference < ActiveRecord::Base
   extend FriendlyId
-  include Resource
+  include ResourceName
+  include ResourcePaths
   include AuditCommentable
 
   PUBLIC_FIELDS = [:title, :authors, :isbn, :url]

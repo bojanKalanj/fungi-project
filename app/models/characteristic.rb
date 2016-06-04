@@ -1,6 +1,6 @@
 class Characteristic < ActiveRecord::Base
   extend FriendlyId
-  include Resource
+  include ResourceName
   include HabitatHelper
   include SubstrateHelper
   include LastUpdate

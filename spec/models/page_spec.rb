@@ -1,10 +1,26 @@
-
 RSpec.describe Page, type: :model do
 
   subject { FactoryGirl.create(:page) }
 
+  it_behaves_like 'resource name', {
+    class: Page,
+    resource_name: 'page'
+  }
+
+  it_behaves_like 'resource paths', {
+    class: Page,
+    resource_name_index_path: 'admin_pages_path',
+    resource_new_path: 'new_admin_page_path'
+  }
+
   it 'has a valid factory' do
     expect(subject).to be_valid
+  end
+
+  describe 'concerns' do
+    it { expect(subject.class.ancestors.include? ResourceName).to be_truthy }
+    it { expect(subject.class.ancestors.include? ResourcePaths).to be_truthy }
+    it { expect(subject.class.ancestors.include? AuditCommentable).to be_truthy }
   end
 
   describe 'associations' do

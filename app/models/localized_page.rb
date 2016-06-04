@@ -2,7 +2,8 @@ require 'fungiorbis/cyr_to_lat'
 
 class LocalizedPage < ActiveRecord::Base
   extend FriendlyId
-  include Resource
+  # include ResourceName
+  # include Resource
   include AuditCommentable
 
   belongs_to :language

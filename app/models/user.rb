@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   extend FriendlyId
-  include Resource
+  include ResourceName
+  include ResourcePaths
   include AuditCommentable
 
   USER_ROLE = 'user'

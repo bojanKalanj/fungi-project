@@ -1,6 +1,7 @@
 class Location < ActiveRecord::Base
   extend FriendlyId
-  include Resource
+  include ResourceName
+  include ResourcePaths
   include LastUpdate
   include AuditCommentable
 

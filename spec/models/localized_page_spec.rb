@@ -1,9 +1,12 @@
-
 RSpec.describe LocalizedPage, type: :model do
   subject { FactoryGirl.create(:localized_page) }
 
   it 'has a valid factory' do
     expect(subject).to be_valid
+  end
+
+  describe 'concerns' do
+    it { expect(subject.class.ancestors.include? AuditCommentable).to be_truthy }
   end
 
   describe 'associations' do

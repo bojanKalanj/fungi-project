@@ -1,6 +1,23 @@
-
 RSpec.describe Location, :type => :model do
   subject { FactoryGirl.create(:location) }
+
+  it_behaves_like 'resource name', {
+    class: Location,
+    resource_name: 'location'
+  }
+
+  it_behaves_like 'resource paths', {
+    class: Location,
+    resource_name_index_path: 'admin_locations_path',
+    resource_new_path: 'new_admin_location_path'
+  }
+
+  describe 'concerns' do
+    it { expect(subject.class.ancestors.include? ResourceName).to be_truthy }
+    it { expect(subject.class.ancestors.include? ResourcePaths).to be_truthy }
+    it { expect(subject.class.ancestors.include? LastUpdate).to be_truthy }
+    it { expect(subject.class.ancestors.include? AuditCommentable).to be_truthy }
+  end
 
   it 'has a valid factory' do
     expect(subject).to be_valid

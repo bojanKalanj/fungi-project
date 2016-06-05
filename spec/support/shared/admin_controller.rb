@@ -138,7 +138,7 @@ RSpec.shared_examples 'admin controller' do |args|
       context 'with invalid params' do
         it "does not update #{args[:singular]}" do
           h = record.attributes
-          (h.keys-['id']).each{|key| h[key] = nil}
+          (h.keys-['id']).each { |key| h[key] = nil }
           response = patch :update, eval(args[:params]).merge(args[:singular] => h)
 
           expect(response.status).to eq 422
@@ -148,7 +148,7 @@ RSpec.shared_examples 'admin controller' do |args|
     end
 
     context 'with user or contributor' do
-      it_behaves_like 'forbidden for non supervisors', :patch, :update, "{#{args[:params].gsub('{','').gsub('}','')}, record.resource_name_sym => #{args[:params]}}"
+      it_behaves_like 'forbidden for non supervisors', :patch, :update, "{#{args[:params].gsub('{', '').gsub('}', '')}, record.resource_name_sym => #{args[:params]}}"
     end
 
     context 'with non authenticated user' do
@@ -165,7 +165,7 @@ RSpec.shared_examples 'admin controller' do |args|
           response = delete :destroy, eval(args[:params])
 
           expect(response).to redirect_to(record.resource_name_index_path)
-          expect{record.reload}.to raise_error(ActiveRecord::RecordNotFound)
+          expect { record.reload }.to raise_error(ActiveRecord::RecordNotFound)
         end
       end
 
@@ -174,20 +174,23 @@ RSpec.shared_examples 'admin controller' do |args|
           expect_any_instance_of(args[:class]).to receive(:destroy).and_return(false)
           response = delete :destroy, eval(args[:params])
 
-          expect{record.reload}.not_to raise_error
+          expect { record.reload }.not_to raise_error
           expect(response).to redirect_to(record.resource_name_path)
         end
       end
     end
 
     context 'with user or contributor' do
-      it_behaves_like 'forbidden for non supervisors', :delete, :destroy, "{#{args[:params].gsub('{','').gsub('}','')}, record.resource_name_sym => #{args[:params]}}"
+      it_behaves_like 'forbidden for non supervisors', :delete, :destroy, "{#{args[:params].gsub('{', '').gsub('}', '')}, record.resource_name_sym => #{args[:params]}}"
     end
 
     context 'with non authenticated user' do
       it_behaves_like 'unauthorized for non authenticated users', :delete, :destroy, args[:params]
     end
-
   end
 
+  context 'methods that need to be implemented' do
+    specify { expect(subject.class.private_method_defined?(:current_resource)).to be_truthy }
+    specify { expect(subject.class.private_method_defined?(:resource_params)).to be_truthy }
+  end
 end

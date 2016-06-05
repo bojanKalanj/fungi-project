@@ -35,8 +35,4 @@ class Admin::AdminController < ApplicationController
   def resource_params
     raise 'Has to be overridden'
   end
-
-  def set_resource(arg)
-    raise 'Has to be overridden'
-  end
 end

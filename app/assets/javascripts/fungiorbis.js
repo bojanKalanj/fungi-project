@@ -16,7 +16,7 @@ var Fungiorbis = (function () {
 }());
 
 
-$(document).on('ready page:load', function () {
+$(document).on('page:change', function () {
 
   $(document).on('blur', 'input[data-locale]', function (e) {
     var $form = $(this).closest('form');
@@ -55,9 +55,14 @@ $(document).on('ready page:load', function () {
 
   $('#page-wrapper').css('min-height', window.innerHeight - $('.navbar-header').height());
 
-  $('.dataTable').dataTable({
-    "language": dataTablesI18n[$('html').attr('lang')]
+  $('.dataTable').each(function(){
+    if ( !$.fn.dataTable.isDataTable( $(this) ) ) {
+      $(this).dataTable({
+        "language": dataTablesI18n[$('html').attr('lang')]
+      });
+    }
   });
+
 
   $(document).on('click', 'a.submit-btn', function (e) {
     e.stopPropagation();

@@ -4,6 +4,6 @@
   <%= File.read(Rails.root+'vendor/assets/javascripts/timeago/jquery.timeago.sr-Latn.js') %>
 <% end %>
 
-jQuery(document).ready(function () {
+$(document).on('page:change', function () {
   jQuery("time.timeago").timeago();
 });

@@ -1,0 +1,38 @@
+- if current_user && current_user.supervisor?
+  li.dropdown
+    = link_to("#", class: 'dropdown-toggle', 'data-toggle' => 'dropdown') do
+      = fo_icon_tag(:dashboard)
+      = fo_icon_tag(:caret_down)
+    ul.dropdown-menu
+      li
+        = link_to admin_dashboard_path do
+          = fo_icon_tag(:dashboard)
+          = " #{t('shared.sections.dashboard')}"
+      li
+        = link_to admin_species_index_path do
+          = fo_icon_tag(:species)
+          = " #{t('shared.sections.species')}"
+      li
+        = link_to admin_specimens_path do
+          = fo_icon_tag(:specimens)
+          = " #{t('shared.sections.specimens')}"
+      li
+        = link_to admin_references_path do
+          = fo_icon_tag(:references)
+          = " #{t('shared.sections.references')}"
+      li
+        = link_to admin_locations_path do
+          = fo_icon_tag(:locations)
+          = " #{t('shared.sections.locations')}"
+      li
+        = link_to admin_users_path do
+          = fo_icon_tag(:users)
+          = " #{t('shared.sections.users')}"
+      li
+        = link_to admin_languages_path do
+          = fo_icon_tag(:languages)
+          = " #{t('shared.sections.languages')}"
+      li
+        = link_to admin_pages_path do
+          = fo_icon_tag(:pages)
+          = " #{t('shared.sections.pages')}"

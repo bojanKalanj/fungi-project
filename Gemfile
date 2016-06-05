@@ -17,7 +17,6 @@ gem 'annotate', '~> 2.6.5'
 
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 2.0'
 
 gem 'bootstrap-sass'

@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function () {
+$(document).on('page:change', function () {
 
   if ($('#monthly_specimens_count').length > 0){
     setTimeout(function(){

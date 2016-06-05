@@ -91,7 +91,7 @@ var FungiorbisSearch = (function () {
   }
 }());
 
-$(document).on('ready page:load', function () {
+$(document).on('page:change', function () {
 
   FungiorbisSearch.init();
 

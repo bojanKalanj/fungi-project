@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function () {
+$(document).on('page:change', function () {
   $(document).on('click', '.show-audit-details', function (e) {
     $(this).addClass('hidden');
     $(this).parent().find('.audit-details').removeClass('hidden');

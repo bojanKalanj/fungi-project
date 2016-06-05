@@ -186,11 +186,19 @@ module AdminHelper
     elsif field == :substrates
       substrates_field form_object, name, options
     elsif options[:field]
-      form_object.association(name, options) + error_span(resource[field])
+      # if resource[field]
+      #   form_object.association(name, options) + error_span(resource[field])
+      # else
+        form_object.association(name, options)
+      # end
     elsif options[:method].to_s.include?('localized')
       localized_tabs_field(form_object, field, options)
     else
-      form_object.input(name, options) + error_span(resource[field])
+      # if resource[field]
+      #   form_object.input(name, options) + error_span(resource[field])
+      # else
+        form_object.input(name, options)
+      # end
     end
   end
 

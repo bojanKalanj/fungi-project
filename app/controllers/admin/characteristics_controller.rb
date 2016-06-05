@@ -29,7 +29,7 @@ class Admin::CharacteristicsController < Admin::AdminController
       @characteristics = @species ? @characteristic.species.characteristics : @characteristic.reference.characteristics
       render :index
     else
-      puts @characteristic.errors.messages.inspect
+      Rails.logger.debug @characteristic.errors.messages
       head :no_content
     end
   end
@@ -40,7 +40,7 @@ class Admin::CharacteristicsController < Admin::AdminController
       @characteristics = @species ? @characteristic.species.characteristics : @characteristic.reference.characteristics
       render :index
     else
-      puts @characteristic.errors.messages.inspect
+      Rails.logger.debug @characteristic.errors.messages
       head :no_content
     end
   end
@@ -50,7 +50,7 @@ class Admin::CharacteristicsController < Admin::AdminController
       @characteristics = @species ? @characteristic.species.characteristics : @characteristic.reference.characteristics
       render :index
     else
-      puts @characteristic.errors.messages.inspect
+      Rails.logger.debug @characteristic.errors.messages
       head :no_content
     end
 

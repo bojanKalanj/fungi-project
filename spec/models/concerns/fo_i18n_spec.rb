@@ -1,5 +1,3 @@
-require "#{Rails.root}/app/models/concerns/fo_i18n"
-
 RSpec.describe FoI18n do
   include FoI18n
 

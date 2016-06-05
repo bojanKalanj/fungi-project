@@ -1,7 +1,4 @@
-require "#{Rails.root}/app/models/concerns/substrate_helper"
-
 RSpec.describe SubstrateHelper do
-
   include SubstrateHelper
 
   describe '#all_substrate_keys' do

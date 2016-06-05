@@ -39,10 +39,10 @@ module Fungiorbis
 
     def underscore(term, options)
       new_term = term.to_s.gsub(/::/, '/').
-          gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').
-          gsub(/([a-z\d])([A-Z])/, '\1_\2').
-          tr('-', '_').
-          downcase
+        gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').
+        gsub(/([a-z\d])([A-Z])/, '\1_\2').
+        tr('-', '_').
+        downcase
       term_to_symbol?(term, options) ? new_term.to_sym : new_term
     end
 

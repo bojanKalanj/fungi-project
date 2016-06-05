@@ -1,7 +1,4 @@
-require "#{Rails.root}/app/models/concerns/habitat_helper"
-
 RSpec.describe HabitatHelper do
-
   include HabitatHelper
 
   describe '#all_habitat_keys' do

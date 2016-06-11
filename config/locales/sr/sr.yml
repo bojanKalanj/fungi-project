@@ -159,6 +159,11 @@ sr:
         many: није одговарајуће дужине (треба бити %{count} знакова)
         other: није одговарајуће дужине (треба бити %{count} знакова)
       other_than: мора бити различит од %{count}
+      carrierwave_processing_error: "Неуспешна промена димензија слике."
+      carrierwave_integrity_error: "Није слика."
+      carrierwave_download_error: "Неуспешно скидање слике."
+      extension_whitelist_error: "Није дозвољено додавање фајлова типа: %{extension}. Дозвољени типови: %{allowed_types}"
+      extension_blacklist_error: "Није дозвољено додавање фајлова типа %{extension}. Недозвољени типови: %{prohibited_types}"
     template:
       body: 'Молим Вас да проверите следећа поља:'
       header:

@@ -179,12 +179,16 @@ module AdminHelper
   def admin_edit_field(resource, field, form_object, options={})
     options[:label] = t("#{resource.resource_name}.attributes.#{field}")
     name = options.delete(:name)
+
     if field == :habitats
       habitats_field form_object, name, options
     elsif field == :habitat
       habitat_field form_object, name, options
     elsif field == :substrates
       substrates_field form_object, name, options
+    elsif name == :square_pic
+      (resource.send(:"#{name}?") ? image_tag(resource.send(name).r1x1_192x192.url) : '') +
+      form_object.input(name, options)
     elsif options[:field]
       # if resource[field]
       #   form_object.association(name, options) + error_span(resource[field])

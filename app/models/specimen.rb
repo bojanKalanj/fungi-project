@@ -13,7 +13,7 @@ class Specimen < ActiveRecord::Base
   SPECIES_VALIDATION_ERROR = 'must take species from the list for specific habitat and subhabitat'
   # SUBSTRATES_VALIDATION_ERROR = "have to be included in: #{all_substrate_keys.inspect}"
 
-  PUBLIC_FIELDS = [:species_id, :location_id, :legator_id, :determinator_id, :determinator_text, :habitat, :substrate, :date, :quantity, :approved, :note]
+  PUBLIC_FIELDS = [:species_id, :location_id, :legator_id, :determinator_id, :determinator_text, :habitat, :substrate, :date, :quantity, :approved, :note, :square_pic]
 
   belongs_to :species
   belongs_to :location

@@ -1,5 +1,5 @@
 .species-card
-  = link_to image_tag(species.square_pic.url), species_path(species), title: t('species_search.click_to_show')
+  = link_to image_tag(species.square_pic.r1x1_192x192.url), species_path(species), title: t('species_search.click_to_show')
   span.systematics_icon_wrapper
     span.btn.btn-default.btn-circle.systematics_icon.tooltip-inner[data-original-title=species.systematics.reverse.join("\n").html_safe data-toggle= :tooltip data-placement=:right]
       = fo_icon_tag(:systematics)

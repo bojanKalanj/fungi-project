@@ -21,7 +21,7 @@ CarrierWave.configure do |config|
       end
 
       def extension_white_list
-        %w(jpg png)
+        %w(jpg jpeg png)
       end
     end
   end

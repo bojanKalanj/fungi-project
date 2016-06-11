@@ -1,0 +1,5 @@
+= admin_page_header(@species, :show, title: { class: 'italic' })
+= admin_show_fields(@species, Species::PUBLIC_FIELDS)
+
+span#characteristics-container
+  = render partial: 'admin/characteristics/index', locals: {options: @subheader_options, characteristics: @species.characteristics, species: @species, reference: nil, characteristic_fields: @characteristic_fields }

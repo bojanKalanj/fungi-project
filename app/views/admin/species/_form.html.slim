@@ -1,0 +1,3 @@
+= simple_form_for [:admin, @species], html: { class: 'form-horizontal', multipart: true } do |f|
+  = admin_edit_fields(@species, @fields, f)
+  = admin_menu(@species, f)

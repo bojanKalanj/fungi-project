@@ -12,7 +12,7 @@ class Species < ActiveRecord::Base
   NUTRITIVE_GROUPS_VALIDATION_ERROR = "has to be one of: #{NUTRITIVE_GROUPS.inspect}"
 
   SYSTEMATICS = [:name, :genus, :familia, :ordo, :subclassis, :classis, :subphylum, :phylum]
-  PUBLIC_FIELDS = [:name, :genus, :familia, :ordo, :subclassis, :classis, :subphylum, :phylum, :synonyms, :growth_type, :nutritive_group]
+  PUBLIC_FIELDS = [:name, :genus, :familia, :ordo, :subclassis, :classis, :subphylum, :phylum, :synonyms, :growth_type, :nutritive_group, :square_pic]
 
   has_many :characteristics, dependent: :destroy
   has_many :specimens

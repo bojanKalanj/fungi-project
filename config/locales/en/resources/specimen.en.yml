@@ -12,6 +12,7 @@ en:
       quantity: Quantity
       approved: Approved
       note: Note
+      square_pic: square picture for search results
     btn:
       new:
         title: Add new Specimen

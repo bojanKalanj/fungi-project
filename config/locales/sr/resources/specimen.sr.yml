@@ -12,6 +12,7 @@ sr:
       quantity: Бројност
       approved: Потврђен
       note: Напомена
+      square_pic: Слика за картицу претраге
     btn:
       new:
         title: Додај нов налаз

@@ -48,7 +48,8 @@ class Admin::SpeciesController < Admin::AdminController
         { name: :phylum },
         { name: :synonyms, as: :string },
         { name: :growth_type },
-        { name: :nutritive_group }
+        { name: :nutritive_group },
+        { name: :square_pic }
       ]
       if action == :show
         @characteristic_fields = Admin::CharacteristicsController.index_fields_for(:species)

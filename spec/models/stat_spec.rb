@@ -9,6 +9,7 @@ RSpec.describe Stat, type: :model do
     it { is_expected.to validate_presence_of(:data) }
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_uniqueness_of(:name) }
+    it { is_expected.to validate_inclusion_of(:name).in_array(Stat::STAT_NAMES) }
   end
 
   describe 'serialization' do

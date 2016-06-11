@@ -4,11 +4,12 @@ class Stat < ActiveRecord::Base
   STAT_GENERAL_DB_STATS = 'general_db_stats'.freeze
   STAT_YEARLY_FIELD_STUDIES = 'yearly_field_studies'.freeze
 
+  STAT_NAMES = [STAT_MONTHLY_SPECIMENS_COUNT, STAT_GENERAL_DB_STATS, STAT_YEARLY_FIELD_STUDIES].freeze
+
   serialize :data, JSON
 
   validates :data, presence: true
-  validates :name, presence: true
-  validates :name, uniqueness: true
+  validates :name, uniqueness: true, inclusion: { in: STAT_NAMES }, presence: true
 
   def update_needed?
     case self.name

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160604083407) do
+ActiveRecord::Schema.define(version: 20160611165902) do
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id",    limit: 4
@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(version: 20160604083407) do
     t.string   "url",             limit: 255
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.string   "square_pic",      limit: 255
   end
 
   add_index "species", ["url"], name: "index_species_on_url", using: :btree
@@ -152,6 +153,7 @@ ActiveRecord::Schema.define(version: 20160604083407) do
     t.string   "slug",              limit: 255,   null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.string   "square_pic",        limit: 255
   end
 
   add_index "specimen", ["determinator_id"], name: "index_specimen_on_determinator_id", using: :btree

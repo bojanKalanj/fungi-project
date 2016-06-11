@@ -34,6 +34,9 @@ gem 'simple_form'
 
 gem 'figaro'
 
+gem 'carrierwave'
+gem 'mini_magick'
+
 gem 'audited-activerecord', '~> 4.0'
 
 gem 'airbrake', git: 'http://github.com/airbrake/airbrake.git', branch: :master

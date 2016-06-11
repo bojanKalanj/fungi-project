@@ -18,6 +18,7 @@ class Species < ActiveRecord::Base
   has_many :specimens
 
   audited except: [:url]
+  mount_uploader :square_pic, SquarePicUploader
 
   before_validation :generate_url
 
@@ -122,6 +123,7 @@ end
 #  url             :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  square_pic      :string(255)
 #
 # Indexes
 #

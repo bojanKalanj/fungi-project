@@ -39,6 +39,7 @@ end
 #  url             :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  square_pic      :string(255)
 #
 # Indexes
 #

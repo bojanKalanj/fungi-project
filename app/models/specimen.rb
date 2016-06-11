@@ -29,6 +29,8 @@ class Specimen < ActiveRecord::Base
 
   audited except: [:slug]
 
+  mount_uploader :square_pic, SquarePicUploader
+
   validates :species, presence: true
   validates :location, presence: true
   validates :legator, presence: true
@@ -119,6 +121,7 @@ end
 #  slug              :string(255)      not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  square_pic        :string(255)
 #
 # Indexes
 #

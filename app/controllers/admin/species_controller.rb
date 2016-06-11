@@ -47,8 +47,8 @@ class Admin::SpeciesController < Admin::AdminController
         { name: :subphylum },
         { name: :phylum },
         { name: :synonyms, as: :string },
-        { name: :growth_type },
-        { name: :nutritive_group },
+        { name: :growth_type, collection: Species::GROWTH_TYPES.map { |gt| [gt, I18n.t("species.growth_type.#{gt}")] }, label_method: :last, value_method: :first },
+        { name: :nutritive_group, collection: Species::NUTRITIVE_GROUPS.map { |ng| [ng, I18n.t("species.nutritive_group.#{ng}")] }, label_method: :last, value_method: :first },
         { name: :square_pic }
       ]
       if action == :show

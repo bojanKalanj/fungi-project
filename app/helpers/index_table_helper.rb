@@ -135,7 +135,7 @@ module IndexTableHelper
 
       title = subhabitat ? t("habitats.#{habitat}.subhabitat.#{subhabitat}.title") : t("habitats.#{habitat}.title")
 
-      title += ' - ' + species.map { |s| t(s) } if species
+      title += ' - ' + species.map { |s| localized_habitat_species_name(s) }.join(', ') if species
 
       output += content_tag(:div) { fo_icon_tag(:habitat, title: title, class: [habitat, :pointer].join(' ')) + title }
     end

@@ -24,6 +24,7 @@ en:
     attributes:
       name: Name
   species_search:
+    click_to_show: show species details
     specimens_count: Number of Specimens
     enter_systematics:
       title: Enter

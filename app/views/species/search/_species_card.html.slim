@@ -1,6 +1,10 @@
 .species-card
-  = link_to image_tag('fungiorbis192.png'), species_path(species)
-  span.btn.btn-default.btn-circle.systematics_icon = fo_icon_tag(:systematics, title: species.systematics.reverse.join(' '))
-  span.btn.btn-default.btn-circle.specimen_count[title=t('species_search.specimens_count')] = species.specimens.length.to_s
+  = link_to image_tag('fungiorbis192.png'), species_path(species), title: t('species_search.click_to_show')
+  span.systematics_icon_wrapper
+    span.btn.btn-default.btn-circle.systematics_icon.tooltip-inner[data-original-title=species.systematics.reverse.join("\n").html_safe data-toggle= :tooltip data-placement=:right]
+      = fo_icon_tag(:systematics)
+  span.specimen_count_wrapper
+    span.btn.btn-default.btn-circle.specimen_count.tooltip-inner[data-original-title=t('species_search.specimens_count') data-toggle=:tooltip data-placement=:bottom]
+      = species.specimens.length.to_s
   = link_to(species.full_name, species_path(species), class: 'species-title')
   .species-characteristics = short_combined_characteristics(species).html_safe

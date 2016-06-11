@@ -9,3 +9,6 @@
 - unless habitat_species.blank?
   - content_for :habitat_species do
     = render partial: 'shared/search/habitat_species', locals: { habitat_species: habitat_species, selected: params[:sp] || [] }
+
+javascript:
+  $('.tooltip-inner').tooltip({animation: 'false'});

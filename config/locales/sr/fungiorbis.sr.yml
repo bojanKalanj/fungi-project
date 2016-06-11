@@ -24,6 +24,7 @@ sr:
     attributes:
       name: Име
   species_search:
+    click_to_show: Прикажи детаље за врсту
     specimens_count: Број налаза
     enter_systematics:
       title: Унеси

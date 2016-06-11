@@ -1,0 +1,6 @@
+.species-card
+  = link_to image_tag('fungiorbis192.png'), species_path(species)
+  span.btn.btn-default.btn-circle.systematics_icon = fo_icon_tag(:systematics, title: species.systematics.reverse.join(' '))
+  span.btn.btn-default.btn-circle.specimen_count[title=t('species_search.specimens_count')] = species.specimens.length.to_s
+  = link_to(species.full_name, species_path(species), class: 'species-title')
+  .species-characteristics = short_combined_characteristics(species).html_safe

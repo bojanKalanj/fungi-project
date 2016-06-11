@@ -1,18 +1,5 @@
 module SpeciesHelper
 
-  def species_card(species)
-    content_tag(:div, class: 'species-card') do
-      concat image_tag('fungiorbis192.png')
-      concat content_tag(:span, class: 'btn btn-default btn-circle systematics_icon') {
-        fo_icon_tag(:systematics, title: species.systematics.reverse.join(' '))
-      }
-      concat content_tag(:span, class: 'btn btn-default btn-circle specimen_count', title: t('species_search.specimens_count')) { species.specimens.length.to_s }
-
-      concat link_to(species.full_name, species_path(species), class: 'species-title')
-      concat content_tag(:div, class: 'species-characteristics') { raw short_combined_characteristics(species) }
-    end
-  end
-
   def specimen_card(specimen)
     species = specimen.species
     content_tag(:div, class: 'species-card') do

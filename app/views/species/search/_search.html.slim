@@ -1,9 +1,7 @@
 - if species.blank?
   = t('species_search.no_hits')
 - else
-  .species-search-results
-    - species.each do |species|
-      = species_card(species)
+  .species-search-results = render partial: 'species/search/species_card', collection: species, as: :species
   = will_paginate species, renderer: BootstrapPagination::Rails
 - unless subhabitats.blank?
   - content_for :subhabitat_select do

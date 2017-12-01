@@ -105,23 +105,24 @@ end
 #
 # Table name: specimen
 #
-#  id                :integer          not null, primary key
-#  species_id        :integer          not null
-#  location_id       :integer          not null
-#  legator_id        :integer          not null
-#  legator_text      :string(255)
-#  determinator_id   :integer
-#  determinator_text :string(255)
-#  habitat           :text(65535)
-#  substrate         :text(65535)
-#  date              :date             not null
-#  quantity          :text(65535)
-#  note              :text(65535)
-#  approved          :boolean
-#  slug              :string(255)      not null
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  square_pic        :string(255)
+#  id                   :integer          not null, primary key
+#  species_id           :integer          not null
+#  location_id          :integer          not null
+#  legator_id           :integer          not null
+#  legator_text         :string(255)
+#  determinator_id      :integer
+#  determinator_text    :string(255)
+#  habitat              :text(65535)
+#  substrate            :text(65535)
+#  date                 :date             not null
+#  quantity             :text(65535)
+#  note                 :text(65535)
+#  approved             :boolean
+#  slug                 :string(255)      not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  square_pic           :string(255)
+#  square_pic_reference :string(255)
 #
 # Indexes
 #

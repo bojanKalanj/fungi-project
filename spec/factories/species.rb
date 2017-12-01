@@ -24,22 +24,23 @@ end
 #
 # Table name: species
 #
-#  id              :integer          not null, primary key
-#  name            :string(255)      not null
-#  genus           :string(255)      not null
-#  familia         :string(255)      not null
-#  ordo            :string(255)      not null
-#  subclassis      :string(255)      not null
-#  classis         :string(255)      not null
-#  subphylum       :string(255)      not null
-#  phylum          :string(255)      not null
-#  synonyms        :text(65535)
-#  growth_type     :string(255)
-#  nutritive_group :string(255)
-#  url             :string(255)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  square_pic      :string(255)
+#  id                   :integer          not null, primary key
+#  name                 :string(255)      not null
+#  genus                :string(255)      not null
+#  familia              :string(255)      not null
+#  ordo                 :string(255)      not null
+#  subclassis           :string(255)      not null
+#  classis              :string(255)      not null
+#  subphylum            :string(255)      not null
+#  phylum               :string(255)      not null
+#  synonyms             :text(65535)
+#  growth_type          :string(255)
+#  nutritive_group      :string(255)
+#  url                  :string(255)
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  square_pic           :string(255)
+#  square_pic_reference :string(255)
 #
 # Indexes
 #

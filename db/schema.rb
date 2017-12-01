@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611165902) do
+ActiveRecord::Schema.define(version: 20160611190219) do
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id",    limit: 4
@@ -105,6 +105,22 @@ ActiveRecord::Schema.define(version: 20160611165902) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "pictures", force: :cascade do |t|
+    t.integer "reference_id", limit: 4
+    t.integer "user_id",      limit: 4
+    t.integer "species_id",   limit: 4
+    t.integer "specimen_id",  limit: 4
+    t.string  "image",        limit: 255,                 null: false
+    t.string  "type",         limit: 255,                 null: false
+    t.boolean "approved",                 default: false
+    t.string  "source_url",   limit: 255
+    t.string  "source_title", limit: 255
+  end
+
+  add_index "pictures", ["reference_id"], name: "fk_rails_89135305c9", using: :btree
+  add_index "pictures", ["species_id"], name: "fk_rails_6feec66a2f", using: :btree
+  add_index "pictures", ["user_id"], name: "fk_rails_3268570edc", using: :btree
+
   create_table "references", force: :cascade do |t|
     t.string   "title",      limit: 255, null: false
     t.string   "authors",    limit: 255
@@ -118,42 +134,44 @@ ActiveRecord::Schema.define(version: 20160611165902) do
   add_index "references", ["slug"], name: "index_references_on_slug", using: :btree
 
   create_table "species", force: :cascade do |t|
-    t.string   "name",            limit: 255,   null: false
-    t.string   "genus",           limit: 255,   null: false
-    t.string   "familia",         limit: 255,   null: false
-    t.string   "ordo",            limit: 255,   null: false
-    t.string   "subclassis",      limit: 255,   null: false
-    t.string   "classis",         limit: 255,   null: false
-    t.string   "subphylum",       limit: 255,   null: false
-    t.string   "phylum",          limit: 255,   null: false
-    t.text     "synonyms",        limit: 65535
-    t.string   "growth_type",     limit: 255
-    t.string   "nutritive_group", limit: 255
-    t.string   "url",             limit: 255
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.string   "square_pic",      limit: 255
+    t.string   "name",                 limit: 255,   null: false
+    t.string   "genus",                limit: 255,   null: false
+    t.string   "familia",              limit: 255,   null: false
+    t.string   "ordo",                 limit: 255,   null: false
+    t.string   "subclassis",           limit: 255,   null: false
+    t.string   "classis",              limit: 255,   null: false
+    t.string   "subphylum",            limit: 255,   null: false
+    t.string   "phylum",               limit: 255,   null: false
+    t.text     "synonyms",             limit: 65535
+    t.string   "growth_type",          limit: 255
+    t.string   "nutritive_group",      limit: 255
+    t.string   "url",                  limit: 255
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "square_pic",           limit: 255
+    t.string   "square_pic_reference", limit: 255
   end
 
   add_index "species", ["url"], name: "index_species_on_url", using: :btree
 
   create_table "specimen", force: :cascade do |t|
-    t.integer  "species_id",        limit: 4,     null: false
-    t.integer  "location_id",       limit: 4,     null: false
-    t.integer  "legator_id",        limit: 4,     null: false
-    t.string   "legator_text",      limit: 255
-    t.integer  "determinator_id",   limit: 4
-    t.string   "determinator_text", limit: 255
-    t.text     "habitat",           limit: 65535
-    t.text     "substrate",         limit: 65535
-    t.date     "date",                            null: false
-    t.text     "quantity",          limit: 65535
-    t.text     "note",              limit: 65535
+    t.integer  "species_id",           limit: 4,     null: false
+    t.integer  "location_id",          limit: 4,     null: false
+    t.integer  "legator_id",           limit: 4,     null: false
+    t.string   "legator_text",         limit: 255
+    t.integer  "determinator_id",      limit: 4
+    t.string   "determinator_text",    limit: 255
+    t.text     "habitat",              limit: 65535
+    t.text     "substrate",            limit: 65535
+    t.date     "date",                               null: false
+    t.text     "quantity",             limit: 65535
+    t.text     "note",                 limit: 65535
     t.boolean  "approved"
-    t.string   "slug",              limit: 255,   null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "square_pic",        limit: 255
+    t.string   "slug",                 limit: 255,   null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "square_pic",           limit: 255
+    t.string   "square_pic_reference", limit: 255
   end
 
   add_index "specimen", ["determinator_id"], name: "index_specimen_on_determinator_id", using: :btree
@@ -205,6 +223,9 @@ ActiveRecord::Schema.define(version: 20160611165902) do
   add_foreign_key "characteristics", "species"
   add_foreign_key "localized_pages", "languages"
   add_foreign_key "localized_pages", "pages"
+  add_foreign_key "pictures", "references"
+  add_foreign_key "pictures", "species"
+  add_foreign_key "pictures", "users"
   add_foreign_key "specimen", "locations"
   add_foreign_key "specimen", "species"
 end

@@ -37,6 +37,6 @@ Rails.application.routes.draw do
   end
 
   resources :localized_pages, only: :show, :path => '/'
-  root to: 'localized_pages#show'
+  root to: 'home#index'
 
 end

@@ -3,7 +3,7 @@
 
 li[class=('timeline-inverted' unless audit_counter.even?)]
   .timeline-badge[class=audit.css_class]
-    i[class=fo_icon(audit.auditable_type.downcase.to_sym)]
+    i[class=fo_icon(:dashboard)]
   .timeline-panel
     .timeline-heading
       h4.timeline-title = audit.title

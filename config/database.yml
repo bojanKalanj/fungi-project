@@ -2,8 +2,8 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: fungiorbis
-  password: fungiorbis
+  username: root
+  password: 1234
 
 development:
   <<: *default

@@ -1,4 +1,6 @@
 class Admin::AdminController < ApplicationController
+  layout "admin"
+  
   include StandardResponses
 
   before_action :authenticate_user!

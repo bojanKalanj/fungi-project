@@ -1,4 +1,6 @@
 class Admin::HabitatsController < ApplicationController
+  layout "admin"
+  
   include HabitatHelper
 
   respond_to :js

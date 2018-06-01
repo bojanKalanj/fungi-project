@@ -32,11 +32,11 @@ Rails.application.routes.draw do
     get :search, on: :collection
   end
 
-  resources :specimens, controller: 'specimens', only: [:show] do
+  resources :specimens, controller: 'specimens', only: [:index, :show] do
     get :search, on: :collection
   end
 
   resources :localized_pages, only: :show, :path => '/'
-  root to: 'home#index'
+  root to: 'specimens#index'
 
 end

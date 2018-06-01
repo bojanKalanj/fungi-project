@@ -1,0 +1,12 @@
+doctype html
+html[lang=I18n.locale]
+  head
+    = render partial: 'layouts/application/head'
+  body
+    #wrapper
+      = render partial: 'layouts/application/admin_header'
+      #page-wrapper
+        .col-sm-12
+          = bootstrap_flash
+          #content-column
+            = yield

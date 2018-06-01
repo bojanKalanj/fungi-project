@@ -3,6 +3,10 @@ class SpecimensController < ApplicationController
 
   before_action :clean_params, only: :search
 
+  def index
+    @specimens = Specimen.order("created_at DESC").paginate(:page => params[:page])
+  end
+
   def show
     @specimen = Specimen.friendly.find(params[:id])
   end

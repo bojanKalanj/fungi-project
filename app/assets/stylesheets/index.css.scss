@@ -80,7 +80,7 @@ header{
     background-color: #333;
 }
 
-nav.custom-fungi {
+nav.custom-fungi{
     height: 60px;
     color: #fff;
     text-transform: capitalize;
@@ -88,12 +88,12 @@ nav.custom-fungi {
     /* border-bottom: 1px solid #fff; */
 }
 
-nav h1{
+nav.custom-fungi h1{
     font-weight: 100;
     letter-spacing: 15px;
 }
 
-nav i{
+nav.custom-fungi i{
     margin-right: 10px;
 }
 
@@ -118,7 +118,7 @@ nav i{
 
 .menu{
     border: none;
-    background-color: #99cc33;
+    background-color: #99cc33;;
 }
 
 .menu-active{
@@ -150,7 +150,7 @@ nav i{
     height: 100%;
     text-align: center;
     line-height: 60px;
-    background-color: #99cc33;
+    background-color: #99cc33;;
     color: #fff;
 }
 
@@ -245,7 +245,7 @@ nav i{
 
 }
 
-nav{
+nav.custom-fungi{
     position: relative;
 }
 

@@ -6,7 +6,7 @@ nav.navbar.navbar-default.navbar-fixed-top[role="navigation" style="margin-botto
       span.icon-bar
       span.icon-bar
       span.icon-bar
-    = link_to t('shared.sections.fungiorbis'), I18n.locale == I18n.default_locale ? root_path : "/#{I18n.locale}", class: 'navbar-brand'
+    = link_to t('shared.sections.fungiproject'), I18n.locale == I18n.default_locale ? root_path : "/#{I18n.locale}", class: 'navbar-brand'
     = menu_group pull: :left, class: 'navbar-top-links' do
       - LocalizedPage.for_locale(I18n.locale).without_home.ordered.each do |p|
         = menu_item p.title, send(:localized_page_path, p.title)

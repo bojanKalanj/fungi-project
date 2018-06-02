@@ -10,18 +10,18 @@ window.addEventListener('scroll', function(){
 var dropdownMenu = document.querySelector('.dropdown-menu');
 var menuBtn = document.querySelector('.menu');
 
-menuBtn.addEventListener('click', function(){
-    menuBtn.classList.toggle('menu-active');
-    dropdownMenu.classList.toggle('dropdown-menu-active');
-});
+// menuBtn.addEventListener('click', function(){
+//     menuBtn.classList.toggle('menu-active');
+//     dropdownMenu.classList.toggle('dropdown-menu-active');
+// });
 
-document.querySelector('.search').addEventListener('click', function(){
-    document.querySelector('.search-input').classList.add('search-input-active');
-});
+// document.querySelector('.search').addEventListener('click', function(){
+//     document.querySelector('.search-input').classList.add('search-input-active');
+// });
 
-document.querySelector('.search-input .fa-times').addEventListener('click', function(){
-    document.querySelector('.search-input').classList.remove('search-input-active');
-});
+// document.querySelector('.search-input .fa-times').addEventListener('click', function(){
+//     document.querySelector('.search-input').classList.remove('search-input-active');
+// });
 
 window.onclick = function(event) {
     if (event.target != menuBtn && event.target != dropdownMenu) {
@@ -47,9 +47,9 @@ images.forEach(function(img){
     })
 });
 
-modalClose.addEventListener('click', function(){
-    modal.style.display = 'none';
-})
+// modalClose.addEventListener('click', function(){
+//     modal.style.display = 'none';
+// })
 
 // var modal = document.querySelector('.modal');
 // var closeBtn = document.querySelector('.close');

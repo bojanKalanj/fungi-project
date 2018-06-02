@@ -11,5 +11,11 @@
  * file per style scope.
  *
  *= require bootstrap_and_overrides
- *= require index
+ *= require vendor
+ *= require styles
+ *= require species
+ *= require localized_pages
+ *= require search
+ *= require search/multi_line_tooltips
+ *= require audits
  */

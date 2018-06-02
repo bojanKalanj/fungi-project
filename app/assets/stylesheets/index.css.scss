@@ -249,6 +249,9 @@ nav.custom-fungi{
     position: relative;
 }
 
+/* ova klasa je problem jer se zbog nje ne ucitava Bootstrapov dropdown kako treba
+   kad override-ujes bootstrapove klase najbolje je na elemenat dodati bootstrapovu klasu na primer dropdown-menu,
+   a onda elementu dati i klasu custom-dropdown recimo koja ce da overrideuje pojedine atribute koje je potrebno izmeniti */
 .dropdown-menu{
     position: absolute;
     right: 0;

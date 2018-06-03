@@ -1,63 +1,40 @@
-<header >
-    <nav class="custom-fungi flex-fungi">
-        <div class="left">
-            <div class="search flex-fungi">
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <p>pretrazi</p>
-            </div>
-        </div>
-        <div class="logo">
-            <h1>logo</h1>
-        </div>
-        <div class="right flex-fungi">
-            <div class="login flex-fungi">
-                <p>prijavi se</p>
-            </div>
-            <div class="menu flex-fungi">
-                <i class="fa fa-bars" aria-hidden="true"></i>
-                <p>meni</p>
-            </div>
-        </div>
-        <div class="dropdown-menu">
-            <ul>
-                <li><a href="#">uvod</a></li>
-                <li><a href="#">vrste</a></li>
-                <li><a href="#">uputstvo</a></li>
-                <li><a href="#">pitanja i odgovori</a></li>
-                <li><a href="#">statistika</a></li>
-                <li><a href="#">o gljivama</a></li>
-                <li><a href="#">o nama</a></li>
-            </ul>
-            <ul>
-                <li><a href="#">o nama</a></li>
-            </ul>
-                <div class="drop-soc">
-                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                </div>
-    </nav>
-    <div class="search-input flex-fungi">
-        <div>
-                <i class="fa fa-times" aria-hidden="true"></i>
-                <input type="text" autofocus placeholder="ime gljive">
-        </div>
-        <p>napredna pretraga</p>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand center" href="#">FungiLogo</a>
     </div>
-    <div class="filters">
-            <ul class="flex-fungi ">
-                <p>filter:</p>
-                <li><a href="#">panj</a></li>
-                <li><a href="#">livada</a></li>
-                <li><a href="#">suma</a></li>
-                <li><a href="#">filter</a></li>
-                <li><a href="#">panj</a></li>
-                <li><a href="#">livada</a></li>
-                <li><a href="#">suma</a></li>
-                <li><a href="#">filter</a></li>
-                <li><a href="#">panj</a></li>
-                <li><a href="#">livada</a></li>
-                <li><a href="#">suma</a></li>
-                <li><a href="#">filter</a></li>
-                </ul>
-    </div>
-</header>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <button type="submit" class="btn btn-default green"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Log In</a></li>
+        <li><a href="#">Sign Up</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Meni <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">O nama</a></li>
+            <li><a href="#">O gljivama</a></li>
+            <li><a href="#">Vrste</a></li>
+            <li><a href="#">Registruj se</a></li>
+            <li><a href="#">Pravila</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Uputstvo</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

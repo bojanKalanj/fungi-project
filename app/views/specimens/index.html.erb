@@ -20,197 +20,27 @@
     </div>
   </div>
   <div class="col-sm-10">
-    <div class="col-sm-8 col-md-6 col-lg-4 col-xl-2">
-      <div class="card">
-        <div class="img-wrap">
-          <img class="card-img-top" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"> <a href="#">Amanita muscaria</a> </h5>
-          <h6 class="card-subtitle mb-2 text-muted">Nalaz dodat <span class="pull-right">June 01, 2018</span>  </h6>
-          <div class="card-footer">
-            <p class="text-muted">Dodao:
-              <a href="#" class="pull-right">Hari</a>
-            </p>
+    <% @specimens.each do |specimen| %>
+      <div class="col-sm-8 col-md-6 col-lg-4 col-xl-2">
+        <div class="card">
+          <div class="img-wrap">
+            <% if specimen.pictures.any? %>
+              <%= image_tag specimen.pictures.first.image, class: "card-img-top" %>
+            <% else %>
+            <a href="#"><img class="card-img-top" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap"></a>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to specimen.display_name, specimen_path(specimen) %></h5>
+            <h6 class="card-subtitle mb-2 text-muted">Nalaz dodat <span class="pull-right"><%= specimen.date %></span></h6>
+            <div class="card-footer">
+              <p class="text-muted">Dodao:
+                <a href="#" class="pull-right"><%= specimen.legator_text %></a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-8 col-md-6 col-lg-4 col-xl-2">
-      <div class="card">
-        <div class="img-wrap">
-          <img class="card-img-top" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"> <a href="#">Amanita muscaria</a> </h5>
-          <h6 class="card-subtitle mb-2 text-muted">Nalaz dodat <span class="pull-right">June 01, 2018</span>  </h6>
-          <div class="card-footer">
-            <p class="text-muted">Dodao:
-              <a href="#" class="pull-right">Hari</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-8 col-md-6 col-lg-4 col-xl-2">
-      <div class="card">
-        <div class="img-wrap">
-          <img class="card-img-top" src="<%= asset_path( 'index/1.jpg' ) %>" alt="Card image cap">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"> <a href="#">Amanita muscaria</a> </h5>
-          <h6 class="card-subtitle mb-2 text-muted">Nalaz dodat <span class="pull-right">June 01, 2018</span>  </h6>
-          <div class="card-footer">
-            <p class="text-muted">Dodao:
-              <a href="#" class="pull-right">Hari</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-8 col-md-6 col-lg-4 col-xl-2">
-      <div class="card">
-        <div class="img-wrap">
-          <img class="card-img-top" src="<%= asset_path( 'index/3.jpg' ) %>" alt="Card image cap">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"> <a href="#">Amanita muscaria</a> </h5>
-          <h6 class="card-subtitle mb-2 text-muted">Nalaz dodat <span class="pull-right">June 01, 2018</span>  </h6>
-          <div class="card-footer">
-            <p class="text-muted">Dodao:
-              <a href="#" class="pull-right">Hari</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-8 col-md-6 col-lg-4 col-xl-2">
-      <div class="card">
-        <div class="img-wrap">
-          <img class="card-img-top" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"> <a href="#">Amanita muscaria</a> </h5>
-          <h6 class="card-subtitle mb-2 text-muted">Nalaz dodat <span class="pull-right">June 01, 2018</span>  </h6>
-          <div class="card-footer">
-            <p class="text-muted">Dodao:
-              <a href="#" class="pull-right">Hari</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-8 col-md-6 col-lg-4 col-xl-2">
-      <div class="card">
-        <div class="img-wrap">
-          <img class="card-img-top" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"> <a href="#">Amanita muscaria</a> </h5>
-          <h6 class="card-subtitle mb-2 text-muted">Nalaz dodat <span class="pull-right">June 01, 2018</span>  </h6>
-          <div class="card-footer">
-            <p class="text-muted">Dodao:
-              <a href="#" class="pull-right">Hari</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-8 col-md-6 col-lg-4 col-xl-2">
-      <div class="card">
-        <div class="img-wrap">
-          <img class="card-img-top" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"> <a href="#">Amanita muscaria</a> </h5>
-          <h6 class="card-subtitle mb-2 text-muted">Nalaz dodat <span class="pull-right">June 01, 2018</span>  </h6>
-          <div class="card-footer">
-            <p class="text-muted">Dodao:
-              <a href="#" class="pull-right">Hari</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-8 col-md-6 col-lg-4 col-xl-2">
-      <div class="card">
-        <div class="img-wrap">
-          <img class="card-img-top" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"> <a href="#">Amanita muscaria</a> </h5>
-          <h6 class="card-subtitle mb-2 text-muted">Nalaz dodat <span class="pull-right">June 01, 2018</span>  </h6>
-          <div class="card-footer">
-            <p class="text-muted">Dodao:
-              <a href="#" class="pull-right">Hari</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-8 col-md-6 col-lg-4 col-xl-2">
-      <div class="card">
-        <div class="img-wrap">
-          <img class="card-img-top" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"> <a href="#">Amanita muscaria</a> </h5>
-          <h6 class="card-subtitle mb-2 text-muted">Nalaz dodat <span class="pull-right">June 01, 2018</span>  </h6>
-          <div class="card-footer">
-            <p class="text-muted">Dodao:
-              <a href="#" class="pull-right">Hari</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-8 col-md-6 col-lg-4 col-xl-2">
-      <div class="card">
-        <div class="img-wrap">
-          <img class="card-img-top" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"> <a href="#">Amanita muscaria</a> </h5>
-          <h6 class="card-subtitle mb-2 text-muted">Nalaz dodat <span class="pull-right">June 01, 2018</span>  </h6>
-          <div class="card-footer">
-            <p class="text-muted">Dodao:
-              <a href="#" class="pull-right">Hari</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-8 col-md-6 col-lg-4 col-xl-2">
-      <div class="card">
-        <div class="img-wrap">
-          <img class="card-img-top" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"> <a href="#">Amanita muscaria</a> </h5>
-          <h6 class="card-subtitle mb-2 text-muted">Nalaz dodat <span class="pull-right">June 01, 2018</span>  </h6>
-          <div class="card-footer">
-            <p class="text-muted">Dodao:
-              <a href="#" class="pull-right">Hari</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-8 col-md-6 col-lg-4 col-xl-2">
-      <div class="card">
-        <div class="img-wrap">
-          <img class="card-img-top" src="<%= asset_path( 'index/1.jpg' ) %>" alt="Card image cap">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"> <a href="#">Amanita muscaria</a> </h5>
-          <h6 class="card-subtitle mb-2 text-muted">Nalaz dodat <span class="pull-right">June 01, 2018</span>  </h6>
-          <div class="card-footer">
-            <p class="text-muted">Dodao:
-              <a href="#" class="pull-right">Hari</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>

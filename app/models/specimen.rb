@@ -21,6 +21,7 @@ class Specimen < ActiveRecord::Base
   belongs_to :determinator, class_name: 'User'
 
   has_many :characteristics, :through => :species
+  has_many :pictures
 
   friendly_id :slug_candidates, use: :slugged
 
@@ -44,6 +45,22 @@ class Specimen < ActiveRecord::Base
     "#{self.species.full_name} - #{self.location.name} - #{self.date}"
   end
   alias_method :audit_title, :resource_title
+
+  def display_name
+    if self.species.genus.present?
+      if self.species.name.present?
+        self.species.full_name
+      else
+        "#{self.genus} sp."
+      end
+    elsif self.species.familia.present?
+      self.species.familia
+    elsif self.species.phylum.present?
+      self.species.phylum
+    else
+      "Fungi"
+    end
+  end
 
 
   private

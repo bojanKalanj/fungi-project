@@ -1,7 +1,7 @@
 sr:
   will_paginate:
-    previous_label: "&#8592; Претходни"
-    next_label: "Наредни &#8594;"
+    previous_label: <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    next_label: <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     page_gap: "&hellip;"
 
     page_entries_info:

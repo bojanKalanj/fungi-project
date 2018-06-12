@@ -4,7 +4,7 @@ class SpecimensController < ApplicationController
   before_action :clean_params, only: :search
 
   def index
-    @specimens = Specimen.order("created_at DESC").paginate(:page => params[:page])
+    @specimens = Specimen.order("created_at DESC").paginate(:page => params[:page], per_page: 12 )
   end
 
   def show

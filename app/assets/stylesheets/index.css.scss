@@ -164,3 +164,39 @@ a{
   border-top: 1px solid #E6EAEA;
   padding: 10px 0;
 }
+
+// ------------------------------
+.pagination {
+   padding-bottom: 15px;
+   margin: 13px;
+ }
+
+.pagination a {
+  padding: 10px 8px 10px 8px;
+  border: 1px solid #E6EAEA;
+  text-decoration: none;
+  color: #333;
+}
+
+.pagination a:hover,
+.pagination a:active {
+  // background-color: #86a91c;
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0 1px 2px rgba(25,25,25,0.2);
+}
+
+.pagination span.current {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #000099; font-weight: bold;
+  background-color: #000099;
+  color: red;
+}
+
+.pagination span.disabled {
+  padding: 10px 8px 10px 8px;
+  margin: 2px;
+  border: 1px solid #eee;
+  color: #ddd;
+}

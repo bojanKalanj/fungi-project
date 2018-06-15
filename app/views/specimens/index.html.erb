@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="col-sm-2">
+  <div class="col-sm-2 green">
     <div class="">
       <ul class="list-group">
         <p>Staniste</p>
@@ -38,9 +38,7 @@
               <h5 class="card-title"><%= link_to specimen.display_name, specimen_path(specimen) %></h5>
               <h6 class="card-subtitle mb-2 text-muted">Nalaz dodat <span class="pull-right"><%= specimen.date %></span></h6>
               <div class="card-footer">
-                <p class="text-muted">Dodao:
-                  <a href="#" class="pull-right"><%= specimen.legator_text %></a>
-                </p>
+                <a href="#" class="pull-left"><%= specimen.legator_text %></a>
               </div>
             </div>
           </div>

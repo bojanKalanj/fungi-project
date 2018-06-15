@@ -8,7 +8,7 @@
 }
 
 body{
-  padding-top: 130px;
+  padding-top: 100px;
 
   // color: #2b2b2b;
   font-family: "acumin-pro","Helvetica Neue",Helvetica,Arial,メイリオ,Meiryo,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro W3",osaka,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;
@@ -31,7 +31,7 @@ a:hover,
   // color: #74ac00;
   // color: #74ac00;
   // color: #eee;
-  color: #64686A;
+  color: #19cc95;
   text-decoration: none !important;
 }
 
@@ -39,12 +39,12 @@ a{
   color: #333;
 }
 
-.navbar-inverse{
-  border: none;
-}
-
 .btn{
   border-radius: 0;
+}
+
+.navbar-default{
+  background-color: #19cc95;
 }
 
 // .list-group-item a{
@@ -55,17 +55,28 @@ a{
 //   border-left: 1px solid #E6EAEA;
 // }
 
-.dropdown-toggle{
-  background-color: #86a91c;
-  color: #fff;
+// .navbar-inverse{
+//   background-color: #30dac4;
+// }
+
+.navbar-nav li:hover{
+  background-color: #fff;
 }
 
-.dropdown-toggle{
+.navbar-nav li:hover a{
+  color: #19cc95 !important;
+}
+
+.navbar-nav a{
   color: #fff !important;
+  font-size: 14px;
 }
 
-.form-control{
-  border-right: none;
+.dropdown-toggle,
+.btn-default{
+  // background-color: #86a91c;
+  border-color: #fff;
+  color: #19cc95;
 }
 
 .dropdown-toggle.active{
@@ -89,23 +100,12 @@ a{
 }
 
 .form-control{
-  border-radius: 0 !important;
+  border-radius: 15px !important;
+  border-color: #19cc95;
 }
 
 .fixed{
   position: fixed;
-}
-
-.filter-btn{
-  border: none;
-  border-bottom: 3px solid #86a91c;
-  border-radius: 0;
-  background-color: inherit;
-  color: #333;
-}
-
-.list-group{
-  background-color: inherit !important;
 }
 
 .list-group-item{
@@ -125,8 +125,8 @@ a{
 }
 
 .card{
-  height: 400px;
-  max-height: 500px;
+  height: 350px;
+  max-height: 400px;
   background: #fff;
   margin-bottom: 30px;
   box-shadow: 0 1px 2px rgba(25,25,25,0.2);
@@ -134,7 +134,7 @@ a{
 
 .card-user{
   font-size: 15px;
-  color: #74ac00;
+  color: #19cc95;
 }
 
 .img-wrap{
@@ -153,8 +153,7 @@ a{
 }
 
 .card-title{
-  font-weight: bold;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-size: 16px;
   font-weight: 500;
   line-height: 25px;
@@ -164,6 +163,17 @@ a{
   border-top: 1px solid #E6EAEA;
   padding: 10px 0;
 }
+
+.card-footer a{
+  font-size: 13px;
+  color: #333;
+}
+
+.card-footer a:hover{
+  color: #19cc95;
+}
+
+.list-group{}
 
 // ------------------------------
 .pagination {
@@ -176,6 +186,7 @@ a{
   border: 1px solid #E6EAEA;
   text-decoration: none;
   color: #333;
+  background-color: #fff;
 }
 
 .pagination a:hover,
@@ -187,8 +198,8 @@ a{
 }
 
 .pagination span.current {
-  padding: 2px 5px 2px 5px;
-  margin: 2px;
+  padding: 10px 8px 10px 8px;
+  margin: 112px;
   border: 1px solid #000099; font-weight: bold;
   background-color: #000099;
   color: red;
@@ -199,4 +210,27 @@ a{
   margin: 2px;
   border: 1px solid #eee;
   color: #ddd;
+}
+
+// ------------------------------
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: pink;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: pink;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: pink;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: pink;
+}
+
+// ------------------------------
+
+.page-footer{
+    background-color: #19cc95;
+    color: #fff;
+    padding: 10px;
 }

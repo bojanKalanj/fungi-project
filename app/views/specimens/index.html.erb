@@ -1,46 +1,51 @@
 <div class="container">
-  <div class="col-sm-2 green">
-    <div class="">
-      <ul class="list-group">
-        <p>Staniste</p>
-        <li class="list-group-item"> <a href="#">Suma</a> </li>
-        <li class="list-group-item"> <a href="#">Livada</a> </li>
-        <li class="list-group-item"> <a href="#">Panj</a> </li>
-        <li class="list-group-item"> <a href="#">Trava</a> </li>
-        <li class="list-group-item"> <a href="#">Mocvara</a> </li>
-      </ul>
-      <ul class="list-group">
-        <p>Staniste</p>
-        <li class="list-group-item"> <a href="#">Suma</a> </li>
-        <li class="list-group-item"> <a href="#">Livada</a> </li>
-        <li class="list-group-item"> <a href="#">Panj</a> </li>
-        <li class="list-group-item"> <a href="#">Trava</a> </li>
-        <li class="list-group-item"> <a href="#">Mocvara</a> </li>
-      </ul>
+  <div class="col-sm-2">
+    <div class="list-group">
+      <a href="#" class="list-group-item active">
+        Cras justo odio
+      </a>
+      <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+      <a href="#" class="list-group-item">Morbi leo risus</a>
+      <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+      <a href="#" class="list-group-item">Vestibulum at eros</a>
+    </div>
+    <div class="list-group">
+      <a href="#" class="list-group-item active">
+        Cras justo odio
+      </a>
+      <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+      <a href="#" class="list-group-item">Morbi leo risus</a>
+      <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+      <a href="#" class="list-group-item">Vestibulum at eros</a>
+    </div>
+    <div class="list-group">
+      <a href="#" class="list-group-item active">
+        Cras justo odio
+      </a>
+      <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+      <a href="#" class="list-group-item">Morbi leo risus</a>
+      <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+      <a href="#" class="list-group-item">Vestibulum at eros</a>
     </div>
   </div>
   <div class="col-sm-10">
     <div class="row">
       <%= will_paginate %>
     </div>
-    <div class="row">
+    <div class="card-deck">
       <% @specimens.each do |specimen| %>
-        <div class="col-sm-8 col-md-6 col-lg-4 col-xl-2">
-          <div class="card grid-card">
-            <div class="img-wrap">
-              <% if specimen.pictures.any? %>
-                <%= image_tag specimen.pictures.first.image, class: "card-img-top" %>
-              <% else %>
-              <a href="#"><img class="card-img-top" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap"></a>
-              <% end %>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title"><%= link_to specimen.display_name, specimen_path(specimen) %></h5>
-              <h6 class="card-subtitle mb-2 text-muted">Nalaz dodat <span class="pull-right"><%= specimen.date %></span></h6>
-              <div class="card-footer">
-                <a href="#" class="pull-left card-link"><%= specimen.legator_text %></a>
-              </div>
-            </div>
+        <div class="card card-grid">
+          <div class="card-img-wrap">
+            <% if specimen.pictures.any? %>
+              <%= image_tag specimen.pictures.first.image, class: "card-img-top" %>
+            <% else %>
+            <a href="#"><img class="card-img-top" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap"></a>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to specimen.display_name, specimen_path(specimen) %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= specimen.date %></h6>
+            <a href="#" class="pull-left card-link"><%= specimen.legator_text %></a>
           </div>
         </div>
       <% end %>

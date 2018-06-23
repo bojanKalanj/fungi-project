@@ -10,10 +10,10 @@ html { height: 100%; }
 
 body{
   padding-top: 80px;
-  font-family: "acumin-pro","Helvetica Neue",Helvetica,Arial,メイリオ,Meiryo,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro W3",osaka,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;
+  // font-family: "acumin-pro","Helvetica Neue",Helvetica,Arial,メイリオ,Meiryo,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro W3",osaka,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;
   font-size: 12px;
   line-height: 1.3;
-  font-family: "apercu",sans-serif;
+  // font-family: "apercu",sans-serif;
   font-weight: 300;
   color: #202121;
   background: #f4f7f6;
@@ -25,9 +25,64 @@ body{
   min-height: 100%;
   position: relative;
   padding-bottom: 3em;
+
+  font: 400 15px/1.5 "Karla", "Open Sans", "Gill Sans", Arial, sans-serif;
 }
 
+a{
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 11px;
+}
+
+a:hover{
+  color: #0f7481;
+  text-decoration: none;
+}
+
+// ---------------BUTTONS------------------
+.btn{
+  border-radius: 0;
+  background-color: inherit;
+  color: inherit;
+  border: 1px solid #0f7481;
+  font-size: 0.8em;
+}
+
+.btn:hover{
+  background-color: #0f7481;
+  color: #fff;
+}
+// -------------NAVBAR--------------
+.navbar-left input{
+  border: 1px solid #0f7481;
+  border-radius: 0;
+  background-color: inherit;
+}
+
+.navbar-left button{
+  color: #0f7481;
+  border: 1px solid #0f7481;
+}
+
+.navbar-left button:hover{
+  background-color: #0f7481;
+  border: 1px solid #0f7481;
+}
 // ---------------------------------
+
+.card{
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.card-title{
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
 .card-deck{
   display: flex;
   justify-content: space-between;
@@ -37,22 +92,43 @@ body{
 .card-grid{
   width: 23%;
   margin-top: 2%;
-  background-color: #fff;
 }
 
 .card-body{
   padding: 10px;
 }
 
-.card-img-wrap{
-  height: 200px;
+.card-img-top{
+  max-width: 100%;
+  height: auto;
+}
+// ---------------------------------
+.content{
+  background-color: #fff;
+  border: 1px solid #ddd;
+  height: 500px;
   overflow: hidden;
 }
 
-.card-img-wrap img{
+.content .col-sm-6{
   height: 100%;
-  width: auto;
+  padding: 10px;
 }
+
+.content .col-sm-6:first-child{
+  border-right: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+}
+
+.desc-header{
+  border-bottom: 1px solid #ddd;
+}
+
+iframe{
+  width: 100%;
+}
+
 // --------------FOOTER-------------------
 .footer {
   height: 3em;

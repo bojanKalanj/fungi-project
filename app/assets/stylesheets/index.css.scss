@@ -9,7 +9,7 @@
 html { height: 100%; }
 
 body{
-  padding-top: 80px;
+  // padding-top: 80px;
   // font-family: "acumin-pro","Helvetica Neue",Helvetica,Arial,メイリオ,Meiryo,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro W3",osaka,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;
   font-size: 12px;
   line-height: 1.3;
@@ -37,6 +37,10 @@ a{
   font-size: 11px;
 }
 
+ul{
+  list-style: none;
+}
+
 a:hover{
   color: #0f7481;
   text-decoration: none;
@@ -56,6 +60,11 @@ a:hover{
   color: #fff;
 }
 // -------------NAVBAR--------------
+.navbar-inverse{
+  margin: 0 !important;
+  border-radius: 0;
+}
+
 .navbar-left input{
   border: 1px solid #0f7481;
   border-radius: 0;
@@ -70,6 +79,24 @@ a:hover{
 .navbar-left button:hover{
   background-color: #0f7481;
   border: 1px solid #0f7481;
+}
+// ---------------PAGINATION--------
+.pagination{
+  margin-top: 50px;
+}
+
+.pagination a{
+  padding: 13px 8px;
+  border: 1px solid #ddd;
+}
+
+.pagination .current{
+  color: #0f7481;
+  font-weight: bold;
+}
+
+.pagination .disabled{
+  background-color: #f4f7f6;
 }
 // ---------------------------------
 
@@ -102,31 +129,65 @@ a:hover{
   max-width: 100%;
   height: auto;
 }
-// ---------------------------------
-.content{
-  background-color: #fff;
-  border: 1px solid #ddd;
-  height: 500px;
-  overflow: hidden;
+// --------------HEADERS-------------------
+.page-hero{
+  box-sizing: border-box;
+  min-height: 200px;
+  overflow: auto;
+  background-color: #00979d;
+  padding: 50px 3vw 5px 3vw;
+  color: #fff;
+  margin-bottom: 20px;
 }
 
-.content .col-sm-6{
-  height: 100%;
+.breadcrumb{
+  background-color: inherit;
+}
+
+.breadcrumb a{
+  color: #fff;
+  font-size: 14px;
+}
+
+.breadcrumb a:hover,
+.user-info a:hover{
+  border-bottom: 1px solid #fff;
+}
+
+.breadcrumb .active{
+  color: #ddd;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+// ---------------------------------
+
+// ---------------------------------
+.list{
+  border-bottom: 1px solid #ddd;
+  color: #646464;
+  font-size: 0.9em;
+}
+
+.list li{
   padding: 10px;
 }
 
-.content .col-sm-6:first-child{
-  border-right: 1px solid #ddd;
-  display: flex;
-  align-items: center;
-}
-
-.desc-header{
-  border-bottom: 1px solid #ddd;
+.list span{
+  border-bottom: 2px solid #f0b200;
+  color: #f0b200;
+  text-transform: capitalize;
 }
 
 iframe{
   width: 100%;
+  height: 400px;
+}
+
+// ---------------------------------
+
+.glyphicon-asterisk{
+  width: 5px;
+  height: 5px;
 }
 
 // --------------FOOTER-------------------
@@ -135,5 +196,6 @@ iframe{
   width: 100%;
   position: absolute;
   bottom: 0;
-  background-color: #fff;
+  background-color: #333;
+  color: #fff;
 }

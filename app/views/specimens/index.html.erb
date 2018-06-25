@@ -1,31 +1,7 @@
 <div class="container">
   <div class="col-sm-2">
-    <div class="list-group">
-      <a href="#" class="list-group-item active">
-        Cras justo odio
-      </a>
-      <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-      <a href="#" class="list-group-item">Morbi leo risus</a>
-      <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-      <a href="#" class="list-group-item">Vestibulum at eros</a>
-    </div>
-    <div class="list-group">
-      <a href="#" class="list-group-item active">
-        Cras justo odio
-      </a>
-      <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-      <a href="#" class="list-group-item">Morbi leo risus</a>
-      <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-      <a href="#" class="list-group-item">Vestibulum at eros</a>
-    </div>
-    <div class="list-group">
-      <a href="#" class="list-group-item active">
-        Cras justo odio
-      </a>
-      <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-      <a href="#" class="list-group-item">Morbi leo risus</a>
-      <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-      <a href="#" class="list-group-item">Vestibulum at eros</a>
+    <div class="">
+
     </div>
   </div>
   <div class="col-sm-10">
@@ -39,7 +15,7 @@
             <% if specimen.pictures.any? %>
               <%= image_tag specimen.pictures.first.image, class: "card-img-top" %>
             <% else %>
-            <a href="#"><img class="card-img-top " src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap"></a>
+              <a href="#"><img class="card-img-top " src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap"></a>
             <% end %>
           </div>
           <div class="card-body">

@@ -160,27 +160,17 @@ a:hover{
   text-transform: uppercase;
 }
 // ---------------------------------
-
-// ---------------------------------
-.list{
-  border-bottom: 1px solid #ddd;
-  color: #646464;
-  font-size: 0.9em;
+.img-thumbnail{
+  margin-bottom: 10px;
 }
 
-.list li{
-  padding: 10px;
-}
-
-.list span{
-  border-bottom: 2px solid #f0b200;
-  color: #f0b200;
-  text-transform: capitalize;
+.content .card{
+  height: 500px;
 }
 
 iframe{
+  height: 100%;
   width: 100%;
-  height: 400px;
 }
 
 // ---------------------------------

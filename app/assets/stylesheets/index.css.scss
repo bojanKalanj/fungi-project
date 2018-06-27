@@ -149,8 +149,7 @@ a:hover{
   font-size: 14px;
 }
 
-.breadcrumb a:hover,
-.user-info a:hover{
+.breadcrumb a:hover{
   border-bottom: 1px solid #fff;
 }
 
@@ -171,6 +170,34 @@ a:hover{
 iframe{
   height: 100%;
   width: 100%;
+}
+
+.user,
+.user-name{
+  text-align: center;
+}
+
+.user-name{
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.user-img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.list li{
+  padding: 6px;
+  color: #646464;
+  font-size: 0.9em;
+  text-transform: capitalize;
+}
+
+.list span{
+  color: #00979d;
 }
 
 // ---------------------------------

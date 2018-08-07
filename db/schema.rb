@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611190219) do
+ActiveRecord::Schema.define(version: 20180806132930) do
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id",    limit: 4
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20160611190219) do
     t.datetime "updated_at",                         null: false
     t.string   "square_pic",           limit: 255
     t.string   "square_pic_reference", limit: 255
+    t.string   "number",               limit: 255
   end
 
   add_index "specimen", ["determinator_id"], name: "index_specimen_on_determinator_id", using: :btree

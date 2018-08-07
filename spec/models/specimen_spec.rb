@@ -140,6 +140,7 @@ end
 #  updated_at           :datetime         not null
 #  square_pic           :string(255)
 #  square_pic_reference :string(255)
+#  number               :string(255)
 #
 # Indexes
 #

@@ -40,6 +40,12 @@ class Specimen < ActiveRecord::Base
   validate :habitat_json
   validate :substrate_json
 
+  before_create :assign_number
+  
+  def assign_number
+    number_of_records = Specimen.count + 1
+    self.number = number_of_records.to_s.rjust(6, "0")
+  end
 
   def resource_title
     "#{self.species.full_name} - #{self.location.name} - #{self.date}"
@@ -140,6 +146,7 @@ end
 #  updated_at           :datetime         not null
 #  square_pic           :string(255)
 #  square_pic_reference :string(255)
+#  number               :string(255)
 #
 # Indexes
 #

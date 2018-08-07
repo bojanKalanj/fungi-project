@@ -1,9 +1,13 @@
 <div class="page-hero">
-  <h1><%= @specimen.display_name %></h1>
+  <!-- <h1><%= @specimen.display_name %></h1> -->
+  <h1>Observation <%= @specimen.number %>: <%= @specimen.display_name %></h1>
   <ol class="breadcrumb">
-    <li><a href="#">Familija</a></li>
-    <li><a href="#">Vrsta</a></li>
-    <li class="active"><%= @specimen.display_name %></li>
+    <li><a href="#"><%= @specimen.species.phylum if @specimen.species.present? %></a></li>
+    <li><a href="#"><%= @specimen.species.classis if @specimen.species.present? %></a></li>
+    <li><a href="#"><%= @specimen.species.ordo if @specimen.species.present? %></a></li>
+    <li><a href="#"><%= @specimen.species.familia if @specimen.species.present? %></a></li>
+    <li><a href="#"><%= @specimen.species.genus if @specimen.species.present? %></a></li>
+    <li class="active"><%= @specimen.species.name if @specimen.species.present? %></li>
   </ol>
 </div>
 <div class="container">

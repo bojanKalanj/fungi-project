@@ -41,7 +41,7 @@ class Specimen < ActiveRecord::Base
   validate :substrate_json
 
   before_create :assign_number
-  
+
   def assign_number
     number_of_records = Specimen.count + 1
     self.number = number_of_records.to_s.rjust(6, "0")
@@ -73,8 +73,7 @@ class Specimen < ActiveRecord::Base
 
   def slug_candidates
     candidates = []
-    candidates << "#{self.species.full_name}_#{self.location.name}_#{date}" if !self.species.nil? && !self.location.nil?
-    candidates << "#{self.species.full_name}_#{self.location.name}_#{date}_#{self.legator.full_name}" if !self.species.nil? && !self.location.nil? && !self.legator.nil?
+    candidates << self.number
     candidates << Time.now.to_s if candidates.empty?
 
     candidates

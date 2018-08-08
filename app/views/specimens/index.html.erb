@@ -22,7 +22,8 @@
             <h5 class="card-title"><%= link_to specimen.display_name, specimen_path(specimen) %></h5>
             <h6 class="card-subtitle mb-2 text-muted"><%= specimen.date %></h6>
             <!-- <a href="#" class="pull-left card-link"><%= specimen.legator_text %></a> -->
-            <button type="button" name="button" class="btn"><%= specimen.legator_text %></button>
+            <!-- <button type="button" name="button" class="btn"><%= specimen.legator_text %></button> -->
+            <a class="user-a" href="#"><%= specimen.legator_text %></a>
           </div>
         </div>
       <% end %>

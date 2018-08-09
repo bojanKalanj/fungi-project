@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     sessions: 'custom_devise/sessions'
   }
 
+  resources :users, only: [:show]
+
   namespace :admin do
     resources :users
     resources :species, param: :url do

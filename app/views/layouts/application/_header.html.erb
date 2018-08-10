@@ -7,7 +7,6 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <!-- <a class="navbar-brand" href="#">FungiLogo</a> -->
       <li><%= link_to 'FungiLogo', specimens_path, class: 'navbar-brand' %></li>
     </div>
     <form class="navbar-form navbar-left">
@@ -18,29 +17,23 @@
       </div>
     </form>
     <ul class="nav navbar-nav navbar-right">
-      <!-- <li><a class="underline">Pocetna</a></li> -->
-      <!-- <li><a class="underline">O nama</a></li> -->
-      <!-- <li><a class="underline">Popis vrsta</a></li> -->
-      <!-- <li><a class="underline">Uputstvo</a></li> -->
-      <li><%= link_to 'Pocetna', specimens_path, class: 'underline' %></li>
-      <li><a class="underline">O nama</a></li>
-      <li><a class="underline">Uputstvo</a></li>
-      <li><a class="underline">O carstvu gljiva</a></li>
-
-      <!-- <li class="green white"><a href="#" class="white">Moj Profil <span class="caret"></span></a></li> -->
+      <li><%= link_to 'Pocetna', specimens_path, class: 'nav-a' %></li>
+      <li><a class="nav-a">O nama</a></li>
+      <li><a class="nav-a">Uputstvo</a></li>
+      <li><a class="nav-a">O carstvu gljiva</a></li>
       <% if current_user %>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.full_name %> <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle user-a" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.full_name %> <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><%= link_to 'Moj profil', user_path(current_user.id) %></li>
-              <li><a href="#">Dodaj nalaz</a></li>
+              <li><%= link_to 'Moj profil', user_path(current_user.id), class: 'user-a' %></li>
+              <li><a class="user-a" href="#">Dodaj nalaz</a></li>
               <li role="separator" class="divider"></li>
-              <li><%= link_to 'Odjavi se', destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to 'Odjavi se', destroy_user_session_path, method: :delete, class: 'user-a' %></li>
             </ul>
           </li>
         <% else %>
-          <li><%= link_to 'Prijavite se', new_user_session_path %></li>
-          <li><%= link_to 'Registrujte se', new_user_registration_path %></li>
+          <li><%= link_to 'Prijavite se', new_user_session_path, class: 'nav-a' %></li>
+          <li><%= link_to 'Registrujte se', new_user_registration_path, class: 'nav-a' %></li>
         <% end %>
         <li class="dropdown">
           <ul class="dropdown-menu">

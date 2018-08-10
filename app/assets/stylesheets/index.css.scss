@@ -50,7 +50,7 @@ a:hover{
   font-weight: 300;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  border-bottom: 2px solid #333 !important;
+  border-bottom: 2px solid #202121 !important;
 }
 
 .nav-a:hover{
@@ -105,24 +105,40 @@ a:hover{
   border: 1px solid #0f7481;
 }
 
+.dropdown-menu{
+  background-color: #000;
+}
+
+.dropdown-menu a{
+  color: #999 !important;
+  font-size: 12px;
+}
+
+.dropdown a:hover{
+  background-color: #333 !important;
+  color: #fff !important;
+}
+
+.divider{
+  border-bottom: 0.5px solid #333;
+}
+
 // ---------------PAGINATION--------
 .pagination{
   margin-top: 50px;
 }
 
 .pagination a{
-  padding: 13px 8px;
+  padding: 12px 10px;
   border: 1px solid #ddd;
 }
 
 .pagination .current{
   color: #0f7481;
   font-weight: bold;
+  padding: 12px 10px;
 }
 
-.pagination .disabled{
-  background-color: #f4f7f6;
-}
 // ---------------------------------
 
 .card{

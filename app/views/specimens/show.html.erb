@@ -1,14 +1,15 @@
 <div class="page-hero">
-  <!-- <h1><%= @specimen.display_name %></h1> -->
-  <h1><%= @specimen.display_name %></h1>
-  <ol class="breadcrumb">
-    <li><%= @specimen.species.phylum if @specimen.species.present? %></li>
-    <li><%= @specimen.species.classis if @specimen.species.present? %></li>
-    <li><%= @specimen.species.ordo if @specimen.species.present? %></li>
-    <li><%= @specimen.species.familia if @specimen.species.present? %></li>
-    <li><%= @specimen.species.genus if @specimen.species.present? %></li>
-    <li class="active"><%= @specimen.species.name if @specimen.species.present? %></li>
-  </ol>
+  <div class="container">
+    <h1><%= @specimen.display_name %></h1>
+    <ol class="breadcrumb">
+      <li><%= @specimen.species.phylum if @specimen.species.present? %></li>
+      <li><%= @specimen.species.classis if @specimen.species.present? %></li>
+      <li><%= @specimen.species.ordo if @specimen.species.present? %></li>
+      <li><%= @specimen.species.familia if @specimen.species.present? %></li>
+      <li><%= @specimen.species.genus if @specimen.species.present? %></li>
+      <li class="active"><%= @specimen.species.name if @specimen.species.present? %></li>
+    </ol>
+  </div>
 </div>
 <div class="container">
   <div class="col-sm-9">

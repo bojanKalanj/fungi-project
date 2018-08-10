@@ -83,6 +83,12 @@ a:hover{
   background-color: #0f7481;
   color: #fff;
 }
+
+.btn-form{
+  width: 100px !important;
+  color: #fff;
+  border: 1px solid #fff;
+}
 // -------------NAVBAR--------------
 .navbar-inverse{
   margin: 0 !important;
@@ -121,6 +127,10 @@ a:hover{
 
 .divider{
   border-bottom: 0.5px solid #333;
+}
+
+.nav-link-border{
+  border-left: 1px solid #999;
 }
 
 // ---------------PAGINATION--------
@@ -228,23 +238,31 @@ iframe{
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
 }
-
-.user-img{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  overflow: hidden;
+//
+// .list li{
+//   padding: 6px;
+//   color: #646464;
+//   font-size: 0.9em;
+//   text-transform: capitalize;
+// }
+//
+// .list span{
+//   color: #00979d;
+// }
+// --------------FORMS-------------------
+.panel{
+  margin-top: 50px;
+  background-color: #00979d;
+  color: #fff !important;
 }
 
-.list li{
-  padding: 6px;
-  color: #646464;
-  font-size: 0.9em;
-  text-transform: capitalize;
+.panel a{
+  color: #fff;
 }
 
-.list span{
-  color: #00979d;
+.panel-heading{
+  background-color: #00979d !important;
+  color: #fff !important;
 }
 
 // ---------------------------------

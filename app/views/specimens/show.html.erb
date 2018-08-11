@@ -2,12 +2,12 @@
   <div class="container">
     <h1><%= @specimen.display_name %></h1>
     <ol class="breadcrumb">
-      <li><%= @specimen.species.phylum if @specimen.species.present? %></li>
-      <li><%= @specimen.species.classis if @specimen.species.present? %></li>
-      <li><%= @specimen.species.ordo if @specimen.species.present? %></li>
-      <li><%= @specimen.species.familia if @specimen.species.present? %></li>
-      <li><%= @specimen.species.genus if @specimen.species.present? %></li>
-      <li class="active"><%= @specimen.species.name if @specimen.species.present? %></li>
+      <li><%= @specimen.species.phylum if @specimen.species %></li>
+      <li><%= @specimen.species.classis if @specimen.species %></li>
+      <li><%= @specimen.species.ordo if @specimen.species %></li>
+      <li><%= @specimen.species.familia if @specimen.species %></li>
+      <li><%= @specimen.species.genus if @specimen.species %></li>
+      <li class="active"><%= @specimen.species.name if @specimen.species %></li>
     </ol>
   </div>
 </div>
@@ -16,7 +16,7 @@
     <div class="card">
       <div class="card-body">
         <div class="desc">
-          <a class="user-a" href="#"><%= @specimen.legator_text %></a>
+          <%= link_to @specimen.legator_text, user_path(@specimen.legator.id), class: 'user-a' %>
           <p class="card-subtitle mb-2 text-muted"><%= @specimen.date %></p>
           <p class="card-subtitle mb-2 text-muted">Observation <%= @specimen.number %></p>
           <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>

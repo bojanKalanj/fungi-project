@@ -18,11 +18,9 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-
   min-height: 100%;
   position: relative;
   padding-bottom: 3em;
-
   font: 400 15px/1.5 "Karla", "Open Sans", "Gill Sans", Arial, sans-serif;
 }
 
@@ -58,12 +56,6 @@ a:hover{
   border-bottom: 2px solid #00979d !important;
 }
 
-.card-title{
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
 .user-a{
   font-size: 13px;
   font-weight: 700 !important;
@@ -86,8 +78,8 @@ a:hover{
 
 .btn-form{
   width: 100px !important;
-  color: #fff;
-  border: 1px solid #fff;
+  color: #00979d;
+  border: 1px solid #00979d;
 }
 // -------------NAVBAR--------------
 .navbar-inverse{
@@ -149,7 +141,7 @@ a:hover{
   padding: 12px 10px;
 }
 
-// ---------------------------------
+// --------------CARDS-------------------
 
 .card{
   border: 1px solid #ddd;
@@ -157,6 +149,9 @@ a:hover{
 }
 
 .card-title{
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
 }
@@ -169,7 +164,8 @@ a:hover{
 
 .card-grid{
   width: 23%;
-  margin-top: 2%;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 
 .card-body{
@@ -217,54 +213,70 @@ a:hover{
 // ---------------------------------
 .img-thumbnail{
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
-.content .card{
-  height: 500px;
+.thumbnail-small{
+  // max-width: 31%;
+  // margin: 1%;
 }
 
 iframe{
-  // height: 100%;
   min-height: 500px;
   width: 100%;
 }
 
-.user,
-.user-name{
-  text-align: center;
+.img-thumb-wrap{
+  position: relative;
+  max-width: 31%;
+  margin: 1%;
 }
 
-.user-name{
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
+.slide-up-desc{
+  position: absolute;
+  overflow: hidden;
+  bottom: 7%;
+  left: 0.5%;
+  background-color: #fff;
+  width: 99%;
+  height: 0;
+  text-align: center;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #333;
 }
-//
-// .list li{
-//   padding: 6px;
-//   color: #646464;
-//   font-size: 0.9em;
-//   text-transform: capitalize;
-// }
-//
-// .list span{
-//   color: #00979d;
-// }
+
+.slide-up-desc p{
+  margin-top: 5px;
+}
+
+.img-thumb-wrap:hover .slide-up-desc{
+  height: 40%;
+}
+
 // --------------FORMS-------------------
 .panel{
   margin-top: 50px;
-  background-color: #00979d;
-  color: #fff !important;
-}
-
-.panel a{
-  color: #fff;
+  background-color: #fff;
+  color: #00979d !important;
+  border: 1px solid #00979d;
+  border-radius: 0;
 }
 
 .panel-heading{
   background-color: #00979d !important;
   color: #fff !important;
+  border-radius: 0;
 }
 
+.panel input{
+  border: 1px solid #00979d;
+  border-radius: 0;
+}
+
+.panel a{
+  color: #00979d
+}
 // ---------------------------------
 
 .glyphicon-asterisk{

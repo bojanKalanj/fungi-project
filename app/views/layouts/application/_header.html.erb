@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <li><%= link_to 'FungiLogo', specimens_path, class: 'navbar-brand' %></li>
+      <li><%= link_to 'FungiLogo', root_path, class: 'navbar-brand' %></li>
     </div>
     <form class="navbar-form navbar-left">
       <div class="form-group">
@@ -17,7 +17,7 @@
       </div>
     </form>
     <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to 'Pocetna', specimens_path, class: 'nav-a' %></li>
+      <li><%= link_to 'Pocetna', root_path, class: 'nav-a' %></li>
       <li><a class="nav-a">O nama</a></li>
       <li><a class="nav-a">Uputstvo</a></li>
       <li><a class="nav-a">O carstvu gljiva</a></li>
@@ -34,7 +34,7 @@
         </li>
         <% else %>
           <li><%= link_to 'Prijavite se', new_user_session_path, class: 'nav-a nav-link-border' %></li>
-          <li><%= link_to 'Registrujte se', new_user_registration_path, class: 'nav-a nav-link-border' %></li>
+          <li><%= link_to 'Registrujte se', new_user_registration_path, class: 'nav-a' %></li>
         <% end %>
         <li class="dropdown">
           <ul class="dropdown-menu">

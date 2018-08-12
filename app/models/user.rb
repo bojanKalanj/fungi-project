@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   PUBLIC_FIELDS = [:email, :first_name, :last_name, :role, :institution, :phone, :title, :password, :password_confirmation]
 
+  has_many :specimens
+
   devise :database_authenticatable, :registerable, :recoverable, :trackable, :validatable, :confirmable
 
   audited only: [:email, :first_name, :last_name, :title, :role, :institution, :phone, :deactivated_at, :reset_password_sent_at, :confirmed_at] if self.table_exists?

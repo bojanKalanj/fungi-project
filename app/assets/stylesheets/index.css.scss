@@ -25,7 +25,7 @@ body{
 }
 
 a{
-  color: #333;
+  color: #111;
 }
 
 ul{
@@ -33,7 +33,7 @@ ul{
 }
 
 a:hover{
-  color: #0f7481;
+  color: #3d3d3f;
   text-decoration: none;
   cursor: pointer;
 }
@@ -42,45 +42,47 @@ a:hover{
   font-size: 11px;
 }
 
+.up-case{
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
 .nav-a{
   color: #d3d3dd !important;
-  font-size: 11px;
-  font-weight: 300;
+  font-size: 10px;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   border-bottom: 2px solid #202121 !important;
 }
 
 .nav-a:hover{
-  color: #fff !important;
-  border-bottom: 2px solid #00979d !important;
-}
-
-.user-a{
-  font-size: 13px;
-  font-weight: 700 !important;
-  text-transform: capitalize;
+  color: #f6f5f3 !important;
+  border-bottom: 2px solid #7dce94 !important;
 }
 
 // ---------------BUTTONS------------------
 .btn{
   border-radius: 0;
+  margin: 5px;
   background-color: inherit;
   color: inherit;
-  border: 1px solid #0f7481;
-  font-size: 0.8em;
+  border: 2px solid #3d3d3f;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .btn:hover{
-  background-color: #0f7481;
-  color: #fff;
+  background-color: #7dce94;
+  // color: #7dce94;
 }
 
-.btn-form{
-  width: 100px !important;
-  color: #00979d;
-  border: 1px solid #00979d;
-}
+// .btn-form{
+//   width: 100px !important;
+//   color: #7dce94;
+//   border: 1px solid #7dce94;
+// }
 // -------------NAVBAR--------------
 .navbar-inverse{
   margin: 0 !important;
@@ -88,8 +90,8 @@ a:hover{
 }
 
 .navbar-left input{
-  border: 1px solid #0f7481;
   border-radius: 0;
+  border: 1px solid #7dce94;
   background-color: inherit;
 }
 
@@ -114,17 +116,12 @@ a:hover{
 
 .dropdown a:hover{
   background-color: #333 !important;
-  color: #fff !important;
+  color: #f6f5f3 !important;
 }
 
 .divider{
   border-bottom: 0.5px solid #333;
 }
-
-.nav-link-border{
-  border-left: 1px solid #999;
-}
-
 // ---------------PAGINATION--------
 .pagination{
   margin-top: 50px;
@@ -136,7 +133,7 @@ a:hover{
 }
 
 .pagination .current{
-  color: #0f7481;
+  color: #3d3d3f;
   font-weight: bold;
   padding: 12px 10px;
 }
@@ -145,7 +142,7 @@ a:hover{
 
 .card{
   border: 1px solid #ddd;
-  background-color: #fff;
+  background-color: #f6f5f3;
 }
 
 .card-title{
@@ -186,10 +183,14 @@ a:hover{
   box-sizing: border-box;
   min-height: 200px;
   overflow: auto;
-  background-color: #00979d;
+  background-color: #3d3d3f;
   padding: 50px 3vw 5px 3vw;
-  color: #fff;
+  color: #f6f5f3;
   margin-bottom: 20px;
+}
+
+.page-hero hr{
+  border-top: 1px solid #f6f5f3;
 }
 
 .breadcrumb{
@@ -197,12 +198,12 @@ a:hover{
 }
 
 .breadcrumb a{
-  color: #fff;
+  color: #f6f5f3;
   font-size: 14px;
 }
 
 .breadcrumb a:hover{
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #f6f5f3;
 }
 
 .breadcrumb .active{
@@ -213,12 +214,8 @@ a:hover{
 // ---------------------------------
 .img-thumbnail{
   margin-bottom: 10px;
+  border-radius: 0;
   cursor: pointer;
-}
-
-.thumbnail-small{
-  // max-width: 31%;
-  // margin: 1%;
 }
 
 iframe{
@@ -237,13 +234,17 @@ iframe{
   overflow: hidden;
   bottom: 7%;
   left: 0.5%;
-  background-color: #fff;
+  background-color: #f6f5f3;
   width: 99%;
   height: 0;
   text-align: center;
   font-size: 11px;
   text-transform: uppercase;
   color: #333;
+}
+
+.slide-up-desc:hover{
+  cursor: pointer;
 }
 
 .slide-up-desc p{
@@ -253,29 +254,44 @@ iframe{
 .img-thumb-wrap:hover .slide-up-desc{
   height: 40%;
 }
+// --------------FORMS-------------------
+.content{
+  border-left: 1px solid #3d3d3f;
+  border-right: 1px solid #3d3d3f;
+}
+
+.border-btm{
+  border-bottom: 1px solid #3d3d3f;
+  padding: 15px;
+}
+
+.border-rght{
+  border-right: 1px solid #3d3d3f;
+}
+
 
 // --------------FORMS-------------------
 .panel{
   margin-top: 50px;
-  background-color: #fff;
-  color: #00979d !important;
-  border: 1px solid #00979d;
+  color: #3d3d3f !important;
+  border: 1px solid #3d3d3f;
   border-radius: 0;
 }
 
 .panel-heading{
-  background-color: #00979d !important;
-  color: #fff !important;
+  color: #3d3d3f !important;
   border-radius: 0;
+  border-bottom: 1px solid #3d3d3f !important;
+  background-color: inherit !important;
 }
 
 .panel input{
-  border: 1px solid #00979d;
+  border: 1px solid #3d3d3f;
   border-radius: 0;
 }
 
 .panel a{
-  color: #00979d
+  color: #3d3d3f
 }
 // ---------------------------------
 
@@ -291,5 +307,5 @@ iframe{
   position: absolute;
   bottom: 0;
   background-color: #333;
-  color: #fff;
+  color: #f6f5f3;
 }

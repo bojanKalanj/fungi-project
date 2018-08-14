@@ -64,10 +64,11 @@ a:hover{
 // ---------------BUTTONS------------------
 .btn{
   border-radius: 0;
-  margin: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
   background-color: inherit;
   color: inherit;
-  border: 2px solid #3d3d3f;
+  border: 2px solid #3d3d3f !important;
   font-size: 11px;
   text-transform: uppercase;
   font-weight: 700;
@@ -179,31 +180,8 @@ a:hover{
   margin-bottom: 10px;
 }
 // --------------HEADERS-------------------
-.page-hero{
-  box-sizing: border-box;
-  min-height: 200px;
-  overflow: auto;
-  background-color: #3d3d3f;
-  padding: 50px 3vw 5px 3vw;
-  color: #f6f5f3;
-  margin-bottom: 20px;
-}
-
-.page-hero hr{
-  border-top: 1px solid #f6f5f3;
-}
-
 .breadcrumb{
   background-color: inherit;
-}
-
-.breadcrumb a{
-  color: #f6f5f3;
-  font-size: 14px;
-}
-
-.breadcrumb a:hover{
-  border-bottom: 1px solid #f6f5f3;
 }
 
 .breadcrumb .active{
@@ -272,10 +250,14 @@ iframe{
 
 // --------------FORMS-------------------
 .panel{
+  width: 400px;
+  height: 600px;
+  margin: 0 auto;
   margin-top: 50px;
   color: #3d3d3f !important;
-  border: 1px solid #3d3d3f;
+  border: 2px solid #3d3d3f;
   border-radius: 0;
+  // background-color: #7dce94;
 }
 
 .panel-heading{
@@ -286,8 +268,18 @@ iframe{
 }
 
 .panel input{
-  border: 1px solid #3d3d3f;
+  // background-color: #7dce94;
+  border: none;
+  border-bottom: 1px solid #3d3d3f;
+  box-shadow: none;
   border-radius: 0;
+  margin: 20px auto;
+}
+
+.panel-btn{
+  background-color: #7dce94 !important;
+  width: 100% !important;
+  padding: 15px;
 }
 
 .panel a{

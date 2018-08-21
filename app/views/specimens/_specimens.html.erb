@@ -1,0 +1,18 @@
+<div class="card-deck">
+  <% @specimens.each do |specimen| %>
+    <div class="card card-grid">
+      <div class="card-img-wrap">
+        <% if specimen.pictures.any? %>
+          <%= image_tag specimen.pictures.first.image, class: "card-img-top" %>
+        <% else %>
+          <a href="#"><img class="card-img-top " src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap"></a>
+        <% end %>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to specimen.display_name, specimen_path(specimen) %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%= specimen.date %></h6>
+        <%= link_to specimen.legator_text, user_path(specimen.legator_id), class: 'user-a' %>
+      </div>
+    </div>
+  <% end %>
+</div>

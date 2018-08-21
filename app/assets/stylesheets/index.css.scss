@@ -24,6 +24,10 @@ body{
   font: 400 15px/1.5 "Karla", "Open Sans", "Gill Sans", Arial, sans-serif;
 }
 
+.container{
+  width: 75%;
+}
+
 a{
   color: #111;
 }
@@ -123,6 +127,33 @@ a:hover{
 .divider{
   border-bottom: 0.5px solid #333;
 }
+// -----------FILTERS-----------
+.filters{
+  padding: 10px;
+  margin-top: 100px;
+  margin-right: 10px;
+  border: 1px solid #3d3d3f;
+}
+
+.filter-row{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.filters input{
+  height: 30px;
+  padding-left: 5px;
+  border: 2px solid #3d3d3f;
+  background-color: inherit;
+}
+
+.filters button{
+  height: 30px;
+}
+
 // ---------------PAGINATION--------
 .pagination{
   margin-top: 50px;

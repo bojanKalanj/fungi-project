@@ -3,6 +3,10 @@ class SpeciesController < ApplicationController
 
   before_action :clean_params, only: :search
 
+  def index
+    @species = Species.order('name ASC').paginate(:page => params[:page], per_page: 15 )
+  end
+
   # GET /species/:url
   def show
     @species = Species.where(url: params[:url]).first

@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   resources :language_switcher, only: :update, controller: 'language_switcher'
 
-  resources :species, param: :url, only: [:show] do
+  resources :species, param: :url, only: [:index, :show] do
     get :search, on: :collection
   end
 

@@ -25,7 +25,7 @@ body{
 }
 
 .container{
-  width: 75%;
+  width: 80%;
 }
 
 a{
@@ -34,6 +34,12 @@ a{
 
 ul{
   list-style: none;
+}
+
+.underline{
+  border-bottom: 1px solid #7dce94;
+  text-transform: capitalize;
+  font-weight: 700;
 }
 
 a:hover{
@@ -166,6 +172,8 @@ a:hover{
 
 .pagination .current{
   color: #3d3d3f;
+  background-color: #7dce94;
+  border: 1px solid #3d3d3f;
   font-weight: bold;
   padding: 12px 10px;
 }
@@ -271,12 +279,20 @@ iframe{
 
 .border-btm{
   border-bottom: 1px solid #3d3d3f;
+  // padding: 15px;
+}
+
+.border-left{
+  border-left: 1px solid #3d3d3f;
+}
+
+.padding{
   padding: 15px;
 }
 
-.border-rght{
-  border-right: 1px solid #3d3d3f;
-}
+// .border-rght{
+//   border-right: 1px solid #3d3d3f;
+// }
 
 
 // --------------FORMS-------------------
@@ -321,6 +337,31 @@ iframe{
 .glyphicon-asterisk{
   width: 5px;
   height: 5px;
+}
+
+// --------------Table-------------------
+table{
+  width: 100%;
+  text-transform: capitalize;
+  background-color: #fff;
+}
+
+thead{
+  background-color: #7dce94;
+  color: #fff;
+}
+
+tr{
+  border: 1px solid #3d3d3f !important;
+}
+
+td,
+th{
+  padding: 12px;
+}
+
+td{
+  width: 25%;
 }
 
 // --------------FOOTER-------------------

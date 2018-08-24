@@ -49,7 +49,7 @@ a:hover{
 }
 
 .text-muted{
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .up-case{
@@ -69,6 +69,11 @@ a:hover{
 .nav-a:hover{
   color: #f6f5f3 !important;
   border-bottom: 2px solid #7dce94 !important;
+}
+
+.green-background{
+  background-color: #7dce94;
+  color: #fff;
 }
 
 // ---------------BUTTONS------------------
@@ -166,7 +171,7 @@ a:hover{
 }
 
 .pagination a{
-  padding: 12px 10px;
+  padding: 10px 8px;
   border: 1px solid #ddd;
 }
 
@@ -175,7 +180,7 @@ a:hover{
   background-color: #7dce94;
   border: 1px solid #3d3d3f;
   font-weight: bold;
-  padding: 12px 10px;
+  padding: 10px 8px;
 }
 
 // --------------CARDS-------------------
@@ -279,21 +284,19 @@ iframe{
 
 .border-btm{
   border-bottom: 1px solid #3d3d3f;
-  // padding: 15px;
 }
 
 .border-left{
   border-left: 1px solid #3d3d3f;
 }
 
+.border-right{
+  border-right: 1px solid #3d3d3f;
+}
+
 .padding{
   padding: 15px;
 }
-
-// .border-rght{
-//   border-right: 1px solid #3d3d3f;
-// }
-
 
 // --------------FORMS-------------------
 .panel{

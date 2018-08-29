@@ -1,4 +1,4 @@
-<div class="container content">
+<!-- <div class="container content">
   <div class="row border-btm">
     <div class="col-sm-8">
       <h1><%= @species.name %></h1>
@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-sm-6 padding">
           <p class="text-muted">Poslednji determinator</p>
-          <%= link_to @species.specimens.last.legator_text , user_path(@species.specimens.last.legator_id), class: 'underline' if @species.specimens.last.legator_text %>
+          <%= link_to @species.specimens.last.determinator_text , user_path(@species.specimens.last.determinator_id), class: 'underline' if @species.specimens.last.legator_text %>
         </div>
         <div class="col-sm-6 padding">
           <p class="text-muted">Najaktivniji determinator</p>
@@ -41,6 +41,100 @@
       <p>Synonyms: <i><%= @species.synonyms if @species.synonyms %></i> </p>
       <p>Nacin rasta: <i><%= @species.growth_type if @species.growth_type %></i> </p>
       <p>Nutritivna grupa: <i><%= @species.nutritive_group if @species.nutritive_group %></i> </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card-group">
+        <% @species.specimens.each do |specimen| %>
+          <div class="col-sm-3">
+            <div class="card">
+              <div class="card-img-wrap">
+                <% if specimen.pictures.any? %>
+                  <%= image_tag specimen.pictures.first.image, class: "card-img-top" %>
+                <% else %>
+                  <a href="#"><img class="card-img-top" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap"></a>
+                <% end %>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><%= link_to specimen.display_name, specimen_path(specimen), class: 'underline' %></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><%= specimen.date %></h6>
+                <%= link_to specimen.legator_text, user_path(specimen.legator_id), class: 'user-a' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="container content">
+  <div class="row border-btm">
+    <div class="col-sm-12 padding">
+      <h1 class="title "><%= @species.name %></h1>
+    </div>
+  </div>
+  <div class="row border-btm">
+    <div class="col-sm-8 padding">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22507.860018473515!2d19.69177472385645!3d45.15707840572651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b094881e683e7%3A0xc1f22e3d1483a4c2!2z0KTRgNGD0YjQutCwINCz0L7RgNCw!5e0!3m2!1ssr!2srs!4v1530028777165" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <div class="col-sm-4">
+      <div class="row">
+        <div class="col-sm-6 padding">
+          <p class="text-muted">Poslednji determinator</p>
+          <%= link_to @species.specimens.last.determinator_text , user_path(@species.specimens.last.determinator_id), class: 'underline' if @species.specimens.last.legator_text %>
+        </div>
+        <div class="col-sm-6 padding">
+          <p class="text-muted">Najaktivniji determinator</p>
+          <a class="underline" href="#">Hari Kalanj</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 padding">
+          <p class="text-muted">Poslednji nalaz</p>
+          <%= link_to @species.specimens.last.display_name, specimen_path(@species.specimens.last), class: 'underline' %>
+        </div>
+        <div class="col-sm-6 padding">
+          <p class="text-muted">Broj nalaza</p>
+          <p><%= @species.specimens.count %></p>
+        </div>
+      </div>
+      <hr>
+      <div>
+        <p>Genus: <i><%= @species.genus if @species.genus %></i> </p>
+        <p>Familija: <i><%= @species.familia if @species.familia %></i> </p>
+        <p>Red: <i><%= @species.ordo if @species.ordo %></i> </p>
+        <p>Klasa: <i><%= @species.classis if @species.classis %></i> </p>
+        <p>Sabklasa: <i><%= @species.subclassis if @species.subclassis %></i> </p>
+        <p>Phylum: <i><%= @species.phylum if @species.phylum %></i> </p>
+        <p>Synonyms: <i><%= @species.synonyms if @species.synonyms %></i> </p>
+        <p>Nacin rasta: <i><%= @species.growth_type if @species.growth_type %></i> </p>
+        <p>Nutritivna grupa: <i><%= @species.nutritive_group if @species.nutritive_group %></i> </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="card-group">
+      <% @species.specimens.each do |specimen| %>
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-img-wrap">
+              <% if specimen.pictures.any? %>
+                <%= image_tag specimen.pictures.first.image, class: "card-img-top" %>
+              <% else %>
+                <a href="#"><img class="card-img-top" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap"></a>
+              <% end %>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to specimen.display_name, specimen_path(specimen), class: 'underline' %></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%= specimen.date %></h6>
+              <%= link_to specimen.legator_text, user_path(specimen.legator_id), class: 'user-a' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

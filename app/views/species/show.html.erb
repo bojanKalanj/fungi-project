@@ -69,9 +69,9 @@
   </div>
 </div> -->
 <div class="container content">
-  <div class="row border-btm">
+  <div class="row border-btm head">
     <div class="col-sm-12 padding">
-      <h1 class="title "><%= @species.name %></h1>
+      <h1 class="title"><%= @species.name %></h1>
     </div>
   </div>
   <div class="row border-btm">
@@ -81,22 +81,26 @@
     <div class="col-sm-4">
       <div class="row">
         <div class="col-sm-6 padding">
+          <!-- <%= fa_icon "camera-retro", text: "Take a photo" %> -->
           <p class="text-muted">Poslednji determinator</p>
+          <%= fa_icon "user" %>
           <%= link_to @species.specimens.last.determinator_text , user_path(@species.specimens.last.determinator_id), class: 'underline' if @species.specimens.last.legator_text %>
         </div>
         <div class="col-sm-6 padding">
           <p class="text-muted">Najaktivniji determinator</p>
+          <%= fa_icon "user" %>
           <a class="underline" href="#">Hari Kalanj</a>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-6 padding">
           <p class="text-muted">Poslednji nalaz</p>
+          <%= fa_icon "binoculars" %>
           <%= link_to @species.specimens.last.display_name, specimen_path(@species.specimens.last), class: 'underline' %>
         </div>
         <div class="col-sm-6 padding">
           <p class="text-muted">Broj nalaza</p>
-          <p><%= @species.specimens.count %></p>
+          <p><%= fa_icon "check" %> <%= @species.specimens.count %></p>
         </div>
       </div>
       <hr>

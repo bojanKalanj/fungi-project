@@ -133,6 +133,8 @@ GEM
     ffi (1.9.23)
     figaro (1.1.1)
       thor (~> 0.14)
+    font-awesome-rails (4.7.0.4)
+      railties (>= 3.2, < 6.0)
     forgery (0.6.0)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
@@ -334,6 +336,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   figaro
+  font-awesome-rails
   forgery
   friendly_id (~> 5.1.0)
   jbuilder (~> 2.0)
@@ -360,4 +363,4 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 BUNDLED WITH
-   1.16.0
+   1.16.1

@@ -49,9 +49,10 @@ a:hover{
 }
 
 .title{
-  font-size: 100px;
-  text-transform: capitalize;
-  color: #7dce94;
+  font-size: 50px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 2px;
 }
 
 .text-muted{
@@ -396,6 +397,10 @@ td{
   color: #fff;
 }
 
+.head{
+  background-color: #7dce94;
+  color: #3d3d3f;
+}
 
 
 .footer {

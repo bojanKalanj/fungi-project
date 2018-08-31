@@ -79,7 +79,7 @@ a:hover{
 }
 
 .user-a{
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-size: 12px;
 }
 
@@ -106,6 +106,19 @@ a:hover{
   // color: #7dce94;
 }
 
+.navbar .btn{
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 20px;
+  background-color: #7dce94;
+  border: 2px solid #7dce94 !important;
+  color: #f4f7f6;
+}
+
+.form-inline{
+  display: flex;
+}
+
 // .btn-form{
 //   width: 100px !important;
 //   color: #7dce94;
@@ -115,6 +128,7 @@ a:hover{
 .navbar-inverse{
   margin: 0 !important;
   border-radius: 0;
+  display: flex;
 }
 
 .navbar-left input{
@@ -269,36 +283,8 @@ iframe{
   width: 100%;
 }
 
-.img-thumb-wrap{
-  position: relative;
-  max-width: 31%;
-  margin: 1%;
-}
-
-.slide-up-desc{
-  position: absolute;
-  overflow: hidden;
-  bottom: 7%;
-  left: 0.5%;
-  background-color: #f6f5f3;
-  width: 99%;
-  height: 0;
-  text-align: center;
-  font-size: 11px;
-  text-transform: uppercase;
-  color: #333;
-}
-
-.slide-up-desc:hover{
-  cursor: pointer;
-}
-
-.slide-up-desc p{
-  margin-top: 5px;
-}
-
-.img-thumb-wrap:hover .slide-up-desc{
-  height: 40%;
+.user-img{
+  max-height: 80px;
 }
 // --------------FORMS-------------------
 .content{

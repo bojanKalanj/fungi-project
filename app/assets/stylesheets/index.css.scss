@@ -357,8 +357,27 @@ iframe{
 }
 
 .panel a{
-  color: #3d3d3f
+  color: #3d3d3f;
 }
+// ------------MODAL-------------
+
+.modal{
+  background-color: #111;
+}
+
+.modal-content{
+  background-color: #111;
+  border-radius: 0;
+  padding: 10px;
+  height: 90vh;
+  text-align: center;
+  box-shadow: none;
+}
+
+.modal-content img{
+  height: 100%;
+}
+
 // ---------------------------------
 
 .glyphicon-asterisk{

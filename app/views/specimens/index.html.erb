@@ -7,7 +7,7 @@
   <div class="col-sm-9">
       <%= will_paginate %>
       <div class="row">
-        <%= render "specimens" %>
+        <%= render "shared/specimens_cards", specimens: @specimens %>
       </div>
       <%= will_paginate %>
   </div>

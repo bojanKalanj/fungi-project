@@ -120,25 +120,6 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="card-group">
-      <% @species.specimens.each do |specimen| %>
-        <div class="col-sm-3">
-          <div class="card">
-            <div class="card-img-wrap">
-              <% if specimen.pictures.any? %>
-                <%= image_tag specimen.pictures.first.image, class: "card-img-top" %>
-              <% else %>
-                <a href="#"><img class="card-img-top" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap"></a>
-              <% end %>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title"><%= link_to specimen.display_name, specimen_path(specimen), class: 'underline' %></h5>
-              <h6 class="card-subtitle mb-2 text-muted"><%= specimen.date %></h6>
-              <%= link_to specimen.legator_text, user_path(specimen.legator_id), class: 'user-a' %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
+    <%= render "shared/specimens_cards", specimens: @species.specimens %>
   </div>
 </div>

@@ -174,7 +174,7 @@ a:hover{
 
 // ---------------PAGINATION--------
 .pagination{
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .pagination a{
@@ -379,4 +379,15 @@ td{
   bottom: 0;
   background-color: #333;
   color: #f6f5f3;
+}
+
+// --------------ALERTS-------------------
+.alert{
+  text-align: center !important;
+  color: #333 !important;
+  border-radius: 0;
+}
+
+.alert-success{
+  background-color: #7dce94;
 }

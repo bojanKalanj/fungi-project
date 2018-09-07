@@ -5,6 +5,8 @@
   </head>
   <body>
     <%= render "layouts/application/header" %>
+    <p class="notice"> <%= notice %> </p>
+    <p class="alert"> <%= alert %> </p>
     <%= yield %>
     <%= render "layouts/application/footer" %>
   </body>

@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     sessions: 'custom_devise/sessions'
   }
 
+  authenticate :user do
+    resources :specimens, only: [:new]
+  end
+
   resources :users, only: [:show]
 
   namespace :admin do
@@ -34,7 +38,7 @@ Rails.application.routes.draw do
     get :search, on: :collection
   end
 
-  resources :specimens, controller: 'specimens', only: [:index, :show] do
+  resources :specimens, controller: 'specimens', only: [:index, :show, :new] do
     get :search, on: :collection
   end
 

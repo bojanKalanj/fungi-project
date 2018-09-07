@@ -11,6 +11,10 @@ class SpecimensController < ApplicationController
     @specimen = Specimen.friendly.find(params[:id])
   end
 
+  def new
+    @specimen = Specimen.new
+  end
+
   def search
     species = Species.with_systematics(params[:s]).with_nutritive_group(params[:ng]).with_growth_type(params[:gt])
 

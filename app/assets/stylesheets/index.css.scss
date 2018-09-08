@@ -36,6 +36,10 @@ ul{
   list-style: none;
 }
 
+h1{
+  margin: 0 !important;
+}
+
 .underline{
   border-bottom: 1px solid #7dce94;
   text-transform: capitalize;
@@ -50,8 +54,8 @@ a:hover{
 
 .title{
   font-size: 50px;
-  text-transform: uppercase;
   text-align: center;
+  text-transform: capitalize;
   letter-spacing: 2px;
 }
 
@@ -83,10 +87,10 @@ a:hover{
   font-size: 12px;
 }
 
-.green-background{
-  background-color: #7dce94;
-  color: #fff;
-}
+// .green-background{
+//   background-color: #7dce94;
+//   color: #fff;
+// }
 
 // ---------------BUTTONS------------------
 .btn{
@@ -225,6 +229,14 @@ a:hover{
 .card-img-top img{
   width: 100%;
 }
+
+.card-shadow{
+  box-shadow: 0 10px 40px -10px rgba(0,0,0,.2);
+}
+
+.card-shadow .card-body{
+  padding: 20px;
+}
 // --------------HEADERS-------------------
 .breadcrumb{
   background-color: inherit;
@@ -252,20 +264,21 @@ iframe{
 }
 // ---------------------------------
 .content{
-  border-left: 1px solid #3d3d3f;
-  border-right: 1px solid #3d3d3f;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  box-shadow: 0 10px 40px -10px rgba(0,0,0,.2);
 }
 
 .border-btm{
-  border-bottom: 1px solid #3d3d3f;
+  border-bottom: 1px solid #ddd;
 }
 
 .border-left{
-  border-left: 1px solid #3d3d3f;
+  border-left: 1px solid #ddd;
 }
 
 .border-right{
-  border-right: 1px solid #3d3d3f;
+  border-right: 1px solid #ddd;
 }
 
 .padding{
@@ -335,6 +348,39 @@ iframe{
   height: 5px;
 }
 
+.head-section{
+  padding: 80px;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.card-flex{
+  display: flex;
+  justify-content: space-around;
+}
+
+.card-flex .card{
+  width: 300px;
+  box-shadow: 0 10px 40px -10px rgba(0,0,0,.2);
+  color: rgb(93, 113, 132)
+}
+
+.grad{
+  padding: 40px;
+  // background-image: linear-gradient(to right, green , #7dce94);
+  background-image: linear-gradient(135deg, rgb(73, 221, 216) 0%, rgb(25, 226, 115) 100%);
+}
+
+.grad button{
+  border: 2px solid #fff !important;
+}
+
+.grad button:hover{
+  color: #7dce94;
+  background-color: #fff;
+}
+
 // --------------Table-------------------
 table{
   width: 100%;
@@ -365,12 +411,6 @@ td{
   background-color: #3d3d3f;
   color: #fff;
 }
-
-.head{
-  background-color: #7dce94;
-  color: #3d3d3f;
-}
-
 
 .footer {
   height: 3em;

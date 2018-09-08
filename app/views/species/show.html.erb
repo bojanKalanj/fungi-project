@@ -1,5 +1,5 @@
-<div class="container content">
-  <div class="row border-btm head">
+<!-- <div class="container content">
+  <div class="row border-btm">
     <div class="col-sm-12 padding">
       <h1 class="title"><%= @species.name %></h1>
     </div>
@@ -51,6 +51,83 @@
 </div>
 <div class="container">
   <div class="row">
+    <%= render "shared/specimens_cards", specimens: @species.specimens %>
+  </div>
+</div> -->
+<div class="grad">
+  <div class="container">
+    <div class="row head-section">
+      <div class="col-sm-6">
+        <h1 class="title pull-left"><%= @species.name %></h1>
+      </div>
+      <div class="col-sm-6">
+        <button class="btn pull-right" >komentarisi</button>
+        <button class="btn pull-right" >dodaj nalaz</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="col-sm-8">
+    <div class="card card-shadow">
+      <div class="card-body">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22507.860018473515!2d19.69177472385645!3d45.15707840572651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b094881e683e7%3A0xc1f22e3d1483a4c2!2z0KTRgNGD0YjQutCwINCz0L7RgNCw!5e0!3m2!1ssr!2srs!4v1530028777165" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="row">
+      <div class="card card-shadow">
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-sm-6 padding">
+              <p class="text-muted">Poslednji determinator</p>
+              <%= fa_icon "user" %>
+              <% if @species.specimens.present? %>
+                <%= link_to @species.specimens.last.determinator_text , user_path(@species.specimens.last.determinator_id), class: 'underline' %>
+              <% end %>
+            </div>
+            <div class="col-sm-6 padding">
+              <p class="text-muted">Najaktivniji determinator</p>
+              <%= fa_icon "user" %>
+              <a class="underline" href="#">Hari Kalanj</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 padding">
+              <p class="text-muted">Poslednji nalaz</p>
+              <%= fa_icon "binoculars" %>
+              <%= link_to @species.specimens.last.display_name, specimen_path(@species.specimens.last), class: 'underline' %>
+            </div>
+            <div class="col-sm-6 padding">
+              <p class="text-muted">Broj nalaza</p>
+              <p><%= fa_icon "check" %> <%= @species.specimens.count %></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card card-shadow">
+        <div class="card-body">
+          <p>Genus: <i><%= @species.genus if @species.genus %></i> </p>
+          <p>Familija: <i><%= @species.familia if @species.familia %></i> </p>
+          <p>Red: <i><%= @species.ordo if @species.ordo %></i> </p>
+          <p>Klasa: <i><%= @species.classis if @species.classis %></i> </p>
+          <p>Sabklasa: <i><%= @species.subclassis if @species.subclassis %></i> </p>
+          <p>Phylum: <i><%= @species.phylum if @species.phylum %></i> </p>
+          <p>Synonyms: <i><%= @species.synonyms if @species.synonyms %></i> </p>
+          <p>Nacin rasta: <i><%= @species.growth_type if @species.growth_type %></i> </p>
+          <p>Nutritivna grupa: <i><%= @species.nutritive_group if @species.nutritive_group %></i> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="container">
     <%= render "shared/specimens_cards", specimens: @species.specimens %>
   </div>
 </div>

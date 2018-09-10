@@ -9,6 +9,10 @@
 
         <%= f.input :email, autofocus: true, label: t('devise.fields.email') %>
 
+        <%= f.input :first_name, label: 'Ime' %>
+
+        <%= f.input :last_name, label: 'Prezime' %>
+
         <div class="field">
           <%= f.label t('devise.fields.password') %>
           <% if @validatable %>

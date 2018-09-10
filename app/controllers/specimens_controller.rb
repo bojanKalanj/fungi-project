@@ -13,6 +13,7 @@ class SpecimensController < ApplicationController
 
   def new
     @specimen = Specimen.new
+    authorize! :read, @specimen
   end
 
   def search

@@ -83,10 +83,10 @@ a:hover{
   font-size: 12px;
 }
 
-// .green-background{
-//   background-color: #7dce94;
-//   color: #fff;
-// }
+.green-background{
+  background-color: #7dce94 !important;
+  color: #fff !important;
+}
 
 // ---------------BUTTONS------------------
 .btn{
@@ -233,6 +233,17 @@ a:hover{
 .card-shadow .card-body{
   padding: 20px;
 }
+
+.card-gray{
+  background-color: #eee;
+  border-top: 3px solid #343434;
+}
+
+.card-gray li{
+  padding: 15px 0;
+  border-bottom: 1px solid #ccc;
+}
+
 // --------------HEADERS-------------------
 .breadcrumb{
   background-color: inherit;
@@ -264,6 +275,12 @@ iframe{
 .user-img img{
   border-radius: 50%;
   height: 100px;
+  width: auto;
+}
+
+.specimen-main-img{
+  border-radius: 50%;
+  height: 300px;
   width: auto;
 }
 
@@ -307,7 +324,7 @@ iframe{
 // --------------FORMS-------------------
 .panel{
   width: 400px;
-  height: 600px;
+  // height: 600px;
   margin: 0 auto;
   margin-top: 50px;
   color: #3d3d3f !important;
@@ -329,7 +346,7 @@ iframe{
   border-bottom: 1px solid #3d3d3f;
   box-shadow: none;
   border-radius: 0;
-  margin: 20px auto;
+  margin-bottom: 50px;
 }
 
 .panel-btn{
@@ -361,6 +378,11 @@ iframe{
 }
 
 // ---------------------------------
+
+.specimen-header{
+  display: flex;
+  align-items: center;
+}
 
 .glyphicon-asterisk{
   width: 5px;
@@ -453,4 +475,20 @@ td{
 
 .alert-success{
   background-color: #7dce94;
+}
+
+// --------------ALERTS-------------------
+abbr{
+  display: none;
+}
+
+.map i{
+  font-size: 50px;
+  color: #ccc;
+  margin-right: 20px;
+}
+
+.align-items{
+  display: flex;
+  align-items: center;
 }

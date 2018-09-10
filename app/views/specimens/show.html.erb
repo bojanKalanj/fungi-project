@@ -1,4 +1,4 @@
-<div class="container content">
+<!-- <div class="container content">
   <div class="row border-btm">
     <div class="col-sm-8">
       <h1><%= @specimen.display_name %></h1>
@@ -39,11 +39,82 @@
     </div>
   </div>
 </div>
-
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <img  src="<%= asset_path( 'index/1.jpg' ) %>" >
+    </div>
+  </div>
+</div> -->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="card card-shadow">
+        <div class="card-body">
+          <div class="row specimen-header">
+            <div class="col-sm-4">
+              <img class="specimen-main-img"  src="<%= asset_path( 'index/1.jpg' ) %>" >
+            </div>
+            <div class="col-sm-8">
+              <h1><%= @specimen.display_name %></h1>
+              <span class="underline"><%= link_to @specimen.species.name, species_path(@specimen.species.url) if @specimen.species %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card card-shadow green-background">
+        <div class="card-body">
+          <div class="user-img">
+            <a href="#"><img class="card-img-top" src="<%= asset_path( 'index/vucic.jpg' ) %>" alt="Card image cap"></a>
+            <h1 class="user-title"><%= link_to @specimen.legator_text, user_path(@specimen.legator.id) %></h1>
+            <p class="card-subtitle mb-2 text-muted"><%= @specimen.date %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card card-shadow map">
+        <div class="card-body">
+          <div class="align-items">
+            <%= fa_icon "globe" %>
+            <p class="card-subtitle mb-2 text-muted">121.32.43.24</p>
+          </div>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22507.860018473515!2d19.69177472385645!3d45.15707840572651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b094881e683e7%3A0xc1f22e3d1483a4c2!2z0KTRgNGD0YjQutCwINCz0L7RgNCw!5e0!3m2!1ssr!2srs!4v1530028777165" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card card-shadow card-gray">
+        <div class="card-body">
+          <ul>
+            <li>Ime vrste: <i class="underline"><%= link_to @specimen.species.name, species_path(@specimen.species.url) if @specimen.species %> </i></li>
+            <li>Lokacija: <i><%= @specimen.location.name if @specimen.location %></i> </li>
+            <li>Legator: <i class="underline"><%= link_to @specimen.legator.full_name, user_path(@specimen.legator.id) if @specimen.legator %></i> </li>
+            <li>Determinator: <i><%= @specimen.determinator_text if @specimen.determinator_text %></i> </li>
+            <li>Podloga: <i><%= @specimen.substrate if @specimen.substrate %></i> </li>
+            <li>Brojnost: <i><%= @specimen.quantity if @specimen.quantity %></i> </li>
+            <li>Napomena: <i><%= @specimen.note if @specimen.note %></i> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card card-shadow card-gray">
+        <div class="card-body">
+          <ul>
+            <li><%= @specimen.species.phylum if @specimen.species %></li>
+            <li><%= @specimen.species.classis if @specimen.species %></li>
+            <li><%= @specimen.species.ordo if @specimen.species %></li>
+            <li><%= @specimen.species.familia if @specimen.species %></li>
+            <li><%= @specimen.species.genus if @specimen.species %></li>
+            <li class="underline"><%= link_to @specimen.species.name, species_path(@specimen.species.url) if @specimen.species %></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>

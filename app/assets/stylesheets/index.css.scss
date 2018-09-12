@@ -49,8 +49,7 @@ a:hover{
 }
 
 .title{
-  font-size: 50px;
-  text-align: center;
+  font-size: 40px;
   text-transform: capitalize;
   letter-spacing: 2px;
 }
@@ -93,8 +92,8 @@ a:hover{
   border-radius: 0;
   margin-right: 5px;
   margin-bottom: 5px;
-  background-color: inherit;
-  color: inherit;
+  background-color: #7dce94;
+  color: #fff;
   border: 2px solid #3d3d3f !important;
   font-size: 11px;
   text-transform: uppercase;
@@ -110,11 +109,6 @@ a:hover{
   height: 30px;
   margin-top: 10px;
   margin-left: 10px;
-  // background-color: #7dce94;
-  background-color: inherit;
-  border: 2px solid #7dce94 !important;
-  // color: #f4f7f6;
-  color: #7dce94;
 }
 
 .navbar .btn:hover{
@@ -240,8 +234,15 @@ a:hover{
 }
 
 .card-gray li{
+  // display: flex;
+  // justify-content: space-between;
   padding: 15px 0;
   border-bottom: 1px solid #ccc;
+}
+
+.card-gray .fa{
+  margin-right: 10px;
+  color: #7dce94;
 }
 
 // --------------HEADERS-------------------
@@ -279,7 +280,6 @@ iframe{
 }
 
 .specimen-main-img{
-  border-radius: 50%;
   height: 300px;
   width: auto;
 }
@@ -483,7 +483,7 @@ abbr{
 }
 
 .map i{
-  font-size: 50px;
+  font-size: 30px;
   color: #ccc;
   margin-right: 20px;
 }
@@ -491,4 +491,34 @@ abbr{
 .align-items{
   display: flex;
   align-items: center;
+}
+
+p{
+  margin: 0;
+}
+
+.species-main-img{
+  width: 100%;
+}
+
+.one-fourth-section{
+  margin-bottom: 30px;
+}
+
+.one-fourth-section .text-muted{
+  margin-bottom: 10px;
+}
+
+.one-fourth-section p,
+.one-fourth-section a{
+  margin-left: 10px;
+}
+
+// .one-fourth-section p{
+//   margin-left: 10px;
+// }
+
+.one-fourth-section i{
+  font-size: 80px;
+  color: #ddd;
 }

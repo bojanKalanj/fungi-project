@@ -130,4 +130,10 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <%= render partial: "shared/comments/comments", locals: {commentable: @species} %>
+      <%= render partial: "shared/comments/form", locals: {commentable: @species} %>
+    </div>
+  </div>
 </div>

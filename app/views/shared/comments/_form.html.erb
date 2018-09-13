@@ -1,0 +1,6 @@
+<%= form_for [commentable, Comment.new] do |f| %>
+  <div class="form-group">
+    <%= f.text_area :body, class: "form-control", placeholder: "Dodaj komentar" %>
+  </div>
+  <%= f.submit class: "btn" %>
+<% end %>

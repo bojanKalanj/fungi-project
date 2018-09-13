@@ -23,6 +23,8 @@ class Specimen < ActiveRecord::Base
   has_many :characteristics, :through => :species
   has_many :pictures
 
+  has_many :comments, as: :commentable
+
   friendly_id :slug_candidates, use: :slugged
 
   serialize :habitat, JSON

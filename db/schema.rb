@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180806132930) do
+ActiveRecord::Schema.define(version: 20180913110441) do
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id",    limit: 4
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(version: 20180806132930) do
   add_index "characteristics", ["reference_id"], name: "index_characteristics_on_reference_id", using: :btree
   add_index "characteristics", ["slug"], name: "index_characteristics_on_slug", using: :btree
   add_index "characteristics", ["species_id"], name: "index_characteristics_on_species_id", using: :btree
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "commentable_type", limit: 255
+    t.integer  "commentable_id",   limit: 4
+    t.integer  "user_id",          limit: 4
+    t.text     "body",             limit: 65535
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
 
   create_table "languages", force: :cascade do |t|
     t.integer  "parent_id",  limit: 4

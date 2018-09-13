@@ -17,6 +17,8 @@ class Species < ActiveRecord::Base
   has_many :characteristics, dependent: :destroy
   has_many :specimens
 
+  has_many :comments, as: :commentable
+
   audited except: [:url]
   mount_uploader :square_pic, SquarePicUploader
 

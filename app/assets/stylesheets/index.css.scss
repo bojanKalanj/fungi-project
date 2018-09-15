@@ -297,8 +297,32 @@ iframe{
   font-size: 25px;
   margin-right: 30px;
 }
-// ---------------------------------
+// ---------------COMMENTS------------------
+.img-round{
+  border-radius: 50%;
+}
 
+.comment-img{
+  height: 50px;
+}
+
+.comment-body{
+  margin-top: 20px;
+}
+
+.comment-link-user{
+  color: #7dce94;
+}
+
+.well,
+.comment-form{
+  border-radius: 0;
+  border: 1px solid #ddd;
+}
+
+.comment-form{
+
+}
 
 // --------------FORMS-------------------
 .panel{

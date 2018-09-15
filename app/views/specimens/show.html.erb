@@ -48,7 +48,7 @@
           <ul class="text-muted">
             <li><%= fa_icon "envira" %>Ime vrste: <i class="pull-right"><%= link_to @specimen.species.name, species_path(@specimen.species.url) if @specimen.species %> </i></li>
             <li><%= fa_icon "globe" %>Lokacija: <i class="pull-right"><%= @specimen.location.name if @specimen.location %></i> </li>
-            <li><%= fa_icon "user" %>Legator: <i class="pull-right"><%= link_to @specimen.legator.full_name, user_path(@specimen.legator.id) if @specimen.legator %></i> </li> -->
+            <li><%= fa_icon "user" %>Legator: <i class="pull-right"><%= link_to @specimen.legator.full_name, user_path(@specimen.legator.id) if @specimen.legator %></i> </li>
             <li><%= fa_icon "user" %>Determinator: <i class="pull-right"><%= @specimen.determinator_text if @specimen.determinator_text %></i> </li>
             <li><%= fa_icon "globe" %>Podloga: <i class="pull-right"><%= @specimen.substrate if @specimen.substrate %></i> </li>
             <li><%= fa_icon "list-ol" %>Brojnost: <i class="pull-right"><%= @specimen.quantity if @specimen.quantity %></i> </li>
@@ -61,12 +61,7 @@
   <div class="row">
     <div class="col-sm-6">
       <%= render partial: "shared/comments/comments", locals: {commentable: @specimen} %>
-      <%= form_for Comment.new, url: specimen_comments_path(@specimen) do |f| %>
-        <div class="form-group">
-          <%= f.text_area :body, class: "form-control", placeholder: "Dodaj komentar" %>
-        </div>
-        <%= f.submit class: "btn" %>
-      <% end %>
+      <%= render partial: "shared/comments/form", locals: {commentable: @specimen, url: specimen_comments_path(@specimen)} %>
     </div>
   </div>
 </div>

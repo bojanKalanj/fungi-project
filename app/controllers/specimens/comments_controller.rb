@@ -4,7 +4,6 @@ class Specimens::CommentsController < CommentsController
   private
 
   def set_commentable
-    @commentable = Species.where(url: params[:species_url]).first
-    # @commentable = Specimen.find(params[:specimen_id])
+    @commentable = Specimen.friendly.find(params[:specimen_id])
   end
 end

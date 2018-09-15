@@ -1,51 +1,3 @@
-<!-- <div class="container content">
-  <div class="row border-btm">
-    <div class="col-sm-8">
-      <h1><%= @specimen.display_name %></h1>
-      <ol class="breadcrumb">
-        <li><%= @specimen.species.phylum if @specimen.species %></li>
-        <li><%= @specimen.species.classis if @specimen.species %></li>
-        <li><%= @specimen.species.ordo if @specimen.species %></li>
-        <li><%= @specimen.species.familia if @specimen.species %></li>
-        <li><%= @specimen.species.genus if @specimen.species %></li>
-        <li class="underline"><%= link_to @specimen.species.name, species_path(@specimen.species.url) if @specimen.species %></li>
-      </ol>
-    </div>
-    <div class="col-sm-4 border-left padding">
-      <p>Ime vrste: <i class="underline"><%= link_to @specimen.species.name, species_path(@specimen.species.url) if @specimen.species %> </i></p>
-      <p>Lokacija: <i><%= @specimen.location.name if @specimen.location %></i> </p>
-      <p>Legator: <i class="underline"><%= link_to @specimen.legator.full_name, user_path(@specimen.legator.id) if @specimen.legator %></i> </p>
-      <p>Determinator: <i><%= @specimen.determinator_text if @specimen.determinator_text %></i> </p>
-      <p>Podloga: <i><%= @specimen.substrate if @specimen.substrate %></i> </p>
-      <p>Brojnost: <i><%= @specimen.quantity if @specimen.quantity %></i> </p>
-      <p>Napomena: <i><%= @specimen.note if @specimen.note %></i> </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-9 border-btm padding">
-      <div class="desc">
-        <%= link_to @specimen.legator_text, user_path(@specimen.legator.id), class: 'user-a' %>
-        <p class="card-subtitle mb-2 text-muted"><%= @specimen.date %></p>
-        <p class="card-subtitle mb-2 text-muted">Observation <%= @specimen.number %></p>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-      </div>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22507.860018473515!2d19.69177472385645!3d45.15707840572651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b094881e683e7%3A0xc1f22e3d1483a4c2!2z0KTRgNGD0YjQutCwINCz0L7RgNCw!5e0!3m2!1ssr!2srs!4v1530028777165" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-    </div>
-    <div class="col-sm-3 border-btm border-left padding">
-      <img class="img-thumbnail" data-toggle="modal" data-target=".bd-example-modal-lg" src="<%= asset_path( 'index/1.jpg' ) %>" alt="Card image cap">
-      <img class="img-thumbnail" data-toggle="modal" data-target=".bd-example-modal-lg" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap">
-      <img class="img-thumbnail" data-toggle="modal" data-target=".bd-example-modal-lg" src="<%= asset_path( 'index/3.jpg' ) %>" alt="Card image cap">
-      <img class="img-thumbnail" data-toggle="modal" data-target=".bd-example-modal-lg" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap">
-    </div>
-  </div>
-</div>
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <img  src="<%= asset_path( 'index/1.jpg' ) %>" >
-    </div>
-  </div>
-</div> -->
 <div class="container">
 <div class="row">
   <div class="col-sm-9">
@@ -96,7 +48,7 @@
           <ul class="text-muted">
             <li><%= fa_icon "envira" %>Ime vrste: <i class="pull-right"><%= link_to @specimen.species.name, species_path(@specimen.species.url) if @specimen.species %> </i></li>
             <li><%= fa_icon "globe" %>Lokacija: <i class="pull-right"><%= @specimen.location.name if @specimen.location %></i> </li>
-            <li><%= fa_icon "user" %>Legator: <i class="pull-right"><%= link_to @specimen.legator.full_name, user_path(@specimen.legator.id) if @specimen.legator %></i> </li>
+            <li><%= fa_icon "user" %>Legator: <i class="pull-right"><%= link_to @specimen.legator.full_name, user_path(@specimen.legator.id) if @specimen.legator %></i> </li> -->
             <li><%= fa_icon "user" %>Determinator: <i class="pull-right"><%= @specimen.determinator_text if @specimen.determinator_text %></i> </li>
             <li><%= fa_icon "globe" %>Podloga: <i class="pull-right"><%= @specimen.substrate if @specimen.substrate %></i> </li>
             <li><%= fa_icon "list-ol" %>Brojnost: <i class="pull-right"><%= @specimen.quantity if @specimen.quantity %></i> </li>
@@ -109,7 +61,12 @@
   <div class="row">
     <div class="col-sm-6">
       <%= render partial: "shared/comments/comments", locals: {commentable: @specimen} %>
-      <%= render partial: "shared/comments/form", locals: {commentable: @specimen} %>
+      <%= form_for Comment.new, url: specimen_comments_path(@specimen) do |f| %>
+        <div class="form-group">
+          <%= f.text_area :body, class: "form-control", placeholder: "Dodaj komentar" %>
+        </div>
+        <%= f.submit class: "btn" %>
+      <% end %>
     </div>
   </div>
 </div>

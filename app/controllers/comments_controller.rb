@@ -5,7 +5,11 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.new comment_params
     @comment.user = current_user
     @comment.save
-    redirect_to @commentable, notice: "Komentar je poslat"
+    if @commentable.class == Specimen
+      redirect_to specimen_path(@commentable.id), notice: "Komentar je poslat"
+    else
+      redirect_to @commentable, notice: "Komentar je poslat"
+    end
   end
 
   private

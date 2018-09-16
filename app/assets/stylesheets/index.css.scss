@@ -314,14 +314,15 @@ iframe{
   color: #7dce94;
 }
 
+.comment-link-delete{
+  font-size: 11px;
+  text-transform: lowercase;
+}
+
 .well,
 .comment-form{
   border-radius: 0;
   border: 1px solid #ddd;
-}
-
-.comment-form{
-
 }
 
 // --------------FORMS-------------------

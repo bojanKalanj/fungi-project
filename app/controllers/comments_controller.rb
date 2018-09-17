@@ -15,7 +15,11 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.delete
-    redirect_to @commentable, notice: "Komentar je obrisan"
+    if @commentable.class == Specimen
+      redirect_to specimen_path(@commentable.id), notice: "Komentar je obrisan"
+    else
+      redirect_to @commentable, notice: "Komentar je obrisan"
+    end
   end
 
   private

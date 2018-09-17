@@ -28,6 +28,10 @@ class SpecimensController < ApplicationController
     end
   end
 
+  def edit
+    @specimen = Specimen.friendly.find(params[:id])
+  end
+
   def destroy
     @specimen = Specimen.friendly.find(params[:id])
     if @specimen.delete

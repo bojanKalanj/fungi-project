@@ -28,6 +28,17 @@ class SpecimensController < ApplicationController
     end
   end
 
+  def destroy
+    @specimen = Specimen.friendly.find(params[:id])
+    if @specimen.delete
+      redirect_to root_path
+      flash[:notice] = "Uzorak je obrisan"
+    else
+      redirect_to root_path
+      flash[:danger] = "Neuspesno brisanje uzorka"
+    end
+  end
+
   def search
     species = Species.with_systematics(params[:s]).with_nutritive_group(params[:ng]).with_growth_type(params[:gt])
 

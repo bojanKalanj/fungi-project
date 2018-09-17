@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     resources :comments, module: :species
   end
 
-  resources :specimens, controller: 'specimens', only: [:index, :show, :new] do
+  resources :specimens, controller: 'specimens', only: [:index, :show, :new, :create] do
     get :search, on: :collection
     #
     resources :comments, module: :specimens

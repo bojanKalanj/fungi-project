@@ -2,6 +2,7 @@ class SpecimensController < ApplicationController
   include HabitatHelper
 
   before_action :clean_params, only: :search
+  before_action :set_specimen_fields
 
   def index
     @specimens = Specimen.order("created_at DESC").paginate(:page => params[:page], per_page: 12 )
@@ -14,6 +15,17 @@ class SpecimensController < ApplicationController
   def new
     @specimen = Specimen.new
     authorize! :read, @specimen
+  end
+
+  def create
+    @specimen = Specimen.new(resource_params)
+    if @specimen.save
+      redirect_to root_path
+      flash[:notice] = "Successfully created..."
+    else
+      redirect_to root_path
+      flash[:danger] = "Ne valja ti poso"
+    end
   end
 
   def search
@@ -37,8 +49,33 @@ class SpecimensController < ApplicationController
     @params = params
   end
 
-
   private
+
+  def set_specimen_fields
+    if params[:action] == :index
+      @fields = [
+        { name: :species, field: :full_name, class: 'italic no-wrap' },
+        { name: :location, field: :name },
+        { name: :date, method: :localize_date, options: { format: :long }, class: 'no-wrap' },
+        { name: :habitat, method: :habitat_icons },
+        { name: :substrate, method: :substrate_icons },
+        { name: :actions, no_label: true }
+      ]
+    else
+      @fields = [
+        { name: :species, field: :full_name, label_method: :full_name, value_method: :id, input_html: { class: 'italic' } },
+        { name: :location, field: :name },
+        { name: :legator, field: :full_name, label_method: :full_name, value_method: :id },
+        { name: :determinator, field: :full_name, label_method: :full_name, value_method: :id },
+        { name: :habitat, method: :habitat_title },
+        { name: :substrate, method: :subhabitat_title, collection: all_substrate_keys.map{ |key| [t("substrates.#{key}"), key]}, label_method: :first, value_method: :last },
+        { name: :quantity, as: :string },
+        { name: :note },
+        { name: :approved },
+        { name: :date, as: :string, input_html: { class: 'datepicker' }, method: :localize_date, options: { format: :long } }
+      ]
+    end
+  end
 
   def species_ids_for_characteristics(species)
     species_ids = species.pluck(:id)
@@ -59,5 +96,9 @@ class SpecimensController < ApplicationController
     params.keys.each do |key|
       params[key] = nil if params[key].blank?
     end
+  end
+
+  def resource_params
+    params.require(:specimen).permit(Specimen::PUBLIC_FIELDS)
   end
 end

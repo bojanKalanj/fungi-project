@@ -1,5 +1,0 @@
-- args = @specimen.new_record? ? { url: specimens_path, method: :post } : { url: specimen_path(@specimen), method: :patch }
-
-= simple_form_for  @specimen, { :html => { class: 'form-horizontal', multipart: true } }.merge(args) do |f|
-  = admin_edit_fields(@specimen, @fields, f)
-  = admin_menu(@specimen, f)

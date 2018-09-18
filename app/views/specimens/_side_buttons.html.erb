@@ -1,0 +1,7 @@
+<%= link_to edit_specimen_path(@specimen.id), class: 'side-btn side-btn-primary pull-right' do %>
+  <%= fa_icon "cog" %>
+<% end %>
+
+<%= link_to specimen_path(@specimen.id), :method  => :delete, class: 'side-btn side-btn-danger pull-right' do %>
+  <%= fa_icon "times" %>
+<% end %>

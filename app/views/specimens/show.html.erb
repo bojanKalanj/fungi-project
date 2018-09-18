@@ -56,8 +56,6 @@
           </ul>
         </div>
       </div>
-      <%= link_to 'obrisi ovaj uzarak', specimen_path(@specimen.id), :method  => :delete, class: 'btn pull-right' %>
-      <%= link_to 'izmeni ovaj uzarak', edit_specimen_path(@specimen.id), class: 'btn pull-right' %>
     </div>
   </div>
   <div class="row">
@@ -66,4 +64,7 @@
       <%= render partial: "shared/comments/form", locals: {commentable: @specimen, url: specimen_comments_path(@specimen)} %>
     </div>
   </div>
+</div>
+<div class="side-buttons">
+  <%= render "side_buttons" %>
 </div>

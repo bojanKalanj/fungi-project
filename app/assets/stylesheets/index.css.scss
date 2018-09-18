@@ -119,6 +119,37 @@ a:hover{
   display: flex;
 }
 
+.side-buttons{
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 200px;
+  right: 50px;
+}
+
+.side-btn{
+  height: 50px;
+  width: 50px;
+  margin-bottom: 20px; 
+  text-align: center;
+  line-height: 50px;
+  border: 1px solid #111;
+  border-radius: 50%;
+  font-size: 20px;
+}
+
+.side-btn:hover{
+  color: #fff;
+}
+
+.side-btn-primary:hover{
+  background-color: #7dce94;
+}
+
+.side-btn-danger:hover{
+  background-color: red;
+}
+
 // -------------NAVBAR--------------
 .navbar-inverse{
   margin: 0 !important;

@@ -127,6 +127,7 @@ a:hover{
 }
 
 .navbar-left input{
+  height: 100%;
   border-radius: 0;
   border: 1px solid #7dce94;
   background-color: inherit;
@@ -147,16 +148,21 @@ a:hover{
   border-radius: 0;
 }
 
+.dropdown-menu li{
+  color: #fff;
+  padding-left: 10px;
+}
+
 .dropdown-menu a{
-  color: #999 !important;
+  color: #fff !important;
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 .dropdown a:hover{
-  background-color: #333 !important;
-  color: #f6f5f3 !important;
+  background-color: inherit !important;
+  color: #ddd !important;
 }
 
 .divider{
@@ -300,6 +306,11 @@ iframe{
 // ---------------COMMENTS------------------
 .img-round{
   border-radius: 50%;
+}
+
+.img-small{
+  height: 30px;
+  margin-right: 10px;
 }
 
 .comment-img{

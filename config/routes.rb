@@ -36,13 +36,11 @@ Rails.application.routes.draw do
 
   resources :species, param: :url, only: [:index, :show] do
     get :search, on: :collection
-    #
     resources :comments, module: :species
   end
 
   resources :specimens, controller: 'specimens' do
     get :search, on: :collection
-    #
     resources :comments, module: :specimens
   end
 

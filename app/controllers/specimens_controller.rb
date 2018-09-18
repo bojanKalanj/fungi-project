@@ -67,29 +67,18 @@ class SpecimensController < ApplicationController
   private
 
   def set_specimen_fields
-    if params[:action] == :index
-      @fields = [
-        { name: :species, field: :full_name, class: 'italic no-wrap' },
-        { name: :location, field: :name },
-        { name: :date, method: :localize_date, options: { format: :long }, class: 'no-wrap' },
-        { name: :habitat, method: :habitat_icons },
-        { name: :substrate, method: :substrate_icons },
-        { name: :actions, no_label: true }
-      ]
-    else
-      @fields = [
-        { name: :species, field: :full_name, label_method: :full_name, value_method: :id, input_html: { class: 'italic' } },
-        { name: :location, field: :name },
-        { name: :legator, field: :full_name, label_method: :full_name, value_method: :id },
-        { name: :determinator, field: :full_name, label_method: :full_name, value_method: :id },
-        { name: :habitat, method: :habitat_title },
-        { name: :substrate, method: :subhabitat_title, collection: all_substrate_keys.map{ |key| [t("substrates.#{key}"), key]}, label_method: :first, value_method: :last },
-        { name: :quantity, as: :string },
-        { name: :note },
-        { name: :approved },
-        { name: :date, as: :string, input_html: { class: 'datepicker' }, method: :localize_date, options: { format: :long } }
-      ]
-    end
+    @fields = [
+      { name: :species, field: :full_name, label_method: :full_name, value_method: :id, input_html: { class: 'italic' } },
+      { name: :location, field: :name },
+      { name: :legator, field: :full_name, label_method: :full_name, value_method: :id },
+      { name: :determinator, field: :full_name, label_method: :full_name, value_method: :id },
+      { name: :habitat, method: :habitat_title },
+      { name: :substrate, method: :subhabitat_title, collection: all_substrate_keys.map{ |key| [t("substrates.#{key}"), key]}, label_method: :first, value_method: :last },
+      { name: :quantity, as: :string },
+      { name: :note },
+      { name: :approved },
+      { name: :date, as: :string, input_html: { class: 'datepicker' }, method: :localize_date, options: { format: :long } }
+    ]
   end
 
   def species_ids_for_characteristics(species)

@@ -18,13 +18,13 @@
   <ul class="nav navbar-nav navbar-right">
     <% if current_user %>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle nav-a " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.full_name %> <span class="caret"></span></a>
+        <a href="#" class="dropdown-toggle nav-a " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.full_name %> <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><%= link_to 'Moj profil', user_path(current_user.id)%></li>
+          <li class="align-items"><%= fa_icon "user" %><%= link_to 'Moj profil', user_path(current_user.id)%></li>
           <li role="separator" class="divider"></li>
-          <li><a href="#">Dodaj nalaz</a></li>
+          <li class="align-items"><%= fa_icon "plus" %><%= link_to 'Dodaj nalaz', new_specimen_path%></li>
           <li role="separator" class="divider"></li>
-          <li><%= link_to 'Odjavi se', destroy_user_session_path, method: :delete %></li>
+          <li class="align-items"><%= fa_icon "sign-out" %><%= link_to 'Odjavi se', destroy_user_session_path, method: :delete %></li>
         </ul>
       </li>
       <% else %>

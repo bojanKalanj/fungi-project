@@ -11,8 +11,8 @@ class Ability
         can [:show, :update], User, id: @user.id
         can :activate, User, id: @user.id
 
-        can [:update, :destroy], Specimen, id: @user.id
         can [:update, :destroy], Comment, id: @user.id
+        can [:edit, :update, :destroy], Specimen, id: @user.id
       end
     end
 

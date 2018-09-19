@@ -1,24 +1,22 @@
 class SpecimensController < ApplicationController
   include HabitatHelper
 
+  before_action :set_specimen
   before_action :clean_params, only: :search
   before_action :set_specimen_fields
 
+  # authorize_resource
+
   def index
-    @specimens = Specimen.order("created_at DESC").paginate(:page => params[:page], per_page: 12 )
   end
 
   def show
-    @specimen = Specimen.friendly.find(params[:id])
   end
 
   def new
-    @specimen = Specimen.new
-    authorize! :read, @specimen
   end
 
   def create
-    @specimen = Specimen.new(resource_params)
     if @specimen.save
       redirect_to root_path
       flash[:notice] = "Successfully created..."
@@ -29,11 +27,18 @@ class SpecimensController < ApplicationController
   end
 
   def edit
-    @specimen = Specimen.friendly.find(params[:id])
+  end
+
+  def update
+    if @specimen.update_attributes(resource_params)
+      redirect_to specimen_path(@specimen)
+      flash[:notice] = "Successfully updated..."
+    else
+      flash[:danger] = "Ne valja ti poso"
+    end
   end
 
   def destroy
-    @specimen = Specimen.friendly.find(params[:id])
     if @specimen.delete
       redirect_to root_path
       flash[:notice] = "Uzorak je obrisan"
@@ -65,6 +70,20 @@ class SpecimensController < ApplicationController
   end
 
   private
+
+  def set_specimen
+    if params[:action] == 'new'
+      @specimen = Specimen.new
+    elsif params[:action] == 'create'
+      @specimen = Specimen.new(resource_params)
+    elsif params[:action] == 'index'
+      @specimens = Specimen.order("created_at DESC").paginate(:page => params[:page], per_page: 12 )
+    else
+      @specimen = Specimen.friendly.find(params[:id])
+    end
+
+    @specimen.habitat = params['specimen']['habitat'] if params && params['specimen'] && params['specimen']['habitat']
+  end
 
   def set_specimen_fields
     @fields = [

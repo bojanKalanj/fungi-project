@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
 
   # Whitelisting deviseparams
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  
+
   def configure_permitted_parameters
-    registration_params = [:first_name, :last_name, :password, :email]
+    registration_params = [:first_name, :last_name, :about, :password, :email]
 
     if params[:action] == 'create'
       devise_parameter_sanitizer.for(:sign_up) do

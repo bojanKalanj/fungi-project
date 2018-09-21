@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+
+  before_action :set_user
+
+  authorize_resource
+
   def show
     @user = User.friendly.find(params[:id])
   end
@@ -18,6 +23,18 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_user
+    if params[:action] == :new
+      @user = User.new
+    elsif params[:action] == :create
+      @user = User.new(user_params)
+    elsif params[:action] == :index
+      @users = User.all
+    else
+      @user = User.friendly.find(params[:id])
+    end
+  end
 
   def user_params
     params.require(:user).permit(User::PUBLIC_FIELDS)

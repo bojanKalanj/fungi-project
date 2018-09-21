@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180913110441) do
+ActiveRecord::Schema.define(version: 20180921110731) do
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id",    limit: 4
@@ -198,20 +198,20 @@ ActiveRecord::Schema.define(version: 20180913110441) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255,                  null: false
+    t.string   "email",                  limit: 255,                    null: false
     t.string   "encrypted_password",     limit: 255
-    t.string   "first_name",             limit: 255,                  null: false
-    t.string   "last_name",              limit: 255,                  null: false
+    t.string   "first_name",             limit: 255,                    null: false
+    t.string   "last_name",              limit: 255,                    null: false
     t.string   "title",                  limit: 255
-    t.string   "role",                   limit: 255, default: "user", null: false
+    t.string   "role",                   limit: 255,   default: "user", null: false
     t.string   "institution",            limit: 255
     t.string   "phone",                  limit: 255
-    t.string   "slug",                   limit: 255,                  null: false
+    t.string   "slug",                   limit: 255,                    null: false
     t.string   "authentication_token",   limit: 255
     t.datetime "deactivated_at"
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,      null: false
+    t.integer  "sign_in_count",          limit: 4,     default: 0,      null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -220,8 +220,9 @@ ActiveRecord::Schema.define(version: 20180913110441) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email",      limit: 255
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.text     "about",                  limit: 65535
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
@@ -229,8 +230,6 @@ ActiveRecord::Schema.define(version: 20180913110441) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "characteristics", "references"
-  add_foreign_key "characteristics", "species"
   add_foreign_key "localized_pages", "languages"
   add_foreign_key "localized_pages", "pages"
   add_foreign_key "pictures", "references"

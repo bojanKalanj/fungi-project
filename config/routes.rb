@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :specimens, only: [:new]
   end
 
-  resources :users, only: [:show]
+  resources :users
 
   namespace :admin do
     resources :users

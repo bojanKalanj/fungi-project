@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def configure_permitted_parameters
-    registration_params = [:first_name, :last_name, :about, :password, :email]
+    registration_params = [User::PUBLIC_FIELDS]
 
     if params[:action] == 'create'
       devise_parameter_sanitizer.for(:sign_up) do

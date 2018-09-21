@@ -1,0 +1,16 @@
+<%= simple_form_for(@user, url: user_path(@user), html: { method: :put }) do |f| %>
+  <%= f.input :email, autofocus: true, label: 'Email' %>
+
+  <%= f.input :first_name, label: 'Ime' %>
+
+  <%= f.input :last_name, label: 'Prezime' %>
+
+  <%= f.input :about, label: 'Reci nesto o sebi' %>
+
+  <%= f.input :institution, label: 'Institucija' %>
+
+  <%= f.input :phone, label: 'telefon' %>
+
+  <%= f.submit 'Izmeni', class: 'btn panel-btn' %>
+
+<% end %>

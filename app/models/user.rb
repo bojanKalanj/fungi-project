@@ -9,11 +9,11 @@ class User < ActiveRecord::Base
   SUPERVISOR_ROLE = 'supervisor'
   ROLES = [USER_ROLE, CONTRIBUTOR_ROLE, SUPERVISOR_ROLE]
 
-  PUBLIC_FIELDS = [:email, :first_name, :last_name, :role, :institution, :phone, :title, :password, :password_confirmation]
+  PUBLIC_FIELDS = [:email, :first_name, :last_name, :role, :institution, :phone, :title, :about, :password, :password_confirmation]
 
   has_many :specimens
 
-  has_many :comments  
+  has_many :comments
 
   devise :database_authenticatable, :registerable, :recoverable, :trackable, :validatable, :confirmable
 

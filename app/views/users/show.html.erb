@@ -6,7 +6,11 @@
           <a href="#"><img class="card-img-top" src="<%= asset_path( 'index/vucic.jpg' ) %>" alt="Card image cap"></a>
         </div>
         <h1 class="user-title"><%= @user.full_name %></h1>
-        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non.</p>
+        <% if @user.about %>
+          <p class="text-muted"><%= @user.about %></p>
+        <% else %>
+          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non.</p>
+        <% end %>
         <hr>
         <div class="text-muted">
           <p>Email: <i><%= @user.email if @user.email %></i> </p>
@@ -17,11 +21,7 @@
           <p>Korisnik registrovan: <i><%= @user.created_at.to_date %></i> </p>
         </div>
         <hr>
-        <div class="user-social">
-          <%= fa_icon "facebook-f" %>
-          <%= fa_icon "instagram" %>
-          <%= fa_icon "twitter" %>
-        </div>
+        <%= link_to 'Izmeni profil', edit_user_path(@user.id), class: 'btn' %>
       </div>
     </div>
   </div>

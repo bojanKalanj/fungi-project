@@ -1,23 +1,23 @@
 <h1>Komentari (<%= commentable.comments.count %>)</h1>
-<div class="well">
-  <% if commentable.comments.any? %>
-    <% commentable.comments.each do |comment| %>
-      <div class="row">
-        <div class="col-sm-1">
-          <a href="#"><img class="img-round comment-img" src="<%= asset_path( 'index/vucic.jpg' ) %>" alt="Card image cap"></a>
-        </div>
-        <div class="col-sm-11">
-          <%= link_to comment.user.full_name, user_path(comment.user), class: 'comment-link-user' %>
-          <p class="text-muted"><%= comment.created_at.to_date %></p>
-          <p class="comment-body"><%= comment.body %></p>
-          <% if comment.commentable_type == "Specimen" %>
-            <%= link_to "obrisi komentar", specimen_comment_path(commentable, comment), :method  => :delete, class: 'comment-link-delete pull-right text-muted' %>
-          <% else %>
-            <%= link_to "obrisi komentar", [commentable, comment], :method  => :delete, class: 'comment-link-delete pull-right text-muted' %>
-          <% end %>
+
+<% if commentable.comments.any? %>
+  <% commentable.comments.each do |comment| %>
+    <div class="row well">
+      <div class="col-sm-1">
+        <div class="user-img">
+          <a href="#"><img class="img-round" src="<%= asset_path( 'index/vucic.jpg' ) %>" alt="Card image cap"></a>
         </div>
       </div>
-      <hr>
-    <% end %>
+      <div class="col-sm-10 pull-right">
+        <%= link_to comment.user.full_name, user_path(comment.user), class: 'comment-link-user' %>
+        <p class="text-muted"><%= comment.created_at.to_date %></p>
+        <p class="comment-body"><%= comment.body %></p>
+        <% if comment.commentable_type == "Specimen" %>
+          <%= link_to "obrisi komentar", specimen_comment_path(commentable, comment), :method  => :delete, class: 'comment-link-delete pull-right text-muted' %>
+        <% else %>
+          <%= link_to "obrisi komentar", [commentable, comment], :method  => :delete, class: 'comment-link-delete pull-right text-muted' %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
-</div>
+<% end %>

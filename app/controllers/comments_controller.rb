@@ -4,11 +4,21 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.new comment_params
     @comment.user = current_user
-    @comment.save
     if @commentable.class == Specimen
-      redirect_to specimen_path(@commentable.id), notice: "Komentar je poslat"
+      if @comment.save
+        redirect_to specimen_path(@commentable.id), notice: "Komentar je poslat"
+      else
+        redirect_to specimen_path(@commentable.id)
+        flash[:danger] = "Komentar nije poslat"
+      end
     else
       redirect_to @commentable, notice: "Komentar je poslat"
+      if @comment.save
+        redirect_to @commentable, notice: "Komentar je poslat"
+      else
+        redirect_to @commentable
+        flash[:danger] = "Komentar nije poslat"
+      end
     end
   end
 

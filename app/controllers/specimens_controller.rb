@@ -17,6 +17,9 @@ class SpecimensController < ApplicationController
   end
 
   def create
+    @specimen.legator_text = set_legator(@specimen.legator_id)
+    @specimen.determinator_text = set_determinator(@specimen.determinator_id)
+
     if @specimen.save
       redirect_to root_path
       flash[:notice] = "Successfully created..."
@@ -124,4 +127,13 @@ class SpecimensController < ApplicationController
   def resource_params
     params.require(:specimen).permit(Specimen::PUBLIC_FIELDS)
   end
+
+  def set_legator(legator_id)
+    User.find(legator_id).full_name
+  end
+
+  def set_determinator(determinator_id)
+    User.find(determinator_id).full_name
+  end
+
 end

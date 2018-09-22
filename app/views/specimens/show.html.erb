@@ -60,8 +60,10 @@
   </div>
   <div class="row">
     <div class="col-sm-6">
-      <%= render partial: "shared/comments/comments", locals: {commentable: @specimen} %>
-      <%= render partial: "shared/comments/form", locals: {commentable: @specimen, url: specimen_comments_path(@specimen)} %>
+      <div class="panel">
+        <%= render partial: "shared/comments/comments", locals: {commentable: @specimen} %>
+        <%= render partial: "shared/comments/form", locals: {commentable: @specimen, url: specimen_comments_path(@specimen)} %>
+      </div>
     </div>
   </div>
 </div>

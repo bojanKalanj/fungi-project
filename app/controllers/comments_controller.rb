@@ -12,7 +12,6 @@ class CommentsController < ApplicationController
         flash[:danger] = "Komentar nije poslat"
       end
     else
-      redirect_to @commentable, notice: "Komentar je poslat"
       if @comment.save
         redirect_to @commentable, notice: "Komentar je poslat"
       else

@@ -12,6 +12,8 @@ gem 'will_paginate-bootstrap'
 
 gem "font-awesome-rails"
 
+gem 'tinymce-rails'
+
 gem 'rails-i18n'
 gem 'mysql2'
 gem 'annotate', '~> 2.6.5'

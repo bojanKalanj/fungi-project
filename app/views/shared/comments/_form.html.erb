@@ -1,6 +1,10 @@
-<%= form_for Comment.new, url: url do |f| %>
-  <div class="form-group">
-    <%= f.text_area :body, class: "comment-form form-control", placeholder: "Dodaj komentar" %>
-  </div>
-  <%= f.submit "dodaj komentar", class: "btn" %>
+<% if current_user %>
+  <%= form_for Comment.new, url: url do |f| %>
+    <div class="form-group">
+      <%= f.text_area :body, class: "comment-form form-control", placeholder: "Dodaj komentar" %>
+    </div>
+    <%= f.submit "dodaj komentar", class: "btn" %>
+  <% end %>
+<% else %>
+  <%= link_to 'prijavite se da biste mogli da ostavite komentar', new_user_session_path, class: 'btn' %>
 <% end %>

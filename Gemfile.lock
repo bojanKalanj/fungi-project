@@ -67,6 +67,8 @@ GEM
     bootstrap-sass (3.3.5.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
+    bootstrap-wysihtml5-rails (0.3.3.8)
+      railties (>= 3.0)
     builder (3.2.2)
     cancancan (1.10.1)
     capistrano (3.4.0)
@@ -321,6 +323,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  bootstrap-wysihtml5-rails
   cancancan
   capistrano
   capistrano-bundler

@@ -26,3 +26,6 @@
 //= require twitter/bootstrap/affix
 //= require turbolinks
 //= require index
+//= require bootstrap-wysihtml5
+//= require bootstrap-wysihtml5/locales
+//= require wysihtml5

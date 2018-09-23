@@ -26,6 +26,8 @@ gem 'autoprefixer-rails'
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
 
+gem 'bootstrap-wysihtml5-rails'
+
 gem 'therubyracer'
 gem 'less-rails'
 

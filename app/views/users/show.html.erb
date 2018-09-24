@@ -4,9 +4,9 @@
       <div class="card-body">
         <div class="user-img">
           <% if @user.avatar_pic %>
-            <a href="#"><img class="card-img-top user-img" src="<%= @user.avatar_pic %>" alt="Card image cap"></a>
+            <img class="card-img-top user-img" src="<%= @user.avatar_pic %>" alt="Card image cap">
           <% else %>
-            <a href="#"><img class="card-img-top user-img" src="<%= asset_path( 'index/vucic.jpg' ) %>" alt="Card image cap"></a>
+            <img class="card-img-top user-img" src="<%= asset_path( 'index/vucic.jpg' ) %>" alt="Card image cap">
           <% end %>
         </div>
         <h1 class="user-title"><%= @user.full_name %></h1>

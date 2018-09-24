@@ -19,7 +19,11 @@
 
         <%= f.input :about, label: 'Reci nesto o sebi' %>
 
-        <%= f.file_field :avatar_pic, label: 'Dodajte avatar' %>
+        <div class="form-group">
+          <label class="btn">
+            Dodajte avatar <%= f.file_field :avatar_pic, style: 'display: none;' %>
+          </label>
+        </div>
 
         <div class="field">
           <%= f.label t('devise.fields.password') %>

@@ -8,11 +8,13 @@
 
       <%= f.input :last_name, label: 'Prezime' %>
 
-      <%= f.input :about, label: 'Reci nesto o sebi' %>
-
       <%= f.input :institution, label: 'Institucija' %>
 
       <%= f.input :phone, label: 'telefon' %>
+
+      <%= f.input :about, label: 'Reci nesto o sebi' %>
+
+      <%= f.file_field :avatar_pic, label: 'Dodajte avatar' %>
 
       <%= f.submit 'Izmeni', class: 'btn panel-btn' %>
 

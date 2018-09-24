@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   SUPERVISOR_ROLE = 'supervisor'
   ROLES = [USER_ROLE, CONTRIBUTOR_ROLE, SUPERVISOR_ROLE]
 
-  PUBLIC_FIELDS = [:email, :first_name, :last_name, :role, :institution, :phone, :title, :about, :password, :password_confirmation]
+  PUBLIC_FIELDS = [:email, :first_name, :last_name, :role, :institution, :phone, :title, :avatar_pic, :about, :password, :password_confirmation]
 
   has_many :specimens
 
@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
   validate :password_complexity
 
   friendly_id :slug_candidates, use: :slugged
+
+  mount_uploader :avatar_pic, UserUploader
 
   def full_name
     "#{self.first_name} #{self.last_name}"

@@ -19,6 +19,8 @@
 
         <%= f.input :about, label: 'Reci nesto o sebi' %>
 
+        <%= f.file_field :avatar_pic, label: 'Dodajte avatar' %>
+
         <div class="field">
           <%= f.label t('devise.fields.password') %>
           <% if @validatable %>

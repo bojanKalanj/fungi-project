@@ -3,7 +3,11 @@
     <div class="card card-shadow">
       <div class="card-body">
         <div class="user-img">
-          <a href="#"><img class="card-img-top user-img" src="<%= asset_path( 'index/vucic.jpg' ) %>" alt="Card image cap"></a>
+          <% if @user.avatar_pic %>
+            <a href="#"><img class="card-img-top user-img" src="<%= @user.avatar_pic %>" alt="Card image cap"></a>
+          <% else %>
+            <a href="#"><img class="card-img-top user-img" src="<%= asset_path( 'index/vucic.jpg' ) %>" alt="Card image cap"></a>
+          <% end %>
         </div>
         <h1 class="user-title"><%= @user.full_name %></h1>
         <% if @user.about %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180921110731) do
+ActiveRecord::Schema.define(version: 20180924135002) do
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id",    limit: 4
@@ -223,6 +223,7 @@ ActiveRecord::Schema.define(version: 20180921110731) do
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
     t.text     "about",                  limit: 65535
+    t.text     "avatar_pic",             limit: 65535
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

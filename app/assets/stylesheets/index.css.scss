@@ -391,7 +391,8 @@ iframe{
   background-color: inherit !important;
 }
 
-.panel input{
+.panel input,
+.panel select{
   // background-color: #7dce94;
   border: 1px solid #ddd;
   box-shadow: none;
@@ -406,6 +407,7 @@ iframe{
 .panel-btn{
   background-color: #7dce94 !important;
   width: 50% !important;
+  border: none !important;
 }
 
 .panel a{

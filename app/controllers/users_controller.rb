@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :set_user
+  before_action :get_specimens
 
   authorize_resource
 
@@ -38,5 +39,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(User::PUBLIC_FIELDS)
+  end
+
+  def get_specimens
+    @specimens = Specimen.where(legator_id: @user.id).paginate(:page => params[:page], per_page: 12 )
   end
 end

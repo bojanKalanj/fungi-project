@@ -38,19 +38,12 @@
         <h1>Svi nalazi korisnika</h1> <%= link_to 'Dodaj nalaz', new_specimen_path, class: 'btn'%>
         <hr>
         <div class="card-group">
-          <% 8.times do  %>
-            <div class="col-sm-3">
-              <div class="card">
-                <div class="card-img-wrap">
-                  <a href="#"><img class="card-img-top" src="<%= asset_path( 'index/2.jpg' ) %>" alt="Card image cap"></a>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title "> <a class="underline" href="#">Specimen</a> </h5>
-                  <h6 class="card-subtitle mb-2 text-muted">31. 08. 2018</h6>
-                  <%= link_to @user.full_name, user_path(@user), class: 'user-a' %>
-                </div>
-              </div>
-            </div>
+          <% if @user.specimens_as_legator.any? %>
+            <%= will_paginate @specimens %>
+            <%= render "shared/specimens_cards", specimens: @specimens %>
+            <%= will_paginate @specimens %>
+          <% else %>
+            <p>korisnik trenutno nema nalaza</p>
           <% end %>
         </div>
       </div>

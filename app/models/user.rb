@@ -81,7 +81,6 @@ class User < ActiveRecord::Base
     password_confirmation.nil? || password == password_confirmation
   end
 
-
 end
 
 # == Schema Information

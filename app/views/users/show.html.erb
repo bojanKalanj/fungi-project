@@ -10,6 +10,7 @@
           <% end %>
         </div>
         <h1 class="user-title"><%= @user.full_name %></h1>
+        <hr>
         <% if @user.about %>
           <p class="text-muted"><%= @user.about %></p>
         <% else %>
@@ -35,6 +36,7 @@
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22507.860018473515!2d19.69177472385645!3d45.15707840572651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b094881e683e7%3A0xc1f22e3d1483a4c2!2z0KTRgNGD0YjQutCwINCz0L7RgNCw!5e0!3m2!1ssr!2srs!4v1530028777165" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
         <hr>
         <h1>Svi nalazi korisnika</h1> <%= link_to 'Dodaj nalaz', new_specimen_path, class: 'btn'%>
+        <hr>
         <div class="card-group">
           <% 8.times do  %>
             <div class="col-sm-3">

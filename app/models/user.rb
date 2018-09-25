@@ -11,7 +11,13 @@ class User < ActiveRecord::Base
 
   PUBLIC_FIELDS = [:email, :first_name, :last_name, :role, :institution, :phone, :title, :avatar_pic, :about, :password, :password_confirmation]
 
-  has_many :specimens
+  has_many :specimens_as_legator,
+    :class_name => 'Specimen',
+    :foreign_key => :legator_id
+
+  has_many :specimens_as_determinator,
+    :class_name => 'Specimen',
+    :foreign_key => :determinator_id
 
   has_many :comments
 

@@ -26,3 +26,4 @@
 //= require twitter/bootstrap/affix
 //= require turbolinks
 //= require index
+//= require tinymce

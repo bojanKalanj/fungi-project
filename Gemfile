@@ -28,6 +28,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer'
 gem 'less-rails'
 
+gem 'tinymce-rails'
+
 gem 'slim-rails'
 
 gem 'friendly_id', '~> 5.1.0'

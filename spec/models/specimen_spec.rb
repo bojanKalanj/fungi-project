@@ -141,6 +141,7 @@ end
 #  square_pic           :string(255)
 #  square_pic_reference :string(255)
 #  number               :string(255)
+#  images               :json
 #
 # Indexes
 #

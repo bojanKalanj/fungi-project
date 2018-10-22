@@ -56,6 +56,7 @@ end
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  about                  :text(65535)
+#  avatar_pic             :text(65535)
 #
 # Indexes
 #

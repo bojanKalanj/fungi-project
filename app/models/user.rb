@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
   end
 
   def password_complexity
-    if password.present? && password_confirmed? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W]).+/)
+      if password.present? && password_confirmed? and not password.match(/^(?=.*[a-z])(?=.*[A-Z]).+/)
       errors.add :password, I18n.translate('activerecord.errors.models.user.attributes.password.password_complexity')
     end
   end
@@ -113,6 +113,7 @@ end
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  about                  :text(65535)
+#  avatar_pic             :text(65535)
 #
 # Indexes
 #

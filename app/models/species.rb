@@ -12,7 +12,7 @@ class Species < ActiveRecord::Base
   NUTRITIVE_GROUPS_VALIDATION_ERROR = "has to be one of: #{NUTRITIVE_GROUPS.inspect}"
 
   SYSTEMATICS = [:name, :genus, :familia, :ordo, :subclassis, :classis, :subphylum, :phylum]
-  PUBLIC_FIELDS = [:name, :genus, :familia, :ordo, :subclassis, :classis, :subphylum, :phylum, :synonyms, :growth_type, :nutritive_group, :square_pic]
+  PUBLIC_FIELDS = [:name, :genus, :familia, :ordo, :subclassis, :classis, :subphylum, :phylum, :synonyms, :growth_type, :nutritive_group, :square_pic, { images: [] }]
 
   has_many :characteristics, dependent: :destroy
   has_many :specimens
@@ -20,7 +20,7 @@ class Species < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   audited except: [:url]
-  mount_uploader :square_pic, SquarePicUploader
+  mount_uploader :wide_pic, WidePicUploader
 
   before_validation :generate_url
 
@@ -40,6 +40,8 @@ class Species < ActiveRecord::Base
 
   validates :growth_type, allow_blank: true, inclusion: { in: GROWTH_TYPES, message: GROWTH_TYPE_VALIDATION_ERROR }
   validates :nutritive_group, allow_blank: true, inclusion: { in: NUTRITIVE_GROUPS, message: NUTRITIVE_GROUPS_VALIDATION_ERROR }
+
+  default_scope { order('name ASC') }
 
   class << self
     def with_systematics(s)

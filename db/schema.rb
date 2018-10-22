@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180924135002) do
+ActiveRecord::Schema.define(version: 20181022162401) do
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id",    limit: 4
@@ -163,32 +163,8 @@ ActiveRecord::Schema.define(version: 20180924135002) do
 
   add_index "species", ["url"], name: "index_species_on_url", using: :btree
 
-  create_table "specimen", force: :cascade do |t|
-    t.integer  "species_id",           limit: 4,     null: false
-    t.integer  "location_id",          limit: 4,     null: false
-    t.integer  "legator_id",           limit: 4,     null: false
-    t.string   "legator_text",         limit: 255
-    t.integer  "determinator_id",      limit: 4
-    t.string   "determinator_text",    limit: 255
-    t.text     "habitat",              limit: 65535
-    t.text     "substrate",            limit: 65535
-    t.date     "date",                               null: false
-    t.text     "quantity",             limit: 65535
-    t.text     "note",                 limit: 65535
-    t.boolean  "approved"
-    t.string   "slug",                 limit: 255,   null: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.string   "square_pic",           limit: 255
-    t.string   "square_pic_reference", limit: 255
-    t.string   "number",               limit: 255
-  end
-
-  add_index "specimen", ["determinator_id"], name: "index_specimen_on_determinator_id", using: :btree
-  add_index "specimen", ["legator_id"], name: "index_specimen_on_legator_id", using: :btree
-  add_index "specimen", ["location_id"], name: "index_specimen_on_location_id", using: :btree
-  add_index "specimen", ["slug"], name: "index_specimen_on_slug", using: :btree
-  add_index "specimen", ["species_id"], name: "index_specimen_on_species_id", using: :btree
+# Could not dump table "specimen" because of following StandardError
+#   Unknown type 'json' for column 'images'
 
   create_table "stats", force: :cascade do |t|
     t.string   "name",       limit: 255

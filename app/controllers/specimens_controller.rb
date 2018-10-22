@@ -17,8 +17,8 @@ class SpecimensController < ApplicationController
   end
 
   def create
-    @specimen.legator_text = set_legator(@specimen.legator_id)
-    @specimen.determinator_text = set_determinator(@specimen.determinator_id)
+    @specimen.legator = current_user
+    @specimen.date = Date.today
 
     if @specimen.save
       redirect_to root_path
@@ -128,12 +128,12 @@ class SpecimensController < ApplicationController
     params.require(:specimen).permit(Specimen::PUBLIC_FIELDS)
   end
 
-  def set_legator(legator_id)
-    User.find(legator_id).full_name
-  end
-
-  def set_determinator(determinator_id)
-    User.find(determinator_id).full_name
-  end
+  # def set_legator(legator_id)
+  #   User.find(legator_id).full_name
+  # end
+  #
+  # def set_determinator(determinator_id)
+  #   User.find(determinator_id).full_name
+  # end
 
 end

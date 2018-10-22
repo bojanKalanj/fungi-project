@@ -1,9 +1,27 @@
 <div class="panel">
   <div class="row">
     <% args = @specimen.new_record? ? { url: specimens_path, method: :post } : { url: specimen_path(@specimen), method: :patch } %>
-    <%= simple_form_for  @specimen, { :html => { class: 'form-horizontal', multipart: true } }.merge(args) do |f| %>
-      <%= admin_edit_fields(@specimen, @fields, f) %>
-      <%= admin_menu(@specimen, f) %>
+    <%= form_for  @specimen, { :html => { class: 'form-horizontal', multipart: true } }.merge(args) do |f| %>
+      <div class="col-md-8">
+        <div class="form-group">
+          <%= f.collection_select :species_id, Species.all, :id, :name, {prompt: "Izaberi vrstu"}, {class: "form-control" } %>
+        </div>
+        <div class="form-group">
+          <%= f.collection_select :location_id, Location.all, :id, :name, {prompt: "Izaberi lokaciju"}, {class: "form-control" } %>
+        </div>
+        <div class="form-group">
+          <label>Slike:</label>
+          <%= file_field_tag "specimen[images][]" %>
+          <%= file_field_tag "specimen[images][]" %>
+          <%= file_field_tag "specimen[images][]" %>
+          <%= file_field_tag "specimen[images][]" %>
+          <%= file_field_tag "specimen[images][]" %>
+          <%= file_field_tag "specimen[images][]" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "Sacuvaj nalaz", class: "btn btn-primary" %>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

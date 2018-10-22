@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   resources :statistics, only: :show
   resources :systematics, only: :show
+  resources :pictures
 
   resources :language_switcher, only: :update, controller: 'language_switcher'
 

@@ -12,7 +12,7 @@
         <div class="card-body">
           <h5 class="card-title"><%= link_to specimen.display_name, specimen_path(specimen), class: 'underline' %></h5>
           <h6 class="card-subtitle mb-2 text-muted"><%= specimen.date %></h6>
-          <%= link_to specimen.legator_text, user_path(specimen.legator_id), class: 'user-a' %>
+          <%= link_to specimen.legator.full_name, user_path(specimen.legator_id), class: 'user-a' %>
         </div>
       </div>
     </div>

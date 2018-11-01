@@ -21,18 +21,18 @@
         <div class="card-body">
           <div class="row">
             <div class="col-sm-6 one-fourth-section">
-              <p class="text-muted">Poslednji determinator</p>
+              <p class="text-muted">Poslednji legator</p>
               <div class="user-img align-items">
                 <a href="#"><img class="card-img-top" src="<%= asset_path( 'index/ron2.jpg' ) %>" alt="Card image cap"></a>
-                <%= link_to @species.specimens.last.determinator_text , user_path(@species.specimens.last.determinator_id), class: 'underline' %>
+                <%= link_to @species.specimens.last.legator.full_name , user_path(@species.specimens.last.legator_id), class: 'underline' %>
               </div>
 
             </div>
             <div class="col-sm-6 one-fourth-section">
-              <p class="text-muted">Najaktivniji determinator</p>
+              <p class="text-muted">Najaktivniji legator</p>
               <div class="user-img align-items">
                 <a href="#"><img class="card-img-top" src="<%= asset_path( 'index/ron2.jpg' ) %>" alt="Card image cap"></a>
-                <%= link_to @species.specimens.last.determinator_text , user_path(@species.specimens.last.determinator_id), class: 'underline' %>
+                <%= link_to @species.specimens.last.legator.full_name , user_path(@species.specimens.last.legator_id), class: 'underline' %>
               </div>
 
             </div>
